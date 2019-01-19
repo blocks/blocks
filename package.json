@@ -1,0 +1,9 @@
+{
+  "name": "blocks",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "biscarch <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["packages/*"]
+}
