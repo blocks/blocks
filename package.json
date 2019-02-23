@@ -1,9 +1,23 @@
 {
-  "name": "blocks",
-  "version": "0.0.1",
-  "main": "index.js",
-  "author": "biscarch <chris@christopherbiscardi.com> (@chrisbiscardi)",
-  "license": "MIT",
   "private": true,
-  "workspaces": ["packages/*"]
+  "name": "blocks",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --parser flow --single-quote --no-semi --write",
+      "git add"
+    ]
+  }
 }
