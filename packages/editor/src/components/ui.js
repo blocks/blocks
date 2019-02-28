@@ -1,7 +1,4 @@
 import styled from 'styled-components'
-import NextLink from 'next/link'
-
-import theme from '../theme'
 
 import {
   Heading,
@@ -18,14 +15,14 @@ export { Heading, Text, Box, Flex, Image, Input, Button, Icon }
 export { ListView, ListViewItem } from './ListView'
 
 export const Container = styled(Box)`
-  max-width: ${theme.maxWidths.container};
+  max-width: 800px;
   margin: auto;
 `
 
 export const Link = ({ href, ...props }) => (
-  <NextLink href={href}>
+  <React.Fragment href={href}>
     <Text as="a" fontSize={2} {...props} />
-  </NextLink>
+  </React.Fragment>
 )
 
 export const ClearInput = styled.input({

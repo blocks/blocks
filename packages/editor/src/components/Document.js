@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Connect, query, mutation } from 'urql'
 import { Flex, Box, Code } from 'unified-ui'
 import debounce from 'lodash.debounce'
 

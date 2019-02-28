@@ -101,13 +101,13 @@ export default (props, next) => {
       return <CodeBlock {...attributes}>{children}</CodeBlock>
     case 'jsx':
       return (
-        <>
+        <React.Fragment>
           <CodeBlock {...attributes}>{children}</CodeBlock>
           <LiveProvider scope={Rebass} code={node.getText()}>
             <LiveError />
             <LivePreview />
           </LiveProvider>
-        </>
+        </React.Fragment>
       )
     case 'check-list-item':
       return (

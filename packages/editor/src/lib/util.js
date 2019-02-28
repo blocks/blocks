@@ -1,4 +1,3 @@
-import Router from 'next/router'
 import escapeRegexp from 'escape-string-regexp'
 import imageExtensions from 'image-extensions'
 import isUrl from 'is-url'
@@ -26,8 +25,6 @@ export const redirect = (target, ctx = {}) => {
     ctx.res.writeHead(303, { Location: target })
     ctx.res.end()
   } else {
-    Router.replace(target)
-    // facepalm
     window.location = target
   }
 }

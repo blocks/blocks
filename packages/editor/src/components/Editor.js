@@ -466,7 +466,7 @@ class BlockEditor extends Component {
             const children = next()
 
             return (
-              <>
+              <React.Fragment>
                 {children}
                 <SelectionMenu
                   innerRef={this.selectionMenu}
@@ -477,7 +477,7 @@ class BlockEditor extends Component {
                     this.emitChange({ value })
                   }}
                 />
-              </>
+              </React.Fragment>
             )
           }}
         />

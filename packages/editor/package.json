@@ -6,6 +6,7 @@
   "author": "John Otander",
   "repository": "johno/blocks",
   "scripts": {
+    "start": "x0 pages"
   },
   "dependencies": {
     "@slate-editor/utils": "^5.1.0",
@@ -19,5 +20,8 @@
     "slate-deep-table": "^0.8.0",
     "slate-react": "^0.21.15",
     "unified-ui": "0.0.3"
+  },
+  "devDependencies": {
+    "@compositor/x0": "^6.0.7"
   }
 }
