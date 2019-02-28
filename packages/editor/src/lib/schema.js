@@ -3,7 +3,7 @@ import { Block } from 'slate'
 export default {
   document: {
     last: { type: 'paragraph' },
-    normalize: (change, { code, node, child }) => {
+    normalize: (change, { code, node }) => {
       switch (code) {
         case 'last_child_type_invalid': {
           const paragraph = Block.create('paragraph')

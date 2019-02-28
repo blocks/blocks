@@ -9,8 +9,6 @@ import initialValue from '../lib/value.json'
 
 import Node from './Node'
 import MarkComponent from './Mark'
-import EmojiPicker from './EmojiPicker'
-import TitleInput from './TitleInput'
 import SelectionMenu from './SelectionMenu'
 import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
 
@@ -47,8 +45,6 @@ class BlockEditor extends Component {
     super(props)
 
     this.state = {
-      title: props.title || '',
-      emoji: props.emoji || '',
       value: Value.fromJSON(props.value || initialValue)
     }
 
@@ -64,8 +60,8 @@ class BlockEditor extends Component {
   }
 
   emitChange = () => {
-    const { title, value, emoji } = this.state
-    this.props.onChange({ title, value, emoji })
+    const { value } = this.state
+    this.props.onChange({ value })
   }
 
   updateSelectionMenu = () => {
@@ -420,37 +416,9 @@ class BlockEditor extends Component {
     change.splitBlock().setBlocks('paragraph')
   }
 
-  handleEmojiSelect = e => {
-    this.editor.change(change => {
-      change.insertText(e.native)
-    })
-    this.setState({ emojiMenu: false })
-  }
-
-  handleEmojiMenuButtonClick = () => {
-    const { emojiMenu } = this.state
-    this.setState({ emojiMenu: !emojiMenu })
-  }
-
-  handleTitleChange = ({ title, emoji }) => {
-    this.setState({ title, emoji }, this.emitChange)
-  }
-
   render() {
     return (
       <div style={{ minHeight: '100vh' }}>
-        <TitleInput
-          onChange={this.handleTitleChange}
-          title={this.state.title}
-          emoji={this.state.emoji}
-          placeholder="Input a title..."
-        />
-        <EmojiPicker
-          autoFocus={true}
-          expanded={this.state.emojiMenu}
-          toggleExpanded={this.handleEmojiMenuButtonClick}
-          onSelect={this.handleEmojiSelect}
-        />
         <Editor
           ref={editor => (this.editor = editor)}
           schema={schema}
