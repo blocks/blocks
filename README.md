@@ -9,15 +9,15 @@ choose a block from an ever-expanding library or even install your own from [npm
 
 ## What is a block?
 
-A block refers to a piece of content or a component. It's a section of your content.
-A document is a collection of blocks.
+A block refers to a piece of content or a component. It's a section of your content while
+a document is a collection of blocks.
 
-Blocks can be simple like a paragraph of text or a box with a tomato background color.
+Blocks can be simple like a paragraph of text or even a box with a tomato background color.
 Blocks can be complex like an embedded spreadsheet or a chart that fetches live data.
 
-## See it in action
+### See it in action
 
-GIFFFFFFFFFFFF
+EMBED A GIF HERE WHEN THE MVP IS DONE
 
 ## Features
 
@@ -25,6 +25,29 @@ GIFFFFFFFFFFFF
 - 📨**Open and authorable**: Underneath it's [MDX][mdx], not a JSON schema or HTML
 - 🔐**Zero lock in**: You own your content, Blocks just makes it nicer to edit
 - 🖼**WYSIWYG**: See what will be published in real time
+
+### Blocks
+
+The default editor offers an extensive library of pre-made blocks:
+
+- [ ] checklist
+- [ ] link unfurl
+- [ ] tables
+- [ ] spreadsheet
+- [ ] image gallery
+- [ ] twitter card
+- [ ] instagram card
+- [ ] syntax highlighting
+- [ ] live editor playground
+- [ ] github issue
+- [ ] github gist
+- [ ] github interlinking (between documents in the same repo)
+- [ ] text highlighting
+- [ ] text coloring
+- [ ] bar chart
+- [ ] area chart
+- [ ] donut chart
+- [ ] progress bar
 
 ## How does it work?
 
