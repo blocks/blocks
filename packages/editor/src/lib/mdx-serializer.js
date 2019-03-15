@@ -107,14 +107,14 @@ const code = {
 
 const italic = {
   match: node => node.object === "mark" && node.type === "italic",
-  matchMdast: node => node.type === "italic",
+  matchMdast: node => node.type === "emphasis",
   fromMdast: (node, index, parent, { visitChildren }) => ({
     object: "mark",
     type: "italic",
     nodes: visitChildren(node)
   }),
   toMdast: (mark, index, parent, { visitChildren }) => ({
-    type: "italic",
+    type: "emphasis",
     children: visitChildren(mark)
   })
 };
