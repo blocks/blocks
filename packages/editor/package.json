@@ -15,10 +15,16 @@
     "image-extensions": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
     "is-url": "^1.2.4",
+    "raw-loader": "^1.0.0",
     "react-live": "^1.12.0",
+    "remark-mdx": "^0.20.3",
+    "remark-parse": "^6.0.3",
+    "remark-stringify": "^6.0.4",
     "slate": "^0.44.9",
     "slate-deep-table": "^0.8.0",
+    "slate-mdast-serializer": "^3.0.0",
     "slate-react": "^0.21.15",
+    "unified": "^7.1.0",
     "unified-ui": "0.0.3"
   },
   "devDependencies": {

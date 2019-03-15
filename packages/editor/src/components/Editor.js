@@ -5,7 +5,9 @@ import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
 
 import schema from '../lib/schema'
-import initialValue from '../lib/value.json'
+import initialValue from '!!raw-loader!../lib/value.mdx'
+// import originalInitialValue from "../lib/value.json";
+import { parseMDX, serializer } from '../lib/mdx-serializer'
 
 import Node from './Node'
 import MarkComponent from './Mark'
@@ -45,7 +47,9 @@ class BlockEditor extends Component {
     super(props)
 
     this.state = {
-      value: Value.fromJSON(props.value || initialValue)
+      value: serializer.deserialize(
+        parseMDX(props.initialValue || initialValue)
+      )
     }
 
     this.selectionMenu = React.createRef()
@@ -98,11 +102,23 @@ class BlockEditor extends Component {
   }
 
   handleBackTick = (event, change, next) => {
-    this.handleInlineMark({ event, change, next, character: '`', type: 'code' })
+    this.handleInlineMark({
+      event,
+      change,
+      next,
+      character: '`',
+      type: 'code'
+    })
   }
 
   handleAsterisk = (event, change, next) => {
-    this.handleInlineMark({ event, change, next, character: '*', type: 'bold' })
+    this.handleInlineMark({
+      event,
+      change,
+      next,
+      character: '*',
+      type: 'bold'
+    })
   }
 
   handleUnderscore = (event, change, next) => {

@@ -1,13 +1,23 @@
 import React from 'react'
 
+import { serializer, stringifyMDX } from '../src/lib/mdx-serializer'
 import Editor from '../src/components/Editor'
+
+// These are probably gonna change later
+const __DEVELOPER_SAVE = value => {
+  const result = stringifyMDX(serializer.serialize(value))
+  window.localStorage['lastMDX'] = result
+  console.log(result)
+}
+
+const initialValue =
+  typeof window !== 'undefined' && window.localStorage['lastMDX']
 
 export default () => (
   <Editor
+    initialValue={initialValue}
     onChange={({ title, value, emoji }) => {
-      //this.setState({ title, value, emoji }, () =>
-      //this.save(editDocument)
-      //)
+      __DEVELOPER_SAVE(value)
     }}
   />
 )
