@@ -17,7 +17,6 @@
     "is-url": "^1.2.4",
     "raw-loader": "^1.0.0",
     "react-live": "^1.12.0",
-    "react-portal": "^4.2.0",
     "remark-mdx": "^0.20.3",
     "remark-parse": "^6.0.3",
     "remark-stringify": "^6.0.4",
