@@ -91,18 +91,41 @@ const bold = {
   })
 }
 
+const codeBlock = {
+  match: node => node.object === 'block' && node.type === 'pre',
+  matchMdast: node => node.type === 'code',
+  fromMdast: (node, index, parent, { visitChildren }) => ({
+    object: 'block',
+    type: 'pre',
+    nodes: visitChildren(node)
+  }),
+  toMdast: (node, index, parent, { visitChildren }) => {
+    console.log(visitChildren(node))
+    return {
+      type: 'code',
+      value: visitChildren(node)
+        .map(childNode => childNode.value)
+        .join()
+    }
+  }
+}
+
 const code = {
   match: node => node.object === 'mark' && node.type === 'code',
-  matchMdast: node => node.type === 'code',
+  matchMdast: node => node.type === 'inlineCode',
   fromMdast: (node, index, parent, { visitChildren }) => ({
     object: 'mark',
     type: 'code',
     nodes: visitChildren(node)
   }),
-  toMdast: (mark, index, parent, { visitChildren }) => ({
-    type: 'code',
-    children: visitChildren(mark)
-  })
+  toMdast: (mark, index, parent, { visitChildren }) => {
+    return {
+      type: 'inlineCode',
+      value: visitChildren(mark)
+        .map(childNode => childNode.value)
+        .join()
+    }
+  }
 }
 
 const italic = {
@@ -180,7 +203,14 @@ const jsxBlock = {
 }
 
 export const serializer = new MarkdownSerializer({
-  rules: [paragraph, bold, code, italic, jsxMark, blockQuote, jsxBlock].concat(
-    headings
-  )
+  rules: [
+    paragraph,
+    bold,
+    code,
+    italic,
+    jsxMark,
+    blockQuote,
+    jsxBlock,
+    codeBlock
+  ].concat(headings)
 })
