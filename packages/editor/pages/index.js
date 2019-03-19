@@ -14,10 +14,12 @@ const initialValue =
   typeof window !== 'undefined' && window.localStorage['lastMDX']
 
 export default () => (
-  <Editor
-    initialValue={initialValue}
-    onChange={({ title, value, emoji }) => {
-      __DEVELOPER_SAVE(value)
-    }}
-  />
+  <div style={{ maxWidth: '48em', margin: '40px auto' }}>
+    <Editor
+      initialValue={initialValue}
+      onChange={({ title, value, emoji }) => {
+        __DEVELOPER_SAVE(value)
+      }}
+    />
+  </div>
 )
