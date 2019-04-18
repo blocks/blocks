@@ -4,6 +4,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "start": "yarn workspace demo start"
+  },
   "devDependencies": {
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
