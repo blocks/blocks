@@ -1,6 +1,8 @@
 const heading = {
   fontWeight: 'heading',
   lineHeight: 'heading',
+  fontFamily: 'heading',
+  color: 'heading',
   a: {
     color: 'inherit',
     textDecoration: 'none'
@@ -9,6 +11,8 @@ const heading = {
 
 const colors = {
   text: '#000',
+  body: 'inherit',
+  heading: 'inherit',
   background: '#fff',
   primary: '#33e',
   secondary: '#11a',
@@ -17,10 +21,11 @@ const colors = {
   yellow: '#ffc',
   dark: {
     text: '#fff',
+    body: 'inherit',
+    heading: 'inherit',
     background: '#111122',
     primary: '#3af',
     secondary: '#18d',
-
     gray: '#223',
     lightgray: '#161628',
     yellow: '#ff0'
@@ -69,6 +74,13 @@ export default {
     h6: {
       ...heading,
       fontSize: 1
+    },
+    p: {
+      color: 'body',
+      fontWeight: 'body',
+      fontSize: 3,
+      fontFamily: 'body',
+      lineHeight: 'body'
     },
     a: {
       color: 'primary',
