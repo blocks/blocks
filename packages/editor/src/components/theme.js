@@ -1,14 +1,3 @@
-const heading = {
-  fontWeight: 'heading',
-  lineHeight: 'heading',
-  fontFamily: 'heading',
-  color: 'heading',
-  a: {
-    color: 'inherit',
-    textDecoration: 'none'
-  }
-}
-
 const colors = {
   text: '#000',
   body: 'inherit',
@@ -52,35 +41,77 @@ export default {
   },
   styles: {
     h1: {
-      ...heading,
-      fontSize: [5, 6]
+      fontSize: [5, 6],
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     h2: {
-      ...heading,
-      fontSize: [4, 5]
+      fontSize: [4, 5],
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     h3: {
-      ...heading,
-      fontSize: [3, 4]
+      fontSize: [3, 4],
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     h4: {
-      ...heading,
-      fontSize: 3
+      fontSize: 3,
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     h5: {
-      ...heading,
-      fontSize: 2
+      fontSize: 2,
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     h6: {
-      ...heading,
-      fontSize: 1
+      fontSize: 1,
+      fontWeight: 'heading',
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      color: 'heading',
+      a: {
+        color: 'inherit',
+        textDecoration: 'none'
+      }
     },
     p: {
-      color: 'body',
-      fontWeight: 'body',
       fontSize: 3,
+      fontWeight: 'body',
       fontFamily: 'body',
-      lineHeight: 'body'
+      lineHeight: 'body',
+      color: 'body'
     },
     a: {
       color: 'primary',
