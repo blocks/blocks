@@ -28,7 +28,17 @@ const colors = {
 export default {
   colors,
   fonts: {
+    body: 'system-ui, sans-serif',
+    heading: 'system-ui, sans-serif',
     monospace: '"Roboto Mono", Menlo, monospace'
+  },
+  fontWeights: {
+    body: 400,
+    heading: 600
+  },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.2
   },
   mediaQueries: {
     big: '@media screen and (min-width: 40em)'

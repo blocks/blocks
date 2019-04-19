@@ -1,11 +1,10 @@
 {
   "name": "@blocks/editor",
-  "description": "Blocks MDX editor",
+  "description": "WYSIWYG MDX editor",
   "version": "0.0.0",
   "license": "MIT",
   "author": "John Otander",
   "repository": "johno/blocks",
-  "scripts": {},
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
@@ -26,7 +25,6 @@
     "slate-mdast-serializer": "^3.0.0",
     "slate-react": "^0.21.20",
     "theme-ui": "^0.0.8",
-    "unified": "^7.1.0",
-    "unified-ui": "0.0.3"
+    "unified": "^7.1.0"
   }
 }

@@ -468,6 +468,20 @@ class BlockEditor extends Component {
               >
                 <FieldSet name="colors" type="color" />
                 <FieldSet name="fonts" type="select" options={demoFonts} />
+                <FieldSet
+                  name="fontWeights"
+                  type="number"
+                  step="100"
+                  min="100"
+                  max="900"
+                />
+                <FieldSet
+                  name="lineHeights"
+                  type="number"
+                  step={1 / 16}
+                  min={1}
+                  max={2}
+                />
                 <Icon
                   name="close"
                   style={{
