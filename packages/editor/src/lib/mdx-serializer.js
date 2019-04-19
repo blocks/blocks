@@ -79,12 +79,14 @@ const headings = [
 
 const bold = {
   match: node => node.object === 'mark' && node.type === 'bold',
-  matchMdast: node => node.type === 'bold',
-  fromMdast: (node, index, parent, { visitChildren }) => ({
-    object: 'mark',
-    type: 'bold',
-    nodes: visitChildren(node)
-  }),
+  matchMdast: node => node.type === 'strong',
+  fromMdast: (node, index, parent, { visitChildren }) => {
+    return {
+      object: 'mark',
+      type: 'bold',
+      nodes: visitChildren(node)
+    }
+  },
   toMdast: (mark, index, parent, { visitChildren }) => ({
     type: 'strong',
     children: visitChildren(mark)
@@ -94,18 +96,30 @@ const bold = {
 const codeBlock = {
   match: node => node.object === 'block' && node.type === 'pre',
   matchMdast: node => node.type === 'code',
-  fromMdast: (node, index, parent, { visitChildren }) => ({
-    object: 'block',
-    type: 'pre',
-    nodes: visitChildren(node)
-  }),
-  toMdast: (node, index, parent, { visitChildren }) => {
-    console.log(visitChildren(node))
+  fromMdast: (node, _index, _parent, { visitChildren }) => {
+    return {
+      object: 'block',
+      type: 'pre',
+      nodes: [
+        {
+          object: 'text',
+          leaves: [
+            {
+              object: 'leaf',
+              text: node.value
+            }
+          ]
+        }
+      ]
+    }
+  },
+  toMdast: (node, _index, _parent, { visitChildren }) => {
     return {
       type: 'code',
       value: visitChildren(node)
         .map(childNode => childNode.value)
-        .join()
+        .filter(Boolean)
+        .join('\n\n')
     }
   }
 }
@@ -113,17 +127,30 @@ const codeBlock = {
 const code = {
   match: node => node.object === 'mark' && node.type === 'code',
   matchMdast: node => node.type === 'inlineCode',
-  fromMdast: (node, index, parent, { visitChildren }) => ({
-    object: 'mark',
-    type: 'code',
-    nodes: visitChildren(node)
-  }),
+  fromMdast: (node, index, parent, { visitChildren }) => {
+    return {
+      object: 'mark',
+      type: 'code',
+      nodes: [
+        {
+          object: 'text',
+          leaves: [
+            {
+              marks: [],
+              object: 'leaf',
+              text: node.value
+            }
+          ]
+        }
+      ]
+    }
+  },
   toMdast: (mark, index, parent, { visitChildren }) => {
     return {
       type: 'inlineCode',
       value: visitChildren(mark)
         .map(childNode => childNode.value)
-        .join()
+        .join('')
     }
   }
 }

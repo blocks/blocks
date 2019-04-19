@@ -63,6 +63,12 @@ const toTable = ({ nodes = [] }) => {
   return [header, divider.join(' | '), ...body].join('\n')
 }
 
+const toBlock = nodes =>
+  nodes
+    .filter(n => n.type === 'text')
+    .map(n => n.value)
+    .join('\n')
+
 const toList = ({ nodes = {} }, indent = 0) =>
   nodes
     .map(node => {
@@ -79,6 +85,7 @@ const toList = ({ nodes = {} }, indent = 0) =>
     .join('\n')
 
 const stringifyNode = node => {
+  console.log(node)
   if (node.type === 'paragraph') {
     return toText(node)
   } else if (node.type === 'heading-one') {
@@ -96,7 +103,7 @@ const stringifyNode = node => {
   } else if (node.type === 'bulleted-list') {
     return toList(node)
   } else if (node.type === 'pre') {
-    return '```\n' + toText(node) + '\n```'
+    return '```\n' + toBlock(node) + '\n```'
   } else if (node.type === 'jsx') {
     return toText(node)
   } else if (node.type === 'bulleted-list') {
