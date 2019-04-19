@@ -1,4 +1,6 @@
 const heading = {
+  fontWeight: 'heading',
+  lineHeight: 'heading',
   a: {
     color: 'inherit',
     textDecoration: 'none'
