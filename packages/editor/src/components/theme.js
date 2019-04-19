@@ -1,28 +1,26 @@
-const colors = {
-  text: '#000',
-  body: 'inherit',
-  heading: 'inherit',
-  background: '#fff',
-  primary: '#33e',
-  secondary: '#11a',
-  gray: '#ccc',
-  lightgray: '#f6f6f6',
-  yellow: '#ffc',
-  dark: {
-    text: '#fff',
+export default {
+  colors: {
+    text: '#000',
     body: 'inherit',
     heading: 'inherit',
-    background: '#111122',
-    primary: '#3af',
-    secondary: '#18d',
-    gray: '#223',
-    lightgray: '#161628',
-    yellow: '#ff0'
-  }
-}
-
-export default {
-  colors,
+    background: '#fff',
+    primary: '#33e',
+    secondary: '#11a',
+    gray: '#ccc',
+    lightgray: '#f6f6f6',
+    yellow: '#ffc',
+    dark: {
+      text: '#fff',
+      body: 'inherit',
+      heading: 'inherit',
+      background: '#111122',
+      primary: '#3af',
+      secondary: '#18d',
+      gray: '#223',
+      lightgray: '#161628',
+      yellow: '#ff0'
+    }
+  },
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
@@ -170,7 +168,7 @@ export default {
   prism: {
     plain: {
       color: '#282a2e',
-      backgroundColor: colors.lightgray
+      backgroundColor: '#f6f6f6'
     },
     styles: [
       {
@@ -195,7 +193,7 @@ export default {
     dark: {
       plain: {
         color: '#eee',
-        backgroundColor: colors.dark.lightgray
+        backgroundColor: '#161628'
       },
       styles: [
         {
