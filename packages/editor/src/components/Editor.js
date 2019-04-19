@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
-import { Block, Range, Mark, Value, Point } from 'slate'
+import { Range, Mark, Point } from 'slate'
 import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
 

@@ -1,7 +1,7 @@
 {
-  "name": "blocks-editor",
+  "name": "@blocks/editor",
   "description": "Blocks MDX editor",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "author": "John Otander",
   "repository": "johno/blocks",
