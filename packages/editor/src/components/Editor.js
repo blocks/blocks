@@ -4,16 +4,18 @@ import { Range, Mark, Point } from 'slate'
 import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
 import { ThemeProvider, css } from 'theme-ui'
+import { EditProvider, FieldSet } from '@styled-system/edit'
 import { Global } from '@emotion/core'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
 import { parseMDX, serializer } from '../lib/mdx-serializer'
+import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
 
 import theme from './theme'
 import Node from './Node'
 import MarkComponent from './Mark'
-import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
+import Icon from './Icon'
 
 const styles = (
   <Global
@@ -34,6 +36,19 @@ const styles = (
     })}
   />
 )
+
+const demoFonts = [
+  'system-ui, sans-serif',
+  '"Avenir Next", sans-serif',
+  'Georgia, serif',
+  'Baskerville, serif',
+  'Menlo, monospace',
+  'Roboto, sans-serif',
+  '"Roboto Condensed", sans-serif',
+  'Poppins, sans-serif',
+  'Montserrat, sans-serif',
+  'Merriweather, serif'
+]
 
 const plugins = [DeepTable({})]
 
@@ -68,6 +83,7 @@ class BlockEditor extends Component {
     super(props)
 
     this.state = {
+      showingThemeEditor: false,
       value: serializer.deserialize(
         parseMDX(props.initialValue || initialValue)
       )
@@ -419,26 +435,65 @@ class BlockEditor extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <div style={{ minHeight: '100vh' }}>
-          <Editor
-            ref={editor => (this.editor = editor)}
-            schema={schema}
-            placeholder="Write some MDX..."
-            plugins={plugins}
-            value={this.state.value}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onPaste={this.handlePaste}
-            renderNode={NodeRenderer(this.handleChange)}
-            renderMark={MarkComponent}
-            renderEditor={(_props, _editor, next) => {
-              const children = next()
+        <EditProvider>
+          <div style={{ minHeight: '100vh' }}>
+            <Editor
+              ref={editor => (this.editor = editor)}
+              schema={schema}
+              placeholder="Write some MDX..."
+              plugins={plugins}
+              value={this.state.value}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              onPaste={this.handlePaste}
+              renderNode={NodeRenderer(this.handleChange)}
+              renderMark={MarkComponent}
+              renderEditor={(_props, _editor, next) => {
+                const children = next()
 
-              return <>{children}</>
-            }}
-          />
-          {styles}
-        </div>
+                return <>{children}</>
+              }}
+            />
+            {styles}
+            {this.state.showingThemeEditor ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  backgroundColor: 'rgba(0, 0, 0, .05)',
+                  padding: '20px',
+                  minHeight: '100vh'
+                }}
+              >
+                <FieldSet name="colors" type="color" />
+                <FieldSet name="fonts" type="select" options={demoFonts} />
+                <Icon
+                  name="close"
+                  style={{
+                    position: 'absolute',
+                    top: 5,
+                    right: 5
+                  }}
+                  onClick={() => this.setState({ showingThemeEditor: false })}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 5,
+                  right: 5
+                }}
+              >
+                <Icon
+                  name="format_color_fill"
+                  onClick={() => this.setState({ showingThemeEditor: true })}
+                />
+              </div>
+            )}
+          </div>
+        </EditProvider>
       </ThemeProvider>
     )
   }

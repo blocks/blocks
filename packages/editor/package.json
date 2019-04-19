@@ -10,6 +10,7 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@slate-editor/utils": "^5.1.0",
+    "@styled-system/edit": "^0.0.4",
     "emotion-theming": "^10.0.10",
     "escape-string-regexp": "^2.0.0",
     "image-extensions": "^1.1.0",
