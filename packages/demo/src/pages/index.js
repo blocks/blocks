@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { serializer, stringifyMDX } from '../src/lib/mdx-serializer'
-import Editor from '../src/components/Editor'
+import { serializer, stringifyMDX } from 'blocks-editor/src/lib/mdx-serializer'
+import Editor from 'blocks-editor/src/components/Editor'
 
 // These are probably gonna change later
 const __DEVELOPER_SAVE = value => {

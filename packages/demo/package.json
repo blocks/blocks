@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Brent Jackson <jxnblk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "gatsby develop"
+  },
+  "dependencies": {
+    "blocks-editor": "0.0.1",
+    "gatsby": "^2.3.25",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

@@ -5,9 +5,7 @@
   "license": "MIT",
   "author": "John Otander",
   "repository": "johno/blocks",
-  "scripts": {
-    "start": "x0 pages"
-  },
+  "scripts": {},
   "dependencies": {
     "@slate-editor/utils": "^5.1.0",
     "emoji-mart": "^2.9.2",
@@ -17,6 +15,7 @@
     "is-url": "^1.2.4",
     "raw-loader": "^1.0.0",
     "react-live": "^1.12.0",
+    "rebass": "^3.1.0",
     "remark-mdx": "^0.20.3",
     "remark-parse": "^6.0.3",
     "remark-stringify": "^6.0.4",
@@ -27,7 +26,5 @@
     "unified": "^7.1.0",
     "unified-ui": "0.0.3"
   },
-  "devDependencies": {
-    "@compositor/x0": "^6.0.7"
-  }
+  "devDependencies": {}
 }
