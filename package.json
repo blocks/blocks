@@ -1,12 +1,13 @@
 {
   "private": true,
   "name": "blocks",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "start": "yarn workspace demo start"
   },
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ],
   "devDependencies": {
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
