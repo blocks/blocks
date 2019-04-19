@@ -31,5 +31,7 @@ export default props => {
       return <u {...attributes}>{children}</u>
     case 'strikethrough':
       return <s {...attributes}>{children}</s>
+    default: {
+    }
   }
 }

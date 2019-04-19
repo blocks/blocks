@@ -43,11 +43,9 @@ class SelectionMenu extends Component {
     const { className, innerRef } = this.props
     const root = window.document.getElementById('portal-root')
 
-    if (window === 'undefined') {
+    if (window === 'undefined' || true) {
       return null
     }
-
-    return null
 
     return ReactDOM.createPortal(
       <StyledMenu className={className} ref={innerRef}>
@@ -55,11 +53,15 @@ class SelectionMenu extends Component {
           <a
             key={type}
             style={{ padding: '10px' }}
+            href="#!"
             onMouseDown={event => {
               this.handleMouseDown(event, type)
             }}
           >
-            <img src={`https://icon.now.sh/${iconMap[type]}`} />
+            <img
+              alt={`${type} icon`}
+              src={`https://icon.now.sh/${iconMap[type]}`}
+            />
           </a>
         ))}
       </StyledMenu>,

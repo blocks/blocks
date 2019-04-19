@@ -215,8 +215,10 @@ class BlockEditor extends Component {
         return this.handleTab(event, change, next)
       case 'Escape':
         this.setState({ emojiMenu: false })
-      default:
         this.setState({ menu: false })
+        return
+      default: {
+      }
     }
   }
 
