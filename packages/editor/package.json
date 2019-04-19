@@ -7,15 +7,16 @@
   "repository": "johno/blocks",
   "scripts": {},
   "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.10",
     "@slate-editor/utils": "^5.1.0",
-    "emoji-mart": "^2.11.0",
+    "emotion-theming": "^10.0.10",
     "escape-string-regexp": "^2.0.0",
     "image-extensions": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
     "is-url": "^1.2.4",
     "raw-loader": "^2.0.0",
     "react-live": "^2.0.1",
-    "rebass": "^3.1.0",
     "remark-mdx": "^1.0.8",
     "remark-parse": "^6.0.3",
     "remark-stringify": "^6.0.4",
@@ -23,8 +24,8 @@
     "slate-deep-table": "^0.8.0",
     "slate-mdast-serializer": "^3.0.0",
     "slate-react": "^0.21.20",
+    "theme-ui": "^0.0.8",
     "unified": "^7.1.0",
     "unified-ui": "0.0.3"
-  },
-  "devDependencies": {}
+  }
 }

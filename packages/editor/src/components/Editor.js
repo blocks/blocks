@@ -3,16 +3,37 @@ import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { Range, Mark, Point } from 'slate'
 import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
+import { ThemeProvider, css } from 'theme-ui'
+import { Global } from '@emotion/core'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
-// import originalInitialValue from "../lib/value.json";
 import { parseMDX, serializer } from '../lib/mdx-serializer'
 
+import theme from './theme'
 import Node from './Node'
 import MarkComponent from './Mark'
-import SelectionMenu from './SelectionMenu'
 import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
+
+const styles = (
+  <Global
+    styles={css({
+      '*': {
+        boxSizing: 'border-box'
+      },
+      body: {
+        m: 0,
+        fontFamily: 'system-ui, sans-serif',
+        lineHeight: 1.5,
+        color: 'text',
+        bg: 'background',
+        transitionProperty: 'background-color',
+        transitionTimingFunction: 'ease-out',
+        transitionDuration: '.4s'
+      }
+    })}
+  />
+)
 
 const plugins = [DeepTable({})]
 
@@ -27,13 +48,13 @@ const insertImage = (change, src, target) => {
   })
 }
 
-const insertUnfurl = (change, href, target) => {
+const insertLink = (change, href, target) => {
   if (target) {
     change.select(target)
   }
 
   change.insertBlock({
-    type: 'unfurl',
+    type: 'link',
     data: { href }
   })
 }
@@ -51,50 +72,11 @@ class BlockEditor extends Component {
         parseMDX(props.initialValue || initialValue)
       )
     }
-
-    this.selectionMenu = React.createRef()
-  }
-
-  componentDidMount = () => {
-    this.updateSelectionMenu()
-  }
-
-  componentDidUpdate = () => {
-    this.updateSelectionMenu()
   }
 
   emitChange = () => {
     const { value } = this.state
     this.props.onChange({ value })
-  }
-
-  updateSelectionMenu = () => {
-    const selectionMenu = this.selectionMenu.current
-    if (!selectionMenu) return
-
-    const { value } = this.state
-    const { fragment, selection } = value
-
-    const hasNoSelection =
-      selection.isBlurred || selection.isCollapsed || fragment.text === ''
-
-    if (hasNoSelection && !this.state.selectionMenu) {
-      return selectionMenu.removeAttribute('style')
-    }
-
-    const native = window.getSelection()
-    const range = native.getRangeAt(0)
-    const rect = range.getBoundingClientRect()
-
-    selectionMenu.style.opacity = 1
-    selectionMenu.style.top = `${rect.top +
-      window.pageYOffset -
-      selectionMenu.offsetHeight}px`
-
-    selectionMenu.style.left = `${rect.left +
-      window.pageXOffset -
-      selectionMenu.offsetWidth / 2 +
-      rect.width / 2}px`
   }
 
   handleChange = ({ value }) => {
@@ -284,7 +266,7 @@ class BlockEditor extends Component {
       }
 
       if (isUrl(text)) {
-        return editor.command(insertUnfurl, text, target)
+        return editor.command(insertLink, text, target)
       }
 
       const parent = document.getParent(startBlock.key)
@@ -436,38 +418,28 @@ class BlockEditor extends Component {
 
   render() {
     return (
-      <div style={{ minHeight: '100vh' }}>
-        <Editor
-          ref={editor => (this.editor = editor)}
-          schema={schema}
-          placeholder="Write some MDX..."
-          plugins={plugins}
-          value={this.state.value}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onPaste={this.handlePaste}
-          renderNode={NodeRenderer(this.handleChange)}
-          renderMark={MarkComponent}
-          renderEditor={(props, _editor, next) => {
-            const children = next()
+      <ThemeProvider theme={theme}>
+        <div style={{ minHeight: '100vh' }}>
+          <Editor
+            ref={editor => (this.editor = editor)}
+            schema={schema}
+            placeholder="Write some MDX..."
+            plugins={plugins}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
+            renderNode={NodeRenderer(this.handleChange)}
+            renderMark={MarkComponent}
+            renderEditor={(_props, _editor, next) => {
+              const children = next()
 
-            return (
-              <React.Fragment>
-                {children}
-                <SelectionMenu
-                  innerRef={this.selectionMenu}
-                  editor={this.editor}
-                  forceShow={this.state.selectionMenu}
-                  onChange={value => {
-                    this.setState({ selectionMenu: false })
-                    this.emitChange({ value })
-                  }}
-                />
-              </React.Fragment>
-            )
-          }}
-        />
-      </div>
+              return <>{children}</>
+            }}
+          />
+          {styles}
+        </div>
+      </ThemeProvider>
     )
   }
 }

@@ -7,7 +7,10 @@
   },
   "dependencies": {
     "@blocks/editor": "0.0.0",
+    "@mdx-js/mdx": "^1.0.10",
+    "@mdx-js/react": "^1.0.6",
     "gatsby": "^2.3.25",
+    "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

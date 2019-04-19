@@ -1,12 +1,9 @@
 import React from 'react'
-import * as Rebass from 'rebass'
 import { LiveProvider, LivePreview, LiveError } from 'react-live'
-import { mdComponents as md } from 'unified-ui'
+import { Styled as md } from 'theme-ui'
 
-import Unfurl from './Unfurl'
 import CodeBlock from './CodeBlock'
 import { CheckListItem } from './CheckList'
-import { Image } from './ui'
 
 export default (props, next) => {
   const { attributes, children, node, editor, onChange } = props
@@ -34,7 +31,7 @@ export default (props, next) => {
       return <md.li {...attributes}>{children}</md.li>
     case 'table':
       return (
-        <table
+        <md.table
           style={{
             width: '100%',
             borderCollapse: 'collapse',
@@ -83,19 +80,19 @@ export default (props, next) => {
               </td>
             </tr>
           </tbody>
-        </table>
+        </md.table>
       )
     case 'table_row':
       return (
-        <tr style={{}} {...attributes}>
+        <md.tr style={{}} {...attributes}>
           {children}
-        </tr>
+        </md.tr>
       )
     case 'table_cell':
       return (
-        <td style={{ border: 'thin solid silver' }} {...attributes}>
+        <md.td style={{ border: 'thin solid silver' }} {...attributes}>
           {children}
-        </td>
+        </md.td>
       )
     case 'pre':
       return <CodeBlock {...attributes}>{children}</CodeBlock>
@@ -103,7 +100,7 @@ export default (props, next) => {
       return (
         <React.Fragment>
           <CodeBlock {...attributes}>{children}</CodeBlock>
-          <LiveProvider scope={Rebass} code={node.getText()}>
+          <LiveProvider code={node.getText()}>
             <LiveError />
             <LivePreview />
           </LiveProvider>
@@ -129,15 +126,9 @@ export default (props, next) => {
     case 'hr':
       return <hr />
     case 'image':
-      return <Image {...attributes} src={node.data.get('src')} />
-    case 'unfurl':
-      return (
-        <Unfurl
-          {...attributes}
-          href={node.data.get('href')}
-          children={children}
-        />
-      )
+      return <md.img {...attributes} src={node.data.get('src')} />
+    case 'link':
+      return <md.a href={node.data.get('href')}>{node.data.get('href')}</md.a>
     default:
       return next()
   }

@@ -1,32 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
 
-import { mdComponents as md } from 'unified-ui'
-
-const Bold = styled.strong`
-  font-weight: 600;
-`
-
-const Code = styled(md.inlineCode)`
-  & > span {
-    font-family: monaco, monospace;
-  }
-`
-
-const Italic = styled.em`
-  font-style: italic;
-`
+import { Styled as md } from './ui'
 
 export default props => {
   const { children, mark, attributes } = props
 
   switch (mark.type) {
     case 'bold':
-      return <Bold {...attributes}>{children}</Bold>
+      return <md.strong {...attributes}>{children}</md.strong>
     case 'code':
-      return <Code {...attributes}>{children}</Code>
+      return <md.inlineCode {...attributes}>{children}</md.inlineCode>
     case 'italic':
-      return <Italic {...attributes}>{children}</Italic>
+      return <md.em {...attributes}>{children}</md.em>
     case 'underlined':
       return <u {...attributes}>{children}</u>
     case 'strikethrough':

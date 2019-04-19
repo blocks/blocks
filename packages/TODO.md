@@ -5,8 +5,7 @@
 
 ### Themes
 
-- [ ] Use `theme-ui`
-- [ ] Dark theme
+- [x] Use `theme-ui`
 - [ ] Theme editor
 
 ### Blocks
