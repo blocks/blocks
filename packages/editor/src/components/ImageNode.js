@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import React from 'react'
+import React, { useRef } from 'react'
 import { jsx } from '@emotion/core'
 import { useState } from 'react'
 import { Styled } from 'theme-ui'
+import Modal from './Modal'
 
 const Form = ({ src = '', alt = '', onSubmit }) => {
   const [state, setState] = useState({ src, alt })
@@ -45,31 +46,21 @@ const Form = ({ src = '', alt = '', onSubmit }) => {
 }
 
 export default ({ attributes, node, editor, onChange, ...props }) => {
+  const span = useRef(null)
   const src = node.data.get('src')
 
-  if (!src) {
-    return (
-      <>
-        <div
-          {...attributes}
-          css={{
-            padding: 32,
-            backgroundColor: '#eee'
-          }}
-        />
-        <Form
-          onSubmit={data => {
-            editor.setNodeByKey(node.key, { data })
-          }}
-        />
-      </>
-    )
-  }
-
   return (
-    <>
+    <span ref={span}>
       <Styled.img {...attributes} src={src} />
-      <pre>{src}</pre>
-    </>
+      {!src && (
+        <Modal wrapperRef={span}>
+          <Form
+            onSubmit={data => {
+              editor.setNodeByKey(node.key, { data })
+            }}
+          />
+        </Modal>
+      )}
+    </span>
   )
 }

@@ -8,40 +8,46 @@ import Modal from '../components/Modal'
 const Form = ({ text = '', href = '', onSubmit }) => {
   const [state, setState] = useState({ text, href })
   return (
-    <form
-      contentEditable={false}
-      onClick={e => {
-        e.stopPropagation()
-      }}
-      onSubmit={e => {
-        e.preventDefault()
-        onSubmit(state)
-      }}
-    >
-      <label>
-        Text
-        <input
-          type="text"
-          name="text"
-          value={state.text}
-          onChange={e => {
-            setState({ ...state, text: e.target.value })
-          }}
-        />
-      </label>
-      <label>
-        URL
-        <input
-          type="text"
-          name="href"
-          value={state.href}
-          onChange={e => {
-            setState({ ...state, href: e.target.value })
-          }}
-        />
-      </label>
-      <button>Update</button>
-    </form>
+    <div>
+      <form
+        contentEditable={false}
+        onClick={e => {
+          e.stopPropagation()
+        }}
+        onSubmit={e => {
+          e.preventDefault()
+          onSubmit(state)
+        }}
+      >
+        <label>
+          Text
+          <input
+            type="text"
+            name="text"
+            value={state.text}
+            onChange={e => {
+              setState({ ...state, text: e.target.value })
+            }}
+          />
+        </label>
+        <label>
+          URL
+          <input
+            type="text"
+            name="href"
+            value={state.href}
+            onChange={e => {
+              setState({ ...state, href: e.target.value })
+            }}
+          />
+        </label>
+        <button>Update</button>
+      </form>
+      Open link:{' '}
+      <a href={state.href} target="_blank">
+        {state.href}
+      </a>
+    </div>
   )
 }
 
@@ -49,12 +55,13 @@ const LinkNode = ({ attributes, children, node, editor, ...props }) => {
   const span = useRef(null)
 
   const href = node.data.get('href')
+  const target = node.data.get('target')
   const text = node.data.get('text')
   const editing = node.data.get('edit')
 
   return (
     <span ref={span}>
-      <Styled.a {...attributes} href={href}>
+      <Styled.a {...attributes} href={href} target={target}>
         {children}
       </Styled.a>
       {editing && (
@@ -64,8 +71,11 @@ const LinkNode = ({ attributes, children, node, editor, ...props }) => {
             text={''}
             onSubmit={data => {
               editor.setNodeByKey(node.key, {
-                ...data,
-                edit: false
+                data: {
+                  ...data,
+                  target: '_blank',
+                  edit: false
+                }
               })
             }}
           />
