@@ -5,8 +5,8 @@ import { Styled as md } from 'theme-ui'
 import CodeBlock from './CodeBlock'
 import { CheckListItem } from './CheckList'
 
-export default (props, next) => {
-  const { attributes, children, node, editor, onChange } = props
+export default props => {
+  const { attributes, children, node, editor, onChange, next } = props
 
   switch (node.type) {
     case 'block-quote':
@@ -125,8 +125,6 @@ export default (props, next) => {
       return <md.p {...attributes}>{children}</md.p>
     case 'hr':
       return <hr />
-    case 'image':
-      return <md.img {...attributes} src={node.data.get('src')} />
     case 'link':
       return <md.a href={node.data.get('href')}>{node.data.get('href')}</md.a>
     default:

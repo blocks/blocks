@@ -163,6 +163,10 @@ export default {
     },
     ul: {
       pl: 3
+    },
+    img: {
+      maxWidth: '100%',
+      height: 'auto'
     }
   },
   prism: {

@@ -17,6 +17,8 @@ import Node from './Node'
 import MarkComponent from './Mark'
 import Icon from './Icon'
 
+import ImagePlugin from '../plugins/image'
+
 const styles = (
   <Global
     styles={css({
@@ -50,7 +52,7 @@ const demoFonts = [
   'Merriweather, serif'
 ]
 
-const plugins = [DeepTable({})]
+const plugins = [DeepTable({}), ImagePlugin()]
 
 const insertImage = (change, src, target) => {
   if (target) {
@@ -74,8 +76,8 @@ const insertLink = (change, href, target) => {
   })
 }
 
-const NodeRenderer = handleChange => props => (
-  <Node onChange={handleChange} {...props} />
+const NodeRenderer = handleChange => (props, editor, next) => (
+  <Node onChange={handleChange} {...props} next={next} />
 )
 
 class BlockEditor extends Component {
@@ -189,7 +191,7 @@ class BlockEditor extends Component {
     if (keyboardEvent.isMod(event) && event.key === 'b') {
       return change.toggleMark('bold').focus()
     }
-    if (keyboardEvent.isMod(event) && event.key === 'i') {
+    if (keyboardEvent.isMod(event) && !event.shiftKey && event.key === 'i') {
       return change.toggleMark('italic').focus()
     }
 
@@ -215,8 +217,9 @@ class BlockEditor extends Component {
         this.setState({ emojiMenu: false })
         this.setState({ menu: false })
         return
-      default: {
-      }
+      default:
+        next()
+        break
     }
   }
 
