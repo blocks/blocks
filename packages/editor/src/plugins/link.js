@@ -2,11 +2,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { keyboardEvent } from '@slate-editor/utils'
 import { Styled } from 'theme-ui'
+import Modal from '../components/Modal'
 
 // may need portal to not render inside <p>
-const Form = ({ text = '', href = '', rect, onSubmit }) => {
+const Form = ({ text = '', href = '', onSubmit }) => {
   const [state, setState] = useState({ text, href })
-  return createPortal(
+  return (
     <form
       contentEditable={false}
       onClick={e => {
@@ -15,11 +16,6 @@ const Form = ({ text = '', href = '', rect, onSubmit }) => {
       onSubmit={e => {
         e.preventDefault()
         onSubmit(state)
-      }}
-      style={{
-        position: 'fixed',
-        top: rect.top,
-        left: rect.left
       }}
     >
       <label>
@@ -45,19 +41,12 @@ const Form = ({ text = '', href = '', rect, onSubmit }) => {
         />
       </label>
       <button>Update</button>
-    </form>,
-    document.body
+    </form>
   )
 }
 
 const LinkNode = ({ attributes, children, node, editor, ...props }) => {
   const span = useRef(null)
-  const [rect, setRect] = useState({})
-  useEffect(() => {
-    if (!span.current) return
-    const elementRect = span.current.getBoundingClientRect()
-    setRect(elementRect)
-  }, [])
 
   const href = node.data.get('href')
   const text = node.data.get('text')
@@ -69,17 +58,18 @@ const LinkNode = ({ attributes, children, node, editor, ...props }) => {
         {children}
       </Styled.a>
       {editing && (
-        <Form
-          rect={rect}
-          href={href}
-          text={''}
-          onSubmit={data => {
-            editor.setNodeByKey(node.key, {
-              ...data,
-              edit: false
-            })
-          }}
-        />
+        <Modal wrapperRef={span}>
+          <Form
+            href={href}
+            text={''}
+            onSubmit={data => {
+              editor.setNodeByKey(node.key, {
+                ...data,
+                edit: false
+              })
+            }}
+          />
+        </Modal>
       )}
     </span>
   )
