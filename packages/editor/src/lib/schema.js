@@ -21,9 +21,6 @@ export default {
     },
     hr: {
       isVoid: true
-    },
-    unfurl: {
-      isVoid: true
     }
   }
 }
