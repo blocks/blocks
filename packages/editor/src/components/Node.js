@@ -125,8 +125,6 @@ export default props => {
       return <md.p {...attributes}>{children}</md.p>
     case 'hr':
       return <hr />
-    case 'link':
-      return <md.a href={node.data.get('href')}>{node.data.get('href')}</md.a>
     default:
       return next()
   }

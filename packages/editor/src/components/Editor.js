@@ -18,6 +18,7 @@ import MarkComponent from './Mark'
 import Icon from './Icon'
 
 import ImagePlugin from '../plugins/image'
+import LinkPlugin from '../plugins/link'
 
 const styles = (
   <Global
@@ -52,7 +53,7 @@ const demoFonts = [
   'Merriweather, serif'
 ]
 
-const plugins = [DeepTable({}), ImagePlugin()]
+const plugins = [DeepTable({}), ImagePlugin(), LinkPlugin()]
 
 const insertImage = (change, src, target) => {
   if (target) {

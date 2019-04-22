@@ -1,29 +1,12 @@
 /** @jsx jsx */
+import React from 'react'
 import { jsx } from '@emotion/core'
-import React, { useState, useRef } from 'react'
+import { useState } from 'react'
 import { Styled } from 'theme-ui'
-import {
-  AlertDialog,
-  AlertDialogLabel,
-  AlertDialogDescription,
-  AlertDialogOverlay,
-  AlertDialogContent
-} from '@reach/alert-dialog'
-
-const Dialog = props => {
-  const ref = useRef(null)
-
-  return (
-    <AlertDialog leastDestructiveRef={ref}>
-      <AlertDialogLabel>Insert Image URL</AlertDialogLabel>
-      <AlertDialogContent>Beep boop</AlertDialogContent>
-    </AlertDialog>
-  )
-}
 
 const Form = ({ src = '', alt = '', onSubmit }) => {
   const [state, setState] = useState({ src, alt })
-  // todo: how should this work??
+
   return (
     <form
       onClick={e => {
@@ -62,7 +45,6 @@ const Form = ({ src = '', alt = '', onSubmit }) => {
 }
 
 export default ({ attributes, node, editor, onChange, ...props }) => {
-  const [open, setOpen] = useState()
   const src = node.data.get('src')
 
   if (!src) {
@@ -88,7 +70,6 @@ export default ({ attributes, node, editor, onChange, ...props }) => {
     <>
       <Styled.img {...attributes} src={src} />
       <pre>{src}</pre>
-      {open && <Dialog />}
     </>
   )
 }

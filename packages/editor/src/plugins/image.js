@@ -4,6 +4,7 @@ import ImageNode from '../components/ImageNode'
 
 export default (opts = {}) => ({
   renderNode: (props, editor, next) => {
+    if (props.node.type !== 'image') return next()
     return <ImageNode {...props} />
   },
   onKeyDown: (event, editor, next) => {
