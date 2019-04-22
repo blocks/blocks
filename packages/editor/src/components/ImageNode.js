@@ -48,7 +48,6 @@ const Form = ({ src = '', alt = '', onSubmit }) => {
 export default ({ attributes, node, editor, onChange, ...props }) => {
   const span = useRef(null)
   const src = node.data.get('src')
-  console.log('focused', props.isFocused)
 
   return (
     <span ref={span}>
