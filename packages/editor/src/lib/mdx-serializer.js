@@ -37,6 +37,30 @@ const paragraph = {
   })
 }
 
+const image = {
+  match: node => node.object === 'block' && node.type === 'image',
+  matchMdast: node => node.type === 'image',
+  fromMdast: node => {
+    return {
+      object: 'block',
+      type: 'image',
+      isVoid: true,
+      data: {
+        alt: node.alt,
+        src: node.url
+      },
+      nodes: []
+    }
+  },
+  toMdast: object => {
+    return {
+      type: 'image',
+      alt: object.data.alt,
+      url: object.data.src
+    }
+  }
+}
+
 const blockQuote = {
   match: node => node.object === 'block' && node.type === 'block-quote',
   matchMdast: node => node.type === 'blockquote',
@@ -238,6 +262,7 @@ export const serializer = new MarkdownSerializer({
     jsxMark,
     blockQuote,
     jsxBlock,
-    codeBlock
+    codeBlock,
+    image
   ].concat(headings)
 })
