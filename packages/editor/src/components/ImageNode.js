@@ -48,10 +48,17 @@ const Form = ({ src = '', alt = '', onSubmit }) => {
 export default ({ attributes, node, editor, onChange, ...props }) => {
   const span = useRef(null)
   const src = node.data.get('src')
+  console.log('focused', props.isFocused)
 
   return (
     <span ref={span}>
-      <Styled.img {...attributes} src={src} />
+      <Styled.img
+        {...attributes}
+        src={src}
+        style={{
+          outline: props.isFocused ? '2px solid blue' : null
+        }}
+      />
       {!src && (
         <Modal wrapperRef={span}>
           <Form

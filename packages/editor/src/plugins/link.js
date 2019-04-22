@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { getEventTransfer } from 'slate-react'
 import { createPortal } from 'react-dom'
 import { keyboardEvent } from '@slate-editor/utils'
 import { Styled } from 'theme-ui'
+import isURL from 'is-url'
 import Modal from '../components/Modal'
 
 // may need portal to not render inside <p>
@@ -134,5 +136,19 @@ export default (opts = {}) => ({
       }
     }
     next()
+  },
+  onPaste: (event, editor, next) => {
+    const { value } = editor
+    if (value.selection.isCollapsed) return next()
+    const transfer = getEventTransfer(event)
+    const { type, text } = transfer
+    if (type !== 'text' && type !== 'html') return next()
+    if (!isURL(text)) return next()
+
+    if (hasLinks(value)) {
+      editor.command(unwrapLink)
+    }
+
+    editor.command(wrapLink, { href: text })
   }
 })
