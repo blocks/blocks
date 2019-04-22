@@ -382,6 +382,12 @@ class BlockEditor extends Component {
       return this.handleBackspace(event, change, next)
     }
 
+    // The cursor is at the beginning of the line of a node with text. We should insert
+    // a new node before the current one.
+    if (end.offset === 0 && startBlock.text.length !== 0) {
+      return change.insertBlock('paragraph')
+    }
+
     if (end.offset !== startBlock.text.length) {
       // Cursor is mid paragraph, create two paragraphs/items
       if (startBlock.type === 'list-item') {
