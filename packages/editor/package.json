@@ -8,6 +8,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
+    "@reach/alert-dialog": "^0.2.3",
     "@slate-editor/utils": "^5.1.0",
     "@styled-system/edit": "^0.0.4",
     "emotion-theming": "^10.0.10",

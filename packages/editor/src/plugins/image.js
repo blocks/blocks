@@ -1,18 +1,16 @@
+import React from 'react'
 import { keyboardEvent } from '@slate-editor/utils'
+import ImageNode from '../components/ImageNode'
 
 export default (opts = {}) => ({
+  renderNode: (props, editor, next) => {
+    return <ImageNode {...props} />
+  },
   onKeyDown: (event, editor, next) => {
-    console.log('image plugin', event, keyboardEvent.isMod(event))
     if (keyboardEvent.isMod(event) && event.shiftKey && event.key === 'i') {
-      console.log('insert image')
-      const src = prompt('Insert image URL')
-      if (!src) return
       editor.insertBlock({
         type: 'image',
-        data: {
-          src,
-          alt: 'TODO'
-        }
+        data: {}
       })
     } else {
       next()

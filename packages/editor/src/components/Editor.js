@@ -76,8 +76,8 @@ const insertLink = (change, href, target) => {
   })
 }
 
-const NodeRenderer = handleChange => props => (
-  <Node onChange={handleChange} {...props} />
+const NodeRenderer = handleChange => (props, editor, next) => (
+  <Node onChange={handleChange} {...props} next={next} />
 )
 
 class BlockEditor extends Component {
