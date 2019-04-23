@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
-import { ThemeProvider, css } from 'theme-ui'
-import { EditProvider, FieldSet } from '@styled-system/edit'
-import { Global } from '@emotion/core'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
@@ -12,7 +9,6 @@ import { parseMDX, serializer } from '../lib/mdx-serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
 import theme from './theme'
-import Icon from './Icon'
 
 import NodesPlugin from '../plugins/nodes'
 import MarksPlugin from '../plugins/marks'
@@ -22,39 +18,7 @@ import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
-
-const styles = (
-  <Global
-    styles={css({
-      '*': {
-        boxSizing: 'border-box'
-      },
-      body: {
-        m: 0,
-        fontFamily: 'system-ui, sans-serif',
-        lineHeight: 1.5,
-        color: 'text',
-        bg: 'background',
-        transitionProperty: 'background-color',
-        transitionTimingFunction: 'ease-out',
-        transitionDuration: '.4s'
-      }
-    })}
-  />
-)
-
-const demoFonts = [
-  'system-ui, sans-serif',
-  '"Avenir Next", sans-serif',
-  'Georgia, serif',
-  'Baskerville, serif',
-  'Menlo, monospace',
-  'Roboto, sans-serif',
-  '"Roboto Condensed", sans-serif',
-  'Poppins, sans-serif',
-  'Montserrat, sans-serif',
-  'Merriweather, serif'
-]
+import ThemeEditorPlugin from '../plugins/theme-editor'
 
 const plugins = [
   NodesPlugin(),
@@ -65,7 +29,8 @@ const plugins = [
   TablePlugin(),
   DeepTable({}),
   ImagePlugin(),
-  MarkdownShortcutsPlugin()
+  MarkdownShortcutsPlugin(),
+  ThemeEditorPlugin({ theme })
 ]
 
 const insertImage = (change, src, target) => {
@@ -95,7 +60,6 @@ class BlockEditor extends Component {
     super(props)
 
     this.state = {
-      showingThemeEditor: false,
       value: serializer.deserialize(
         parseMDX(props.initialValue || initialValue)
       )
@@ -167,79 +131,23 @@ class BlockEditor extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <EditProvider>
-          <div style={{ minHeight: '100vh' }}>
-            <Editor
-              ref={editor => (this.editor = editor)}
-              schema={schema}
-              placeholder="Write some MDX..."
-              plugins={plugins}
-              value={this.state.value}
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-              onPaste={this.handlePaste}
-              renderEditor={(_props, _editor, next) => {
-                const children = next()
+      <div style={{ minHeight: '100vh' }}>
+        <Editor
+          ref={editor => (this.editor = editor)}
+          schema={schema}
+          placeholder="Write some MDX..."
+          plugins={plugins}
+          value={this.state.value}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onPaste={this.handlePaste}
+          renderEditor={(_props, _editor, next) => {
+            const children = next()
 
-                return <>{children}</>
-              }}
-            />
-            {styles}
-            {this.state.showingThemeEditor ? (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  backgroundColor: 'rgba(0, 0, 0, .05)',
-                  padding: '20px',
-                  minHeight: '100vh'
-                }}
-              >
-                <FieldSet name="colors" type="color" />
-                <FieldSet name="fonts" type="select" options={demoFonts} />
-                <FieldSet
-                  name="fontWeights"
-                  type="number"
-                  step="100"
-                  min="100"
-                  max="900"
-                />
-                <FieldSet
-                  name="lineHeights"
-                  type="number"
-                  step={1 / 16}
-                  min={1}
-                  max={2}
-                />
-                <Icon
-                  name="close"
-                  style={{
-                    position: 'absolute',
-                    top: 5,
-                    right: 5
-                  }}
-                  onClick={() => this.setState({ showingThemeEditor: false })}
-                />
-              </div>
-            ) : (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 5,
-                  right: 5
-                }}
-              >
-                <Icon
-                  name="format_color_fill"
-                  onClick={() => this.setState({ showingThemeEditor: true })}
-                />
-              </div>
-            )}
-          </div>
-        </EditProvider>
-      </ThemeProvider>
+            return <>{children}</>
+          }}
+        />
+      </div>
     )
   }
 }
