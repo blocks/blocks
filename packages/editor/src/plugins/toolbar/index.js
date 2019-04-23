@@ -25,6 +25,7 @@ const toggleLink = editor => {
 }
 
 const toggleBlockQuote = editor => {
+  // not working...
   if (editor.hasBlock('block-quote')) {
     console.log('its a block-quote!')
   } else {
@@ -33,10 +34,7 @@ const toggleBlockQuote = editor => {
 }
 
 const hasBlock = (editor, type) => {
-  // todo... not currently working
-  const is = editor.value.blocks.some(node => node.type === type)
-  console.log(type, is, editor.value.blocks.toJS())
-  return is
+  return editor.value.blocks.some(node => node.type === type)
 }
 
 export default (opts = {}) => ({
