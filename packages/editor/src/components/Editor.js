@@ -16,12 +16,12 @@ import Icon from './Icon'
 
 import NodesPlugin from '../plugins/nodes'
 import MarksPlugin from '../plugins/marks'
-import ChecklistPlugin from '../plugins/checklist'
 import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
+import ListsPlugin from '../plugins/lists'
 
 const styles = (
   <Global
@@ -59,13 +59,13 @@ const demoFonts = [
 const plugins = [
   NodesPlugin(),
   MarksPlugin(),
-  ChecklistPlugin(),
   CodePlugin(),
   LiveJSXPlugin(),
   TablePlugin(),
   DeepTable({}),
   ImagePlugin(),
-  MarkdownShortcutsPlugin()
+  MarkdownShortcutsPlugin(),
+  ListsPlugin()
 ]
 
 const insertImage = (change, src, target) => {
