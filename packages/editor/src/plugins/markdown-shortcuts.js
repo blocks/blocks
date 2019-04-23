@@ -109,14 +109,6 @@ const handleBackspace = (event, editor, next) => {
   event.preventDefault()
   editor.setBlocks('paragraph')
 
-  if (startBlock.type === 'list-item') {
-    return editor.unwrapBlock('bulleted-list')
-  }
-
-  if (startBlock.type === 'check-list-item') {
-    return editor.unwrapBlock('paragraph')
-  }
-
   return next()
 }
 
@@ -144,19 +136,7 @@ const handleEnter = (event, editor, next) => {
   }
 
   if (end.offset !== startBlock.text.length) {
-    // Cursor is mid paragraph, create two paragraphs/items
-    if (startBlock.type === 'list-item') {
-      return editor.splitBlock().setBlocks('list-item')
-    } else if (startBlock.type === 'check-list-item') {
-      return editor.splitBlock().setBlocks({ data: { checked: false } })
-    } else {
-      return editor.splitBlock().setBlocks('paragraph')
-    }
-  }
-
-  // Continue with check list, ensure checked is set to false
-  if (startBlock.type === 'check-list-item') {
-    return editor.splitBlock().setBlocks({ data: { checked: false } })
+    return editor.splitBlock().setBlocks('paragraph')
   }
 
   // Started a code/jsx/hr block
@@ -193,40 +173,10 @@ const handleEnter = (event, editor, next) => {
   editor.splitBlock().setBlocks('paragraph')
 }
 
-const handleTab = (event, editor, next) => {
-  const { value } = editor
-
+// Soft tabs
+const handleTab = (event, editor) => {
   event.preventDefault()
-
-  const { document } = value
-  const block = value.startBlock
-  const parent = document.getParent(block.key)
-  const previous = document.getPreviousSibling(block.key)
-
-  if (!parent || parent.type !== 'bulleted-list') {
-    return editor.insertText('  ')
-  }
-
-  // Previous sibling is a single list item, wrap/unwrap current node as list
-  if (
-    previous &&
-    previous.nodes.size === 1 &&
-    (previous.type === 'list-item' || previous.type === 'check-list-item')
-  ) {
-    return event.shiftKey
-      ? editor.unwrapBlock('bulleted-list')
-      : editor.wrapBlock('bulleted-list')
-  }
-
-  // Previous sibling already is a list, insert into it
-  if (previous && previous.type === 'bulleted-list' && !event.shiftKey) {
-    return editor.moveNodeByKey(block.key, previous.key, previous.nodes.size)
-  }
-
-  // Node is head of nested list and parent is still a list, unwrap it
-  if (parent && parent.type === 'bulleted-list' && event.shiftKey) {
-    return editor.unwrapBlock('bulleted-list')
-  }
+  return editor.insertText('  ')
 }
 
 export default (opts = {}) => ({
