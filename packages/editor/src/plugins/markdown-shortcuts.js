@@ -244,15 +244,6 @@ const handleTab = (event, editor, next) => {
 
 export default (opts = {}) => ({
   onKeyDown: (event, editor, next) => {
-    // Keyboard shortcuts
-    // if (keyboardEvent.isMod(event) && event.key === 'b') {
-    //   return editor.toggleMark('bold').focus()
-    // }
-    //if (keyboardEvent.isMod(event) && !event.shiftKey && event.key === 'i') {
-    //  return editor.toggleMark('italic').focus()
-    //}
-
-    // Markdown shortcuts
     switch (event.key) {
       case ' ':
         return handleSpace(event, editor)
