@@ -30,7 +30,7 @@ const handleSpace = (event, editor, next) => {
     .delete()
 }
 
-const handleBackspace = (event, editor, next) => {
+const handleBackspace = (_event, editor, next) => {
   const { value } = editor
   const { selection, startBlock, document } = value
 
