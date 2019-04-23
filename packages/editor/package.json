@@ -19,7 +19,6 @@
     "immutable": "^4.0.0-rc.12",
     "is-url": "^1.2.4",
     "raw-loader": "^2.0.0",
-    "react-feather": "^1.1.6",
     "react-live": "^2.0.1",
     "remark-mdx": "^1.0.8",
     "remark-parse": "^6.0.3",

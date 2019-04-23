@@ -28,8 +28,10 @@ const toggleBlockQuote = editor => {
   // not working...
   if (editor.hasBlock('block-quote')) {
     console.log('its a block-quote!')
+    editor.setBlocks('paragraph')
   } else {
     console.log('not a block-quote!')
+    editor.setBlocks('block-quote')
   }
 }
 

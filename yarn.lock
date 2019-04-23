@@ -8703,11 +8703,6 @@ react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
-react-feather@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.6.tgz#2a547e3d5cd5e383d3da0128d593cbdb3c1b32f7"
-  integrity sha512-iCofWhTjX+vQwvDmg7o6vg0XrUg1c41yBDZG+l83nz1FiCsleJoUgd3O+kHpOeWMXuPrRIFfCixvcqyOLGOgIg==
-
 react-focus-lock@^1.17.7:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-1.19.0.tgz#2c246133112c8d3bbede7751da87839ed2bfb857"
