@@ -11,26 +11,26 @@ import theme from './theme'
 
 import NodesPlugin from '../plugins/nodes'
 import MarksPlugin from '../plugins/marks'
-import ChecklistPlugin from '../plugins/checklist'
 import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import LinkPlugin from '../plugins/link'
 import ToolbarPlugin from '../plugins/toolbar'
-import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
+import ListsPlugin from '../plugins/lists'
 import ThemeEditorPlugin from '../plugins/theme-editor'
+import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const plugins = [
   NodesPlugin(),
   MarksPlugin(),
-  ChecklistPlugin(),
   CodePlugin(),
   LiveJSXPlugin(),
   TablePlugin(),
   DeepTable(),
   ImagePlugin(),
   LinkPlugin(),
+  ListsPlugin(),
   MarkdownShortcutsPlugin(),
   ToolbarPlugin(),
   ThemeEditorPlugin({ theme })
