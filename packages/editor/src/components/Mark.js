@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Styled as md } from './ui'
 
-export default props => {
+export default (props, editor, next) => {
   const { children, mark, attributes } = props
 
   switch (mark.type) {
@@ -16,7 +16,7 @@ export default props => {
       return <u {...attributes}>{children}</u>
     case 'strikethrough':
       return <s {...attributes}>{children}</s>
-    default: {
-    }
+    default:
+      return next()
   }
 }
