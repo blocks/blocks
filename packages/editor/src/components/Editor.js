@@ -19,6 +19,7 @@ import Icon from './Icon'
 
 import ImagePlugin from '../plugins/image'
 import LinkPlugin from '../plugins/link'
+import ToolbarPlugin from '../plugins/toolbar'
 
 const styles = (
   <Global
@@ -53,7 +54,7 @@ const demoFonts = [
   'Merriweather, serif'
 ]
 
-const plugins = [DeepTable({}), ImagePlugin(), LinkPlugin()]
+const plugins = [DeepTable({}), ImagePlugin(), LinkPlugin(), ToolbarPlugin()]
 
 const insertImage = (change, src, target) => {
   if (target) {
