@@ -2,12 +2,12 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 import { css } from 'theme-ui'
-import { Link2 } from 'react-feather'
 
 // todo: figure out the best package for React material icons
 import BoldIcon from '@material-ui/icons/FormatBold'
 import ItalicIcon from '@material-ui/icons/FormatItalic'
 import LinkIcon from '@material-ui/icons/InsertLink'
+import ImageIcon from '@material-ui/icons/InsertPhoto'
 import ColorIcon from '@material-ui/icons/FormatColorText'
 import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
 
@@ -45,9 +45,11 @@ const IconButton = ({ active, ...props }) => (
 )
 
 const isActive = type => editor => {
+  const block = editor.value.focusBlock || {}
   return (
     editor.value.activeMarks.some(mark => mark.type === type) ||
-    editor.value.inlines.some(inline => inline.type === type)
+    editor.value.inlines.some(inline => inline.type === type) ||
+    block.type === type
   )
 }
 
@@ -70,6 +72,12 @@ const buttons = [
     Icon: LinkIcon,
     command: 'toggleLink',
     isActive: isActive('link')
+  },
+  {
+    title: 'Insert Image',
+    Icon: ImageIcon,
+    command: 'insertImage',
+    isActive: isActive('image')
   }
 ]
 
