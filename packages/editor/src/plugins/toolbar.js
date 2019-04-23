@@ -73,6 +73,9 @@ const Tooltip = props => {
       )
   }
 
+  // (temporary) only render for images and links
+  if (!form) return false
+
   return createPortal(
     <div
       style={{
