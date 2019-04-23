@@ -20,26 +20,6 @@ import ListsPlugin from '../plugins/lists'
 import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
-const styles = (
-  <Global
-    styles={css({
-      '*': {
-        boxSizing: 'border-box'
-      },
-      body: {
-        m: 0,
-        fontFamily: 'system-ui, sans-serif',
-        lineHeight: 1.5,
-        color: 'text',
-        bg: 'background',
-        transitionProperty: 'background-color',
-        transitionTimingFunction: 'ease-out',
-        transitionDuration: '.4s'
-      }
-    })}
-  />
-)
-
 const plugins = [
   NodesPlugin(),
   MarksPlugin(),
