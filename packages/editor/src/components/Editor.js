@@ -13,10 +13,14 @@ import { parseMDX, serializer } from '../lib/mdx-serializer'
 import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
 
 import theme from './theme'
-import Node from './Node'
-import MarkComponent from './Mark'
 import Icon from './Icon'
 
+import NodesPlugin from '../plugins/nodes'
+import MarksPlugin from '../plugins/marks'
+import ChecklistPlugin from '../plugins/checklist'
+import CodePlugin from '../plugins/code'
+import LiveJSXPlugin from '../plugins/live-jsx'
+import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 
 const styles = (
@@ -52,7 +56,16 @@ const demoFonts = [
   'Merriweather, serif'
 ]
 
-const plugins = [DeepTable({}), ImagePlugin()]
+const plugins = [
+  NodesPlugin(),
+  MarksPlugin(),
+  ChecklistPlugin(),
+  CodePlugin(),
+  LiveJSXPlugin(),
+  TablePlugin(),
+  DeepTable({}),
+  ImagePlugin()
+]
 
 const insertImage = (change, src, target) => {
   if (target) {
@@ -76,10 +89,6 @@ const insertLink = (change, href, target) => {
   })
 }
 
-const NodeRenderer = handleChange => (props, editor, next) => (
-  <Node onChange={handleChange} {...props} next={next} />
-)
-
 class BlockEditor extends Component {
   constructor(props) {
     super(props)
@@ -97,6 +106,7 @@ class BlockEditor extends Component {
     this.props.onChange({ value })
   }
 
+  // think this can be a renderEditor plugin
   handleChange = ({ value }) => {
     this.setState({ value }, this.emitChange)
   }
@@ -455,8 +465,6 @@ class BlockEditor extends Component {
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
-              renderNode={NodeRenderer(this.handleChange)}
-              renderMark={MarkComponent}
               renderEditor={(_props, _editor, next) => {
                 const children = next()
 
