@@ -1,5 +1,4 @@
 import React from 'react'
-import { Styled } from 'theme-ui'
 import CodeBlock from '../components/CodeBlock'
 
 export default (opts = {}) => ({
