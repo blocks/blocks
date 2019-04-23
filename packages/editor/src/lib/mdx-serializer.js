@@ -253,6 +253,30 @@ const jsxBlock = {
   }
 }
 
+const link = {
+  match: node => node.object === 'inline' && node.type === 'link',
+  matchMdast: node => node.type === 'link',
+  fromMdast: (node, index, parent, { visitChildren }) => {
+    return {
+      object: 'inline',
+      type: 'link',
+      data: {
+        href: node.url,
+        title: node.title,
+        target: node.target
+      },
+      nodes: visitChildren(node)
+    }
+  },
+  toMdast: (mark, index, parent, { visitChildren }) => ({
+    type: 'link',
+    url: mark.data.href,
+    title: mark.data.title,
+    target: mark.data.target,
+    children: visitChildren(mark)
+  })
+}
+
 export const serializer = new MarkdownSerializer({
   rules: [
     paragraph,
@@ -263,6 +287,7 @@ export const serializer = new MarkdownSerializer({
     blockQuote,
     jsxBlock,
     codeBlock,
-    image
+    image,
+    link
   ].concat(headings)
 })

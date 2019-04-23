@@ -45,36 +45,38 @@ const Tooltip = props => {
   if (!container) return false
   if (selection.isCollapsed && blockType !== 'image') return false
 
-  let form
-  switch (type) {
-    case 'image':
-      form = (
-        <ImageForm
-          src={node.data.get('src')}
-          alt={node.data.get('alt')}
-          onSubmit={data => {
-            props.editor.setNodeByKey(value.focusBlock.key, { data }).deselect()
-          }}
-        />
-      )
-      break
-    case 'link':
-      form = (
-        <LinkForm
-          href={mark.data.get('href')}
-          onSubmit={data => {
-            props.editor
-              .setNodeByKey(mark.key, {
-                data
-              })
-              .deselect()
-          }}
-        />
-      )
+  const forms = []
+  if (type === 'image') {
+    forms.push(
+      <ImageForm
+        key="image-form"
+        src={node.data.get('src')}
+        alt={node.data.get('alt')}
+        onSubmit={data => {
+          props.editor.setNodeByKey(value.focusBlock.key, { data }).deselect()
+        }}
+      />
+    )
+  }
+  if (type === 'link') {
+    forms.push(
+      <LinkForm
+        key="link-form"
+        href={mark.data.get('href')}
+        title={mark.data.get('title')}
+        onSubmit={data => {
+          props.editor
+            .setNodeByKey(mark.key, {
+              data
+            })
+            .deselect()
+        }}
+      />
+    )
   }
 
   // (temporary) only render for images and links
-  if (!form) return false
+  if (!forms.length) return false
 
   return createPortal(
     <div
@@ -85,13 +87,7 @@ const Tooltip = props => {
         backgroundColor: '#eee'
       }}
     >
-      {form ? (
-        form
-      ) : (
-        <pre>
-          Tooltip: {blockType} {markType} {selection.isFocused ? 'focused' : ''}
-        </pre>
-      )}
+      {forms}
     </div>,
     container
   )
@@ -138,8 +134,8 @@ const ImageForm = ({ src = '', alt = '', onSubmit }) => {
   )
 }
 
-const LinkForm = ({ text = '', href = '', onSubmit }) => {
-  const [state, setState] = useState({ text, href })
+const LinkForm = ({ title = '', href = '', onSubmit }) => {
+  const [state, setState] = useState({ title, href })
   return (
     <div>
       <form
@@ -153,17 +149,6 @@ const LinkForm = ({ text = '', href = '', onSubmit }) => {
         }}
       >
         <label>
-          Text
-          <input
-            type="text"
-            name="text"
-            value={state.text}
-            onChange={e => {
-              setState({ ...state, text: e.target.value })
-            }}
-          />
-        </label>
-        <label>
           URL
           <input
             type="text"
@@ -171,6 +156,17 @@ const LinkForm = ({ text = '', href = '', onSubmit }) => {
             value={state.href}
             onChange={e => {
               setState({ ...state, href: e.target.value })
+            }}
+          />
+        </label>
+        <label>
+          Title
+          <input
+            type="text"
+            name="title"
+            value={state.title}
+            onChange={e => {
+              setState({ ...state, title: e.target.value })
             }}
           />
         </label>

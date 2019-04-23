@@ -39,13 +39,21 @@ export default (opts = {}) => ({
         editor.command(unwrapLink)
       } else if (selection.isExpanded && !hasMultiBlocks(value)) {
         // convert selection into link
+        console.log('wrap link')
         editor.command(wrapLink, {})
       } else if (hasMultiBlocks(value)) {
         // todo: wrap elements in link
-        // console.log('has multiple blocks')
+        console.log('has multiple blocks')
       } else if (selection.isCollapsed) {
-        // todo: insert new link
-        editor.command(insertLink)
+        // todo: handle wrapping images
+        const block = value.focusBlock
+        if (block && block.type === 'image') {
+          console.log('wrap image')
+          editor.wrapBlock('link')
+        } else {
+          console.log('insert new', value.focusBlock.type)
+          editor.command(insertLink)
+        }
       }
     }
     next()
