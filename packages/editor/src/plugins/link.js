@@ -5,19 +5,6 @@ import { keyboardEvent } from '@slate-editor/utils'
 import { Styled } from 'theme-ui'
 import isURL from 'is-url'
 
-const LinkNode = ({ attributes, children, node, editor, ...props }) => {
-  const href = node.data.get('href')
-  const target = node.data.get('target')
-  const text = node.data.get('text')
-  console.log('LinkNode', node, node.key)
-
-  return (
-    <Styled.a {...attributes} href={href} target={target}>
-      {children}
-    </Styled.a>
-  )
-}
-
 // from https://github.com/nossas/slate-editor/blob/develop/packages/slate-editor-link-plugin/src/LinkUtils.js
 // and: https://github.com/ianstormtaylor/slate/blob/master/examples/links/index.js
 const hasLinks = value => value.inlines.some(inline => inline.type === 'link')
@@ -43,10 +30,6 @@ const insertLink = (editor, placeholder = '[insert link]') => {
 }
 
 export default (opts = {}) => ({
-  renderNode: (props, editor, next) => {
-    if (props.node.type !== 'link') return next()
-    return <LinkNode {...props} />
-  },
   onKeyDown: (event, editor, next) => {
     if (keyboardEvent.isMod(event) && event.key === 'k') {
       const { value } = editor

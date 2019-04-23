@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import React, { useRef } from 'react'
 import { jsx } from '@emotion/core'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Styled } from 'theme-ui'
 
 export default ({ attributes, node, editor, onChange, ...props }) => {

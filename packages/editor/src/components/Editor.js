@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
-import { Range, Mark, Point } from 'slate'
 import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
 import { ThemeProvider, css } from 'theme-ui'
@@ -10,16 +9,21 @@ import { Global } from '@emotion/core'
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
 import { parseMDX, serializer } from '../lib/mdx-serializer'
-import { getTypeFromMarkdown, isUrl, isImageUrl, isAllChar } from '../lib/util'
+import { isUrl, isImageUrl } from '../lib/util'
 
 import theme from './theme'
-import Node from './Node'
-import MarkComponent from './Mark'
 import Icon from './Icon'
 
+import NodesPlugin from '../plugins/nodes'
+import MarksPlugin from '../plugins/marks'
+import ChecklistPlugin from '../plugins/checklist'
+import CodePlugin from '../plugins/code'
+import LiveJSXPlugin from '../plugins/live-jsx'
+import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import LinkPlugin from '../plugins/link'
 import ToolbarPlugin from '../plugins/toolbar'
+import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const styles = (
   <Global
@@ -54,7 +58,19 @@ const demoFonts = [
   'Merriweather, serif'
 ]
 
-const plugins = [DeepTable({}), ImagePlugin(), LinkPlugin(), ToolbarPlugin()]
+const plugins = [
+  NodesPlugin(),
+  MarksPlugin(),
+  ChecklistPlugin(),
+  CodePlugin(),
+  LiveJSXPlugin(),
+  TablePlugin(),
+  DeepTable(),
+  ImagePlugin(),
+  LinkPlugin(),
+  MarkdownShortcutsPlugin(),
+  ToolbarPlugin()
+]
 
 const insertImage = (change, src, target) => {
   if (target) {
@@ -78,10 +94,6 @@ const insertLink = (change, href, target) => {
   })
 }
 
-const NodeRenderer = handleChange => (props, editor, next) => (
-  <Node onChange={handleChange} {...props} next={next} />
-)
-
 class BlockEditor extends Component {
   constructor(props) {
     super(props)
@@ -99,93 +111,9 @@ class BlockEditor extends Component {
     this.props.onChange({ value })
   }
 
+  // think this can be a renderEditor plugin
   handleChange = ({ value }) => {
     this.setState({ value }, this.emitChange)
-  }
-
-  handleBackTick = (event, change, next) => {
-    this.handleInlineMark({
-      event,
-      change,
-      next,
-      character: '`',
-      type: 'code'
-    })
-  }
-
-  handleAsterisk = (event, change, next) => {
-    this.handleInlineMark({
-      event,
-      change,
-      next,
-      character: '*',
-      type: 'bold'
-    })
-  }
-
-  handleUnderscore = (event, change, next) => {
-    this.handleInlineMark({
-      event,
-      change,
-      next,
-      character: '_',
-      type: 'italic'
-    })
-  }
-
-  handleInlineMark = ({ event, change, next, character, type }) => {
-    const { texts, selection } = change.value
-    const currentTextNode = texts.get(0)
-    const currentLineText = currentTextNode.text
-
-    if (isAllChar(character, currentLineText)) {
-      return
-    }
-
-    const [other, remainder] = currentLineText.startsWith(character)
-      ? ['', currentLineText.replace(character, '')]
-      : currentLineText.split(character)
-
-    if (remainder) {
-      const offset = selection.focus.offset
-      const isBackwards = offset < other.length
-      const inlineCode = isBackwards
-        ? other.slice(offset)
-        : remainder.slice(0, offset - other.length - 1)
-
-      event.preventDefault()
-
-      const anchor = Point.create({
-        key: currentTextNode.key,
-        path: currentTextNode.path,
-        offset: isBackwards ? offset : other.length
-      })
-      const focus = Point.create({
-        key: currentTextNode.key,
-        path: currentTextNode.path,
-        offset: isBackwards ? other.length + 1 : offset
-      })
-      const range = Range.create({
-        anchor,
-        focus
-      })
-
-      return change
-        .deleteAtRange(range)
-        .insertTextByKey(
-          currentTextNode.key,
-          isBackwards ? offset : other.length,
-          inlineCode,
-          [Mark.create({ type })]
-        )
-        .command(change =>
-          change.value.marks.forEach(mark => {
-            change.removeMark(mark)
-          })
-        )
-    }
-
-    next()
   }
 
   handleKeyDown = (event, change, next) => {
@@ -197,80 +125,18 @@ class BlockEditor extends Component {
       return change.toggleMark('italic').focus()
     }
 
-    // Markdown shortcuts
+    // shortcuts
     switch (event.key) {
-      case ' ':
-        return this.handleSpace(event, change)
       case '/':
-        return this.handleCommand(event, change)
-      case '`':
-        return this.handleBackTick(event, change, next)
-      case '*':
-        return this.handleAsterisk(event, change, next)
-      case '_':
-        return this.handleUnderscore(event, change, next)
-      case 'Backspace':
-        return this.handleBackspace(event, change, next)
-      case 'Enter':
-        return this.handleEnter(event, change, next)
-      case 'Tab':
-        return this.handleTab(event, change, next)
+        this.setState({ commandMenu: true })
+        return
       case 'Escape':
         this.setState({ emojiMenu: false })
         this.setState({ menu: false })
         return
       default:
-        next()
-        break
+        return next()
     }
-  }
-
-  handleSpace = (event, change) => {
-    const { value } = change
-    const { selection } = value
-    if (selection.isExpanded) return
-
-    const { startBlock } = value
-    const { start } = selection
-    const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '')
-    const type = getTypeFromMarkdown(chars)
-
-    if (!type) return
-    if (type === 'check-list-item') {
-      change.wrapBlock('paragraph')
-      change.setBlocks(type)
-      change.moveFocusToStartOfNode(startBlock).delete()
-      return
-    }
-
-    if (type === 'pre') {
-      event.preventDefault()
-      startBlock.nodes.forEach(node => change.removeNodeByKey(node.key))
-      change.insertBlock('pre')
-      return
-    }
-
-    if (type === 'list-item' && startBlock.type === 'list-item') return
-    event.preventDefault()
-
-    if (type === 'hr') {
-      change.moveFocusToStartOfNode(startBlock).delete()
-      change.insertBlock('hr')
-      return
-    }
-
-    change.setBlocks(type)
-
-    if (type === 'list-item') {
-      change.wrapBlock('bulleted-list')
-    }
-
-    change.moveFocusToStartOfNode(startBlock).delete()
-    return true
-  }
-
-  handleCommand = () => {
-    this.setState({ commandMenu: true })
   }
 
   handlePaste = (event, editor, next) => {
@@ -303,146 +169,6 @@ class BlockEditor extends Component {
     next()
   }
 
-  handleTab = (event, change, next) => {
-    const { value } = change
-
-    event.preventDefault()
-
-    const { document } = value
-    const block = value.startBlock
-    const parent = document.getParent(block.key)
-    const previous = document.getPreviousSibling(block.key)
-
-    if (!parent || parent.type !== 'bulleted-list') {
-      return change.insertText('  ')
-    }
-
-    // Previous sibling is a single list item, wrap/unwrap current node as list
-    if (
-      previous &&
-      previous.nodes.size === 1 &&
-      (previous.type === 'list-item' || previous.type === 'check-list-item')
-    ) {
-      return event.shiftKey
-        ? change.unwrapBlock('bulleted-list')
-        : change.wrapBlock('bulleted-list')
-    }
-
-    // Previous sibling already is a list, insert into it
-    if (previous && previous.type === 'bulleted-list' && !event.shiftKey) {
-      return change.moveNodeByKey(block.key, previous.key, previous.nodes.size)
-    }
-
-    // Node is head of nested list and parent is still a list, unwrap it
-    if (parent && parent.type === 'bulleted-list' && event.shiftKey) {
-      return change.unwrapBlock('bulleted-list')
-    }
-  }
-
-  handleBackspace = (event, change, next) => {
-    const { value } = change
-    const { selection } = value
-
-    if (selection.isExpanded) {
-      return next()
-    }
-
-    if (selection.start.offset !== 0) {
-      return next()
-    }
-
-    const { startBlock } = value
-    if (startBlock.type === 'paragraph') {
-      return next()
-    }
-
-    event.preventDefault()
-    change.setBlocks('paragraph')
-
-    if (startBlock.type === 'list-item') {
-      return change.unwrapBlock('bulleted-list')
-    }
-
-    if (startBlock.type === 'check-list-item') {
-      return change.unwrapBlock('paragraph')
-    }
-
-    return next()
-  }
-
-  handleEnter = (event, change, next) => {
-    const { value } = change
-    const { selection } = value
-    const { start, end, isExpanded } = selection
-    if (isExpanded) return
-
-    const { startBlock } = value
-
-    if (startBlock.type === 'pre' || startBlock.type === 'jsx') {
-      return change.insertText('\n')
-    }
-
-    // Enter was pressed with no content, reset the node to be an empty paragraph
-    if (start.offset === 0 && startBlock.text.length === 0) {
-      return this.handleBackspace(event, change, next)
-    }
-
-    // The cursor is at the beginning of the line of a node with text. We should insert
-    // a new node before the current one.
-    if (end.offset === 0 && startBlock.text.length !== 0) {
-      return change.insertBlock('paragraph')
-    }
-
-    if (end.offset !== startBlock.text.length) {
-      // Cursor is mid paragraph, create two paragraphs/items
-      if (startBlock.type === 'list-item') {
-        return change.splitBlock().setBlocks('list-item')
-      } else if (startBlock.type === 'check-list-item') {
-        return change.splitBlock().setBlocks({ data: { checked: false } })
-      } else {
-        return change.splitBlock().setBlocks('paragraph')
-      }
-    }
-
-    // Continue with check list, ensure checked is set to false
-    if (startBlock.type === 'check-list-item') {
-      return change.splitBlock().setBlocks({ data: { checked: false } })
-    }
-
-    // Started a code/jsx/hr block
-    const type = getTypeFromMarkdown(startBlock.text)
-    if (type === 'pre' || type === 'jsx') {
-      return change
-        .setBlocks(type)
-        .moveFocusToStartOfNode(startBlock)
-        .delete()
-    } else if (type === 'hr') {
-      return change
-        .moveFocusToStartOfNode(startBlock)
-        .delete()
-        .setBlocks('hr')
-        .insertBlock('paragraph')
-    } else if (type === 'table') {
-      change.moveFocusToStartOfNode(startBlock).delete()
-      return change.editor.insertTable()
-    }
-
-    if (
-      startBlock.type !== 'heading-one' &&
-      startBlock.type !== 'heading-two' &&
-      startBlock.type !== 'heading-three' &&
-      startBlock.type !== 'heading-four' &&
-      startBlock.type !== 'heading-five' &&
-      startBlock.type !== 'heading-six' &&
-      startBlock.type !== 'block-quote'
-    ) {
-      return next()
-    }
-
-    event.preventDefault()
-    change.splitBlock().setBlocks('paragraph')
-  }
-
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -457,8 +183,6 @@ class BlockEditor extends Component {
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
-              renderNode={NodeRenderer(this.handleChange)}
-              renderMark={MarkComponent}
               renderEditor={(_props, _editor, next) => {
                 const children = next()
 
