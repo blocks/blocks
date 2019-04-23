@@ -7,7 +7,9 @@ import isURL from 'is-url'
 
 // from https://github.com/nossas/slate-editor/blob/develop/packages/slate-editor-link-plugin/src/LinkUtils.js
 // and: https://github.com/ianstormtaylor/slate/blob/master/examples/links/index.js
-const hasLinks = value => value.inlines.some(inline => inline.type === 'link')
+const hasLinks = editor => {
+  return editor.value.inlines.some(inline => inline.type === 'link')
+}
 // const getLink = value => value.inlines.filter(inline => inline.type === 'link').first()
 const hasMultiBlocks = value => value.blocks.size > 1
 
@@ -30,11 +32,19 @@ const insertLink = (editor, placeholder = '[insert link]') => {
 }
 
 export default (opts = {}) => ({
+  queries: {
+    hasLinks
+  },
+  commands: {
+    unwrapLink,
+    wrapLink,
+    insertLink
+  },
   onKeyDown: (event, editor, next) => {
     if (keyboardEvent.isMod(event) && event.key === 'k') {
       const { value } = editor
       const { selection } = value
-      if (hasLinks(value)) {
+      if (editor.hasLinks()) {
         // remove the link
         editor.command(unwrapLink)
       } else if (selection.isExpanded && !hasMultiBlocks(value)) {
@@ -62,7 +72,7 @@ export default (opts = {}) => ({
     if (type !== 'text' && type !== 'html') return next()
     if (!isURL(text)) return next()
 
-    if (hasLinks(value)) {
+    if (editor.hasLinks()) {
       editor.command(unwrapLink)
     }
 

@@ -8,6 +8,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "@reach/alert-dialog": "^0.2.3",
     "@slate-editor/utils": "^5.1.0",
     "@styled-system/edit": "^0.0.4",
@@ -17,6 +19,7 @@
     "immutable": "^4.0.0-rc.12",
     "is-url": "^1.2.4",
     "raw-loader": "^2.0.0",
+    "react-feather": "^1.1.6",
     "react-live": "^2.0.1",
     "remark-mdx": "^1.0.8",
     "remark-parse": "^6.0.3",

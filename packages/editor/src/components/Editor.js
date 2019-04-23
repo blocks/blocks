@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
-import { keyboardEvent } from '@slate-editor/utils'
 import DeepTable from 'slate-deep-table'
 
 import schema from '../lib/schema'
@@ -81,14 +80,6 @@ class BlockEditor extends Component {
   }
 
   handleKeyDown = (event, change, next) => {
-    // Keyboard shortcuts
-    if (keyboardEvent.isMod(event) && event.key === 'b') {
-      return change.toggleMark('bold').focus()
-    }
-    if (keyboardEvent.isMod(event) && !event.shiftKey && event.key === 'i') {
-      return change.toggleMark('italic').focus()
-    }
-
     // shortcuts
     switch (event.key) {
       case '/':
