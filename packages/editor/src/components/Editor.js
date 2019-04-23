@@ -18,7 +18,28 @@ import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import ListsPlugin from '../plugins/lists'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
+import ListsPlugin from '../plugins/lists'
 import ThemeEditorPlugin from '../plugins/theme-editor'
+
+const styles = (
+  <Global
+    styles={css({
+      '*': {
+        boxSizing: 'border-box'
+      },
+      body: {
+        m: 0,
+        fontFamily: 'system-ui, sans-serif',
+        lineHeight: 1.5,
+        color: 'text',
+        bg: 'background',
+        transitionProperty: 'background-color',
+        transitionTimingFunction: 'ease-out',
+        transitionDuration: '.4s'
+      }
+    })}
+  />
+)
 
 const plugins = [
   NodesPlugin(),
@@ -30,6 +51,7 @@ const plugins = [
   ImagePlugin(),
   ListsPlugin(),
   MarkdownShortcutsPlugin(),
+  ListsPlugin(),
   ThemeEditorPlugin({ theme })
 ]
 

@@ -1,7 +1,5 @@
 import React from 'react'
-import { Block } from 'slate'
 import { Styled } from 'theme-ui'
-
 import { getTypeFromMarkdown } from '../lib/util'
 
 const handleSpace = (event, editor, next) => {
@@ -90,10 +88,9 @@ const handleTab = (event, editor, next) => {
   return next()
 }
 
-export default () => ({
-  renderNode: (props, _editor, next) => {
-    const { node, children } = props
-
+export default (opts = {}) => ({
+  renderNode: (props, editor, next) => {
+    const { node,  children } = props
     switch (node.type) {
       case 'bulleted-list':
         return <Styled.ul>{children}</Styled.ul>
