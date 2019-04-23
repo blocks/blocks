@@ -8,8 +8,14 @@ import BoldIcon from '@material-ui/icons/FormatBold'
 import ItalicIcon from '@material-ui/icons/FormatItalic'
 import LinkIcon from '@material-ui/icons/InsertLink'
 import ImageIcon from '@material-ui/icons/InsertPhoto'
-import ColorIcon from '@material-ui/icons/FormatColorText'
-import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
+import QuoteIcon from '@material-ui/icons/FormatQuote'
+// import ListIcon from '@material-ui/icons/FormatListBulleted'
+// import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
+// import HeadingIcon from '@material-ui/icons/Title'
+// import CodeIcon from '@material-ui/icons/Code'
+// import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
+// import ColorIcon from '@material-ui/icons/FormatColorText'
+// import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
 
 const Root = props => (
   <div
@@ -66,6 +72,12 @@ const buttons = [
     Icon: ItalicIcon,
     command: 'toggleItalic',
     isActive: isActive('italic')
+  },
+  {
+    title: 'Toggle Block Quote',
+    Icon: QuoteIcon,
+    command: 'toggleBlockQuote',
+    isActive: isActive('block-quote')
   },
   {
     title: 'Insert Link',

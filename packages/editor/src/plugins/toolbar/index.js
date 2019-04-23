@@ -24,15 +24,35 @@ const toggleLink = editor => {
   }
 }
 
+const toggleBlockQuote = editor => {
+  if (editor.hasBlock('block-quote')) {
+    console.log('its a block-quote!')
+  } else {
+    console.log('not a block-quote!')
+  }
+}
+
+const hasBlock = (editor, type) => {
+  // todo... not currently working
+  const is = editor.value.blocks.some(node => node.type === type)
+  console.log(type, is, editor.value.blocks.toJS())
+  return is
+}
+
 export default (opts = {}) => ({
+  queries: {
+    hasBlock
+  },
   commands: {
     toggleBold,
     toggleItalic,
-    toggleLink
+    toggleLink,
+    toggleBlockQuote
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()
 
+    // these could live elsewhere...
     switch (event.key) {
       case 'b':
         toggleBold(editor)
