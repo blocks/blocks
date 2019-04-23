@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { findDOMNode } from 'slate-react'
