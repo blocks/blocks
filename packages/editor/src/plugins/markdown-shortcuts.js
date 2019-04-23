@@ -12,14 +12,6 @@ const handleSpace = (event, editor) => {
   const type = getTypeFromMarkdown(chars)
 
   if (!type) return
-  if (type === 'check-list-item') {
-    editor
-      .wrapBlock('paragraph')
-      .setBlocks(type)
-      .moveFocusToStartOfNode(startBlock)
-      .delete()
-    return
-  }
 
   if (type === 'pre') {
     event.preventDefault()
@@ -28,7 +20,6 @@ const handleSpace = (event, editor) => {
     return
   }
 
-  if (type === 'list-item' && startBlock.type === 'list-item') return
   event.preventDefault()
 
   if (type === 'hr') {
@@ -38,10 +29,6 @@ const handleSpace = (event, editor) => {
   }
 
   editor.setBlocks(type)
-
-  if (type === 'list-item') {
-    editor.wrapBlock('bulleted-list')
-  }
 
   editor.moveFocusToStartOfNode(startBlock).delete()
   return true

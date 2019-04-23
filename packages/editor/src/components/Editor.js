@@ -20,8 +20,8 @@ import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
-import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 import ListsPlugin from '../plugins/lists'
+import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const styles = (
   <Global
@@ -64,8 +64,8 @@ const plugins = [
   TablePlugin(),
   DeepTable({}),
   ImagePlugin(),
-  MarkdownShortcutsPlugin(),
-  ListsPlugin()
+  ListsPlugin(),
+  MarkdownShortcutsPlugin()
 ]
 
 const insertImage = (change, src, target) => {
