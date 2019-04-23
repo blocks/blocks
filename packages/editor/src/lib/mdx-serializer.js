@@ -26,15 +26,19 @@ export const stringifyMDX = mdast =>
 const paragraph = {
   match: node => node.object === 'block' && node.type === 'paragraph',
   matchMdast: node => node.type === 'paragraph',
-  fromMdast: (node, index, parent, { visitChildren }) => ({
-    object: 'block',
-    type: 'paragraph',
-    nodes: visitChildren(node)
-  }),
-  toMdast: (object, index, parent, { visitChildren }) => ({
-    type: 'paragraph',
-    children: visitChildren(object)
-  })
+  fromMdast: (node, _index, _parent, { visitChildren }) => {
+    return {
+      object: 'block',
+      type: 'paragraph',
+      nodes: visitChildren(node)
+    }
+  },
+  toMdast: (object, _index, _parent, { visitChildren }) => {
+    return {
+      type: 'paragraph',
+      children: visitChildren(object)
+    }
+  }
 }
 
 const image = {
@@ -75,6 +79,41 @@ const blockQuote = {
   })
 }
 
+const bulletedList = {
+  match: node => node.object === 'block' && node.type === 'bulleted-list',
+  matchMdast: node => node.type === 'list' && !node.ordered,
+  fromMdast: (node, _index, _parent, { visitChildren }) => ({
+    object: 'block',
+    type: 'bulleted-list',
+    nodes: visitChildren(node)
+  }),
+  toMdast: (object, _index, _parent, { visitChildren }) => {
+    return {
+      type: 'list',
+      ordered: false,
+      children: visitChildren(object)
+    }
+  }
+}
+
+const listItem = {
+  match: node => node.object === 'block' && node.type === 'list-item',
+  matchMdast: node => node.type === 'listItem',
+  fromMdast: (node, index, parent, { visitChildren }) => {
+    return {
+      object: 'block',
+      type: 'list-item',
+      nodes: visitChildren(node)
+    }
+  },
+  toMdast: (object, _index, _parent, { visitChildren }) => {
+    return {
+      type: 'listItem',
+      children: visitChildren(object)
+    }
+  }
+}
+
 const headings = [
   'heading-one',
   'heading-two',
@@ -111,10 +150,12 @@ const bold = {
       nodes: visitChildren(node)
     }
   },
-  toMdast: (mark, index, parent, { visitChildren }) => ({
-    type: 'strong',
-    children: visitChildren(mark)
-  })
+  toMdast: (mark, index, parent, { visitChildren }) => {
+    return {
+      type: 'strong',
+      children: visitChildren(mark)
+    }
+  }
 }
 
 const codeBlock = {
@@ -263,6 +304,8 @@ export const serializer = new MarkdownSerializer({
     blockQuote,
     jsxBlock,
     codeBlock,
-    image
+    image,
+    bulletedList,
+    listItem
   ].concat(headings)
 })
