@@ -220,7 +220,7 @@ const codeBlock = {
       value: visitChildren(node)
         .map(childNode => childNode.value)
         .filter(Boolean)
-        .join('\n\n')
+        .join('\n')
     }
   }
 }
