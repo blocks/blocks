@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { findDOMNode } from 'slate-react'
 
@@ -49,7 +49,6 @@ const Card = props => (
 export default props => {
   const { value } = props.editor
   const { selection } = value
-  const { focus } = selection
 
   const node = value.focusBlock
   const mark = value.inlines.first()

@@ -1,8 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
 import { getEventTransfer } from 'slate-react'
-import { createPortal } from 'react-dom'
 import { keyboardEvent } from '@slate-editor/utils'
-import { Styled } from 'theme-ui'
 import isURL from 'is-url'
 
 // from https://github.com/nossas/slate-editor/blob/develop/packages/slate-editor-link-plugin/src/LinkUtils.js

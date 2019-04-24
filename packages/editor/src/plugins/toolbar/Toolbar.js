@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
 import { css } from 'theme-ui'
 
 // todo: figure out the best package for React material icons
@@ -23,15 +22,20 @@ const H2 = () => <b>H2</b>
 const Root = props => (
   <div
     {...props}
-    css={css({
-      display: 'flex',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      backgroundColor: 'white',
-      paddingTop: 2,
-      paddingBottom: 2,
-      borderBottom: '1px solid'
-    })}
+    css={theme =>
+      css({
+        position: 'sticky',
+        top: 0,
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
+        paddingTop: 2,
+        paddingBottom: 2,
+        borderBottom: '1px solid',
+        borderColor: theme.colors.gray
+      })(theme)
+    }
   />
 )
 
@@ -40,9 +44,11 @@ const IconButton = ({ active, ...props }) => (
     {...props}
     css={css({
       display: 'block',
+      width: 32,
+      height: 32,
       padding: 1,
       fontSize: 16,
-      lineHeight: 1,
+      lineHeight: 1.5,
       margin: '1px',
       color: active ? 'primary' : 'inherit',
       backgroundColor: active ? 'lightgray' : 'transparent',
@@ -56,12 +62,10 @@ const IconButton = ({ active, ...props }) => (
 )
 
 const isActive = type => editor => {
-  const block = editor.value.focusBlock || {}
   return (
     editor.value.activeMarks.some(mark => mark.type === type) ||
     editor.value.inlines.some(inline => inline.type === type) ||
     editor.hasBlock(type)
-    // block.type === type
   )
 }
 
@@ -111,8 +115,8 @@ const buttons = [
   }
 ]
 
-export default props => {
-  const { editor } = props
+export const Toolbar = props => {
+  const { buttons, editor } = props
 
   return (
     <Root>
@@ -129,3 +133,9 @@ export default props => {
     </Root>
   )
 }
+
+Toolbar.defaultProps = {
+  buttons
+}
+
+export default Toolbar

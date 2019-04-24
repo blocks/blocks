@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import { Fragment, useState } from 'react'
 import { Styled } from 'theme-ui'
 
 export default ({ attributes, node, editor, onChange, ...props }) => {

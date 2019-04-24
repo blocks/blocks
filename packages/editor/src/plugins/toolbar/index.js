@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { findDOMNode } from 'slate-react'
+import React from 'react'
 import { keyboardEvent } from '@slate-editor/utils'
 import { ThemeProvider } from 'theme-ui'
 
