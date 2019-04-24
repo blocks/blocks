@@ -36,17 +36,10 @@ const toggleBlockQuote = editor => {
   }
 }
 
-const toggleHeadingOne = editor => {
-  return toggleBlock(editor, 'heading-one')
-}
-
-const toggleHeadingTwo = editor => {
-  return toggleBlock(editor, 'heading-two')
-}
-
-const toggleJSX = editor => {
-  return toggleBlock(editor, 'jsx')
-}
+const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
+const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
+const toggleJSX = editor => toggleBlock(editor, 'jsx')
+const togglePre = editor => toggleBlock(editor, 'pre')
 
 // Certain nodes like list-items and block-quotes have an inner
 // paragraph so we need to query the parent node rather than
@@ -76,7 +69,8 @@ export default (opts = {}) => ({
     toggleBlockQuote,
     toggleHeadingOne,
     toggleHeadingTwo,
-    toggleJSX
+    toggleJSX,
+    togglePre
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()

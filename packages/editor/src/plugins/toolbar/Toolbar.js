@@ -8,10 +8,10 @@ import ItalicIcon from '@material-ui/icons/FormatItalic'
 import LinkIcon from '@material-ui/icons/InsertLink'
 import ImageIcon from '@material-ui/icons/InsertPhoto'
 import QuoteIcon from '@material-ui/icons/FormatQuote'
+import CodeIcon from '@material-ui/icons/Code'
 // import ListIcon from '@material-ui/icons/FormatListBulleted'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
-// import CodeIcon from '@material-ui/icons/Code'
 // import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
 // import ColorIcon from '@material-ui/icons/FormatColorText'
 // import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
@@ -124,6 +124,12 @@ const buttons = [
     Icon: QuoteIcon,
     command: 'toggleBlockQuote',
     isActive: isActive('block-quote')
+  },
+  {
+    title: 'Toggle Code Block ()',
+    Icon: CodeIcon,
+    command: 'togglePre',
+    isActive: isActive('pre')
   },
   { separator: true },
   {
