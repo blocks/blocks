@@ -336,7 +336,9 @@ const jsxBlock = {
           object: 'text',
           leaves: [
             {
-              text: node.value
+              object: 'leaf',
+              text: node.value,
+              marks: []
             }
           ]
         }
