@@ -1,7 +1,7 @@
 ### Serialization
 
 - [ ] Fix code blocks (deserialize and serialize)
-- [ ] Fix lists
+- [x] Fix lists
 
 ### Themes
 
