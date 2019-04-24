@@ -16,8 +16,31 @@ import QuoteIcon from '@material-ui/icons/FormatQuote'
 // import ColorIcon from '@material-ui/icons/FormatColorText'
 // import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
 
-const H1 = () => <b>H1</b>
-const H2 = () => <b>H2</b>
+// "icons"
+const B = props => (
+  <b
+    {...props}
+    css={{
+      paddingLeft: 2,
+      paddingRight: 2,
+      borderRadius: 2
+    }}
+  />
+)
+const H1 = () => <B>H1</B>
+const H2 = () => <B>H2</B>
+const JSX = () => <B>JSX</B>
+
+const Separator = () => (
+  <div
+    css={css({
+      width: '1px',
+      mx: 2,
+      height: 24,
+      bg: 'gray'
+    })}
+  />
+)
 
 const Root = props => (
   <div
@@ -44,7 +67,7 @@ const IconButton = ({ active, ...props }) => (
     {...props}
     css={css({
       display: 'block',
-      width: 32,
+      minWidth: 32,
       height: 32,
       padding: 1,
       fontSize: 16,
@@ -102,6 +125,7 @@ const buttons = [
     command: 'toggleBlockQuote',
     isActive: isActive('block-quote')
   },
+  { separator: true },
   {
     title: 'Insert Link (⌘ K)',
     Icon: LinkIcon,
@@ -113,6 +137,13 @@ const buttons = [
     Icon: ImageIcon,
     command: 'insertImage',
     isActive: isActive('image')
+  },
+  { separator: true },
+  {
+    title: 'Insert JSX Block',
+    Icon: JSX,
+    command: 'toggleJSX',
+    isActive: isActive('jsx')
   }
 ]
 
@@ -121,16 +152,20 @@ export const Toolbar = props => {
 
   return (
     <Root>
-      {buttons.map(({ Icon, title, command, isActive }, i) => (
-        <IconButton
-          key={i}
-          title={title}
-          active={isActive(editor)}
-          onClick={editor[command]}
-        >
-          <Icon size={20} />
-        </IconButton>
-      ))}
+      {buttons.map(({ separator, Icon, title, command, isActive }, i) =>
+        separator ? (
+          <Separator key={i} />
+        ) : (
+          <IconButton
+            key={i}
+            title={title}
+            active={isActive(editor)}
+            onClick={editor[command]}
+          >
+            <Icon size={20} />
+          </IconButton>
+        )
+      )}
     </Root>
   )
 }

@@ -14,6 +14,20 @@ const toggleItalic = editor => {
   editor.toggleMark('italic').focus()
 }
 
+const DEFAULT_BLOCK = 'paragraph'
+
+const hasBlock = (editor, type) => {
+  return editor.value.blocks.some(node => node.type === type)
+}
+
+const toggleBlock = (editor, type) => {
+  if (editor.hasBlock(type)) {
+    editor.setBlocks(DEFAULT_BLOCK)
+  } else {
+    editor.setBlocks(type)
+  }
+}
+
 const toggleBlockQuote = editor => {
   if (editor.hasOuterBlock('block-quote')) {
     editor.unwrapBlock('block-quote')
@@ -23,23 +37,15 @@ const toggleBlockQuote = editor => {
 }
 
 const toggleHeadingOne = editor => {
-  if (editor.hasBlock('heading-one')) {
-    editor.setBlocks('paragraph')
-  } else {
-    editor.setBlocks('heading-one')
-  }
+  return toggleBlock(editor, 'heading-one')
 }
 
 const toggleHeadingTwo = editor => {
-  if (editor.hasBlock('heading-two')) {
-    editor.setBlocks('paragraph')
-  } else {
-    editor.setBlocks('heading-two')
-  }
+  return toggleBlock(editor, 'heading-two')
 }
 
-const hasBlock = (editor, type) => {
-  return editor.value.blocks.some(node => node.type === type)
+const toggleJSX = editor => {
+  return toggleBlock(editor, 'jsx')
 }
 
 // Certain nodes like list-items and block-quotes have an inner
@@ -66,9 +72,11 @@ export default (opts = {}) => ({
   commands: {
     toggleBold,
     toggleItalic,
+    toggleBlock,
     toggleBlockQuote,
     toggleHeadingOne,
-    toggleHeadingTwo
+    toggleHeadingTwo,
+    toggleJSX
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()
