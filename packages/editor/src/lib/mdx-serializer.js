@@ -27,7 +27,6 @@ const paragraph = {
   match: node => node.object === 'block' && node.type === 'paragraph',
   matchMdast: node => node.type === 'paragraph',
   fromMdast: (node, _index, _parent, { visitChildren }) => {
-    debugger
     return {
       object: 'block',
       type: 'paragraph',

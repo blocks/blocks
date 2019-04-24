@@ -22,15 +22,6 @@ const toggleBlockQuote = editor => {
   }
 }
 
-const toggleHeading = (editor, level) => {
-  if (editor.hasBlock('heading-one')) {
-    console.log('H1')
-  } else if (editor.hasBlock('heading-two')) {
-    console.log('H2')
-  } else {
-  }
-}
-
 const toggleHeadingOne = editor => {
   if (editor.hasBlock('heading-one')) {
     editor.setBlocks('paragraph')
@@ -76,20 +67,39 @@ export default (opts = {}) => ({
     toggleBold,
     toggleItalic,
     toggleBlockQuote,
-    toggleHeading,
     toggleHeadingOne,
     toggleHeadingTwo
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()
+    const opt = event.altKey
+
+    if (opt) {
+      switch (event.keyCode) {
+        // Q
+        case 81:
+          editor.toggleBlockQuote()
+          break
+        // 1
+        case 49:
+          editor.toggleHeadingOne()
+          break
+        // 2
+        case 50:
+          editor.toggleHeadingTwo()
+          break
+        default:
+          return next()
+      }
+    }
 
     // these could live elsewhere...
     switch (event.key) {
       case 'b':
-        toggleBold(editor)
+        editor.toggleBold()
         break
       case 'i':
-        toggleItalic(editor)
+        editor.toggleItalic()
         break
       default:
         next()

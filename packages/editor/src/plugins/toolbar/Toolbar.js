@@ -73,43 +73,43 @@ const isActive = type => editor => {
 // config
 const buttons = [
   {
-    title: 'Toggle Bold',
+    title: 'Toggle Bold (⌘ B)',
     Icon: BoldIcon,
     command: 'toggleBold',
     isActive: isActive('bold')
   },
   {
-    title: 'Toggle Italic',
+    title: 'Toggle Italic (⌘ I)',
     Icon: ItalicIcon,
     command: 'toggleItalic',
     isActive: isActive('italic')
   },
   {
-    title: 'Toggle Heading Level 1',
+    title: 'Toggle Heading Level 1 (⌘ ⌥ 1)',
     Icon: H1,
     command: 'toggleHeadingOne',
     isActive: isActive('heading-one')
   },
   {
-    title: 'Toggle Heading Level 2',
+    title: 'Toggle Heading Level 2 (⌘ ⌥ 2)',
     Icon: H2,
     command: 'toggleHeadingTwo',
     isActive: isActive('heading-two')
   },
   {
-    title: 'Toggle Block Quote',
+    title: 'Toggle Block Quote (⌃ ⌥ Q)',
     Icon: QuoteIcon,
     command: 'toggleBlockQuote',
     isActive: isActive('block-quote')
   },
   {
-    title: 'Insert Link',
+    title: 'Insert Link (⌘ K)',
     Icon: LinkIcon,
     command: 'toggleLink',
     isActive: isActive('link')
   },
   {
-    title: 'Insert Image',
+    title: 'Insert Image (⌘ ⇧ I)',
     Icon: ImageIcon,
     command: 'insertImage',
     isActive: isActive('image')
