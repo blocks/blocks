@@ -27,6 +27,7 @@ const paragraph = {
   match: node => node.object === 'block' && node.type === 'paragraph',
   matchMdast: node => node.type === 'paragraph',
   fromMdast: (node, _index, _parent, { visitChildren }) => {
+    debugger
     return {
       object: 'block',
       type: 'paragraph',
@@ -37,6 +38,22 @@ const paragraph = {
     return {
       type: 'paragraph',
       children: visitChildren(object)
+    }
+  }
+}
+
+const br = {
+  match: node => node.type === 'break',
+  matchMdast: node => node.type === 'break',
+  fromMdast: (node, _index, _parent, { visitChildren }) => {
+    return {
+      object: 'text',
+      leaves: [
+        {
+          object: 'leaf',
+          text: '\n'
+        }
+      ]
     }
   }
 }
@@ -340,6 +357,7 @@ const link = {
 export const serializer = new MarkdownSerializer({
   rules: [
     paragraph,
+    br,
     bold,
     code,
     italic,

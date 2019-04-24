@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
-import { keyboardEvent } from '@slate-editor/utils'
 import ListsPlugin from '@convertkit/slate-lists'
 import DeepTable from 'slate-deep-table'
+import SoftBreak from 'slate-soft-break'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
@@ -23,6 +23,7 @@ import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const plugins = [
+  SoftBreak({ shift: true }),
   NodesPlugin(),
   MarksPlugin(),
   CodePlugin(),
