@@ -102,9 +102,10 @@ export default (opts = {}) => ({
   renderEditor: (props, editor, next) => {
     const { theme } = opts
     const children = next()
+    const { components } = props
 
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider components={components} theme={theme}>
         <EditProvider>
           {children}
           <ThemeEditor />

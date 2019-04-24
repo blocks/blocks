@@ -7,8 +7,11 @@
   },
   "dependencies": {
     "@blocks/editor": "0.0.0",
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.10",
     "@mdx-js/react": "^1.0.6",
+    "@rebass/emotion": "^3.1.0",
     "gatsby": "^2.3.25",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "react": "^16.8.6",
