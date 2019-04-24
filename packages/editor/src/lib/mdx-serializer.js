@@ -117,6 +117,23 @@ const bulletedList = {
   }
 }
 
+const numberedList = {
+  match: node => node.object === 'block' && node.type === 'numbered-list',
+  matchMdast: node => node.type === 'list' && node.ordered,
+  fromMdast: (node, _index, _parent, { visitChildren }) => ({
+    object: 'block',
+    type: 'numbered-list',
+    nodes: visitChildren(node)
+  }),
+  toMdast: (object, _index, _parent, { visitChildren }) => {
+    return {
+      type: 'list',
+      ordered: true,
+      children: visitChildren(object)
+    }
+  }
+}
+
 const listItem = {
   match: node => node.object === 'block' && node.type === 'list-item',
   matchMdast: node => node.type === 'listItem',
@@ -373,6 +390,7 @@ export const serializer = new MarkdownSerializer({
     image,
     link,
     bulletedList,
+    numberedList,
     listItem
   ].concat(headings)
 })

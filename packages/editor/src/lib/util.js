@@ -34,7 +34,9 @@ export const getTypeFromMarkdown = chars => {
     case '*':
     case '-':
     case '+':
-      return 'list-item'
+      return 'bulleted-list-item'
+    case '1.':
+      return 'numbered-list-item'
     case '>':
       return 'block-quote'
     case '#':
