@@ -126,7 +126,7 @@ const buttons = [
     isActive: isActive('block-quote')
   },
   {
-    title: 'Toggle Code Block ()',
+    title: 'Toggle Code Block',
     Icon: CodeIcon,
     command: 'togglePre',
     isActive: isActive('pre')
