@@ -13,11 +13,16 @@ const handleSpace = (event, editor) => {
 
   if (!type) return
 
-  if (type === 'list-item') {
+  if (type === 'bulleted-list-item') {
     return editor
+      .wrapList({ type: 'bulleted-list' })
       .moveFocusToStartOfNode(startBlock)
       .delete()
-      .wrapList({ type: 'bulleted-list' })
+  } else if (type === 'numbered-list-item') {
+    return editor
+      .wrapList({ type: 'numbered-list' })
+      .moveFocusToStartOfNode(startBlock)
+      .delete()
   }
 
   if (type === 'pre') {
