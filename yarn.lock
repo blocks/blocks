@@ -757,6 +757,20 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@convertkit/slate-keymap@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@convertkit/slate-keymap/-/slate-keymap-0.1.8.tgz#a99fe0923c78c69166480a124a750b3342e49250"
+  integrity sha512-7KV/rsNvCHWNOt/9k7D2uwV3wAm9QMGs/iY+0eAY0IXzCoLEq2oZLjsUJkJfPLXP6yGSAPukkKtPRgoVQCMmZw==
+  dependencies:
+    is-hotkey "^0.1.4"
+
+"@convertkit/slate-lists@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@convertkit/slate-lists/-/slate-lists-0.2.2.tgz#4e656a31ca2e504cfdbf7161bd2b23fb1ef28014"
+  integrity sha512-rFI30Q7qjFVF1pnPX3v1ooXJPN7xlcF38Spt4DONNHp5a7PEiBkLLUfz3anM8MpBpeTkcx8XBze3sBgKdNvgow==
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.8"
+
 "@emotion/cache@^10.0.9":
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.9.tgz#e0c7b7a289f7530edcfad4dcf3858bd2e5700a6f"
@@ -5751,7 +5765,7 @@ is-hexadecimal@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-hexadecimal/-/is-hexadecimal-1.0.2.tgz#b6e710d7d07bb66b98cb8cece5c9b4921deeb835"
   integrity sha512-but/G3sapV3MNyqiDBLrOi4x8uCIw0RY3o/Vb5GT0sMFHrVV7731wFSVy41T5FO1og7G0gXLJh0MkgPRouko/A==
 
-is-hotkey@0.1.4:
+is-hotkey@0.1.4, is-hotkey@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.1.4.tgz#c34d2c85d6ec8d09a871dcf71931c8067a824c7d"
   integrity sha512-Py+aW4r5mBBY18TGzGz286/gKS+fCQ0Hee3qkaiSmEPiD0PqFpe0wuA3l7rTOUKyeXl8Mxf3XzJxIoTlSv+kxA==
