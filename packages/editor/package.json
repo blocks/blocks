@@ -6,6 +6,7 @@
   "author": "John Otander",
   "repository": "johno/blocks",
   "dependencies": {
+    "@convertkit/slate-lists": "^0.2.2",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@material-ui/core": "^3.9.3",

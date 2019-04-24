@@ -12,6 +12,10 @@ export default (opts = {}) => ({
         return <Styled.ul {...attributes}>{children}</Styled.ul>
       case 'numbered-list':
         return <Styled.ol {...attributes}>{children}</Styled.ol>
+      case 'list-item':
+        return <Styled.li {...attributes}>{children}</Styled.li>
+      case 'list-item-child':
+        return <Styled.p {...attributes}>{children}</Styled.p>
       case 'heading-one':
         return <Styled.h1 {...attributes}>{children}</Styled.h1>
       case 'heading-two':
