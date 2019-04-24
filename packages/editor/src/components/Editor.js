@@ -34,7 +34,7 @@ const plugins = [
   LinkPlugin(),
   ListsPlugin({
     blocks: {
-      ordered_list: 'ordered-list',
+      ordered_list: 'numbered-list',
       unordered_list: 'bulleted-list',
       list_item: 'list-item'
     }
