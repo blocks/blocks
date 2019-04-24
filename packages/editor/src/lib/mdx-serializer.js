@@ -2,6 +2,7 @@ const MarkdownSerializer = require('slate-mdast-serializer')
 const unified = require('unified')
 const remarkStringify = require('remark-stringify')
 const remarkParse = require('remark-parse')
+const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
 
 const parser = unified()
@@ -9,6 +10,8 @@ const parser = unified()
     commonmark: true,
     position: false
   })
+  .use(remarkSqueezeParagraphs)
+  .use(_ => ast => console.log(ast) || ast)
   .use(mdx)
 
 export const parseMDX = md => parser.runSync(parser.parse(md))
@@ -18,6 +21,8 @@ const stringifier = unified()
     bullet: '*',
     fences: true
   })
+  .use(remarkSqueezeParagraphs)
+  .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
   .use(mdx)
 
 export const stringifyMDX = mdast =>
@@ -26,14 +31,14 @@ export const stringifyMDX = mdast =>
 const paragraph = {
   match: node => node.object === 'block' && node.type === 'paragraph',
   matchMdast: node => node.type === 'paragraph',
-  fromMdast: (node, _index, _parent, { visitChildren }) => {
+  fromMdast: (node, _index, parent, { visitChildren }) => {
     return {
       object: 'block',
       type: 'paragraph',
       nodes: visitChildren(node)
     }
   },
-  toMdast: (object, _index, _parent, { visitChildren }) => {
+  toMdast: (object, _index, parent, { visitChildren }) => {
     return {
       type: 'paragraph',
       children: visitChildren(object)
@@ -141,7 +146,7 @@ const listItemChild = {
       nodes: visitChildren(node)
     }
   },
-  toMdast: (object, _index, _parent, { visitChildren }) => {
+  toMdast: (object, _index, parent, { visitChildren }) => {
     return {
       type: 'paragraph',
       children: visitChildren(object)
@@ -355,6 +360,7 @@ const link = {
 
 export const serializer = new MarkdownSerializer({
   rules: [
+    listItemChild, // We want this to run before paragraph because it's a special case
     paragraph,
     br,
     bold,
@@ -367,7 +373,6 @@ export const serializer = new MarkdownSerializer({
     image,
     link,
     bulletedList,
-    listItem,
-    listItemChild
+    listItem
   ].concat(headings)
 })
