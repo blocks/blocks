@@ -17,6 +17,9 @@ import QuoteIcon from '@material-ui/icons/FormatQuote'
 // import ColorIcon from '@material-ui/icons/FormatColorText'
 // import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
 
+const H1 = () => <b>H1</b>
+const H2 = () => <b>H2</b>
+
 const Root = props => (
   <div
     {...props}
@@ -38,6 +41,8 @@ const IconButton = ({ active, ...props }) => (
     css={css({
       display: 'block',
       padding: 1,
+      fontSize: 16,
+      lineHeight: 1,
       margin: '1px',
       color: active ? 'primary' : 'inherit',
       backgroundColor: active ? 'lightgray' : 'transparent',
@@ -73,6 +78,18 @@ const buttons = [
     Icon: ItalicIcon,
     command: 'toggleItalic',
     isActive: isActive('italic')
+  },
+  {
+    title: 'Toggle Heading Level 1',
+    Icon: H1,
+    command: 'toggleHeadingOne',
+    isActive: isActive('heading-one')
+  },
+  {
+    title: 'Toggle Heading Level 2',
+    Icon: H2,
+    command: 'toggleHeadingTwo',
+    isActive: isActive('heading-two')
   },
   {
     title: 'Toggle Block Quote',

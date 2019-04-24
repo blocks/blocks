@@ -35,6 +35,31 @@ const toggleBlockQuote = editor => {
   }
 }
 
+const toggleHeading = (editor, level) => {
+  if (editor.hasBlock('heading-one')) {
+    console.log('H1')
+  } else if (editor.hasBlock('heading-two')) {
+    console.log('H2')
+  } else {
+  }
+}
+
+const toggleHeadingOne = editor => {
+  if (editor.hasBlock('heading-one')) {
+    editor.setBlocks('paragraph')
+  } else {
+    editor.setBlocks('heading-one')
+  }
+}
+
+const toggleHeadingTwo = editor => {
+  if (editor.hasBlock('heading-two')) {
+    editor.setBlocks('paragraph')
+  } else {
+    editor.setBlocks('heading-two')
+  }
+}
+
 const hasBlock = (editor, type) => {
   return editor.value.blocks.some(node => node.type === type)
 }
@@ -47,7 +72,10 @@ export default (opts = {}) => ({
     toggleBold,
     toggleItalic,
     toggleLink,
-    toggleBlockQuote
+    toggleBlockQuote,
+    toggleHeading,
+    toggleHeadingOne,
+    toggleHeadingTwo
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()
