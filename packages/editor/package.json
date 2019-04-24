@@ -9,6 +9,8 @@
     "@convertkit/slate-lists": "^0.2.2",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "@reach/alert-dialog": "^0.2.3",
     "@slate-editor/utils": "^5.1.0",
     "@styled-system/edit": "^0.0.4",

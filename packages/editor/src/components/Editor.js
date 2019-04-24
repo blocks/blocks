@@ -17,6 +17,8 @@ import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
+import LinkPlugin from '../plugins/link'
+import ToolbarPlugin from '../plugins/toolbar'
 import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
@@ -26,8 +28,9 @@ const plugins = [
   CodePlugin(),
   LiveJSXPlugin(),
   TablePlugin(),
-  DeepTable({}),
+  DeepTable(),
   ImagePlugin(),
+  LinkPlugin(),
   ListsPlugin({
     blocks: {
       ordered_list: 'ordered-list',
@@ -36,6 +39,7 @@ const plugins = [
     }
   }),
   MarkdownShortcutsPlugin(),
+  ToolbarPlugin(),
   ThemeEditorPlugin({ theme })
 ]
 
@@ -83,14 +87,6 @@ class BlockEditor extends Component {
   }
 
   handleKeyDown = (event, change, next) => {
-    // Keyboard shortcuts
-    if (keyboardEvent.isMod(event) && event.key === 'b') {
-      return change.toggleMark('bold').focus()
-    }
-    if (keyboardEvent.isMod(event) && !event.shiftKey && event.key === 'i') {
-      return change.toggleMark('italic').focus()
-    }
-
     // shortcuts
     switch (event.key) {
       case '/':

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ThemeProvider, css } from 'theme-ui'
 import { jsx, Global } from '@emotion/core'
 import { EditProvider, FieldSet } from '@styled-system/edit'

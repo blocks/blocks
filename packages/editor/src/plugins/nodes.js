@@ -36,8 +36,8 @@ export default (opts = {}) => ({
         return <Styled.hr {...attributes} />
       case 'link':
         return (
-          <Styled.a href={node.data.get('href')}>
-            {node.data.get('href')}
+          <Styled.a {...attributes} href={node.data.get('href')}>
+            {children}
           </Styled.a>
         )
       default:
