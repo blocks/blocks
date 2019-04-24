@@ -65,7 +65,8 @@ const isActive = type => editor => {
   return (
     editor.value.activeMarks.some(mark => mark.type === type) ||
     editor.value.inlines.some(inline => inline.type === type) ||
-    editor.hasBlock(type)
+    editor.hasBlock(type) ||
+    editor.hasOuterBlock(type)
   )
 }
 

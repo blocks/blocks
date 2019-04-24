@@ -35,6 +35,13 @@ const handleSpace = (event, editor) => {
     return
   }
 
+  if (type === 'block-quote') {
+    return editor
+      .moveFocusToStartOfNode(startBlock)
+      .delete()
+      .wrapBlock('block-quote')
+  }
+
   editor.setBlocks(type)
 
   editor.moveFocusToStartOfNode(startBlock).delete()
