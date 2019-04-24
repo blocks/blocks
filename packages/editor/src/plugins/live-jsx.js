@@ -27,7 +27,6 @@ const transform = code => `<>${code}</>`
 
 const LiveJSX = ({ code, attributes, children }) => {
   const theme = useContext(ThemeContext)
-  console.log(theme.components)
   const scope = {
     ...omit(theme.components, omitComponents)
   }
