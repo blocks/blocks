@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { keyboardEvent } from '@slate-editor/utils'
+import ListsPlugin from '@convertkit/slate-lists'
 import DeepTable from 'slate-deep-table'
 
 import schema from '../lib/schema'
@@ -16,7 +17,6 @@ import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
-import ListsPlugin from '../plugins/lists'
 import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
@@ -28,7 +28,13 @@ const plugins = [
   TablePlugin(),
   DeepTable({}),
   ImagePlugin(),
-  ListsPlugin(),
+  ListsPlugin({
+    blocks: {
+      ordered_list: 'ordered-list',
+      unordered_list: 'bulleted-list',
+      list_item: 'list-item'
+    }
+  }),
   MarkdownShortcutsPlugin(),
   ThemeEditorPlugin({ theme })
 ]
