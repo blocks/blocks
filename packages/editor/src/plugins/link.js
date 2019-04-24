@@ -8,7 +8,7 @@ const hasLinks = editor => {
   return editor.value.inlines.some(inline => inline.type === 'link')
 }
 // const getLink = value => value.inlines.filter(inline => inline.type === 'link').first()
-const hasMultiBlocks = value => value.blocks.size > 1
+const hasMultipleBlocks = editor => editor.value.blocks.size > 1
 
 const unwrapLink = editor => {
   editor.unwrapInline('link')
@@ -28,36 +28,40 @@ const insertLink = (editor, placeholder = '[insert link]') => {
     .command(wrapLink, {})
 }
 
+const toggleLink = editor => {
+  const { selection } = editor.value
+  if (editor.hasLinks()) {
+    // remove the link
+    editor.command(unwrapLink)
+  } else if (selection.isExpanded && !editor.hasMultipleBlocks()) {
+    // convert selection into link
+    editor.wrapLink()
+  } else if (editor.hasMultipleBlocks()) {
+    // TODO: wrap elements in link
+  } else if (selection.isCollapsed) {
+    const block = editor.value.focusBlock
+    if (block && block.type === 'image') {
+      editor.wrapBlock('link')
+    } else {
+      editor.insertLink()
+    }
+  }
+}
+
 export default (opts = {}) => ({
   queries: {
-    hasLinks
+    hasLinks,
+    hasMultipleBlocks
   },
   commands: {
     unwrapLink,
     wrapLink,
-    insertLink
+    insertLink,
+    toggleLink
   },
   onKeyDown: (event, editor, next) => {
     if (keyboardEvent.isMod(event) && event.key === 'k') {
-      const { value } = editor
-      const { selection } = value
-      if (editor.hasLinks()) {
-        // remove the link
-        editor.command(unwrapLink)
-      } else if (selection.isExpanded && !hasMultiBlocks(value)) {
-        // convert selection into link
-        editor.command(wrapLink, {})
-      } else if (hasMultiBlocks(value)) {
-        // todo: wrap elements in link
-      } else if (selection.isCollapsed) {
-        // todo: handle wrapping images
-        const block = value.focusBlock
-        if (block && block.type === 'image') {
-          editor.wrapBlock('link')
-        } else {
-          editor.command(insertLink)
-        }
-      }
+      editor.toggleLink()
     }
     next()
   },

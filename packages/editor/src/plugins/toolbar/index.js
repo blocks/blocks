@@ -14,14 +14,6 @@ const toggleItalic = editor => {
   editor.toggleMark('italic').focus()
 }
 
-const toggleLink = editor => {
-  if (editor.hasLinks()) {
-    editor.unwrapLink()
-  } else {
-    editor.wrapLink()
-  }
-}
-
 const toggleBlockQuote = editor => {
   // not working...
   if (editor.hasBlock('block-quote')) {
@@ -69,7 +61,6 @@ export default (opts = {}) => ({
   commands: {
     toggleBold,
     toggleItalic,
-    toggleLink,
     toggleBlockQuote,
     toggleHeading,
     toggleHeadingOne,
