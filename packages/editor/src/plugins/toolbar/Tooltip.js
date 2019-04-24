@@ -17,6 +17,9 @@ const useRect = (key, ...args) => {
       try {
         const el = findDOMNode(key)
         const rect = el.getBoundingClientRect()
+        rect.clientHeight = document.documentElement.clientHeight
+        rect.scrollY = window.scrollY
+        rect.maxHeight = rect.clientHeight + rect.scrollY
         // todo: find cursor left?
         setRect(rect)
       } catch (e) {}
@@ -94,11 +97,21 @@ export default props => {
   // (temporary) only render for images and links
   if (!forms.length) return false
 
+  let top = rect.bottom
+  let bottom
+
+  // todo: get Card height
+  if (rect.bottom + rect.height + 128 > rect.maxHeight) {
+    top = null
+    bottom = 32
+  }
+
   return createPortal(
     <Card
       style={{
         position: 'fixed',
-        top: rect.bottom,
+        top,
+        bottom,
         left: rect.left
       }}
     >
