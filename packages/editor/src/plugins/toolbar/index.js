@@ -14,6 +14,20 @@ const toggleItalic = editor => {
   editor.toggleMark('italic').focus()
 }
 
+const DEFAULT_BLOCK = 'paragraph'
+
+const hasBlock = (editor, type) => {
+  return editor.value.blocks.some(node => node.type === type)
+}
+
+const toggleBlock = (editor, type) => {
+  if (editor.hasBlock(type)) {
+    editor.setBlocks(DEFAULT_BLOCK)
+  } else {
+    editor.setBlocks(type)
+  }
+}
+
 const toggleBlockQuote = editor => {
   if (editor.hasOuterBlock('block-quote')) {
     editor.unwrapBlock('block-quote')
@@ -22,34 +36,10 @@ const toggleBlockQuote = editor => {
   }
 }
 
-const toggleHeading = (editor, level) => {
-  if (editor.hasBlock('heading-one')) {
-    console.log('H1')
-  } else if (editor.hasBlock('heading-two')) {
-    console.log('H2')
-  } else {
-  }
-}
-
-const toggleHeadingOne = editor => {
-  if (editor.hasBlock('heading-one')) {
-    editor.setBlocks('paragraph')
-  } else {
-    editor.setBlocks('heading-one')
-  }
-}
-
-const toggleHeadingTwo = editor => {
-  if (editor.hasBlock('heading-two')) {
-    editor.setBlocks('paragraph')
-  } else {
-    editor.setBlocks('heading-two')
-  }
-}
-
-const hasBlock = (editor, type) => {
-  return editor.value.blocks.some(node => node.type === type)
-}
+const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
+const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
+const toggleJSX = editor => toggleBlock(editor, 'jsx')
+const togglePre = editor => toggleBlock(editor, 'pre')
 
 // Certain nodes like list-items and block-quotes have an inner
 // paragraph so we need to query the parent node rather than
@@ -75,21 +65,43 @@ export default (opts = {}) => ({
   commands: {
     toggleBold,
     toggleItalic,
+    toggleBlock,
     toggleBlockQuote,
-    toggleHeading,
     toggleHeadingOne,
-    toggleHeadingTwo
+    toggleHeadingTwo,
+    toggleJSX,
+    togglePre
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()
+    const opt = event.altKey
+
+    if (opt) {
+      switch (event.keyCode) {
+        // Q
+        case 81:
+          editor.toggleBlockQuote()
+          break
+        // 1
+        case 49:
+          editor.toggleHeadingOne()
+          break
+        // 2
+        case 50:
+          editor.toggleHeadingTwo()
+          break
+        default:
+          return next()
+      }
+    }
 
     // these could live elsewhere...
     switch (event.key) {
       case 'b':
-        toggleBold(editor)
+        editor.toggleBold()
         break
       case 'i':
-        toggleItalic(editor)
+        editor.toggleItalic()
         break
       default:
         next()
