@@ -136,6 +136,7 @@ class BlockEditor extends Component {
     return (
       <div style={{ minHeight: '100vh' }}>
         <Editor
+          {...this.props}
           ref={editor => (this.editor = editor)}
           schema={schema}
           placeholder="Write some MDX..."

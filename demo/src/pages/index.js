@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Rebass from '@rebass/emotion'
 
 import { Editor, serializer, stringifyMDX } from '@blocks/editor/src'
 
@@ -18,6 +19,9 @@ export default () => (
       initialValue={initialValue}
       onChange={({ title, value, emoji }) => {
         __DEVELOPER_SAVE(value)
+      }}
+      components={{
+        ...Rebass
       }}
     />
   </div>

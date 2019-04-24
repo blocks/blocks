@@ -24,7 +24,7 @@ export default {
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
-    monospace: '"Roboto Mono", Menlo, monospace'
+    monospace: '"Roboto Mono", Menlo, Consolas, monospace'
   },
   fontWeights: {
     body: 400,
