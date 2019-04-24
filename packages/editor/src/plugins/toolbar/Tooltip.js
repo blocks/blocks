@@ -33,6 +33,19 @@ const useRect = (key, ...args) => {
   return rect
 }
 
+const Card = props => (
+  <div
+    {...props}
+    css={{
+      padding: 16,
+      margin: 8,
+      backgroundColor: 'white',
+      borderRadius: 4,
+      boxShadow: '0 0 1px rgba(0, 0, 0, .125), 0 1px 4px rgba(0, 0, 0, .125)'
+    }}
+  />
+)
+
 export default props => {
   const { value } = props.editor
   const { selection } = value
@@ -83,16 +96,15 @@ export default props => {
   if (!forms.length) return false
 
   return createPortal(
-    <div
+    <Card
       style={{
         position: 'fixed',
         top: rect.bottom,
-        left: rect.left,
-        backgroundColor: '#eee'
+        left: rect.left
       }}
     >
       {forms}
-    </div>,
+    </Card>,
     container
   )
 }
