@@ -4,6 +4,7 @@ const remarkStringify = require('remark-stringify')
 const remarkParse = require('remark-parse')
 const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
+const { parseJSXBlock, applyProps } = require('./parse-jsx')
 
 const parser = unified()
   .use(remarkParse, {
@@ -11,7 +12,7 @@ const parser = unified()
     position: false
   })
   .use(remarkSqueezeParagraphs)
-  .use(_ => ast => console.log(ast) || ast)
+  // .use(_ => ast => console.log(ast) || ast)
   .use(mdx)
 
 export const parseMDX = md => parser.runSync(parser.parse(md))
@@ -22,7 +23,7 @@ const stringifier = unified()
     fences: true
   })
   .use(remarkSqueezeParagraphs)
-  .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
+  // .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
   .use(mdx)
 
 export const stringifyMDX = mdast =>
@@ -328,9 +329,15 @@ const jsxBlock = {
   matchMdast: (node, index, parent) =>
     node.type === 'jsx' && parent && parent.type === 'root',
   fromMdast: (node, index, parent, { visitChildren }) => {
+    const data = parseJSXBlock(node.value)
     return {
       object: 'block',
       type: 'jsx',
+      data: {
+        jsx: true,
+        name: data.name,
+        props: data.props
+      },
       nodes: [
         {
           object: 'text',
@@ -345,10 +352,14 @@ const jsxBlock = {
       ]
     }
   },
-  toMdast: (mark, index, parent, { visitChildren }) => {
+  toMdast: (object, index, parent, { visitChildren }) => {
+    const value = object.nodes.map(node => node.leaves[0].text).join()
+    const props = object.data.props.toJS()
+    const parsed = applyProps(value, { props })
     return {
       type: 'jsx',
-      value: mark.nodes.map(node => node.leaves[0].text).join()
+      data: object.data,
+      value: parsed
     }
   }
 }

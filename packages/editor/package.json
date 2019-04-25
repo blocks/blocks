@@ -6,6 +6,9 @@
   "author": "John Otander",
   "repository": "johno/blocks",
   "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
     "@convertkit/slate-lists": "^0.2.2",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",

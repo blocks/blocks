@@ -25,15 +25,19 @@ const ErrorMessage = props => {
 
 const transform = code => `<>${code}</>`
 
-const LiveJSX = ({ code, attributes, children }) => {
+const LiveJSX = ({ code, attributes, children, metadata }) => {
   const theme = useContext(ThemeContext)
   const scope = {
     ...omit(theme.components, omitComponents)
   }
+  const { name, props = {} } = metadata
   return (
     <div>
       <LiveProvider scope={scope} transformCode={transform} code={code}>
         <LivePreview />
+        <pre>
+          name: {name} | props: {Object.keys(props).join()}
+        </pre>
         <Flex
           alignItems="center"
           css={{
@@ -64,12 +68,19 @@ export default (opts = {}) => ({
     const { node, attributes, children } = props
     if (node.type !== 'jsx') return next()
 
+    const metadata = node.data.toJS()
+
     return (
       <LiveJSX
         attributes={attributes}
         code={node.getText()}
         children={children}
+        metadata={metadata}
       />
     )
+  },
+  onChange: (change, next) => {
+    // todo: parse new props from jsx string
+    // console.log(change.value.toJS())
   }
 })
