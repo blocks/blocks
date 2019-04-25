@@ -20,6 +20,20 @@ const hasBlock = (editor, type) => {
   return editor.value.blocks.some(node => node.type === type)
 }
 
+const toggleBulletedList = editor => {
+  const {
+    value: { startBlock, document }
+  } = editor
+  const parent = document.getParent(startBlock.key)
+
+  const isList =
+    parent && (parent.type === 'list-item-child' || parent.type === 'list-item')
+
+  return isList
+    ? editor.unwrapList()
+    : editor.wrapList({ type: 'bulleted-list' })
+}
+
 const toggleBlock = (editor, type) => {
   if (editor.hasBlock(type)) {
     editor.setBlocks(DEFAULT_BLOCK)
@@ -69,6 +83,7 @@ export default (opts = {}) => ({
     toggleBlockQuote,
     toggleHeadingOne,
     toggleHeadingTwo,
+    toggleBulletedList,
     toggleJSX,
     togglePre
   },
