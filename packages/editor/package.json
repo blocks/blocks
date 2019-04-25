@@ -19,6 +19,7 @@
     "@styled-system/edit": "^0.0.4",
     "emotion-theming": "^10.0.10",
     "escape-string-regexp": "^2.0.0",
+    "get-youtube-id": "^1.0.1",
     "image-extensions": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
     "is-url": "^1.2.4",

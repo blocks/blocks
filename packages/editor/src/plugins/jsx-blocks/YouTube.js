@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
 import Player from 'react-youtube'
+import getYouTubeID from 'get-youtube-id'
 
 const Form = ({ value, onSubmit }) => {
   const [state, setState] = useState({
@@ -24,7 +25,8 @@ const Form = ({ value, onSubmit }) => {
           name="videoId"
           value={state.videoId}
           onChange={e => {
-            setState({ ...state, videoId: e.target.value })
+            const videoId = getYouTubeID(e.target.value)
+            setState({ ...state, videoId })
           }}
         />
       </label>

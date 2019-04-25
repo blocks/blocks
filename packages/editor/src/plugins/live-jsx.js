@@ -64,14 +64,11 @@ export default (opts = {}) => ({
     const { node, attributes, children } = props
     if (node.type !== 'jsx') return next()
 
-    const metadata = node.data.toJS()
-
     return (
       <LiveJSX
         attributes={attributes}
         code={node.getText()}
         children={children}
-        metadata={metadata}
       />
     )
   }

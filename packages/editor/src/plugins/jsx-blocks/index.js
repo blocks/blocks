@@ -2,7 +2,7 @@ import React from 'react'
 import { Data } from 'slate'
 import YouTube from './YouTube'
 
-const setJSXProps = (editor, props, ...args) => {
+const setJSXProps = (editor, props) => {
   editor.setBlocks({ data: { props: Data.create(props) } })
 }
 
