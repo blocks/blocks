@@ -22,5 +22,9 @@ export default {
     hr: {
       isVoid: true
     }
+  },
+  normalizeNode: (node, editor, next) => {
+    console.log(node.type)
+    next()
   }
 }

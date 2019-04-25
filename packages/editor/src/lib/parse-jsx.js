@@ -38,13 +38,19 @@ class PluginGetRootElement {
 
 module.exports.parseJSXBlock = jsx => {
   const { plugin, result } = new PluginGetRootElement()
-  babel.transformSync(jsx, {
-    plugins: [...plugins, plugin]
-  })
-  const { name, props } = result
-  return {
-    name,
-    props
+  try {
+    babel.transformSync(jsx, {
+      plugins: [...plugins, plugin]
+    })
+    const { name, props } = result
+    return {
+      name,
+      props
+    }
+  } catch (e) {
+    return {
+      props: {}
+    }
   }
 }
 
@@ -84,9 +90,13 @@ function pluginApplyProps(babel, state) {
 }
 
 module.exports.applyProps = (jsx, opts) => {
-  const result = babel.transformSync(jsx, {
-    plugins: [...plugins, [pluginApplyProps, opts]]
-  })
-  const next = result.code.replace(/;$/, '')
-  return next
+  try {
+    const result = babel.transformSync(jsx, {
+      plugins: [...plugins, [pluginApplyProps, opts]]
+    })
+    const next = result.code.replace(/;$/, '')
+    return next
+  } catch (e) {
+    return jsx
+  }
 }
