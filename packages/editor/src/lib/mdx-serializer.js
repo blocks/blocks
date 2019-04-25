@@ -325,13 +325,13 @@ const jsxMark = {
   }
 }
 
-const jsxBlockTypes = ['jsx', 'youtube']
-const jsxBlockValues = {
+const jsxBlockTypes = {
   youtube: '<YouTube />'
 }
 const isJSX = node => {
   if (node.object !== 'block') return false
-  return jsxBlockTypes.includes(node.type)
+  if (node.type === 'jsx') return true
+  return !!jsxBlockTypes[node.type]
 }
 
 const jsxBlock = {
@@ -374,12 +374,10 @@ const jsxBlock = {
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
-    let value =
-      object.type === 'jsx'
-        ? object.nodes.map(node => node.leaves[0].text).join()
-        : jsxBlockValues[object.type]
-    if (jsxBlockValues[object.type]) {
+    let value = object.nodes.map(node => node.leaves[0].text).join()
+    if (jsxBlockTypes[object.type]) {
       // only update blessed types
+      value = jsxBlockTypes[object.type]
       const props = object.data.props.toJS()
       value = applyProps(value, { props })
     }
