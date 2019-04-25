@@ -9,6 +9,7 @@ import LinkIcon from '@material-ui/icons/InsertLink'
 import ImageIcon from '@material-ui/icons/InsertPhoto'
 import QuoteIcon from '@material-ui/icons/FormatQuote'
 import CodeIcon from '@material-ui/icons/Code'
+import ListIcon from '@material-ui/icons/List'
 // import ListIcon from '@material-ui/icons/FormatListBulleted'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
@@ -145,6 +146,12 @@ const buttons = [
     isActive: isActive('image')
   },
   { separator: true },
+  {
+    title: 'Insert Bulleted List',
+    Icon: ListIcon,
+    command: 'toggleBulletedList',
+    isActive: isActive('list-item')
+  },
   {
     title: 'Insert JSX Block',
     Icon: JSX,
