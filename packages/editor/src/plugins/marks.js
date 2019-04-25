@@ -1,7 +1,20 @@
 import React from 'react'
+import { keyboardEvent } from '@slate-editor/utils'
 import { Styled } from 'theme-ui'
 
+const toggleBold = editor => {
+  editor.toggleMark('bold').focus()
+}
+
+const toggleItalic = editor => {
+  editor.toggleMark('italic').focus()
+}
+
 export default (opts = {}) => ({
+  commands: {
+    toggleBold,
+    toggleItalic
+  },
   renderMark: (props, editor, next) => {
     const { mark, attributes, children } = props
 
@@ -18,6 +31,19 @@ export default (opts = {}) => ({
         return <s {...attributes}>{children}</s>
       default:
         return next()
+    }
+  },
+  onKeyDown: (event, editor, next) => {
+    if (!keyboardEvent.isMod(event)) return next()
+    switch (event.key) {
+      case 'b':
+        editor.toggleBold()
+        break
+      case 'i':
+        editor.toggleItalic()
+        break
+      default:
+        next()
     }
   }
 })

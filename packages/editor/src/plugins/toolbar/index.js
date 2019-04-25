@@ -6,13 +6,7 @@ import theme from '../../components/theme'
 import Toolbar from './Toolbar'
 import Tooltip from './Tooltip'
 
-const toggleBold = editor => {
-  editor.toggleMark('bold').focus()
-}
-
-const toggleItalic = editor => {
-  editor.toggleMark('italic').focus()
-}
+export { default as ToolbarButton } from './ToolbarButton'
 
 const DEFAULT_BLOCK = 'paragraph'
 
@@ -71,14 +65,22 @@ const hasOuterBlock = (editor, type) => {
   return outerBlock && outerBlock.type === type
 }
 
+const isActive = (editor, type) => {
+  return (
+    editor.value.activeMarks.some(mark => mark.type === type) ||
+    editor.value.inlines.some(inline => inline.type === type) ||
+    editor.hasBlock(type) ||
+    editor.hasOuterBlock(type)
+  )
+}
+
 export default (opts = {}) => ({
   queries: {
+    isActive,
     hasBlock,
     hasOuterBlock
   },
   commands: {
-    toggleBold,
-    toggleItalic,
     toggleBlock,
     toggleBlockQuote,
     toggleHeadingOne,
@@ -108,18 +110,6 @@ export default (opts = {}) => ({
         default:
           return next()
       }
-    }
-
-    // these could live elsewhere...
-    switch (event.key) {
-      case 'b':
-        editor.toggleBold()
-        break
-      case 'i':
-        editor.toggleItalic()
-        break
-      default:
-        next()
     }
   },
   renderEditor: (props, editor, next) => {

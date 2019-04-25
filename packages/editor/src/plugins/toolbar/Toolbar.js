@@ -17,6 +17,8 @@ import ListIcon from '@material-ui/icons/List'
 // import ColorIcon from '@material-ui/icons/FormatColorText'
 // import BackgroundColorIcon from '@material-ui/icons/FormatColorFill'
 
+import ToolbarButton from './ToolbarButton'
+
 // "icons"
 const B = props => (
   <b
@@ -63,100 +65,69 @@ const Root = props => (
   />
 )
 
-const IconButton = ({ active, ...props }) => (
-  <button
-    {...props}
-    css={css({
-      display: 'block',
-      minWidth: 32,
-      height: 32,
-      padding: 1,
-      fontSize: 16,
-      lineHeight: 1.5,
-      margin: '1px',
-      color: active ? 'primary' : 'inherit',
-      backgroundColor: active ? 'lightgray' : 'transparent',
-      border: 0,
-      '&:focus': {
-        outline: '2px solid',
-        color: 'primary'
-      }
-    })}
-  />
-)
-
-const isActive = type => editor => {
-  return (
-    editor.value.activeMarks.some(mark => mark.type === type) ||
-    editor.value.inlines.some(inline => inline.type === type) ||
-    editor.hasBlock(type) ||
-    editor.hasOuterBlock(type)
-  )
-}
-
 // config
 const buttons = [
   {
     title: 'Toggle Bold (⌘ B)',
     Icon: BoldIcon,
     command: 'toggleBold',
-    isActive: isActive('bold')
+    nodeType: 'bold'
   },
   {
     title: 'Toggle Italic (⌘ I)',
     Icon: ItalicIcon,
     command: 'toggleItalic',
-    isActive: isActive('italic')
+    nodeType: 'italic'
   },
   {
     title: 'Toggle Heading Level 1 (⌘ ⌥ 1)',
     Icon: H1,
     command: 'toggleHeadingOne',
-    isActive: isActive('heading-one')
+    nodeType: 'heading-one'
   },
   {
     title: 'Toggle Heading Level 2 (⌘ ⌥ 2)',
     Icon: H2,
     command: 'toggleHeadingTwo',
-    isActive: isActive('heading-two')
+    nodeType: 'heading-two'
   },
   {
     title: 'Toggle Block Quote (⌃ ⌥ Q)',
     Icon: QuoteIcon,
     command: 'toggleBlockQuote',
-    isActive: isActive('block-quote')
+    nodeType: 'block-quote'
   },
   {
     title: 'Toggle Code Block',
     Icon: CodeIcon,
     command: 'togglePre',
-    isActive: isActive('pre')
+    nodeType: 'pre'
   },
   { separator: true },
   {
     title: 'Insert Link (⌘ K)',
     Icon: LinkIcon,
     command: 'toggleLink',
-    isActive: isActive('link')
+    nodeType: 'link'
   },
   {
     title: 'Insert Image (⌘ ⇧ I)',
     Icon: ImageIcon,
     command: 'insertImage',
-    isActive: isActive('image')
+    nodeType: 'image'
   },
   { separator: true },
   {
     title: 'Insert Bulleted List',
     Icon: ListIcon,
     command: 'toggleBulletedList',
-    isActive: isActive('list-item')
+    nodeType: 'list-item'
   },
   {
     title: 'Insert JSX Block',
     Icon: JSX,
     command: 'toggleJSX',
-    isActive: isActive('jsx')
+    nodeType: 'jsx'
   }
 ]
 
@@ -165,18 +136,18 @@ export const Toolbar = props => {
 
   return (
     <Root>
-      {buttons.map(({ separator, Icon, title, command, isActive }, i) =>
+      {buttons.map(({ separator, Icon, title, command, nodeType }, i) =>
         separator ? (
           <Separator key={i} />
         ) : (
-          <IconButton
+          <ToolbarButton
             key={i}
             title={title}
-            active={isActive(editor)}
+            active={editor.isActive(nodeType)}
             onClick={editor[command]}
           >
             <Icon size={20} />
-          </IconButton>
+          </ToolbarButton>
         )
       )}
     </Root>
