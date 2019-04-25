@@ -156,7 +156,7 @@ const buttons = [
   {
     title: 'Insert YouTube Video',
     Icon: VideoIcon,
-    command: 'toggleYouTube',
+    command: 'insertYouTube',
     isActive: isActive('youtube')
   }
 ]

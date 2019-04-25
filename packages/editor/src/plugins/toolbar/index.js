@@ -41,12 +41,6 @@ const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
 const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
 const toggleJSX = editor => toggleBlock(editor, 'jsx')
 const togglePre = editor => toggleBlock(editor, 'pre')
-const toggleYouTube = editor =>
-  toggleBlock(editor, 'youtube', {
-    props: {
-      videoId: 'GNCd_ERZvZM'
-    }
-  })
 
 // Certain nodes like list-items and block-quotes have an inner
 // paragraph so we need to query the parent node rather than
@@ -77,8 +71,7 @@ export default (opts = {}) => ({
     toggleHeadingOne,
     toggleHeadingTwo,
     toggleJSX,
-    togglePre,
-    toggleYouTube
+    togglePre
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()

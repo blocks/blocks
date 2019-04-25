@@ -4,6 +4,7 @@ const remarkStringify = require('remark-stringify')
 const remarkParse = require('remark-parse')
 const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
+const { Data } = require('slate')
 const { parseJSXBlock, applyProps } = require('./parse-jsx')
 
 const parser = unified()
@@ -344,14 +345,17 @@ const jsxBlock = {
         return {
           object: 'block',
           type: 'youtube',
-          data
+          data: {
+            type: data.type,
+            props: Data.create(data.props || {})
+          }
         }
       default:
         return {
           object: 'block',
           type: 'jsx',
           data: {
-            name: data.name,
+            type: data.type,
             props: data.props
           },
           nodes: [
@@ -370,16 +374,20 @@ const jsxBlock = {
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
-    const value =
+    let value =
       object.type === 'jsx'
         ? object.nodes.map(node => node.leaves[0].text).join()
         : jsxBlockValues[object.type]
-    const props = object.data.props
-    const parsed = applyProps(value, { props })
+    if (jsxBlockValues[object.type]) {
+      // only update blessed types
+      const props = object.data.props.toJS()
+      console.log('apply props', value, props)
+      value = applyProps(value, { props })
+    }
     return {
       type: 'jsx',
       data: object.data,
-      value: parsed
+      value
     }
   }
 }

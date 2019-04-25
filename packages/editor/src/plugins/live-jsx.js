@@ -35,9 +35,6 @@ const LiveJSX = ({ code, attributes, children, metadata }) => {
     <div>
       <LiveProvider scope={scope} transformCode={transform} code={code}>
         <LivePreview />
-        <pre>
-          name: {name} | props: {Object.keys(props).join()}
-        </pre>
         <Flex
           alignItems="center"
           css={{
