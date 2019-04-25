@@ -20,11 +20,12 @@ const hasBlock = (editor, type) => {
   return editor.value.blocks.some(node => node.type === type)
 }
 
-const toggleBlock = (editor, type) => {
+const toggleBlock = (editor, type, data) => {
+  console.log('toggleBlock', type, data)
   if (editor.hasBlock(type)) {
     editor.setBlocks(DEFAULT_BLOCK)
   } else {
-    editor.setBlocks(type)
+    editor.setBlocks(type).setBlocks({ data })
   }
 }
 
@@ -40,6 +41,12 @@ const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
 const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
 const toggleJSX = editor => toggleBlock(editor, 'jsx')
 const togglePre = editor => toggleBlock(editor, 'pre')
+const toggleYouTube = editor =>
+  toggleBlock(editor, 'youtube', {
+    props: {
+      videoId: 'GNCd_ERZvZM'
+    }
+  })
 
 // Certain nodes like list-items and block-quotes have an inner
 // paragraph so we need to query the parent node rather than
@@ -70,7 +77,8 @@ export default (opts = {}) => ({
     toggleHeadingOne,
     toggleHeadingTwo,
     toggleJSX,
-    togglePre
+    togglePre,
+    toggleYouTube
   },
   onKeyDown: (event, editor, next) => {
     if (!keyboardEvent.isMod(event)) return next()

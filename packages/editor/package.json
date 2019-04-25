@@ -25,6 +25,7 @@
     "lodash.omit": "^4.5.0",
     "raw-loader": "^2.0.0",
     "react-live": "^2.0.1",
+    "react-youtube": "^7.9.0",
     "remark-mdx": "^1.0.8",
     "remark-parse": "^6.0.3",
     "remark-squeeze-paragraphs": "^3.0.3",

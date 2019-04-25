@@ -78,9 +78,9 @@ export default (opts = {}) => ({
         metadata={metadata}
       />
     )
-  },
-  onChange: (change, next) => {
-    // todo: parse new props from jsx string
-    // console.log(change.value.toJS())
   }
+  // onChange: (change, next) => {
+  // todo: parse new props from jsx string
+  // console.log(change.value.toJS())
+  // }
 })

@@ -9,6 +9,7 @@ import LinkIcon from '@material-ui/icons/InsertLink'
 import ImageIcon from '@material-ui/icons/InsertPhoto'
 import QuoteIcon from '@material-ui/icons/FormatQuote'
 import CodeIcon from '@material-ui/icons/Code'
+import VideoIcon from '@material-ui/icons/Slideshow'
 // import ListIcon from '@material-ui/icons/FormatListBulleted'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
@@ -150,6 +151,13 @@ const buttons = [
     Icon: JSX,
     command: 'toggleJSX',
     isActive: isActive('jsx')
+  },
+  { separator: true },
+  {
+    title: 'Insert YouTube Video',
+    Icon: VideoIcon,
+    command: 'toggleYouTube',
+    isActive: isActive('youtube')
   }
 ]
 

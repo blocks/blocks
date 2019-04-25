@@ -12,7 +12,7 @@ const parser = unified()
     position: false
   })
   .use(remarkSqueezeParagraphs)
-  // .use(_ => ast => console.log(ast) || ast)
+  .use(_ => ast => console.log(ast) || ast)
   .use(mdx)
 
 export const parseMDX = md => parser.runSync(parser.parse(md))
@@ -23,7 +23,7 @@ const stringifier = unified()
     fences: true
   })
   .use(remarkSqueezeParagraphs)
-  // .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
+  .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
   .use(mdx)
 
 export const stringifyMDX = mdast =>
@@ -324,37 +324,57 @@ const jsxMark = {
   }
 }
 
+const jsxBlockTypes = ['jsx', 'youtube']
+const jsxBlockValues = {
+  youtube: '<YouTube />'
+}
+const isJSX = node => {
+  if (node.object !== 'block') return false
+  return jsxBlockTypes.includes(node.type)
+}
+
 const jsxBlock = {
-  match: node => node.type === 'jsx' && node.object === 'block',
+  match: isJSX,
   matchMdast: (node, index, parent) =>
     node.type === 'jsx' && parent && parent.type === 'root',
   fromMdast: (node, index, parent, { visitChildren }) => {
     const data = parseJSXBlock(node.value)
-    return {
-      object: 'block',
-      type: 'jsx',
-      data: {
-        jsx: true,
-        name: data.name,
-        props: data.props
-      },
-      nodes: [
-        {
-          object: 'text',
-          leaves: [
+    switch (data.type) {
+      case 'YouTube':
+        return {
+          object: 'block',
+          type: 'youtube',
+          data
+        }
+      default:
+        return {
+          object: 'block',
+          type: 'jsx',
+          data: {
+            name: data.name,
+            props: data.props
+          },
+          nodes: [
             {
-              object: 'leaf',
-              text: node.value,
-              marks: []
+              object: 'text',
+              leaves: [
+                {
+                  object: 'leaf',
+                  text: node.value,
+                  marks: []
+                }
+              ]
             }
           ]
         }
-      ]
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
-    const value = object.nodes.map(node => node.leaves[0].text).join()
-    const props = object.data.props.toJS()
+    const value =
+      object.type === 'jsx'
+        ? object.nodes.map(node => node.leaves[0].text).join()
+        : jsxBlockValues[object.type]
+    const props = object.data.props
     const parsed = applyProps(value, { props })
     return {
       type: 'jsx',

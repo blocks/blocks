@@ -26,8 +26,8 @@ class PluginGetRootElement {
         visitor: {
           JSXOpeningElement(path) {
             // only parse root-level element
-            if (result.name) return
-            result.name = path.node.name.name
+            if (result.type) return
+            result.type = path.node.name.name
             path.traverse(visitProps)
           }
         }
@@ -42,9 +42,9 @@ module.exports.parseJSXBlock = jsx => {
     babel.transformSync(jsx, {
       plugins: [...plugins, plugin]
     })
-    const { name, props } = result
+    const { type, props } = result
     return {
-      name,
+      type,
       props
     }
   } catch (e) {
