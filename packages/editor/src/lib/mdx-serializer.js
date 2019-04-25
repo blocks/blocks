@@ -381,12 +381,10 @@ const jsxBlock = {
     if (jsxBlockValues[object.type]) {
       // only update blessed types
       const props = object.data.props.toJS()
-      console.log('apply props', value, props)
       value = applyProps(value, { props })
     }
     return {
       type: 'jsx',
-      data: object.data,
       value
     }
   }

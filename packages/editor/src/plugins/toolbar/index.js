@@ -20,12 +20,11 @@ const hasBlock = (editor, type) => {
   return editor.value.blocks.some(node => node.type === type)
 }
 
-const toggleBlock = (editor, type, data) => {
-  console.log('toggleBlock', type, data)
+const toggleBlock = (editor, type) => {
   if (editor.hasBlock(type)) {
     editor.setBlocks(DEFAULT_BLOCK)
   } else {
-    editor.setBlocks(type).setBlocks({ data })
+    editor.setBlocks(type)
   }
 }
 

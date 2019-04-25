@@ -25,12 +25,11 @@ const ErrorMessage = props => {
 
 const transform = code => `<>${code}</>`
 
-const LiveJSX = ({ code, attributes, children, metadata }) => {
+const LiveJSX = ({ code, attributes, children }) => {
   const theme = useContext(ThemeContext)
   const scope = {
     ...omit(theme.components, omitComponents)
   }
-  const { name, props = {} } = metadata
   return (
     <div>
       <LiveProvider scope={scope} transformCode={transform} code={code}>
@@ -76,8 +75,4 @@ export default (opts = {}) => ({
       />
     )
   }
-  // onChange: (change, next) => {
-  // todo: parse new props from jsx string
-  // console.log(change.value.toJS())
-  // }
 })
