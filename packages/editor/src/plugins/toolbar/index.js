@@ -44,8 +44,6 @@ const toggleBlockQuote = editor => {
   }
 }
 
-const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
-const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
 const toggleJSX = editor => toggleBlock(editor, 'jsx')
 const togglePre = editor => toggleBlock(editor, 'pre')
 
@@ -83,8 +81,6 @@ export default (opts = {}) => ({
   commands: {
     toggleBlock,
     toggleBlockQuote,
-    toggleHeadingOne,
-    toggleHeadingTwo,
     toggleBulletedList,
     toggleJSX,
     togglePre

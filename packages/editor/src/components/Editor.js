@@ -11,8 +11,8 @@ import { isUrl, isImageUrl } from '../lib/util'
 
 import theme from './theme'
 
-import NodesPlugin from '../plugins/nodes'
-import MarksPlugin from '../plugins/marks'
+import MarkdownPlugin from '../plugins/markdown'
+
 import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
@@ -24,8 +24,7 @@ import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const plugins = [
   SoftBreak({ shift: true }),
-  NodesPlugin(),
-  MarksPlugin(),
+  MarkdownPlugin(),
   CodePlugin(),
   LiveJSXPlugin(),
   TablePlugin(),
