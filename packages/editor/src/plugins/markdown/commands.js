@@ -34,6 +34,20 @@ const toggleBulletedList = editor => {
     : editor.wrapList({ type: 'bulleted-list' })
 }
 
+const toggleNumberedList = editor => {
+  const {
+    value: { startBlock, document }
+  } = editor
+  const parent = document.getParent(startBlock.key)
+
+  const isList =
+    parent && (parent.type === 'list-item-child' || parent.type === 'list-item')
+
+  return isList
+    ? editor.unwrapList()
+    : editor.wrapList({ type: 'numbered-list' })
+}
+
 const toggleBlockQuote = editor => {
   if (editor.hasOuterBlock('block-quote')) {
     editor.unwrapBlock('block-quote')
@@ -62,6 +76,7 @@ export default {
   toggleHeadingTwo,
   togglePre,
   toggleBulletedList,
+  toggleNumberedList,
   toggleBlockQuote,
   toggleDivider
 }
