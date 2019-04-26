@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
-        modules: ['gatsby-theme-blocks-docs']
+        modules: ['@blocks/editor', 'gatsby-theme-blocks-docs', 'theme-ui']
       }
     }
   ]

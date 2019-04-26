@@ -3,6 +3,10 @@
   "name": "blocks",
   "scripts": {
     "start": "yarn workspace demo start",
+    "docs": "gatsby develop",
+    "docs-build": "gatsby build",
+    "docs-deploy": "now && now alias $(pbpaste) mdx-blocks.com && now alias $(pbpaste) www.mdx-blocks.com",
+    "now-build": "yarn docs-build",
     "publish": "lerna publish"
   },
   "workspaces": [
@@ -10,6 +14,8 @@
     "demo"
   ],
   "devDependencies": {
+    "gatsby": "^2.3.31",
+    "gatsby-theme-blocks-docs": "^0.0.1",
     "husky": "^1.2.0",
     "lerna": "^3.13.1",
     "lint-staged": "^8.1.0",

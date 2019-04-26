@@ -1,0 +1,24 @@
+import * as Rebass from '@rebass/emotion'
+
+import { Editor, serializer, stringifyMDX } from '@blocks/editor/src'
+
+export const __DEVELOPER_SAVE = value => {
+  const result = stringifyMDX(serializer.serialize(value))
+  window.localStorage['lastMDX'] = result
+  console.log(result)
+}
+
+export const initialValue =
+  typeof window !== 'undefined' && window.localStorage['lastMDX']
+
+## Demo
+
+<div style={{ maxWidth: '48em', margin: '40px auto' }}>
+  <Editor
+    initialValue={initialValue}
+    onChange={({ title, value, emoji }) => {
+      __DEVELOPER_SAVE(value)
+    }}
+    components={Rebass}
+  />
+</div>

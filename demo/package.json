@@ -3,10 +3,12 @@
   "name": "demo",
   "version": "1.0.0",
   "scripts": {
-    "start": "gatsby develop"
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "now-build": "yarn build"
   },
   "dependencies": {
-    "@blocks/editor": "0.0.0",
+    "@blocks/editor": "0.0.1",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.10",

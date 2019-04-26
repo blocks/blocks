@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "blocks",
+  "alias": ["mdx-blocks.com", "www.mdx-blocks.com"],
+  "public": true,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    }
+  ]
+}
