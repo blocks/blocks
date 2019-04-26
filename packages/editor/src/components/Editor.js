@@ -23,6 +23,8 @@ import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const plugins = [
+  // setting the theme plugin first ensures other editor renders have theme in context
+  ThemeEditorPlugin({ theme }),
   SoftBreak({ shift: true }),
   MarkdownPlugin(),
   CodePlugin(),
@@ -39,8 +41,7 @@ const plugins = [
     }
   }),
   MarkdownShortcutsPlugin(),
-  ToolbarPlugin(),
-  ThemeEditorPlugin({ theme })
+  ToolbarPlugin()
 ]
 
 const insertImage = (change, src, target) => {
