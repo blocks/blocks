@@ -1,7 +1,7 @@
 {
   "name": "@blocks/editor",
   "description": "WYSIWYG MDX editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": "John Otander",
   "repository": "johno/blocks",
