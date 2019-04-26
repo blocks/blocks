@@ -2,8 +2,11 @@ import React from 'react'
 import { Data } from 'slate'
 import YouTube from './YouTube'
 
-const setJSXProps = (editor, props) => {
-  editor.setBlocks({ data: { props: Data.create(props) } })
+import renderEditor from './renderEditor'
+
+const setJSXProps = (editor, propsObject) => {
+  const props = Data.create(propsObject)
+  editor.setBlocks({ data: { props } })
 }
 
 const insertJSXBlock = (editor, type, props) => {
@@ -33,6 +36,7 @@ export default (opts = {}) => ({
     insertYouTube,
     setJSXProps
   },
+  renderEditor,
   renderNode: (props, editor, next) => {
     const { node, attributes, children, isFocused } = props
 

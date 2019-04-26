@@ -757,10 +757,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@blocks/editor@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@blocks/editor/-/editor-0.0.1.tgz#f2aebd19098979d7d92d19892fb5306286e90034"
-  integrity sha512-EpDdbND+brkCZ6oJ3Uj6s00FZxytkWPSZLIAmjPsu5a8ZYiY1+ahYVO6EFiZcfkLDZagmg+CdexP5ZEcD4HWdw==
+"@blocks/editor@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@blocks/editor/-/editor-0.0.2.tgz#fcda034bd5ed41248ebd0b6c0409642c89f4ddc0"
+  integrity sha512-xKOINJqyY7ZmB8j29ec62Lvi0Gsqy3GTcecHhbJnkmwzVwb8wLZ7Xk+WHa+/U+W34HHC2dwMCMf+E6uyDZMbUw==
   dependencies:
     "@babel/core" "^7.4.3"
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -5990,6 +5990,41 @@ gatsby-telemetry@^1.0.9:
     stack-trace "^0.0.10"
     stack-utils "1.0.2"
     uuid "3.3.2"
+
+gatsby-theme-blocks-docs@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-blocks-docs/-/gatsby-theme-blocks-docs-0.0.2.tgz#a4b2c8d25ac8fb379449b037be4d7083c91d0c9a"
+  integrity sha512-G70v7sNBynzOgHiASkyrqA+YaEoMp/Ykz/1ZhJx4dCh43GVXO0nHPM4ZKRpv3qsNz5zYV+82rG8OxKlP8hrELQ==
+  dependencies:
+    "@blocks/editor" "^0.0.2"
+    "@emotion/core" "^10.0.10"
+    "@emotion/styled" "^10.0.10"
+    "@mdx-js/mdx" "^1.0.15"
+    "@mdx-js/react" "^1.0.15"
+    "@mdx-js/runtime" "^1.0.15"
+    "@reach/router" "^1.2.1"
+    "@reach/skip-nav" "^0.1.2"
+    "@rebass/emotion" "^3.1.0"
+    "@styled-system/css" "^1.0.3"
+    emotion-mdx "^1.0.0-6"
+    emotion-theming "^10.0.10"
+    gatsby-plugin-catch-links "^2.0.13"
+    gatsby-plugin-compile-es6-packages "^1.1.0"
+    gatsby-plugin-emotion "^4.0.6"
+    gatsby-plugin-google-fonts "^0.0.4"
+    gatsby-plugin-mdx "1.0.2-1"
+    gatsby-plugin-page-creator "^2.0.12"
+    gatsby-plugin-react-helmet "^3.0.12"
+    is-absolute-url "^3.0.0"
+    lodash.flatten "^4.4.0"
+    prism-react-renderer "^0.1.6"
+    react "^16.8.6"
+    react-dom "^16.8.6"
+    react-helmet "^5.2.0"
+    react-live "^2.0.1"
+    remark-emoji "^2.0.2"
+    remark-slug "^5.1.1"
+    styled-system "^4.1.0"
 
 gatsby@^2.3.24, gatsby@^2.3.25, gatsby@^2.3.31:
   version "2.3.31"
