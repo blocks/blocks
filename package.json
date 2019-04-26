@@ -2,7 +2,8 @@
   "private": true,
   "name": "blocks",
   "scripts": {
-    "start": "yarn workspace demo start"
+    "start": "yarn workspace demo start",
+    "publish": "lerna publish"
   },
   "workspaces": [
     "packages/*",
