@@ -1,11 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { findDOMNode } from 'slate-react'
-
-import LinkForm from './LinkForm'
-import ImageForm from './ImageForm'
 
 const container = typeof document.body !== 'undefined' && document.body
 
@@ -49,53 +46,14 @@ const Card = props => (
   />
 )
 
-export default props => {
-  const { value } = props.editor
-  const { selection } = value
-
+export const Tooltip = ({ editor, type, children }) => {
+  const { value } = editor
   const node = value.focusBlock
-  const mark = value.inlines.first()
-  const blockType = node && node.type
-  const markType = mark && mark.type
-  const type = markType || blockType
 
   const rect = useRect(node && node.key)
 
   if (!container) return false
-  if (selection.isCollapsed && blockType !== 'image') return false
-
-  const forms = []
-  if (type === 'image') {
-    forms.push(
-      <ImageForm
-        key="image-form"
-        src={node.data.get('src')}
-        alt={node.data.get('alt')}
-        onSubmit={data => {
-          props.editor.setNodeByKey(value.focusBlock.key, { data }).deselect()
-        }}
-      />
-    )
-  }
-  if (type === 'link') {
-    forms.push(
-      <LinkForm
-        key="link-form"
-        href={mark.data.get('href')}
-        title={mark.data.get('title')}
-        onSubmit={data => {
-          props.editor
-            .setNodeByKey(mark.key, {
-              data
-            })
-            .deselect()
-        }}
-      />
-    )
-  }
-
-  // (temporary) only render for images and links
-  if (!forms.length) return false
+  if (!editor.isActive(type)) return false
 
   let top = rect.bottom
   let bottom
@@ -115,8 +73,10 @@ export default props => {
         left: rect.left
       }}
     >
-      {forms}
+      {children}
     </Card>,
     container
   )
 }
+
+export default Tooltip

@@ -1,6 +1,7 @@
 import React from 'react'
 import { keyboardEvent } from '@slate-editor/utils'
-import ImageNode from '../components/ImageNode'
+import ImageNode from './ImageNode'
+import Tooltip from './tooltip'
 
 const insertImage = editor => {
   editor.insertBlock({ type: 'image' }).select()
@@ -9,6 +10,15 @@ const insertImage = editor => {
 export default (opts = {}) => ({
   commands: {
     insertImage
+  },
+  renderEditor: (props, editor, next) => {
+    const children = next()
+    return (
+      <>
+        {children}
+        <Tooltip type="image" editor={editor} />
+      </>
+    )
   },
   renderNode: (props, editor, next) => {
     if (props.node.type !== 'image') return next()

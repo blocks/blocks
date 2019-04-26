@@ -16,13 +16,39 @@ const toggleBlock = (editor, type) => {
   }
 }
 
-const toggleHeadingOne = editor => toggleBlock(editor, 'heading-one')
-const toggleHeadingTwo = editor => toggleBlock(editor, 'heading-two')
+const toggleHeadingOne = editor => editor.toggleBlock('heading-one')
+const toggleHeadingTwo = editor => editor.toggleBlock('heading-two')
+const togglePre = editor => editor.toggleBlock('pre')
+
+const toggleBulletedList = editor => {
+  const {
+    value: { startBlock, document }
+  } = editor
+  const parent = document.getParent(startBlock.key)
+
+  const isList =
+    parent && (parent.type === 'list-item-child' || parent.type === 'list-item')
+
+  return isList
+    ? editor.unwrapList()
+    : editor.wrapList({ type: 'bulleted-list' })
+}
+
+const toggleBlockQuote = editor => {
+  if (editor.hasOuterBlock('block-quote')) {
+    editor.unwrapBlock('block-quote')
+  } else {
+    editor.wrapBlock('block-quote')
+  }
+}
 
 export default {
   toggleBold,
   toggleItalic,
   toggleBlock,
   toggleHeadingOne,
-  toggleHeadingTwo
+  toggleHeadingTwo,
+  togglePre,
+  toggleBulletedList,
+  toggleBlockQuote
 }

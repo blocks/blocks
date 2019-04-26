@@ -1,67 +1,12 @@
 import React from 'react'
-import { keyboardEvent } from '@slate-editor/utils'
 import { ThemeProvider } from 'theme-ui'
 
 import theme from '../../components/theme'
 import Toolbar from './Toolbar'
-import Tooltip from './Tooltip'
 
 export { default as ToolbarButton } from './ToolbarButton'
 
-const DEFAULT_BLOCK = 'paragraph'
-
-const hasBlock = (editor, type) => {
-  return editor.value.blocks.some(node => node.type === type)
-}
-
-const toggleBulletedList = editor => {
-  const {
-    value: { startBlock, document }
-  } = editor
-  const parent = document.getParent(startBlock.key)
-
-  const isList =
-    parent && (parent.type === 'list-item-child' || parent.type === 'list-item')
-
-  return isList
-    ? editor.unwrapList()
-    : editor.wrapList({ type: 'bulleted-list' })
-}
-
-const toggleBlock = (editor, type) => {
-  if (editor.hasBlock(type)) {
-    editor.setBlocks(DEFAULT_BLOCK)
-  } else {
-    editor.setBlocks(type)
-  }
-}
-
-const toggleBlockQuote = editor => {
-  if (editor.hasOuterBlock('block-quote')) {
-    editor.unwrapBlock('block-quote')
-  } else {
-    editor.wrapBlock('block-quote')
-  }
-}
-
-const toggleJSX = editor => toggleBlock(editor, 'jsx')
-const togglePre = editor => toggleBlock(editor, 'pre')
-
-// Certain nodes like list-items and block-quotes have an inner
-// paragraph so we need to query the parent node rather than
-// the start block
-const hasOuterBlock = (editor, type) => {
-  const { value } = editor
-  const { startBlock, document } = value
-
-  if (!startBlock) {
-    return false
-  }
-
-  const outerBlock = document.getParent(startBlock.key)
-
-  return outerBlock && outerBlock.type === type
-}
+const toggleJSX = editor => editor.toggleBlock('jsx')
 
 const isActive = (editor, type) => {
   return (
@@ -74,39 +19,10 @@ const isActive = (editor, type) => {
 
 export default (opts = {}) => ({
   queries: {
-    isActive,
-    hasBlock,
-    hasOuterBlock
+    isActive
   },
   commands: {
-    toggleBlock,
-    toggleBlockQuote,
-    toggleBulletedList,
-    toggleJSX,
-    togglePre
-  },
-  onKeyDown: (event, editor, next) => {
-    if (!keyboardEvent.isMod(event)) return next()
-    const opt = event.altKey
-
-    if (opt) {
-      switch (event.keyCode) {
-        // Q
-        case 81:
-          editor.toggleBlockQuote()
-          break
-        // 1
-        case 49:
-          editor.toggleHeadingOne()
-          break
-        // 2
-        case 50:
-          editor.toggleHeadingTwo()
-          break
-        default:
-          return next()
-      }
-    }
+    toggleJSX
   },
   renderEditor: (props, editor, next) => {
     const children = next()
@@ -115,7 +31,6 @@ export default (opts = {}) => ({
       <ThemeProvider theme={theme}>
         <Toolbar editor={editor} />
         {children}
-        <Tooltip editor={editor} />
       </ThemeProvider>
     )
   }
