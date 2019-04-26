@@ -21,6 +21,9 @@ export default {
     },
     hr: {
       isVoid: true
+    },
+    youtube: {
+      isVoid: true
     }
   }
 }

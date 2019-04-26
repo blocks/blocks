@@ -15,6 +15,7 @@ import MarkdownPlugin from '../plugins/markdown'
 
 import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
+import JSXBlocksPlugin from '../plugins/jsx-blocks'
 import TablePlugin from '../plugins/table'
 import ImagePlugin from '../plugins/image'
 import LinkPlugin from '../plugins/link'
@@ -29,6 +30,7 @@ const plugins = [
   MarkdownPlugin(),
   CodePlugin(),
   LiveJSXPlugin(),
+  JSXBlocksPlugin(),
   TablePlugin(),
   DeepTable(),
   ImagePlugin(),

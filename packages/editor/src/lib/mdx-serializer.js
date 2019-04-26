@@ -4,6 +4,8 @@ const remarkStringify = require('remark-stringify')
 const remarkParse = require('remark-parse')
 const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
+const { Data } = require('slate')
+const { parseJSXBlock, applyProps } = require('./parse-jsx')
 
 const parser = unified()
   .use(remarkParse, {
@@ -323,32 +325,65 @@ const jsxMark = {
   }
 }
 
+const jsxBlockTypes = {
+  youtube: '<YouTube />'
+}
+const isJSX = node => {
+  if (node.object !== 'block') return false
+  if (node.type === 'jsx') return true
+  return !!jsxBlockTypes[node.type]
+}
+
 const jsxBlock = {
-  match: node => node.type === 'jsx' && node.object === 'block',
+  match: isJSX,
   matchMdast: (node, index, parent) =>
     node.type === 'jsx' && parent && parent.type === 'root',
   fromMdast: (node, index, parent, { visitChildren }) => {
-    return {
-      object: 'block',
-      type: 'jsx',
-      nodes: [
-        {
-          object: 'text',
-          leaves: [
+    const data = parseJSXBlock(node.value)
+    switch (data.type) {
+      case 'YouTube':
+        return {
+          object: 'block',
+          type: 'youtube',
+          data: {
+            type: data.type,
+            props: Data.create(data.props || {})
+          }
+        }
+      default:
+        return {
+          object: 'block',
+          type: 'jsx',
+          data: {
+            type: data.type,
+            props: data.props
+          },
+          nodes: [
             {
-              object: 'leaf',
-              text: node.value,
-              marks: []
+              object: 'text',
+              leaves: [
+                {
+                  object: 'leaf',
+                  text: node.value,
+                  marks: []
+                }
+              ]
             }
           ]
         }
-      ]
     }
   },
-  toMdast: (mark, index, parent, { visitChildren }) => {
+  toMdast: (object, index, parent, { visitChildren }) => {
+    let value = object.nodes.map(node => node.leaves[0].text).join()
+    if (jsxBlockTypes[object.type]) {
+      // only update blessed types
+      value = jsxBlockTypes[object.type]
+      const props = object.data.props.toJS()
+      value = applyProps(value, { props })
+    }
     return {
       type: 'jsx',
-      value: mark.nodes.map(node => node.leaves[0].text).join()
+      value
     }
   }
 }
