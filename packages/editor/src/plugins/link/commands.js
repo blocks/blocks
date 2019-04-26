@@ -13,14 +13,14 @@ const insertLink = (editor, placeholder = '[insert link]') => {
   editor
     .insertText(placeholder)
     .moveFocusBackward(placeholder.length)
-    .command(wrapLink, {})
+    .wrapLink()
 }
 
 const toggleLink = editor => {
   const { selection } = editor.value
   if (editor.hasLinks()) {
     // remove the link
-    editor.command(unwrapLink)
+    editor.unwrapLink()
   } else if (selection.isExpanded && !editor.hasMultipleBlocks()) {
     // convert selection into link
     editor.wrapLink()
