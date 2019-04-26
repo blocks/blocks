@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { findDOMNode } from 'slate-react'
 
-const container = typeof document.body !== 'undefined' && document.body
+const container =
+  typeof document !== 'undefined' &&
+  typeof document.body !== 'undefined' &&
+  document.body
 
 const useRect = (key, ...args) => {
   const [rect, setRect] = useState({})

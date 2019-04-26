@@ -13,12 +13,10 @@ export const initialValue =
 
 ## Demo
 
-<div style={{ maxWidth: '48em', margin: '40px auto' }}>
-  <Editor
-    initialValue={initialValue}
-    onChange={({ title, value, emoji }) => {
-      __DEVELOPER_SAVE(value)
-    }}
-    components={Rebass}
-  />
-</div>
+<Editor
+  initialValue={initialValue}
+  onChange={({ title, value, emoji }) => {
+    __DEVELOPER_SAVE(value)
+  }}
+  components={Rebass}
+/>

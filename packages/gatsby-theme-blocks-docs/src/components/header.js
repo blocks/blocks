@@ -49,17 +49,7 @@ export default ({ toggleMenu, dark, setDark }) => (
         textDecoration: 'none'
       })}
     >
-      Blocks
-      <span
-        css={{
-          display: 'none',
-          [theme.mediaQueries.big]: {
-            display: 'inline'
-          }
-        }}
-      >
-        v{pkg.version}
-      </span>
+      Blocks v{pkg.version}
     </Link>
     <div css={{ margin: 'auto' }} />
     <Search />

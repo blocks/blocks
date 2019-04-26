@@ -8,7 +8,7 @@
     "now-build": "yarn build"
   },
   "dependencies": {
-    "@blocks/editor": "0.0.2",
+    "@blocks/editor": "0.0.3",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.10",
