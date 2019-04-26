@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Flex } from 'theme-ui/layout'
-import Label from './Label'
-import Input from './Input'
-import Button from './Button'
+import Tooltip from '../../tooltip'
 
-export default ({ src = '', alt = '', onSubmit }) => {
+import Label from '../toolbar/Label'
+import Input from '../toolbar/Input'
+import Button from '../toolbar/Button'
+
+const Form = ({ src = '', alt = '', onSubmit }) => {
   const [state, setState] = useState({ src, alt })
 
   return (
@@ -43,5 +45,22 @@ export default ({ src = '', alt = '', onSubmit }) => {
         <Button>Save</Button>
       </Flex>
     </form>
+  )
+}
+
+export default props => {
+  const { editor } = props
+  const node = editor.value.focusBlock
+  if (!node) return false
+  return (
+    <Tooltip {...props}>
+      <Form
+        src={node.data.get('src')}
+        alt={node.data.get('alt')}
+        onSubmit={data => {
+          editor.setNodeByKey(node.key, { data }).deselect()
+        }}
+      />
+    </Tooltip>
   )
 }
