@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Styled } from 'theme-ui'
 import { Flex, Box } from 'theme-ui/layout'
-import Label from './Label'
-import Input from './Input'
-import Button from './Button'
+import Tooltip from '../../tooltip'
 
-export default ({ title = '', href = '', onSubmit }) => {
+import Label from '../toolbar/Label'
+import Input from '../toolbar/Input'
+import Button from '../toolbar/Button'
+
+const Form = ({ title = '', href = '', onSubmit }) => {
   const [state, setState] = useState({ title, href })
   return (
     <div>
@@ -52,5 +54,33 @@ export default ({ title = '', href = '', onSubmit }) => {
         </Styled.a>
       </Box>
     </div>
+  )
+}
+
+const LinkTooltip = props => {
+  const { editor } = props
+  const mark = editor.value.inlines.first()
+  if (!mark) return false
+  return (
+    <Tooltip type="link" {...props}>
+      <Form
+        href={mark.data.get('href')}
+        title={mark.data.get('title')}
+        onSubmit={data => {
+          editor.setNodeByKey(mark.key, { data }).deselect()
+        }}
+      />
+    </Tooltip>
+  )
+}
+
+export default (props, editor, next) => {
+  const children = next()
+
+  return (
+    <>
+      {children}
+      <LinkTooltip editor={editor} />
+    </>
   )
 }

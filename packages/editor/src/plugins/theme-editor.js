@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { ThemeProvider, css } from 'theme-ui'
 import { jsx, Global } from '@emotion/core'
 import { EditProvider, FieldSet } from '@styled-system/edit'
-import Icon from '../components/Icon'
+
+import ColorFillIcon from '@material-ui/icons/FormatColorFill'
+import CloseIcon from '@material-ui/icons/Close'
 
 const demoFonts = [
   'system-ui, sans-serif',
@@ -49,7 +51,7 @@ const ThemeEditor = props => {
           setEdit(true)
         }}
       >
-        <Icon name="format_color_fill" />
+        <ColorFillIcon />
       </IconButton>
     )
   }
@@ -92,7 +94,7 @@ const ThemeEditor = props => {
           setEdit(false)
         }}
       >
-        <Icon name="close" />
+        <CloseIcon />
       </IconButton>
     </div>
   )

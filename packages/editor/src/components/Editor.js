@@ -11,8 +11,8 @@ import { isUrl, isImageUrl } from '../lib/util'
 
 import theme from './theme'
 
-import NodesPlugin from '../plugins/nodes'
-import MarksPlugin from '../plugins/marks'
+import MarkdownPlugin from '../plugins/markdown'
+
 import CodePlugin from '../plugins/code'
 import LiveJSXPlugin from '../plugins/live-jsx'
 import TablePlugin from '../plugins/table'
@@ -23,9 +23,10 @@ import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
 const plugins = [
+  // setting the theme plugin first ensures other editor renders have theme in context
+  ThemeEditorPlugin({ theme }),
   SoftBreak({ shift: true }),
-  NodesPlugin(),
-  MarksPlugin(),
+  MarkdownPlugin(),
   CodePlugin(),
   LiveJSXPlugin(),
   TablePlugin(),
@@ -40,8 +41,7 @@ const plugins = [
     }
   }),
   MarkdownShortcutsPlugin(),
-  ToolbarPlugin(),
-  ThemeEditorPlugin({ theme })
+  ToolbarPlugin()
 ]
 
 const insertImage = (change, src, target) => {
