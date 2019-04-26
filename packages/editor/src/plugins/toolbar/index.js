@@ -6,8 +6,6 @@ import Toolbar from './Toolbar'
 
 export { default as ToolbarButton } from './ToolbarButton'
 
-const toggleJSX = editor => editor.toggleBlock('jsx')
-
 const isActive = (editor, type) => {
   return (
     editor.value.activeMarks.some(mark => mark.type === type) ||
@@ -20,9 +18,6 @@ const isActive = (editor, type) => {
 export default (opts = {}) => ({
   queries: {
     isActive
-  },
-  commands: {
-    toggleJSX
   },
   renderEditor: (props, editor, next) => {
     const children = next()

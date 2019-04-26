@@ -59,7 +59,12 @@ const LiveJSX = ({ code, attributes, children }) => {
   )
 }
 
+const toggleJSX = editor => editor.toggleBlock('jsx')
+
 export default (opts = {}) => ({
+  commands: {
+    toggleJSX
+  },
   renderNode: (props, editor, next) => {
     const { node, attributes, children } = props
     if (node.type !== 'jsx') return next()

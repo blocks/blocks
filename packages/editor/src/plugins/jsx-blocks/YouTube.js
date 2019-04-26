@@ -2,9 +2,15 @@
 import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
 import Player from 'react-youtube'
+import { Flex } from 'theme-ui/layout'
+import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
 
-const Form = ({ value, onSubmit }) => {
+import Label from '../toolbar/Label'
+import Input from '../toolbar/Input'
+import Button from '../toolbar/Button'
+
+export const YouTubeForm = ({ value, onSubmit }) => {
   const [state, setState] = useState({
     videoId: value.videoId || ''
   })
@@ -18,19 +24,23 @@ const Form = ({ value, onSubmit }) => {
         onSubmit(state)
       }}
     >
-      <label>
-        Video ID:
-        <input
-          type="text"
-          name="videoId"
-          value={state.videoId}
-          onChange={e => {
-            const videoId = getYouTubeID(e.target.value)
-            setState({ ...state, videoId })
-          }}
-        />
-      </label>
-      <button>Apply</button>
+      <Flex flexWrap="wrap" alignItems="flex-end">
+        <Label mr={2}>
+          Video ID:
+          <Input
+            type="text"
+            name="videoId"
+            value={state.videoId}
+            onChange={e => {
+              const videoId = isURL(e.target.value)
+                ? getYouTubeID(e.target.value)
+                : e.target.value
+              setState({ ...state, videoId })
+            }}
+          />
+        </Label>
+        <Button>Apply</Button>
+      </Flex>
     </form>
   )
 }
@@ -58,23 +68,29 @@ const Wrapper = props => (
   />
 )
 
+const Overlay = props => (
+  <div
+    {...props}
+    css={{
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      left: 0,
+      bottom: 0
+    }}
+  />
+)
+
 export default ({ editor, node, attributes, props, isFocused }) => {
   return (
-    <div
+    <Wrapper
       {...attributes}
       style={{
         outline: isFocused ? '2px solid blue' : null
       }}
     >
-      <Wrapper>
-        {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
-      </Wrapper>
-      <Form
-        value={props}
-        onSubmit={next => {
-          editor.setJSXProps(next)
-        }}
-      />
-    </div>
+      {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
+      {!isFocused && <Overlay />}
+    </Wrapper>
   )
 }
