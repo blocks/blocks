@@ -11,6 +11,7 @@ import QuoteIcon from '@material-ui/icons/FormatQuote'
 import CodeIcon from '@material-ui/icons/Code'
 import VideoIcon from '@material-ui/icons/Slideshow'
 import ListIcon from '@material-ui/icons/List'
+import HorizontalSplit from '@material-ui/icons/HorizontalSplit'
 // import ListIcon from '@material-ui/icons/FormatListBulleted'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
@@ -102,6 +103,12 @@ const buttons = [
     command: 'togglePre',
     nodeType: 'pre'
   },
+  {
+    title: 'Insert Divider',
+    Icon: HorizontalSplit,
+    command: 'toggleDivider',
+    nodeType: 'hr'
+  },
   { separator: true },
   {
     title: 'Insert Link (⌘ K)',
@@ -127,6 +134,13 @@ const buttons = [
     Icon: JSX,
     command: 'toggleJSX',
     nodeType: 'jsx'
+  },
+  { separator: true },
+  {
+    title: 'Insert YouTube Video',
+    Icon: VideoIcon,
+    command: 'insertYouTube',
+    nodeType: 'youtube'
   }
 ]
 
