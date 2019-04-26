@@ -42,6 +42,18 @@ const toggleBlockQuote = editor => {
   }
 }
 
+const toggleDivider = editor => {
+  const {
+    value: { startBlock }
+  } = editor
+
+  if (startBlock.type === 'hr') {
+    editor.setBlocks('paragraph')
+  } else {
+    editor.insertBlock({ type: 'hr' })
+  }
+}
+
 export default {
   toggleBold,
   toggleItalic,
@@ -50,5 +62,6 @@ export default {
   toggleHeadingTwo,
   togglePre,
   toggleBulletedList,
-  toggleBlockQuote
+  toggleBlockQuote,
+  toggleDivider
 }
