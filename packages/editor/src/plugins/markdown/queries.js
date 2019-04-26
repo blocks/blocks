@@ -15,7 +15,15 @@ const hasOuterBlock = (editor, type) => {
 
   const outerBlock = document.getParent(startBlock.key)
 
-  return outerBlock && outerBlock.type === type
+  // Lists are somewhat special and have an additional child element.
+  // So, if we detect a list we reach out to one more time to the parent
+  // which will point to the actual wrapping list node.
+  if (outerBlock.type === 'list-item') {
+    const listBlock = document.getParent(outerBlock.key)
+    return listBlock && listBlock.type === type
+  } else {
+    return outerBlock && outerBlock.type === type
+  }
 }
 
 export default {

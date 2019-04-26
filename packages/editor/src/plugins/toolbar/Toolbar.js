@@ -10,8 +10,9 @@ import ImageIcon from '@material-ui/icons/InsertPhoto'
 import QuoteIcon from '@material-ui/icons/FormatQuote'
 import CodeIcon from '@material-ui/icons/Code'
 import VideoIcon from '@material-ui/icons/Slideshow'
-import ListIcon from '@material-ui/icons/List'
-import HorizontalSplit from '@material-ui/icons/HorizontalSplit'
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted'
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
+import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit'
 // import ListIcon from '@material-ui/icons/FormatListBulleted'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
@@ -105,7 +106,7 @@ const buttons = [
   },
   {
     title: 'Insert Divider',
-    Icon: HorizontalSplit,
+    Icon: HorizontalSplitIcon,
     command: 'toggleDivider',
     nodeType: 'hr'
   },
@@ -125,9 +126,15 @@ const buttons = [
   { separator: true },
   {
     title: 'Insert Bulleted List',
-    Icon: ListIcon,
+    Icon: FormatListBulletedIcon,
     command: 'toggleBulletedList',
-    nodeType: 'list-item'
+    nodeType: 'bulleted-list'
+  },
+  {
+    title: 'Insert Numbered List',
+    Icon: FormatListNumberedIcon,
+    command: 'toggleNumberedList',
+    nodeType: 'numbered-list'
   },
   {
     title: 'Insert JSX Block',
