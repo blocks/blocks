@@ -34,6 +34,7 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
+const Gist = () => <B>GIST</B>
 
 const Separator = () => (
   <div
@@ -148,6 +149,12 @@ const buttons = [
     Icon: VideoIcon,
     command: 'insertYouTube',
     nodeType: 'youtube'
+  },
+  {
+    title: 'Insert GitHub Gist',
+    Icon: Gist,
+    command: 'insertGist',
+    nodeType: 'gist'
   }
 ]
 

@@ -329,6 +329,7 @@ const jsxMark = {
 
 const jsxBlockTypes = {
   youtube: '<YouTube />',
+  gist: '<Gist />',
   TomatoBox: '<TomatoBox />'
 }
 const isJSX = node => {
@@ -357,6 +358,15 @@ const jsxBlock = {
         return {
           object: 'block',
           type: 'youtube',
+          data: {
+            type: data.type,
+            props: Data.create(data.props || {})
+          }
+        }
+      case 'Gist':
+        return {
+          object: 'block',
+          type: 'gist',
           data: {
             type: data.type,
             props: Data.create(data.props || {})
@@ -407,6 +417,7 @@ const jsxBlock = {
       const props = object.data.props.toJS()
       value = applyProps(value, { props })
     }
+    console.log(value)
     return {
       type: 'jsx',
       value

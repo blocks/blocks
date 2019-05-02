@@ -24,6 +24,9 @@ export default {
     },
     youtube: {
       isVoid: true
+    },
+    gist: {
+      isVoid: true
     }
   }
 }
