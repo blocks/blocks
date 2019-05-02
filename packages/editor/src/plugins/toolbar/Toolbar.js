@@ -116,7 +116,7 @@ const buttons = [
     nodeType: 'link'
   },
   {
-    title: 'Insert Image (⌘ ⇧ I)',
+    title: 'Insert Image',
     Icon: ImageIcon,
     command: 'insertImage',
     nodeType: 'image'

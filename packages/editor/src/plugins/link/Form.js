@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
 import { Styled } from 'theme-ui'
 import { Flex, Box } from 'theme-ui/layout'
-import Tooltip from '../../tooltip'
 
-import Label from '../toolbar/Label'
-import Input from '../toolbar/Input'
-import Button from '../toolbar/Button'
+import Card from '../../components/Card'
+import Label from '../../components/Label'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
 
-const Form = ({ title = '', href = '', onSubmit }) => {
+const Form = ({ node, editor }) => {
+  const title = node.data.get('title') || ''
+  const href = node.data.get('href') || ''
+  const onSubmit = data => {
+    editor.setNodeByKey(node.key, { data }).deselect()
+  }
   const [state, setState] = useState({ title, href })
+
   return (
-    <div>
+    <Card contentEditable={false}>
       <form
-        contentEditable={false}
         onClick={e => {
           e.stopPropagation()
         }}
@@ -47,40 +52,14 @@ const Form = ({ title = '', href = '', onSubmit }) => {
           <Button>Apply</Button>
         </Flex>
       </form>
-      <Box my={2}>
+      <Box fontSize={1} mt={2}>
         Open link:{' '}
         <Styled.a href={state.href} target="_blank">
           {state.href}
         </Styled.a>
       </Box>
-    </div>
+    </Card>
   )
 }
 
-const LinkTooltip = props => {
-  const { editor } = props
-  const mark = editor.value.inlines.first()
-  if (!mark) return false
-  return (
-    <Tooltip type="link" {...props}>
-      <Form
-        href={mark.data.get('href')}
-        title={mark.data.get('title')}
-        onSubmit={data => {
-          editor.setNodeByKey(mark.key, { data }).deselect()
-        }}
-      />
-    </Tooltip>
-  )
-}
-
-export default (props, editor, next) => {
-  const children = next()
-
-  return (
-    <>
-      {children}
-      <LinkTooltip editor={editor} />
-    </>
-  )
-}
+export default Form

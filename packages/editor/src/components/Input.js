@@ -8,8 +8,8 @@ export default props => (
     {...props}
     css={css({
       fontFamily: 'inherit',
-      fontSize: 2,
-      padding: 2,
+      fontSize: 1,
+      padding: 1,
       margin: 0,
       color: 'inherit',
       backgroundColor: 'white',
