@@ -34,6 +34,7 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
+const Tweet = () => <B>TWEET</B>
 
 const Separator = () => (
   <div
@@ -148,6 +149,12 @@ const buttons = [
     Icon: VideoIcon,
     command: 'insertYouTube',
     nodeType: 'youtube'
+  },
+  {
+    title: 'Insert Tweet',
+    Icon: Tweet,
+    command: 'insertTweet',
+    nodeType: 'tweet'
   }
 ]
 

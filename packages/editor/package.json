@@ -24,6 +24,7 @@
     "lodash.omit": "^4.5.0",
     "raw-loader": "^2.0.0",
     "react-live": "^2.0.1",
+    "react-twitter-embed": "^2.0.8",
     "react-youtube": "^7.9.0",
     "slate": "0.45.1",
     "slate-deep-table": "^0.8.0",

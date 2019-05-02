@@ -1,6 +1,7 @@
 import React from 'react'
 import { Data } from 'slate'
 import YouTube from './YouTube'
+import Tweet from './Tweet'
 
 const setJSXProps = (editor, propsObject) => {
   const props = Data.create(propsObject)
@@ -22,6 +23,12 @@ const insertYouTube = editor => {
   })
 }
 
+const insertTweet = editor => {
+  editor.insertJSXBlock('tweet', {
+    tweetId: ''
+  })
+}
+
 const getProps = node => {
   const map = node.data.get('props')
   if (typeof map.toJS !== 'function') return map
@@ -32,6 +39,7 @@ export default (opts = {}) => ({
   commands: {
     insertJSXBlock,
     insertYouTube,
+    insertTweet,
     setJSXProps
   },
   renderNode: (props, editor, next) => {
@@ -40,6 +48,9 @@ export default (opts = {}) => ({
     switch (node.type) {
       case 'youtube':
         return <YouTube {...props} editor={editor} props={getProps(node)} />
+        break
+      case 'tweet':
+        return <Tweet {...props} editor={editor} props={getProps(node)} />
         break
       default:
         return next()

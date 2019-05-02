@@ -2,51 +2,9 @@
 import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
 import Player from 'react-youtube'
-import { Flex } from 'theme-ui/layout'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
-
-import Label from '../../components/Label'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
-
-export const YouTubeForm = ({ value, onSubmit }) => {
-  const [state, setState] = useState({
-    videoId: value.videoId || ''
-  })
-  return (
-    <form
-      css={{
-        padding: 8
-      }}
-      onClick={e => {
-        e.stopPropagation()
-      }}
-      onSubmit={e => {
-        e.preventDefault()
-        onSubmit(state)
-      }}
-    >
-      <Flex flexWrap="wrap" alignItems="flex-end">
-        <Label mr={2}>
-          Video ID:
-          <Input
-            type="text"
-            name="videoId"
-            value={state.videoId}
-            onChange={e => {
-              const videoId = isURL(e.target.value)
-                ? getYouTubeID(e.target.value)
-                : e.target.value
-              setState({ ...state, videoId })
-            }}
-          />
-        </Label>
-        <Button>Apply</Button>
-      </Flex>
-    </form>
-  )
-}
+import Form from './Form'
 
 const Wrapper = props => (
   <div
@@ -103,9 +61,12 @@ export default ({ editor, node, attributes, props, isSelected }) => {
         {!isSelected && <Overlay />}
       </Wrapper>
       {isSelected && (
-        <YouTubeForm
-          value={getProps(node)}
+        <Form
+          value={props}
           onSubmit={next => {
+            if (isURL(next.videoId)) {
+              next.videoId = getYouTubeID(next.videoId)
+            }
             editor.setJSXProps(next)
           }}
         />
