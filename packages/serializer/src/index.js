@@ -5,7 +5,9 @@ const remarkParse = require('remark-parse')
 const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
 const { Data } = require('slate')
+
 const { parseJSXBlock, applyProps } = require('./parse-jsx')
+const remarkInterleave = require('./remark-interleave').default
 
 const parser = unified()
   .use(remarkParse, {
@@ -13,7 +15,8 @@ const parser = unified()
     position: false
   })
   .use(remarkSqueezeParagraphs)
-  .use(_ => ast => console.log(ast) || ast)
+  .use(remarkInterleave)
+  .use(() => ast => console.log(ast) || ast)
   .use(mdx)
 
 export const parseMDX = md => parser.runSync(parser.parse(md))

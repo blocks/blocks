@@ -1,6 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it parses a basic block 1`] = `
+exports[`handles an interleaved block 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "type": "text",
+          "value": "Hello, ",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "type": "text",
+              "value": "world!",
+            },
+          ],
+          "type": "strong",
+        },
+      ],
+      "depth": 1,
+      "type": "heading",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "type": "jsx",
+          "value": "<Block>",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "type": "text",
+              "value": "Other",
+            },
+          ],
+          "depth": 2,
+          "type": "heading",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "type": "text",
+              "value": "Stuff",
+            },
+          ],
+          "type": "paragraph",
+        },
+        Object {
+          "type": "jsx",
+          "value": "</Block>",
+        },
+        Object {
+          "type": "jsx",
+          "value": "</Block>",
+        },
+      ],
+      "type": "jsx",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "type": "text",
+          "value": "And more stuff",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "root",
+}
+`;
+
+exports[`parses a basic block 1`] = `
 Object {
   "children": Array [
     Object {

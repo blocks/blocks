@@ -31,6 +31,7 @@
     "remark-stringify": "^6.0.4",
     "slate": "^0.45.0",
     "slate-mdast-serializer": "^3.0.0",
-    "unified": "^7.1.0"
+    "unified": "^7.1.0",
+    "unist-util-visit": "^1.4.0"
   }
 }
