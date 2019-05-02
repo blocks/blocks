@@ -1,0 +1,36 @@
+{
+  "name": "@blocks/serializer",
+  "description": "Transform between MDX and Slate schema",
+  "version": "0.0.4",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "test": "jest",
+    "prepublish": "yarn build"
+  },
+  "keywords": [
+    "blocks",
+    "mdx",
+    "remark",
+    "serializer"
+  ],
+  "author": "John Otander",
+  "repository": "blocks/blocks",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "jest": "^24.7.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "remark-mdx": "^1.0.15",
+    "remark-parse": "^6.0.3",
+    "remark-squeeze-paragraphs": "^3.0.3",
+    "remark-stringify": "^6.0.4",
+    "slate": "^0.45.0",
+    "slate-mdast-serializer": "^3.0.0",
+    "unified": "^7.1.0"
+  }
+}
