@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`correctly serializes MDX to Slate schema 1`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "leaves": Array [
+              Object {
+                "marks": Array [],
+                "object": "leaf",
+                "text": "Hello, ",
+              },
+              Object {
+                "marks": Array [
+                  Object {
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "bold",
+                  },
+                ],
+                "object": "leaf",
+                "text": "world!",
+              },
+            ],
+            "object": "text",
+          },
+        ],
+        "object": "block",
+        "type": "heading-one",
+      },
+      Object {
+        "data": Object {
+          "props": Immutable.Map {},
+          "type": "Block",
+        },
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "leaves": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "leaf",
+                    "text": "Other",
+                  },
+                ],
+                "object": "text",
+              },
+            ],
+            "object": "block",
+            "type": "heading-two",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "leaves": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "leaf",
+                    "text": "Stuff",
+                  },
+                ],
+                "object": "text",
+              },
+            ],
+            "object": "block",
+            "type": "paragraph",
+          },
+        ],
+        "object": "block",
+        "type": "Block",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "leaves": Array [
+              Object {
+                "marks": Array [],
+                "object": "leaf",
+                "text": "And more stuff",
+              },
+            ],
+            "object": "text",
+          },
+        ],
+        "object": "block",
+        "type": "paragraph",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;

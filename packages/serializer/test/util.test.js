@@ -23,3 +23,9 @@ CLOSE_TAGS.forEach(tag => {
     expect(util.isCloseTag(tag)).toBeTruthy()
   })
 })
+
+test('getComponentName returns the component name', () => {
+  expect(util.getComponentName('<Block>')).toEqual('Block')
+  expect(util.getComponentName('<Block style={{}}>')).toEqual('Block')
+  expect(util.getComponentName('<Foo.Bar>')).toEqual('Foo.Bar')
+})

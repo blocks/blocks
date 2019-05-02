@@ -25,6 +25,7 @@
     "@babel/core": "^7.4.4",
     "@babel/helper-plugin-utils": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@mdx-js/mdx": "^1.0.16",
     "remark-mdx": "^1.0.15",
     "remark-parse": "^6.0.3",
     "remark-squeeze-paragraphs": "^3.0.3",

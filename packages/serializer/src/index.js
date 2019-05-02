@@ -6,6 +6,7 @@ const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
 const { Data } = require('slate')
 
+const { getComponentName } = require('./util')
 const { parseJSXBlock, applyProps } = require('./parse-jsx')
 const remarkInterleave = require('./remark-interleave').default
 
@@ -16,7 +17,6 @@ const parser = unified()
   })
   .use(remarkSqueezeParagraphs)
   .use(remarkInterleave)
-  .use(() => ast => console.log(ast) || ast)
   .use(mdx)
 
 export const parseMDX = md => parser.runSync(parser.parse(md))
@@ -27,7 +27,6 @@ const stringifier = unified()
     fences: true
   })
   .use(remarkSqueezeParagraphs)
-  .use(_ => ast => console.log(JSON.stringify(ast, null, 2)) || ast)
   .use(mdx)
 
 export const stringifyMDX = mdast =>
@@ -329,7 +328,8 @@ const jsxMark = {
 }
 
 const jsxBlockTypes = {
-  youtube: '<YouTube />'
+  youtube: '<YouTube />',
+  TomatoBox: '<TomatoBox />'
 }
 const isJSX = node => {
   if (node.object !== 'block') return false
@@ -342,7 +342,16 @@ const jsxBlock = {
   matchMdast: (node, index, parent) =>
     node.type === 'jsx' && parent && parent.type === 'root',
   fromMdast: (node, index, parent, { visitChildren }) => {
-    const data = parseJSXBlock(node.value)
+    let data = {}
+    if (node.children) {
+      data = {
+        type: getComponentName(node.children[0].value),
+        props: {}
+      }
+    } else {
+      data = parseJSXBlock(node.value)
+    }
+
     switch (data.type) {
       case 'YouTube':
         return {
@@ -354,6 +363,20 @@ const jsxBlock = {
           }
         }
       default:
+        // This is an interleaved block so we handle it specially since
+        // we want to walk its children and create a wrapping block.
+        if (node.children) {
+          return {
+            object: 'block',
+            type: data.type,
+            nodes: visitChildren(node),
+            data: {
+              type: data.type,
+              props: Data.create(data.props || {})
+            }
+          }
+        }
+
         return {
           object: 'block',
           type: 'jsx',
