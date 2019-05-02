@@ -14,7 +14,7 @@ export default props => (
       color: 'inherit',
       backgroundColor: 'white',
       border: '1px solid',
-      borderColor: 'lightgray'
+      borderColor: 'gray'
     })}
   />
 )
