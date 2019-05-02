@@ -417,7 +417,6 @@ const jsxBlock = {
       const props = object.data.props.toJS()
       value = applyProps(value, { props })
     }
-    console.log(value)
     return {
       type: 'jsx',
       value
