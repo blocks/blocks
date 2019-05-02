@@ -1,7 +1,7 @@
 {
   "name": "@blocks/serializer",
   "description": "Transform between MDX and Slate schema",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
