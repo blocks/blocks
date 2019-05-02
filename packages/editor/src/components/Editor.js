@@ -23,8 +23,6 @@ import ToolbarPlugin from '../plugins/toolbar'
 import ThemeEditorPlugin from '../plugins/theme-editor'
 import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
 
-console.log({ parseMDX, serializer })
-
 const plugins = [
   // setting the theme plugin first ensures other editor renders have theme in context
   ThemeEditorPlugin({ theme }),
