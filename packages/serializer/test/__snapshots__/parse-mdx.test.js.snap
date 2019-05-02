@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it parses a basic block 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "type": "text",
+          "value": "Hello, world!",
+        },
+      ],
+      "depth": 1,
+      "type": "heading",
+    },
+  ],
+  "type": "root",
+}
+`;
