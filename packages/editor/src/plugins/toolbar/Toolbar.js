@@ -49,20 +49,18 @@ const Separator = () => (
 const Root = props => (
   <div
     {...props}
-    css={theme =>
-      css({
-        position: 'sticky',
-        top: 0,
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        backgroundColor: 'white',
-        paddingTop: 2,
-        paddingBottom: 2,
-        borderBottom: '1px solid',
-        borderColor: theme.colors.gray
-      })(theme)
-    }
+    css={css({
+      position: 'sticky',
+      top: 0,
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      backgroundColor: 'white',
+      paddingTop: 2,
+      paddingBottom: 2,
+      borderBottom: '1px solid',
+      borderColor: 'gray'
+    })}
   />
 )
 
