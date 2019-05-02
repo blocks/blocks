@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Flex } from 'theme-ui/layout'
 import Tooltip from '../../tooltip'
 
-import Label from '../toolbar/Label'
-import Input from '../toolbar/Input'
-import Button from '../toolbar/Button'
+import Label from '../../components/Label'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 const Form = ({ src = '', alt = '', onSubmit }) => {
   const [state, setState] = useState({ src, alt })

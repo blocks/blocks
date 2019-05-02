@@ -11,7 +11,8 @@ export default props => (
       display: 'flex',
       flexDirection: 'column',
       fontWeight: 'bold',
-      fontSize: 0
+      fontSize: 0,
+      userSelect: 'none'
     })}
   />
 )

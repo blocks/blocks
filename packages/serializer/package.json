@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "test": "jest",
-    "prepublish": "yarn build"
+    "prepare": "yarn build"
   },
   "keywords": [
     "blocks",

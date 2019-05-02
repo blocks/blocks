@@ -33,12 +33,6 @@ export default (props, editor, next) => {
       return <Styled.p {...attributes}>{children}</Styled.p>
     case 'hr':
       return <Styled.hr {...attributes} />
-    case 'link':
-      return (
-        <Styled.a {...attributes} href={node.data.get('href')}>
-          {children}
-        </Styled.a>
-      )
     default:
       return next()
   }

@@ -6,9 +6,9 @@ import { Flex } from 'theme-ui/layout'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
 
-import Label from '../toolbar/Label'
-import Input from '../toolbar/Input'
-import Button from '../toolbar/Button'
+import Label from '../../components/Label'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 export const YouTubeForm = ({ value, onSubmit }) => {
   const [state, setState] = useState({
