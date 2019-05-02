@@ -2,8 +2,6 @@ import React from 'react'
 import { Data } from 'slate'
 import YouTube from './YouTube'
 
-import renderEditor from './renderEditor'
-
 const setJSXProps = (editor, propsObject) => {
   const props = Data.create(propsObject)
   editor.setBlocks({ data: { props } })
@@ -36,21 +34,12 @@ export default (opts = {}) => ({
     insertYouTube,
     setJSXProps
   },
-  renderEditor,
   renderNode: (props, editor, next) => {
-    const { node, attributes, children, isFocused } = props
+    const { node } = props
 
     switch (node.type) {
       case 'youtube':
-        return (
-          <YouTube
-            node={node}
-            editor={editor}
-            attributes={attributes}
-            props={getProps(node)}
-            isFocused={isFocused}
-          />
-        )
+        return <YouTube {...props} editor={editor} props={getProps(node)} />
         break
       default:
         next()

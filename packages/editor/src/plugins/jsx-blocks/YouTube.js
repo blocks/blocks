@@ -16,6 +16,9 @@ export const YouTubeForm = ({ value, onSubmit }) => {
   })
   return (
     <form
+      css={{
+        padding: 8
+      }}
       onClick={e => {
         e.stopPropagation()
       }}
@@ -81,16 +84,32 @@ const Overlay = props => (
   />
 )
 
-export default ({ editor, node, attributes, props, isFocused }) => {
+const getProps = node => {
+  const map = node.data.get('props')
+  if (!map || typeof map.toJS !== 'function') return map
+  return map.toJS()
+}
+
+export default ({ editor, node, attributes, props, isSelected }) => {
   return (
-    <Wrapper
-      {...attributes}
-      style={{
-        outline: isFocused ? '2px solid blue' : null
-      }}
-    >
-      {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
-      {!isFocused && <Overlay />}
-    </Wrapper>
+    <div>
+      <Wrapper
+        {...attributes}
+        style={{
+          outline: isSelected ? '2px solid blue' : null
+        }}
+      >
+        {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
+        {!isSelected && <Overlay />}
+      </Wrapper>
+      {isSelected && (
+        <YouTubeForm
+          value={getProps(node)}
+          onSubmit={next => {
+            editor.setJSXProps(next)
+          }}
+        />
+      )}
+    </div>
   )
 }
