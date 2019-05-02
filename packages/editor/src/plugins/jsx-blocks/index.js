@@ -42,7 +42,7 @@ export default (opts = {}) => ({
         return <YouTube {...props} editor={editor} props={getProps(node)} />
         break
       default:
-        next()
+        return next()
     }
   }
 })

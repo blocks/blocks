@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
 import * as Rebass from '@rebass/emotion'
 
@@ -14,7 +16,14 @@ const initialValue =
   typeof window !== 'undefined' && window.localStorage['lastMDX']
 
 export default () => (
-  <div style={{ maxWidth: '48em', margin: '40px auto' }}>
+  <div
+    css={{
+      maxWidth: '48em',
+      padding: 32,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }}
+  >
     <Editor
       initialValue={initialValue}
       onChange={({ title, value, emoji }) => {
