@@ -1080,6 +1080,11 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/yargs" "^12.0.9"
 
+"@jxnblk/simple-icons@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jxnblk/simple-icons/-/simple-icons-1.0.0.tgz#7c8e3c6b55b5b3fb8b2c693398b8680b70650c75"
+  integrity sha1-fI48a1W1s/uLLGkzmLhoC3BlDHU=
+
 "@lerna/add@3.13.3":
   version "3.13.3"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.13.3.tgz#f4c1674839780e458f0426d4f7b6d0a77b9a2ae9"
@@ -11996,6 +12001,13 @@ react-simple-code-editor@^0.9.0:
   version "0.9.10"
   resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.9.10.tgz#1ab5ea7215687ed918c6d0dae90736cf01890905"
   integrity sha512-80LJwRQS7Wi9Ugh/e6FRHWdcg4oQOpMBDFxyDpORILffrHdV3EIQ1IeX5x7488r05iFgLbVDV4nQ1LRKjgCm0g==
+
+react-simple-icons@^1.0.0-beta.5:
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/react-simple-icons/-/react-simple-icons-1.0.0-beta.5.tgz#b022badb6bd8060ab3ed6cf3ce503e300a706356"
+  integrity sha1-sCK622vYBgqz7WzzzlA+MApwY1Y=
+  dependencies:
+    "@jxnblk/simple-icons" "^1.0.0"
 
 react-style-singleton@^1.1.0:
   version "1.1.1"

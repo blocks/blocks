@@ -17,6 +17,7 @@ import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
 // import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
+import SimpleIcon from 'react-simple-icons'
 
 import ToolbarButton from './ToolbarButton'
 
@@ -34,7 +35,7 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
-const Tweet = () => <B>TWEET</B>
+const Tweet = () => <SimpleIcon name="twitter" size={20} />
 
 const Separator = () => (
   <div

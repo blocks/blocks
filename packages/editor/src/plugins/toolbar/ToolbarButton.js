@@ -6,7 +6,9 @@ export default ({ active, ...props }) => (
   <button
     {...props}
     css={css({
-      display: 'block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       minWidth: 32,
       height: 32,
       padding: 1,
