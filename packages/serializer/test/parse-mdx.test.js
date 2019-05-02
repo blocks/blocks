@@ -10,10 +10,18 @@ const FIXTURE = `
 Stuff
 
 </Block>
+
+And more stuff
 `
 
-test('it parses a basic block', () => {
+test('parses a basic block', () => {
   const result = parseMDX('# Hello, world!')
+
+  expect(result).toMatchSnapshot()
+})
+
+test('handles an interleaved block', () => {
+  const result = parseMDX(FIXTURE)
 
   expect(result).toMatchSnapshot()
 })
