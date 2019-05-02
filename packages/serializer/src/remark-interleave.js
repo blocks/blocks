@@ -20,7 +20,6 @@ export default () => ast => {
           open.children.push(child)
         }
 
-        open.children.push(node)
         parent.children.splice(i + 1, index - 1)
         delete open.value
       }

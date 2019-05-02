@@ -51,10 +51,6 @@ Object {
           "type": "jsx",
           "value": "</Block>",
         },
-        Object {
-          "type": "jsx",
-          "value": "</Block>",
-        },
       ],
       "type": "jsx",
     },
