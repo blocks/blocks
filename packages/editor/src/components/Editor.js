@@ -6,7 +6,7 @@ import SoftBreak from 'slate-soft-break'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
-import { parseMDX, serializer } from '../lib/mdx-serializer'
+import { parseMDX, serializer } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
 import theme from './theme'
