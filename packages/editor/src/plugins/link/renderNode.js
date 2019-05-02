@@ -21,11 +21,8 @@ export default (props, editor, next) => {
         <div
           css={{
             position: 'absolute',
-            padding: 8,
             top: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'white'
+            left: 0
           }}
         >
           <Form node={node} editor={editor} />
