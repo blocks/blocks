@@ -11,6 +11,7 @@
   },
   "workspaces": [
     "packages/*",
+    "kit",
     "demo"
   ],
   "devDependencies": {
