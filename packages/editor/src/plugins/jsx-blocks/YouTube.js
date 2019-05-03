@@ -6,6 +6,7 @@ import { Flex } from 'theme-ui/layout'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
 
+import Overlay from './Overlay'
 import Label from '../../components/Label'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
@@ -67,19 +68,6 @@ const Wrapper = props => (
         left: 0,
         border: 0
       }
-    }}
-  />
-)
-
-const Overlay = props => (
-  <div
-    {...props}
-    css={{
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      left: 0,
-      bottom: 0
     }}
   />
 )
