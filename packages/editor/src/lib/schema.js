@@ -22,10 +22,7 @@ export default {
     hr: {
       isVoid: true
     },
-    youtube: {
-      isVoid: true
-    },
-    gist: {
+    'jsx-void': {
       isVoid: true
     }
   }

@@ -1,53 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React, { useState } from 'react'
 import Player from 'react-youtube'
-import { Flex } from 'theme-ui/layout'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
-
-import Overlay from './Overlay'
-import Label from '../../components/Label'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
-
-export const YouTubeForm = ({ value, onSubmit }) => {
-  const [state, setState] = useState({
-    videoId: value.videoId || ''
-  })
-  return (
-    <form
-      css={{
-        padding: 8
-      }}
-      onClick={e => {
-        e.stopPropagation()
-      }}
-      onSubmit={e => {
-        e.preventDefault()
-        onSubmit(state)
-      }}
-    >
-      <Flex flexWrap="wrap" alignItems="flex-end">
-        <Label mr={2}>
-          Video ID:
-          <Input
-            type="text"
-            name="videoId"
-            value={state.videoId}
-            onChange={e => {
-              const videoId = isURL(e.target.value)
-                ? getYouTubeID(e.target.value)
-                : e.target.value
-              setState({ ...state, videoId })
-            }}
-          />
-        </Label>
-        <Button>Apply</Button>
-      </Flex>
-    </form>
-  )
-}
 
 const Wrapper = props => (
   <div
@@ -72,32 +27,21 @@ const Wrapper = props => (
   />
 )
 
-const getProps = node => {
-  const map = node.data.get('props')
-  if (!map || typeof map.toJS !== 'function') return map
-  return map.toJS()
-}
-
-export default ({ editor, node, attributes, props, isSelected }) => {
+const YouTube = props => {
   return (
-    <div>
-      <Wrapper
-        {...attributes}
-        style={{
-          outline: isSelected ? '2px solid blue' : null
-        }}
-      >
-        {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
-        {!isSelected && <Overlay />}
-      </Wrapper>
-      {isSelected && (
-        <YouTubeForm
-          value={getProps(node)}
-          onSubmit={next => {
-            editor.setJSXProps(next)
-          }}
-        />
-      )}
-    </div>
+    <Wrapper>
+      {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
+    </Wrapper>
   )
 }
+
+// mimicking Framer X - could make this compatible
+YouTube.propertyControls = {
+  videoId: {
+    type: 'string',
+    title: 'Video ID',
+    formatValue: n => (isURL(n) ? getYouTubeID(n) : n)
+  }
+}
+
+export default YouTube
