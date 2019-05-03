@@ -22,7 +22,7 @@ export default {
     hr: {
       isVoid: true
     },
-    youtube: {
+    'jsx-void': {
       isVoid: true
     },
     tweet: {

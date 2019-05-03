@@ -327,15 +327,9 @@ const jsxMark = {
   }
 }
 
-const jsxBlockTypes = {
-  youtube: '<YouTube />',
-  tweet: '<Tweet />',
-  TomatoBox: '<TomatoBox />'
-}
 const isJSX = node => {
   if (node.object !== 'block') return false
-  if (node.type === 'jsx') return true
-  return !!jsxBlockTypes[node.type]
+  return node.type === 'jsx' || node.type === 'jsx-void'
 }
 
 const jsxBlock = {
@@ -349,72 +343,33 @@ const jsxBlock = {
         type: getComponentName(node.children[0].value),
         props: {}
       }
+      return {
+        object: 'block',
+        type: 'jsx',
+        nodes: visitChildren(node),
+        data: {
+          type: data.type,
+          props: Data.create(data.props)
+        }
+      }
     } else {
       data = parseJSXBlock(node.value)
-    }
-
-    switch (data.type) {
-      case 'YouTube':
-        return {
-          object: 'block',
-          type: 'youtube',
-          data: {
-            type: data.type,
-            props: Data.create(data.props || {})
-          }
+      return {
+        object: 'block',
+        type: 'jsx-void',
+        data: {
+          type: data.type,
+          props: Data.create(data.props)
         }
-      case 'Tweet':
-        return {
-          object: 'block',
-          type: 'tweet',
-          data: {
-            type: data.type,
-            props: Data.create(data.props || {})
-          }
-        }
-      default:
-        // This is an interleaved block so we handle it specially since
-        // we want to walk its children and create a wrapping block.
-        if (node.children) {
-          return {
-            object: 'block',
-            type: data.type,
-            nodes: visitChildren(node),
-            data: {
-              type: data.type,
-              props: Data.create(data.props || {})
-            }
-          }
-        }
-
-        return {
-          object: 'block',
-          type: 'jsx',
-          data: {
-            type: data.type,
-            props: data.props
-          },
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  object: 'leaf',
-                  text: node.value,
-                  marks: []
-                }
-              ]
-            }
-          ]
-        }
+      }
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
     let value = object.nodes.map(node => node.leaves[0].text).join()
-    if (jsxBlockTypes[object.type]) {
+    if (object.type === 'jsx-void') {
       // only update blessed types
-      value = jsxBlockTypes[object.type]
-      const props = object.data.props.toJS()
+      value = `<${object.data.type} />`
+      const props = object.data.props
       value = applyProps(value, { props })
     }
     return {

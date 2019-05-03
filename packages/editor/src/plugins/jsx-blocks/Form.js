@@ -7,9 +7,9 @@ import Label from '../../components/Label'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
-export default ({ value, onSubmit }) => {
+export default ({ fields, value, onSubmit }) => {
   const [state, setState] = useState(value)
-  const keys = Object.keys(state)
+  const keys = Object.keys(fields)
   return (
     <form
       onClick={e => {
@@ -23,13 +23,18 @@ export default ({ value, onSubmit }) => {
       <Flex flexWrap="wrap" alignItems="flex-end">
         {keys.map(key => (
           <Label key={key} mr={2}>
-            {key}
+            {fields[key].title || key}
             <Input
               type="text"
               name={key}
               value={state[key] || ''}
               onChange={e => {
-                setState({ ...state, [key]: e.target.value })
+                const format = fields[key].formatValue
+                const value =
+                  typeof format === 'function'
+                    ? format(e.target.value)
+                    : e.target.value
+                setState({ ...state, [key]: value })
               }}
             />
           </Label>
