@@ -4,12 +4,6 @@ import Player from 'react-youtube'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
 
-/* TODO
-const videoId = isURL(e.target.value)
-  ? getYouTubeID(e.target.value)
-  : e.target.value
-*/
-
 const Wrapper = props => (
   <div
     {...props}
@@ -45,7 +39,8 @@ const YouTube = props => {
 YouTube.propertyControls = {
   videoId: {
     type: 'string',
-    title: 'Video ID'
+    title: 'Video ID',
+    formatValue: n => (isURL(n) ? getYouTubeID(n) : n)
   }
 }
 

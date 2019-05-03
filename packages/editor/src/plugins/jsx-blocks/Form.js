@@ -30,7 +30,12 @@ export default ({ fields, value, onSubmit }) => {
               name={key}
               value={state[key] || ''}
               onChange={e => {
-                setState({ ...state, [key]: e.target.value })
+                const format = fields[key].formatValue
+                const value =
+                  typeof format === 'function'
+                    ? format(e.target.value)
+                    : e.target.value
+                setState({ ...state, [key]: value })
               }}
             />
           </Label>
