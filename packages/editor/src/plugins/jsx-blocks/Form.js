@@ -1,5 +1,4 @@
 /** @jsx jsx */
-// generic block form
 import { jsx } from '@emotion/core'
 import { useState } from 'react'
 import { Flex } from 'theme-ui/layout'

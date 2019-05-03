@@ -5,6 +5,7 @@ import { Data } from 'slate'
 import Form from './Form'
 import Overlay from './Overlay'
 import YouTube from './YouTube'
+import Tweet from './Tweet'
 import Gist from './Gist'
 
 const hasJSXBlock = (editor, type) => {
@@ -32,6 +33,12 @@ const insertJSXBlock = (editor, type, props) => {
 const insertYouTube = editor => {
   editor.insertJSXBlock('YouTube', {
     videoId: ''
+  })
+}
+
+const insertTweet = editor => {
+  editor.insertJSXBlock('Tweet', {
+    tweetId: ''
   })
 }
 
@@ -87,7 +94,8 @@ const Wrapper = ({
 // placeholder
 const components = {
   YouTube,
-  Gist
+  Gist,
+  Tweet
 }
 
 export default (opts = {}) => ({
@@ -97,6 +105,7 @@ export default (opts = {}) => ({
   commands: {
     insertJSXBlock,
     insertYouTube,
+    insertTweet,
     insertGist,
     setJSXProps
   },
