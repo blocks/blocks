@@ -21,6 +21,7 @@ export default (props, editor, next) => {
         <div
           css={{
             position: 'absolute',
+            zIndex: 1,
             top: '100%',
             left: 0
           }}

@@ -67,6 +67,8 @@ const Button = ({
   nodeType,
   // todo: is there a way to detect this?
   mark,
+  insert,
+  command,
   ...props
 }) => {
   const { editor } = React.useContext(Context)
@@ -75,8 +77,12 @@ const Button = ({
     <button
       {...props}
       onClick={e => {
-        if (mark) {
-          editor.toggleMark(nodeType).focus()
+        if (command) {
+          editor[command](e)
+        } else if (insert) {
+          editor.insertBlock(nodeType).select()
+        } else if (mark) {
+          editor.toggleMark(nodeType).select()
         } else {
           editor.toggleBlock(nodeType).select()
         }
@@ -121,14 +127,14 @@ const defaultChildren = (
     <Button title="Code Block" nodeType="pre">
       <CodeIcon />
     </Button>
-    <Button title="Divider" nodeType="hr">
+    <Button title="Divider" insert nodeType="hr">
       <HorizontalSplitIcon />
     </Button>
     <Separator />
-    <Button title="Link (⌘ K)" nodeType="link" mark>
+    <Button title="Link (⌘ K)" nodeType="link" command="toggleLink">
       <LinkIcon />
     </Button>
-    <Button title="Image" nodeType="image">
+    <Button title="Image" insert nodeType="image">
       <ImageIcon />
     </Button>
     <Separator />
