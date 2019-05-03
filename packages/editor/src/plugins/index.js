@@ -10,8 +10,10 @@ import TablePlugin from './table'
 import ImagePlugin from './image'
 import LinkPlugin from './link'
 import MarkdownShortcutsPlugin from './markdown-shortcuts'
+import ThemeEditorPlugin from '../plugins/theme-editor'
 
 export default [
+  ThemeEditorPlugin(),
   SoftBreak({ shift: true }),
   MarkdownPlugin(),
   CodePlugin(),

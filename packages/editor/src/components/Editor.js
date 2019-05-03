@@ -7,7 +7,6 @@ import initialValue from '!!raw-loader!../lib/value.mdx'
 import { parseMDX, serializer } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
-import ThemeEditorPlugin from '../plugins/theme-editor'
 import { Context } from './context'
 import defaultTheme from './theme'
 import defaultPlugins from '../plugins'
@@ -119,6 +118,7 @@ class BlockEditor extends Component {
             {...this.props}
             ref={editor => (this.editor = editor)}
             components={allComponents}
+            theme={theme}
             schema={schema}
             placeholder="Write some MDX..."
             plugins={plugins}
@@ -136,7 +136,7 @@ class BlockEditor extends Component {
 BlockEditor.defaultProps = {
   components: {},
   theme: defaultTheme,
-  plugins: [ThemeEditorPlugin({ theme: defaultTheme }), ...defaultPlugins],
+  plugins: defaultPlugins,
   renderEditor: (props, editor, next) => {
     const children = next()
     return (
