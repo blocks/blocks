@@ -30,7 +30,7 @@ const insertYouTube = editor => {
 }
 
 const insertTweet = editor => {
-  editor.insertJSXBlock('tweet', {
+  editor.insertJSXBlock('Tweet', {
     tweetId: ''
   })
 }
