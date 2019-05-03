@@ -8,8 +8,10 @@ import { parseMDX, serializer } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
 import ThemeEditorPlugin from '../plugins/theme-editor'
+import { Context } from './context'
 import defaultTheme from './theme'
 import defaultPlugins from '../plugins'
+import defaultBlocks from './blocks'
 import Toolbar from './Toolbar'
 
 const insertImage = (change, src, target) => {
@@ -101,22 +103,31 @@ class BlockEditor extends Component {
   }
 
   render() {
-    const { plugins, theme } = this.props
-    const allPlugins = [ThemeEditorPlugin({ theme }), ...plugins]
+    const { plugins, theme, components } = this.props
+    const allComponents = {
+      ...defaultBlocks,
+      ...components
+    }
+    const context = {
+      components: allComponents
+    }
 
     return (
       <div style={{ minHeight: '100vh' }}>
-        <Editor
-          {...this.props}
-          ref={editor => (this.editor = editor)}
-          schema={schema}
-          placeholder="Write some MDX..."
-          plugins={allPlugins}
-          value={this.state.value}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onPaste={this.handlePaste}
-        />
+        <Context.Provider value={context}>
+          <Editor
+            {...this.props}
+            ref={editor => (this.editor = editor)}
+            components={allComponents}
+            schema={schema}
+            placeholder="Write some MDX..."
+            plugins={plugins}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
+          />
+        </Context.Provider>
       </div>
     )
   }
@@ -125,7 +136,7 @@ class BlockEditor extends Component {
 BlockEditor.defaultProps = {
   components: {},
   theme: defaultTheme,
-  plugins: defaultPlugins,
+  plugins: [ThemeEditorPlugin({ theme: defaultTheme }), ...defaultPlugins],
   renderEditor: (props, editor, next) => {
     const children = next()
     return (

@@ -152,10 +152,16 @@ const defaultChildren = (
   </>
 )
 
+const getBlockComponentNames = components => {
+  return Object.keys(components).filter(
+    key => typeof components[key].propertyControls === 'object'
+  )
+}
+
 export const Toolbar = props => {
   const { editor, children, components } = props
 
-  console.log('components', Object.keys(components))
+  const blocks = getBlockComponentNames(components)
 
   return (
     <Context.Provider value={{ editor }}>
@@ -168,7 +174,7 @@ export const Toolbar = props => {
           onSelect={item => {
             editor.insertJSXBlock(item, {})
           }}
-          options={['YouTube', 'Tweet', 'Gist']}
+          options={blocks}
         />
       </Root>
     </Context.Provider>
