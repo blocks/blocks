@@ -3,9 +3,7 @@ import { jsx } from '@emotion/core'
 import { useState } from 'react'
 import { Flex } from 'theme-ui/layout'
 
-import Label from '../../components/Label'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
+import { Label, Input, Button } from '../../components/ui'
 
 export default ({ fields, value, onSubmit }) => {
   const [state, setState] = useState(value)

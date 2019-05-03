@@ -6,7 +6,17 @@ import ErrorIcon from '@material-ui/icons/ErrorOutline'
 import { Context as ThemeContext, css } from 'theme-ui'
 import { Flex } from 'theme-ui/layout'
 import omit from 'lodash.omit'
-import CodeBlock from '../components/CodeBlock'
+
+const Pre = props => (
+  <pre
+    {...props}
+    css={css({
+      bg: 'lightgray',
+      p: 3,
+      fontFamily: 'monospace'
+    })}
+  />
+)
 
 const omitComponents = ['delete']
 
@@ -40,14 +50,14 @@ const LiveJSX = ({ code, attributes, children }) => {
             width: '100%'
           }}
         >
-          <CodeBlock
+          <Pre
             {...attributes}
             css={css({
               width: '100%'
             })}
           >
             {children}
-          </CodeBlock>
+          </Pre>
           <ErrorMessage
             css={css({
               ml: -32

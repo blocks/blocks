@@ -144,7 +144,7 @@ const defaultChildren = (
     <Button title="Numbered List" nodeType="numbered-list">
       <NumberedListIcon />
     </Button>
-    <Button title="JSX" nodeType="jsx">
+    <Button title="JSX" nodeType="jsx" insert>
       <JSX />
     </Button>
     <Separator />
