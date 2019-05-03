@@ -9,7 +9,6 @@ import JSXBlocksPlugin from './jsx-blocks'
 import TablePlugin from './table'
 import ImagePlugin from './image'
 import LinkPlugin from './link'
-import ToolbarPlugin from './toolbar'
 import MarkdownShortcutsPlugin from './markdown-shortcuts'
 
 export default [
@@ -29,6 +28,5 @@ export default [
       list_item: 'list-item'
     }
   }),
-  MarkdownShortcutsPlugin(),
-  ToolbarPlugin()
+  MarkdownShortcutsPlugin()
 ]

@@ -148,10 +148,10 @@ const defaultChildren = (
       <JSX />
     </Button>
     <Separator />
-    <Button title="YouTube Video" nodeType="YouTube">
+    <Button title="YouTube Video" nodeType="YouTube" command="insertYouTube">
       <VideoIcon />
     </Button>
-    <Button title="GitHub Gist" nodeType="Gist">
+    <Button title="GitHub Gist" nodeType="Gist" command="insertGist">
       <Gist />
     </Button>
   </>
