@@ -94,7 +94,10 @@ export default ({ editor, node, attributes, props, isSelected }) => {
         <YouTubeForm
           value={getProps(node)}
           onSubmit={next => {
-            editor.setJSXProps(next)
+            editor.setJSXProps({
+              type: 'YouTube',
+              props: next
+            })
           }}
         />
       )}

@@ -3,28 +3,29 @@ import { Data } from 'slate'
 import YouTube from './YouTube'
 import Gist from './Gist'
 
-const setJSXProps = (editor, propsObject) => {
-  const props = Data.create(propsObject)
-  editor.setBlocks({ data: { props } })
+const setJSXProps = (editor, dataObject) => {
+  const data = Data.create(dataObject)
+  editor.setBlocks({ data })
 }
 
 const insertJSXBlock = (editor, type, props) => {
   editor.insertBlock({
-    type,
+    type: 'jsx-void',
     data: {
+      type,
       props: Data.create(props)
     }
   })
 }
 
 const insertYouTube = editor => {
-  editor.insertJSXBlock('youtube', {
+  editor.insertJSXBlock('YouTube', {
     videoId: ''
   })
 }
 
 const insertGist = editor => {
-  editor.insertJSXBlock('gist', {
+  editor.insertJSXBlock('Gist', {
     id: ''
   })
 }
@@ -44,12 +45,14 @@ export default (opts = {}) => ({
   },
   renderNode: (props, editor, next) => {
     const { node } = props
+    if (node.type !== 'jsx-void') return next()
+    const component = node.data.get('type')
 
-    switch (node.type) {
-      case 'youtube':
+    switch (component) {
+      case 'YouTube':
         return <YouTube {...props} editor={editor} props={getProps(node)} />
         break
-      case 'gist':
+      case 'Gist':
         return <Gist {...props} editor={editor} props={getProps(node)} />
         break
       default:

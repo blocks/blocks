@@ -68,8 +68,11 @@ export default ({ editor, node, attributes, props, isSelected }) => {
       {isSelected && (
         <Form
           value={props}
-          onSubmit={data => {
-            editor.setJSXProps(data)
+          onSubmit={next => {
+            editor.setJSXProps({
+              type: 'Gist',
+              props: next
+            })
           }}
         />
       )}
