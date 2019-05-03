@@ -2,6 +2,7 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
 import { css } from 'theme-ui'
+import { Dropdown } from './ui'
 
 // todo: figure out the best package for React material icons
 import BoldIcon from '@material-ui/icons/FormatBold'
@@ -43,6 +44,7 @@ const Separator = () => (
     })}
   />
 )
+const Spacer = () => <div css={{ margin: 'auto' }} />
 
 const Root = props => (
   <div
@@ -147,22 +149,28 @@ const defaultChildren = (
     <Button title="JSX" nodeType="jsx" insert>
       <JSX />
     </Button>
-    <Separator />
-    <Button title="YouTube Video" nodeType="YouTube" command="insertYouTube">
-      <VideoIcon />
-    </Button>
-    <Button title="GitHub Gist" nodeType="Gist" command="insertGist">
-      <Gist />
-    </Button>
   </>
 )
 
 export const Toolbar = props => {
-  const { editor, children } = props
+  const { editor, children, components } = props
+
+  console.log('components', Object.keys(components))
 
   return (
     <Context.Provider value={{ editor }}>
-      <Root>{children}</Root>
+      <Root>
+        {children}
+        <Spacer />
+        <Separator />
+        <Dropdown
+          label="Insert Block"
+          onSelect={item => {
+            editor.insertJSXBlock(item, {})
+          }}
+          options={['YouTube', 'Tweet', 'Gist']}
+        />
+      </Root>
     </Context.Provider>
   )
 }

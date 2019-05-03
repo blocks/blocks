@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
+import { ThemeProvider } from 'theme-ui'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
@@ -128,10 +129,10 @@ BlockEditor.defaultProps = {
   renderEditor: (props, editor, next) => {
     const children = next()
     return (
-      <>
-        <Toolbar editor={editor} />
+      <ThemeProvider theme={props.theme}>
+        <Toolbar {...props} editor={editor} />
         {children}
-      </>
+      </ThemeProvider>
     )
   }
 }

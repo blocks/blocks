@@ -13,6 +13,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "@reach/alert-dialog": "^0.2.3",
+    "@reach/menu-button": "^0.1.17",
     "@slate-editor/utils": "^5.1.0",
     "@styled-system/edit": "^0.0.4",
     "emotion-theming": "^10.0.10",
