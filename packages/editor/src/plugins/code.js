@@ -1,18 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React from 'react'
-import { css } from 'theme-ui'
-
-const Pre = props => (
-  <pre
-    {...props}
-    css={css({
-      bg: 'lightgray',
-      p: 3,
-      fontFamily: 'monospace'
-    })}
-  />
-)
+import { Pre } from '../components/ui'
 
 export default (opts = {}) => ({
   renderNode: (props, editor, next) => {
