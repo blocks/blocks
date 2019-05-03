@@ -18,8 +18,6 @@ import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit'
 // import HeadingIcon from '@material-ui/icons/Title'
 // import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
 
-import ToolbarButton from './ToolbarButton'
-
 // "icons"
 const B = props => (
   <b
@@ -146,13 +144,13 @@ const buttons = [
     title: 'Insert YouTube Video',
     Icon: VideoIcon,
     command: 'insertYouTube',
-    nodeType: 'youtube'
+    nodeType: 'YouTube'
   },
   {
     title: 'Insert GitHub Gist',
     Icon: Gist,
     command: 'insertGist',
-    nodeType: 'gist'
+    nodeType: 'Gist'
   }
 ]
 
@@ -165,14 +163,14 @@ export const Toolbar = props => {
         separator ? (
           <Separator key={i} />
         ) : (
-          <ToolbarButton
+          <Toolbar.Button
             key={i}
             title={title}
             active={editor.isActive(nodeType)}
             onClick={editor[command]}
           >
             <Icon size={20} />
-          </ToolbarButton>
+          </Toolbar.Button>
         )
       )}
     </Root>
@@ -182,5 +180,27 @@ export const Toolbar = props => {
 Toolbar.defaultProps = {
   buttons
 }
+
+Toolbar.Button = ({ active, ...props }) => (
+  <button
+    {...props}
+    css={css({
+      display: 'block',
+      minWidth: 32,
+      height: 32,
+      padding: 1,
+      fontSize: 16,
+      lineHeight: 1.5,
+      margin: '1px',
+      color: active ? 'primary' : 'inherit',
+      backgroundColor: active ? 'lightgray' : 'transparent',
+      border: 0,
+      '&:focus': {
+        outline: '2px solid',
+        color: 'primary'
+      }
+    })}
+  />
+)
 
 export default Toolbar

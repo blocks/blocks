@@ -7,6 +7,13 @@ import Overlay from './Overlay'
 import YouTube from './YouTube'
 import Gist from './Gist'
 
+const hasJSXBlock = (editor, type) => {
+  if (!editor.hasBlock('jsx-void') && !editor.hasBlock('jsx')) return false
+  return editor.value.blocks.some(
+    node => node.data && node.data.get('type') === type
+  )
+}
+
 const setJSXProps = (editor, dataObject) => {
   const data = Data.create(dataObject)
   editor.setBlocks({ data })
@@ -84,6 +91,9 @@ const components = {
 }
 
 export default (opts = {}) => ({
+  queries: {
+    hasJSXBlock
+  },
   commands: {
     insertJSXBlock,
     insertYouTube,
