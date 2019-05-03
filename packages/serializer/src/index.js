@@ -347,6 +347,7 @@ const jsxBlock = {
     if (node.children) {
       data = {
         type: getComponentName(node.children[0].value),
+        customBlock: true,
         props: {}
       }
     } else {
@@ -381,7 +382,7 @@ const jsxBlock = {
             type: data.type,
             nodes: visitChildren(node),
             data: {
-              type: data.type,
+              ...data,
               props: Data.create(data.props || {})
             }
           }
@@ -448,6 +449,18 @@ const link = {
   })
 }
 
+const customBlock = {
+  match: node => node.object === 'block' && node.data.customBlock,
+  matchMdast: false,
+  toMdast: (object, _index, _parent, { visitChildren }) => {
+    return [
+      { type: 'jsx', value: `<${object.type}>` },
+      ...visitChildren(object),
+      { type: 'jsx', value: `</${object.type}>` }
+    ]
+  }
+}
+
 export const serializer = new MarkdownSerializer({
   rules: [
     listItemChild, // We want this to run before paragraph because it's a special case
@@ -464,6 +477,8 @@ export const serializer = new MarkdownSerializer({
     link,
     bulletedList,
     numberedList,
-    listItem
-  ].concat(headings)
+    listItem,
+    ...headings,
+    customBlock
+  ]
 })

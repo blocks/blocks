@@ -48,10 +48,15 @@ export default (opts = {}) => ({
     switch (node.type) {
       case 'youtube':
         return <YouTube {...props} editor={editor} props={getProps(node)} />
-        break
       case 'gist':
         return <Gist {...props} editor={editor} props={getProps(node)} />
-        break
+      case 'Block':
+        return (
+          <div
+            {...props}
+            style={{ backgroundColor: 'tomato', padding: '40px' }}
+          />
+        )
       default:
         return next()
     }
