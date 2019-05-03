@@ -97,7 +97,6 @@ export default (opts = {}) => ({
 
     if (components[type]) {
       const Component = components[type]
-      console.log(node.data.toJS(), getProps(node))
       return (
         <Wrapper
           {...props}
