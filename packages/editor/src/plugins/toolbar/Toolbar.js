@@ -17,6 +17,7 @@ import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit'
 // import StrikethroughIcon from '@material-ui/icons/StrikethroughS'
 // import HeadingIcon from '@material-ui/icons/Title'
 // import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
+import SimpleIcon from 'react-simple-icons'
 
 import ToolbarButton from './ToolbarButton'
 
@@ -34,6 +35,7 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
+const Tweet = () => <SimpleIcon name="twitter" size={20} />
 const Gist = () => <B>GIST</B>
 
 const Separator = () => (
@@ -147,6 +149,12 @@ const buttons = [
     Icon: VideoIcon,
     command: 'insertYouTube',
     nodeType: 'youtube'
+  },
+  {
+    title: 'Insert Tweet',
+    Icon: Tweet,
+    command: 'insertTweet',
+    nodeType: 'tweet'
   },
   {
     title: 'Insert GitHub Gist',

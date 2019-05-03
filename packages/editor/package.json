@@ -25,11 +25,14 @@
     "raw-loader": "^2.0.0",
     "react-gist": "^1.2.1",
     "react-live": "^2.0.1",
+    "react-simple-icons": "^1.0.0-beta.5",
+    "react-twitter-embed": "^2.0.8",
     "react-youtube": "^7.9.0",
     "slate": "0.45.1",
     "slate-deep-table": "^0.8.0",
     "slate-react": "^0.21.20",
     "slate-soft-break": "^0.9.0",
-    "theme-ui": "^0.0.10"
+    "theme-ui": "^0.0.10",
+    "url-parse": "^1.4.7"
   }
 }
