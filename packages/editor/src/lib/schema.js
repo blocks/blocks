@@ -24,9 +24,6 @@ export default {
     },
     'jsx-void': {
       isVoid: true
-    },
-    tweet: {
-      isVoid: true
     }
   }
 }
