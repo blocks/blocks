@@ -1,0 +1,25 @@
+import { BackgroundGradient } from '@blocks/kit'
+
+# BackgroundGradient
+
+The BackgroundGradient is a tiny little component to set a gradient. You
+can also optionally pass it `random={true}` to get a new gradient each time
+it renders.
+
+<BackgroundGradient random={true}>
+
+### Hello, world!
+
+I'm MDX inside BackgroundGradient.
+
+</BackgroundGradient>
+
+## Table of properties
+
+Prop | Default | Description
+---- | ------- | -----------
+`start` | `rebeccapurple` | Starting color for the gradient
+`end` | None | Ending color for the gradient
+`stop` | `80%` | Location where the ending color gradient takes over
+`angle` | `30` | Angle of the gradient
+`random` | `false` | Random gradient each time.

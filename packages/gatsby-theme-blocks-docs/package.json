@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@blocks/editor": "^0.0.10",
+    "@blocks/kit": "^0.0.9",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.15",
