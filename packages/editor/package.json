@@ -1,12 +1,12 @@
 {
   "name": "@blocks/editor",
   "description": "WYSIWYG MDX editor",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "John Otander",
   "repository": "johno/blocks",
   "dependencies": {
-    "@blocks/serializer": "^0.0.10",
+    "@blocks/serializer": "^0.0.11",
     "@convertkit/slate-lists": "^0.2.2",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
