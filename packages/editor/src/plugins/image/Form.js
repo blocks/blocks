@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { Flex } from 'theme-ui/layout'
 
-import Card from '../../components/Card'
-import Label from '../../components/Label'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
+import { Card, Label, Input, Button } from '../../components/ui'
 
 const Form = ({ src = '', alt = '', onSubmit }) => {
   const [state, setState] = useState({ src, alt })

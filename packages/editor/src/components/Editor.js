@@ -1,50 +1,17 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
-import ListsPlugin from '@convertkit/slate-lists'
-import DeepTable from 'slate-deep-table'
-import SoftBreak from 'slate-soft-break'
+import { ThemeProvider } from 'theme-ui'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
 import { parseMDX, serializer } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
-import theme from './theme'
-
-import MarkdownPlugin from '../plugins/markdown'
-
-import CodePlugin from '../plugins/code'
-import LiveJSXPlugin from '../plugins/live-jsx'
-import JSXBlocksPlugin from '../plugins/jsx-blocks'
-import TablePlugin from '../plugins/table'
-import ImagePlugin from '../plugins/image'
-import LinkPlugin from '../plugins/link'
-import ToolbarPlugin from '../plugins/toolbar'
-import ThemeEditorPlugin from '../plugins/theme-editor'
-import MarkdownShortcutsPlugin from '../plugins/markdown-shortcuts'
-
-const plugins = [
-  // setting the theme plugin first ensures other editor renders have theme in context
-  ThemeEditorPlugin({ theme }),
-  SoftBreak({ shift: true }),
-  MarkdownPlugin(),
-  CodePlugin(),
-  LiveJSXPlugin(),
-  JSXBlocksPlugin(),
-  TablePlugin(),
-  DeepTable(),
-  ImagePlugin(),
-  LinkPlugin(),
-  ListsPlugin({
-    blocks: {
-      ordered_list: 'numbered-list',
-      unordered_list: 'bulleted-list',
-      list_item: 'list-item'
-    }
-  }),
-  MarkdownShortcutsPlugin(),
-  ToolbarPlugin()
-]
+import { Context } from './context'
+import defaultTheme from './theme'
+import defaultPlugins from '../plugins'
+import defaultBlocks from './blocks'
+import Toolbar from './Toolbar'
 
 const insertImage = (change, src, target) => {
   if (target) {
@@ -135,25 +102,48 @@ class BlockEditor extends Component {
   }
 
   render() {
+    const { plugins, theme, components } = this.props
+    const allComponents = {
+      ...defaultBlocks,
+      ...components
+    }
+    const context = {
+      components: allComponents
+    }
+
     return (
       <div style={{ minHeight: '100vh' }}>
-        <Editor
-          {...this.props}
-          ref={editor => (this.editor = editor)}
-          schema={schema}
-          placeholder="Write some MDX..."
-          plugins={plugins}
-          value={this.state.value}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onPaste={this.handlePaste}
-          renderEditor={(_props, _editor, next) => {
-            const children = next()
-
-            return <>{children}</>
-          }}
-        />
+        <Context.Provider value={context}>
+          <Editor
+            {...this.props}
+            ref={editor => (this.editor = editor)}
+            components={allComponents}
+            theme={theme}
+            schema={schema}
+            placeholder="Write some MDX..."
+            plugins={plugins}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
+          />
+        </Context.Provider>
       </div>
+    )
+  }
+}
+
+BlockEditor.defaultProps = {
+  components: {},
+  theme: defaultTheme,
+  plugins: defaultPlugins,
+  renderEditor: (props, editor, next) => {
+    const children = next()
+    return (
+      <ThemeProvider theme={props.theme}>
+        <Toolbar {...props} editor={editor} />
+        {children}
+      </ThemeProvider>
     )
   }
 }

@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import { Styled } from 'theme-ui'
 import { Flex, Box } from 'theme-ui/layout'
-
-import Card from '../../components/Card'
-import Label from '../../components/Label'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
+import { Card, Label, Input, Button } from '../../components/ui'
 
 const Form = ({ node, editor }) => {
   const title = node.data.get('title') || ''

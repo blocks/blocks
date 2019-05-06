@@ -1,12 +1,17 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Data } from 'slate'
+import { Context } from '../../components/context'
 import Form from './Form'
 import Overlay from './Overlay'
-import YouTube from './YouTube'
-import Tweet from './Tweet'
-import Gist from './Gist'
+
+const hasJSXBlock = (editor, type) => {
+  if (!editor.hasBlock('jsx-void') && !editor.hasBlock('jsx')) return false
+  return editor.value.blocks.some(
+    node => node.data && node.data.get('type') === type
+  )
+}
 
 const setJSXProps = (editor, dataObject) => {
   const data = Data.create(dataObject)
@@ -23,24 +28,6 @@ const insertJSXBlock = (editor, type, props) => {
   })
 }
 
-const insertYouTube = editor => {
-  editor.insertJSXBlock('YouTube', {
-    videoId: ''
-  })
-}
-
-const insertTweet = editor => {
-  editor.insertJSXBlock('Tweet', {
-    tweetId: ''
-  })
-}
-
-const insertGist = editor => {
-  editor.insertJSXBlock('Gist', {
-    id: ''
-  })
-}
-
 const getProps = node => {
   const map = node.data.get('props')
   if (typeof map.toJS !== 'function') return map
@@ -54,7 +41,7 @@ const Wrapper = ({
   component,
   Component,
   props,
-  fields
+  fields = {}
 }) => {
   return (
     <div>
@@ -84,19 +71,27 @@ const Wrapper = ({
   )
 }
 
-// placeholder
-const components = {
-  YouTube,
-  Gist,
-  Tweet
+const Node = ({ type, next, ...props }) => {
+  const { components } = useContext(Context)
+  const Component = components[type]
+  if (!Component) return next()
+
+  return (
+    <Wrapper
+      {...props}
+      Component={Component}
+      component={type}
+      fields={Component.propertyControls}
+    />
+  )
 }
 
 export default (opts = {}) => ({
+  queries: {
+    hasJSXBlock
+  },
   commands: {
     insertJSXBlock,
-    insertYouTube,
-    insertTweet,
-    insertGist,
     setJSXProps
   },
   renderNode: (props, editor, next) => {
@@ -104,20 +99,14 @@ export default (opts = {}) => ({
     if (node.type !== 'jsx-void') return next()
     const type = node.data.get('type')
 
-    if (components[type]) {
-      const Component = components[type]
-      return (
-        <Wrapper
-          {...props}
-          editor={editor}
-          Component={Component}
-          component={type}
-          props={getProps(node)}
-          fields={Component.propertyControls}
-        />
-      )
-    }
-
-    return next()
+    return (
+      <Node
+        {...props}
+        next={next}
+        editor={editor}
+        type={type}
+        props={getProps(node)}
+      />
+    )
   }
 })

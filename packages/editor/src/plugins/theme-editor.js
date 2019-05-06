@@ -102,9 +102,8 @@ const ThemeEditor = props => {
 
 export default (opts = {}) => ({
   renderEditor: (props, editor, next) => {
-    const { theme } = opts
     const children = next()
-    const { components } = props
+    const { theme, components } = props
 
     return (
       <ThemeProvider components={components} theme={theme}>
