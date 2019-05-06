@@ -3,11 +3,11 @@ import { jsx } from '@emotion/core'
 import adaptiveGradient from 'adaptive-gradient'
 import randomHex from 'random-hex-color'
 
-const BackgroundGradient = ({
+const TextGradient = ({
   start = 'rebeccapurple',
   end,
-  stop = '80%',
-  angle = 30,
+  stop = '60%',
+  angle = 90,
   random,
   ...props
 }) => {
@@ -30,15 +30,15 @@ const BackgroundGradient = ({
       css={{
         backgroundColor: start,
         background: backgroundGradient,
-        color: gradient.fontShouldBeLight ? 'white' : 'black',
-        padding: 20
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent'
       }}
       {...props}
     />
   )
 }
 
-BackgroundGradient.propertyControls = {
+TextGradient.propertyControls = {
   start: {
     type: 'color'
   },
@@ -56,4 +56,4 @@ BackgroundGradient.propertyControls = {
   }
 }
 
-export default BackgroundGradient
+export default TextGradient
