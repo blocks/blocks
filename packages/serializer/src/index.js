@@ -370,6 +370,14 @@ const jsxBlock = {
   },
   toMdast: (object, index, parent, { visitChildren }) => {
     const props = object.data.props
+
+    if (!object.data.type) {
+      return {
+        type: 'jsx',
+        value: visitChildren(object)[0].value
+      }
+    }
+
     const value = applyProps(`<${object.data.type} />`, { props })
 
     if (object.type === 'jsx-void') {

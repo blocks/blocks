@@ -118,6 +118,7 @@ export default (opts = {}) => ({
     const isJSXNode = node.type === 'jsx' || node.type === 'jsx-void'
     if (!isJSXNode) return next()
     const type = node.data.get('type')
+    if (!type) return next()
 
     return (
       <Node
