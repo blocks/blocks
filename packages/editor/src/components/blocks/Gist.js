@@ -17,6 +17,7 @@ const Gist = props => {
 }
 
 Gist.propertyControls = {
+  isVoid: true,
   id: {
     type: 'string',
     title: 'Gist ID'

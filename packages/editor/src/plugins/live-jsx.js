@@ -70,11 +70,13 @@ export default (opts = {}) => ({
     if (node.type !== 'jsx') return next()
 
     return (
-      <LiveJSX
-        attributes={attributes}
-        code={node.getText()}
-        children={children}
-      />
+      next() || (
+        <LiveJSX
+          attributes={attributes}
+          code={node.getText()}
+          children={children}
+        />
+      )
     )
   }
 })

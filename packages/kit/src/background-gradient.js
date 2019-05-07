@@ -21,7 +21,7 @@ const BackgroundGradient = ({
     linear-gradient(
       ${angle}deg,
       ${start},
-      ${gradientEnd} ${stop}
+      ${end || gradientEnd} ${stop}
     )
   `
 
@@ -39,6 +39,7 @@ const BackgroundGradient = ({
 }
 
 BackgroundGradient.propertyControls = {
+  isVoid: false,
   start: {
     type: 'color'
   },

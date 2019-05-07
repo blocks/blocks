@@ -343,6 +343,10 @@ const jsxBlock = {
         type: getComponentName(node.children[0].value),
         props: {}
       }
+
+      // Remove open and closing jsx blocks
+      node.children = node.children.slice(1, node.children.length - 1)
+
       return {
         object: 'block',
         type: 'jsx',
@@ -365,17 +369,28 @@ const jsxBlock = {
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
-    let value = object.nodes.map(node => node.leaves[0].text).join()
+    const props = object.data.props
+    const value = applyProps(`<${object.data.type} />`, { props })
+
     if (object.type === 'jsx-void') {
-      // only update blessed types
-      value = `<${object.data.type} />`
-      const props = object.data.props
-      value = applyProps(value, { props })
+      return {
+        type: 'jsx',
+        value
+      }
     }
-    return {
-      type: 'jsx',
-      value
-    }
+
+    const children = visitChildren(object)
+    return [
+      {
+        type: 'jsx',
+        value: value.replace(/ \/>$/, '>')
+      },
+      ...children,
+      {
+        type: 'jsx',
+        value: `</${object.data.type}>`
+      }
+    ]
   }
 }
 

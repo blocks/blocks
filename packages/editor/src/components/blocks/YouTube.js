@@ -37,6 +37,7 @@ const YouTube = props => {
 
 // mimicking Framer X - could make this compatible
 YouTube.propertyControls = {
+  isVoid: true,
   videoId: {
     type: 'string',
     title: 'Video ID',

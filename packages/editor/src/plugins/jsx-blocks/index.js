@@ -3,8 +3,6 @@ import { jsx } from '@emotion/core'
 import React, { useContext } from 'react'
 import { Data } from 'slate'
 import { Context } from '../../components/context'
-import Form from './Form'
-import Overlay from './Overlay'
 
 const hasJSXBlock = (editor, type) => {
   if (!editor.hasBlock('jsx-void') && !editor.hasBlock('jsx')) return false
@@ -18,14 +16,26 @@ const setJSXProps = (editor, dataObject) => {
   editor.setBlocks({ data })
 }
 
-const insertJSXBlock = (editor, type, props) => {
-  editor.insertBlock({
-    type: 'jsx-void',
-    data: {
-      type,
-      props: Data.create(props)
-    }
-  })
+const insertJSXBlock = (editor, type, props, component) => {
+  const { isVoid } = component.propertyControls
+
+  if (isVoid) {
+    editor.insertBlock({
+      type: 'jsx-void',
+      data: {
+        type,
+        props: Data.create(props)
+      }
+    })
+  } else {
+    editor.wrapBlock({
+      type: 'jsx',
+      data: {
+        type,
+        props: Data.create(props)
+      }
+    })
+  }
 }
 
 const getProps = node => {
@@ -34,56 +44,12 @@ const getProps = node => {
   return map.toJS()
 }
 
-const Wrapper = ({
-  editor,
-  attributes,
-  isSelected,
-  component,
-  Component,
-  props,
-  fields = {}
-}) => {
-  return (
-    <div>
-      <div
-        {...attributes}
-        style={{
-          position: 'relative',
-          outline: isSelected ? '2px solid blue' : null
-        }}
-      >
-        <Component {...props} />
-        {!isSelected && <Overlay />}
-      </div>
-      {isSelected && (
-        <Form
-          fields={fields}
-          value={props}
-          onSubmit={next => {
-            editor.setJSXProps({
-              type: component,
-              props: next
-            })
-          }}
-        />
-      )}
-    </div>
-  )
-}
-
 const Node = ({ type, next, ...props }) => {
   const { components } = useContext(Context)
   const Component = components[type]
   if (!Component) return next()
 
-  return (
-    <Wrapper
-      {...props}
-      Component={Component}
-      component={type}
-      fields={Component.propertyControls}
-    />
-  )
+  return <Component {...props} />
 }
 
 export default (opts = {}) => ({
@@ -96,7 +62,8 @@ export default (opts = {}) => ({
   },
   renderNode: (props, editor, next) => {
     const { node } = props
-    if (node.type !== 'jsx-void') return next()
+    const isJSXNode = node.type === 'jsx' || node.type === 'jsx-void'
+    if (!isJSXNode) return next()
     const type = node.data.get('type')
 
     return (
