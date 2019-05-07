@@ -14,18 +14,41 @@ const hasJSXBlock = (editor, type) => {
 }
 
 const setJSXProps = (editor, dataObject) => {
+  const {
+    value: { startBlock, document }
+  } = editor
   const data = Data.create(dataObject)
-  editor.setBlocks({ data })
+
+  if (startBlock.data.get('type') !== dataObject.type) {
+    const parent = document.getParent(startBlock.key)
+    if (parent) {
+      editor.setNodeByKey(parent.key, { type: 'jsx', data })
+    }
+  } else {
+    editor.setBlocks({ data })
+  }
 }
 
-const insertJSXBlock = (editor, type, props) => {
-  editor.insertBlock({
-    type: 'jsx-void',
-    data: {
-      type,
-      props: Data.create(props)
-    }
-  })
+const insertJSXBlock = (editor, type, props, component) => {
+  const { isVoid } = component.propertyControls
+
+  if (isVoid) {
+    editor.insertBlock({
+      type: 'jsx-void',
+      data: {
+        type,
+        props: Data.create(props)
+      }
+    })
+  } else {
+    editor.wrapBlock({
+      type: 'jsx',
+      data: {
+        type,
+        props: Data.create(props)
+      }
+    })
+  }
 }
 
 const getProps = node => {
@@ -41,20 +64,15 @@ const Wrapper = ({
   component,
   Component,
   props,
+  children,
   fields = {}
 }) => {
   return (
-    <div>
-      <div
-        {...attributes}
-        style={{
-          position: 'relative',
-          outline: isSelected ? '2px solid blue' : null
-        }}
-      >
-        <Component {...props} />
-        {!isSelected && <Overlay />}
-      </div>
+    <div style={{ position: 'relative' }}>
+      <Component {...attributes} {...props}>
+        {children || null}
+      </Component>
+      {!isSelected && Component.propertyControls.isVoid && <Overlay />}
       {isSelected && (
         <Form
           fields={fields}
@@ -96,8 +114,10 @@ export default (opts = {}) => ({
   },
   renderNode: (props, editor, next) => {
     const { node } = props
-    if (node.type !== 'jsx-void') return next()
+    const isJSXNode = node.type === 'jsx' || node.type === 'jsx-void'
+    if (!isJSXNode) return next()
     const type = node.data.get('type')
+    if (!type) return next()
 
     return (
       <Node

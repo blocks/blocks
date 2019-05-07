@@ -21,7 +21,7 @@ const TextGradient = ({
     linear-gradient(
       ${angle}deg,
       ${start},
-      ${gradientEnd} ${stop}
+      ${end || gradientEnd} ${stop}
     )
   `
 
@@ -39,6 +39,7 @@ const TextGradient = ({
 }
 
 TextGradient.propertyControls = {
+  isVoid: false,
   start: {
     type: 'color'
   },

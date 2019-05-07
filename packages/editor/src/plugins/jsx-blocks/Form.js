@@ -10,6 +10,7 @@ export default ({ fields, value, onSubmit }) => {
   const keys = Object.keys(fields)
   return (
     <form
+      contentEditable={false}
       onClick={e => {
         e.stopPropagation()
       }}

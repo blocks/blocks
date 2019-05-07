@@ -8,6 +8,7 @@ const handleSpace = (event, editor) => {
 
   const { startBlock } = value
   const { start } = selection
+
   const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '')
   const type = getTypeFromMarkdown(chars)
 

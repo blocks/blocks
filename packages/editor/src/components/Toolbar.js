@@ -172,7 +172,7 @@ export const Toolbar = props => {
         <Dropdown
           label="Insert Block"
           onSelect={item => {
-            editor.insertJSXBlock(item, {})
+            editor.insertJSXBlock(item, {}, components[item])
           }}
           options={blocks}
         />

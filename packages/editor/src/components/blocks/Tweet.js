@@ -27,6 +27,7 @@ const getIDFromURL = url => {
 }
 
 Tweet.propertyControls = {
+  isVoid: true,
   tweetId: {
     type: 'string',
     title: 'Tweet ID',
