@@ -19,7 +19,7 @@ const setJSXProps = (editor, dataObject) => {
   } = editor
   const data = Data.create(dataObject)
 
-  if (startBlock.type !== dataObject.type) {
+  if (startBlock.data.get('type') !== dataObject.type) {
     const parent = document.getParent(startBlock.key)
     if (parent) {
       editor.setNodeByKey(parent.key, { type: 'jsx', data })
@@ -61,7 +61,6 @@ const Wrapper = ({
   editor,
   attributes,
   isSelected,
-  isFocused,
   component,
   Component,
   props,
