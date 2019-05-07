@@ -78,7 +78,6 @@ const Wrapper = ({
           fields={fields}
           value={props}
           onSubmit={next => {
-            console.log(next)
             editor.setJSXProps({
               type: component,
               props: next
