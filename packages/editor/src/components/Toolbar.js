@@ -59,7 +59,8 @@ const Root = props => (
       paddingTop: 2,
       paddingBottom: 2,
       borderBottom: '1px solid',
-      borderColor: 'gray'
+      borderColor: 'gray',
+      zIndex: 100
     })}
   />
 )
