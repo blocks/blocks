@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Styled } from 'theme-ui'
+/** @jsx jsx */
+import { useState } from 'react'
+import { jsx } from '@emotion/core'
+import { Styled, css } from 'theme-ui'
 import { Flex, Box } from 'theme-ui/layout'
 import { Card, Label, Input, Button } from '../../components/ui'
 
@@ -46,13 +48,26 @@ const Form = ({ node, editor }) => {
             />
           </Label>
           <Button>Apply</Button>
+          <Button
+            css={css({
+              bg: 'red',
+              color: 'white',
+              ml: 2
+            })}
+            onClick={() => editor.unwrapLink()}
+          >
+            Remove
+          </Button>
         </Flex>
       </form>
+
       <Box fontSize={1} mt={2}>
-        Open link:{' '}
-        <Styled.a href={state.href} target="_blank">
-          {state.href}
-        </Styled.a>
+        <Styled.p>
+          Open link:{' '}
+          <Styled.a href={state.href} target="_blank">
+            {state.href}
+          </Styled.a>
+        </Styled.p>
       </Box>
     </Card>
   )
