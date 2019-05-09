@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-blocks-docs",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -12,8 +12,8 @@
     "gatsby": "^2.3.24"
   },
   "dependencies": {
-    "@blocks/editor": "^0.0.14",
-    "@blocks/kit": "^0.0.14",
+    "@blocks/editor": "^0.0.15",
+    "@blocks/kit": "^0.0.15",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.15",
