@@ -16,10 +16,12 @@ const styles = css({
   },
   '[data-reach-menu-list]': {
     display: 'block',
+    position: 'relative',
     whiteSpace: 'nowrap',
     border: '1px solid lightgray',
     backgroundColor: 'white',
-    outline: 'none'
+    outline: 'none',
+    zIndex: 101
   },
   '[data-reach-menu-item]': {
     display: 'block',
