@@ -19,3 +19,9 @@ test('correctly serializes MDX to Slate schema', () => {
 
   expect(result.toJSON()).toMatchSnapshot()
 })
+
+test('correctly passes props in JSX blocks', () => {
+  const result = serializer.deserialize(parseMDX('<YouTube id="1234" />'))
+
+  expect(result.toJSON()).toMatchSnapshot()
+})

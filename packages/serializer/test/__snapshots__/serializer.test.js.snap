@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`correctly passes props in JSX blocks 1`] = `
+Object {
+  "document": Object {
+    "data": Object {},
+    "nodes": Array [
+      Object {
+        "data": Object {
+          "props": Immutable.Map {
+            "id": "1234",
+          },
+          "type": "YouTube",
+        },
+        "nodes": Array [],
+        "object": "block",
+        "type": "jsx-void",
+      },
+    ],
+    "object": "document",
+  },
+  "object": "value",
+}
+`;
+
 exports[`correctly serializes MDX to Slate schema 1`] = `
 Object {
   "document": Object {
@@ -75,7 +98,7 @@ Object {
           },
         ],
         "object": "block",
-        "type": "Block",
+        "type": "jsx",
       },
       Object {
         "data": Object {},

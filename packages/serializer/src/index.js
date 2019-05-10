@@ -6,7 +6,7 @@ const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
 const mdx = require('remark-mdx')
 const { Data } = require('slate')
 
-const { getComponentName } = require('./util')
+const { getComponentName, toJS } = require('./util')
 const { parseJSXBlock, applyProps } = require('./parse-jsx')
 const remarkInterleave = require('./remark-interleave').default
 
@@ -369,7 +369,7 @@ const jsxBlock = {
     }
   },
   toMdast: (object, index, parent, { visitChildren }) => {
-    const props = object.data.props
+    const props = toJS(object.data.props)
 
     if (!object.data.type) {
       return {
