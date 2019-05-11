@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { ThemeProvider } from 'theme-ui'
+import MDX from '@mdx-js/runtime'
 
 import schema from '../lib/schema'
 import initialValue from '!!raw-loader!../lib/value.mdx'
-import { parseMDX, serializer } from '@blocks/serializer'
+import { parseMDX, serializer, stringifyMDX } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
 import { Context } from './context'
@@ -103,6 +104,7 @@ class BlockEditor extends Component {
 
   render() {
     const { plugins, theme, components } = this.props
+    const { value } = this.state
     const allComponents = {
       ...defaultBlocks,
       ...components
@@ -111,23 +113,43 @@ class BlockEditor extends Component {
       components: allComponents
     }
 
+    const result = stringifyMDX(serializer.serialize(value))
+
     return (
-      <div style={{ minHeight: '100vh' }}>
-        <Context.Provider value={context}>
-          <Editor
-            {...this.props}
-            ref={editor => (this.editor = editor)}
-            components={allComponents}
-            theme={theme}
-            schema={schema}
-            placeholder="Write some MDX..."
-            plugins={plugins}
-            value={this.state.value}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onPaste={this.handlePaste}
-          />
-        </Context.Provider>
+      <div style={{ minHeight: '100vh', display: 'flex' }}>
+        <div
+          style={{
+            flex: '0 0 50%',
+            border: '3px solid grey',
+            padding: '1em',
+            borderRight: 'none'
+          }}
+        >
+          <Context.Provider value={context}>
+            <Editor
+              {...this.props}
+              ref={editor => (this.editor = editor)}
+              components={allComponents}
+              theme={theme}
+              schema={schema}
+              placeholder="Write some MDX..."
+              plugins={plugins}
+              value={this.state.value}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              onPaste={this.handlePaste}
+            />
+          </Context.Provider>
+        </div>
+        <div
+          style={{
+            flex: '0 0 50%',
+            border: '3px solid grey',
+            padding: '1em'
+          }}
+        >
+          <MDX components={allComponents}>{result}</MDX>
+        </div>
       </div>
     )
   }

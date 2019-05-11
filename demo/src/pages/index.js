@@ -18,8 +18,8 @@ const initialValue =
 export default () => (
   <div
     css={{
-      maxWidth: '48em',
-      padding: 32,
+      maxWidth: '80vw',
+      padding: '2em 0',
       marginLeft: 'auto',
       marginRight: 'auto'
     }}

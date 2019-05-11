@@ -13,6 +13,7 @@
     "@emotion/styled": "^10.0.10",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "@mdx-js/runtime": "^1.0.18",
     "@reach/alert-dialog": "^0.2.3",
     "@reach/menu-button": "^0.1.17",
     "@slate-editor/utils": "^5.1.0",
