@@ -13,7 +13,9 @@ const __DEVELOPER_SAVE = value => {
 }
 
 const initialValue =
-  typeof window !== 'undefined' && window.localStorage['lastMDX']
+  typeof window !== 'undefined'
+    ? window.localStorage['lastMDX']
+    : '# Blocks\n\nBlocks turns your MDX into WYSIWYG\n supports all **md formattings**\n\n## And even YouTube:\n\n<YouTube videoId="d2sQiI5NFAM" />'
 
 export default () => (
   <div
