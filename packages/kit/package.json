@@ -16,7 +16,13 @@
   },
   "dependencies": {
     "adaptive-gradient": "^1.0.6",
+    "get-youtube-id": "^1.0.1",
+    "is-url": "^1.2.4",
     "random-hex-color": "^1.0.1",
-    "theme-ui": "^0.0.10"
+    "react-gist": "^1.2.1",
+    "react-twitter-embed": "^2.0.8",
+    "react-youtube": "^7.9.0",
+    "theme-ui": "^0.0.10",
+    "url-parse": "^1.4.7"
   }
 }
