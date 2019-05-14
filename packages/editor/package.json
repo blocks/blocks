@@ -19,22 +19,16 @@
     "@styled-system/edit": "^0.0.4",
     "emotion-theming": "^10.0.10",
     "escape-string-regexp": "^2.0.0",
-    "get-youtube-id": "^1.0.1",
     "image-extensions": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
-    "is-url": "^1.2.4",
     "lodash.omit": "^4.5.0",
     "raw-loader": "^2.0.0",
-    "react-gist": "^1.2.1",
     "react-live": "^2.0.1",
     "react-simple-icons": "^1.0.0-beta.5",
-    "react-twitter-embed": "^2.0.8",
-    "react-youtube": "^7.9.0",
     "slate": "0.45.1",
     "slate-deep-table": "^0.8.0",
     "slate-react": "^0.21.20",
     "slate-soft-break": "^0.9.0",
-    "theme-ui": "^0.0.10",
-    "url-parse": "^1.4.7"
+    "theme-ui": "^0.0.10"
   }
 }
