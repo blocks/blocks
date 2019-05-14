@@ -109,7 +109,7 @@ export default (opts = {}) => ({
       <ThemeProvider components={components} theme={theme}>
         <EditProvider>
           {children}
-          <ThemeEditor />
+          {null && <ThemeEditor />}
           <Global
             styles={css({
               '*': {
