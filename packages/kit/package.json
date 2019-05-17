@@ -22,7 +22,7 @@
     "react-gist": "^1.2.1",
     "react-twitter-embed": "^2.0.8",
     "react-youtube": "^7.9.0",
-    "theme-ui": "^0.0.10",
+    "theme-ui": "^0.0.14",
     "url-parse": "^1.4.7"
   }
 }

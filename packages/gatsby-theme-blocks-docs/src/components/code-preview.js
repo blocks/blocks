@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { LiveProvider, LivePreview, LiveEditor, LiveError } from 'react-live'
 import mdx from '@mdx-js/mdx'
-import { mdx as createElement } from '@mdx-js/react'
+import { mdx as createElement, useMDXComponents } from '@mdx-js/react'
 import * as Rebass from '@rebass/emotion'
 import { ThemeContext } from '@emotion/core'
 import css from '@styled-system/css'
@@ -35,17 +35,22 @@ export default ({
   ...props
 }) => {
   const theme = useContext(ThemeContext)
+  const components = useMDXComponents()
+
+  const fullScope = { ...scope, ...components }
+  delete fullScope.delete // TODO: Better handle this
+
   return (
     <LiveProvider
       {...props}
-      code={code}
+      code={code.trim()}
       scope={{
-        components: {},
+        components,
         props: {},
-        ...scope,
+        ...fullScope,
         mdx: createElement
       }}
-      noInline={true}
+      noInline={!!mdx}
       transformCode={transformCode(mdx)}
       theme={theme.prism}
     >

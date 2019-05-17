@@ -2,26 +2,22 @@ import { TextGradient } from '@blocks/kit'
 
 # TextGradient
 
-```js
-import { TextGradient } from '@blocks/kit'
-```
-
 The TextGradient is a tiny little component to set a text gradient. You
 can also optionally pass it `random={true}` to get a new gradient each time
 it renders.
 
+```.js
 <TextGradient start='#21D4FD' end='#B721FF'>
-
-# Hello, world!
-
+  <h1>Hello, world!</h1>
 </TextGradient>
+```
+
+## Usage
+
+```js
+import { TextGradient } from '@blocks/kit'
+```
 
 ## Table of properties
 
-Prop | Default | Description
----- | ------- | -----------
-`start` | `rebeccapurple` | Starting color for the gradient
-`end` | None | Ending color for the gradient
-`stop` | `60%` | Location where the ending color gradient takes over
-`angle` | `90` | Angle of the gradient
-`random` | `false` | Random gradient each time.
+<TableOfProps component={TextGradient} />

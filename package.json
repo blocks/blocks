@@ -4,6 +4,7 @@
   "scripts": {
     "start": "yarn workspace demo start",
     "build": "lerna run prepare",
+    "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
     "docs-build": "gatsby build",
     "docs-deploy": "now && now alias $(pbpaste) mdx-blocks.com && now alias $(pbpaste) www.mdx-blocks.com",
@@ -15,11 +16,11 @@
     "demo"
   ],
   "devDependencies": {
-    "gatsby": "^2.3.31",
-    "husky": "^1.2.0",
-    "lerna": "^3.13.1",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.15.3"
+    "gatsby": "^2.5.2",
+    "husky": "^2.3.0",
+    "lerna": "^3.14.1",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1"
   },
   "husky": {
     "hooks": {

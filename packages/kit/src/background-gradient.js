@@ -41,19 +41,24 @@ const BackgroundGradient = ({
 BackgroundGradient.propertyControls = {
   isVoid: false,
   start: {
-    type: 'color'
+    type: 'color',
+    description: 'Starting color'
   },
   end: {
-    type: 'color'
+    type: 'color',
+    description: 'Ending color'
   },
   stop: {
-    type: 'string'
+    type: 'string',
+    description: 'Blending stopping point'
   },
   angle: {
-    type: 'string'
+    type: 'string',
+    description: 'Angle of the gradient'
   },
   random: {
-    type: 'boolean'
+    type: 'boolean',
+    description: 'Randomize the gradient'
   }
 }
 

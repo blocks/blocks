@@ -1,17 +1,10 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
+import React from 'react'
 import ReactGist from 'react-gist'
 
-const Gist = props => {
+const Gist = ({ id, ...props }) => {
   return (
-    <div>
-      {props.id ? (
-        <div style={{ marginLeft: -8, marginRight: -8 }}>
-          <ReactGist {...props} />
-        </div>
-      ) : (
-        <pre>Enter a Gist ID</pre>
-      )}
+    <div style={{ marginLeft: -8, marginRight: -8 }}>
+      <ReactGist {...props} id={id} />
     </div>
   )
 }
@@ -20,7 +13,8 @@ Gist.propertyControls = {
   isVoid: true,
   id: {
     type: 'string',
-    title: 'Gist ID'
+    title: 'Gist ID',
+    description: 'GitHub Gist ID to be embedded'
   }
 }
 

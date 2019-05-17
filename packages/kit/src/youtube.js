@@ -1,8 +1,10 @@
-/** @jsx jsx */
+/* @jsx jsx */
 import { jsx } from '@emotion/core'
 import Player from 'react-youtube'
 import isURL from 'is-url'
 import getYouTubeID from 'get-youtube-id'
+
+const formatValue = n => (isURL(n) ? getYouTubeID(n) : n)
 
 const Wrapper = props => (
   <div
@@ -27,10 +29,10 @@ const Wrapper = props => (
   />
 )
 
-const YouTube = props => {
+const YouTube = ({ videoId, ...props }) => {
   return (
     <Wrapper>
-      {props.videoId ? <Player {...props} /> : <pre>Enter a YouTube ID</pre>}
+      <Player videoId={formatValue(videoId)} {...props} />
     </Wrapper>
   )
 }
@@ -41,7 +43,8 @@ YouTube.propertyControls = {
   videoId: {
     type: 'string',
     title: 'Video ID',
-    formatValue: n => (isURL(n) ? getYouTubeID(n) : n)
+    description: 'YouTube ID of the video',
+    formatValue
   }
 }
 
