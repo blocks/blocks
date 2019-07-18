@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import { LiveProvider, LivePreview, LiveContext } from 'react-live'
 import ErrorIcon from '@material-ui/icons/ErrorOutline'
 import { Context as ThemeContext, css } from 'theme-ui'
-import { Flex } from 'theme-ui/layout'
+import { Flex } from 'theme-ui'
 import omit from 'lodash.omit'
 import { Pre } from '../components/ui'
 
