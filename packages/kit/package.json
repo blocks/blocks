@@ -1,6 +1,6 @@
 {
   "name": "@blocks/kit",
-  "version": "0.0.20",
+  "version": "0.0.28",
   "description": "The React standard library for MDX and the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
@@ -24,5 +24,6 @@
     "react-youtube": "^7.9.0",
     "theme-ui": "^0.0.14",
     "url-parse": "^1.4.7"
-  }
+  },
+  "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
 }

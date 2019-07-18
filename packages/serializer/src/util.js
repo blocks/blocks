@@ -8,6 +8,7 @@ export const getComponentName = (str = '') => {
 }
 
 export const toJS = map => {
+  if (!map) return ''
   if (typeof map.toJS !== 'function') return map
   return map.toJS()
 }

@@ -1,7 +1,8 @@
 {
   "name": "gatsby-theme-blocks",
-  "version": "0.0.20",
+  "version": "0.0.28",
   "main": "index.js",
   "author": "biscarch <chris@christopherbiscardi.com> (@chrisbiscardi)",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
 }

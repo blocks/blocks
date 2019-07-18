@@ -3,7 +3,6 @@ import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { ThemeProvider } from 'theme-ui'
 
 import schema from '../lib/schema'
-import initialValue from '!!raw-loader!../lib/value.mdx'
 import { parseMDX, serializer } from '@blocks/serializer'
 import { isUrl, isImageUrl } from '../lib/util'
 
@@ -12,6 +11,8 @@ import defaultTheme from './theme'
 import defaultPlugins from '../plugins'
 import defaultBlocks from './blocks'
 import Toolbar from './Toolbar'
+
+const initialValue = '# Welcome to Blocks!'
 
 const insertImage = (change, src, target) => {
   if (target) {

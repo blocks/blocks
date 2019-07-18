@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-blocks-docs",
-  "version": "0.0.20",
+  "version": "0.0.28",
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -12,8 +12,8 @@
     "gatsby": "^2.5.2"
   },
   "dependencies": {
-    "@blocks/editor": "^0.0.20",
-    "@blocks/kit": "^0.0.20",
+    "@blocks/editor": "^0.0.28",
+    "@blocks/kit": "^0.0.28",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "@mdx-js/mdx": "^1.0.19",
@@ -27,7 +27,7 @@
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-emotion": "^4.0.6",
     "gatsby-plugin-google-fonts": "^1.0.0",
-    "gatsby-plugin-mdx": "1.0.2-1",
+    "gatsby-plugin-mdx": "1.0.13",
     "gatsby-plugin-page-creator": "^2.0.13",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-source-filesystem": "^2.0.36",

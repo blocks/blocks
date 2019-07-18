@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { useState } from 'react'
-import { Flex } from 'theme-ui/layout'
+import { Flex } from 'theme-ui'
 
 import { Label, Input, Button } from '../../components/ui'
 

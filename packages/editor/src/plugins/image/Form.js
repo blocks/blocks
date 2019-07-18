@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex } from 'theme-ui/layout'
+import { Flex } from 'theme-ui'
 
 import { Card, Label, Input, Button } from '../../components/ui'
 
