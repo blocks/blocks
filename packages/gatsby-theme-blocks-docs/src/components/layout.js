@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { Global } from '@emotion/core'
-import { ComponentProvider } from 'emotion-mdx'
+import { ThemeProvider } from 'theme-ui'
+import * as Kit from '@blocks/kit'
 import css from '@styled-system/css'
 
-import components from './mdx-components'
+import mdxComponents from './mdx-components'
+import TableOfProps from './table-of-props'
 import SidebarContent from './sidebar.mdx'
 import Header from './header'
 import Pagination from './pagination'
 import EditLink from './edit-link'
-import Link from './link'
-import Banner from './banner'
 import { SkipNavLink, SkipNavContent } from './skip-nav'
 import baseTheme from './theme'
+
+const components = {
+  TableOfProps,
+  ...Kit,
+  ...mdxComponents
+}
 
 const styles = (
   <Global
@@ -56,50 +62,45 @@ const Main = props => (
   />
 )
 const Sidebar = ({ open, ...props }) => (
-  <ComponentProvider
-    theme={{
-      styles: {
-        ul: {
-          listStyle: 'none',
-          pl: 16
-        },
-        a: {
-          display: 'block',
-          color: 'inherit',
-          textDecoration: 'none',
-          fontWeight: 'bold',
-          fontSize: 1,
-          px: 2,
-          py: 2,
-          '&.active': {
-            color: 'primary'
-          }
-        }
+  <div
+    {...props}
+    css={css({
+      display: open ? 'block' : 'none',
+      position: 'relative',
+      maxHeight: '100vh',
+      overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      bg: 'background',
+      transition: 'background-color .4s ease-out',
+      pb: 4,
+      '& ul': {
+        listStyle: 'none',
+        paddingLeft: 16
+      },
+      '& li > ul': {
+        pt: 2
+      },
+      '& li': {
+        py: 2
+      },
+      '& a': {
+        color: 'inherit',
+        fontWeight: 'bold',
+        textDecoration: 'none'
+      },
+      '& a.active': {
+        color: 'primary'
+      },
+      [baseTheme.mediaQueries.big]: {
+        display: 'block',
+        width: 256,
+        minWidth: 0,
+        flex: 'none',
+        position: 'sticky',
+        top: 0
       }
-    }}
-  >
-    <div
-      {...props}
-      css={css({
-        display: open ? 'block' : 'none',
-        position: 'relative',
-        maxHeight: '100vh',
-        overflowY: 'auto',
-        WebkitOverflowScrolling: 'touch',
-        bg: 'background',
-        transition: 'background-color .4s ease-out',
-        pb: 4,
-        [baseTheme.mediaQueries.big]: {
-          display: 'block',
-          width: 256,
-          minWidth: 0,
-          flex: 'none',
-          position: 'sticky',
-          top: 0
-        }
-      })}
-    />
-  </ComponentProvider>
+    })}
+  />
 )
 const Overlay = props =>
   props.open && (
@@ -152,7 +153,7 @@ export default props => {
   }
   return (
     <>
-      <ComponentProvider theme={theme} transform={css} components={components}>
+      <ThemeProvider theme={theme} components={components}>
         <SkipNavLink />
         {styles}
         <Root>
@@ -170,7 +171,7 @@ export default props => {
             </Container>
           </Main>
         </Root>
-      </ComponentProvider>
+      </ThemeProvider>
     </>
   )
 }

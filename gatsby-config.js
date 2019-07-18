@@ -1,3 +1,10 @@
+const path = require('path')
+
 module.exports = {
-  __experimentalThemes: ['gatsby-theme-blocks-docs']
+  __experimentalThemes: [
+    {
+      resolve: 'gatsby-theme-blocks-docs',
+      options: {}
+    }
+  ]
 }

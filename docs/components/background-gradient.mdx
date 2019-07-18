@@ -2,28 +2,22 @@ import { BackgroundGradient } from '@blocks/kit'
 
 # BackgroundGradient
 
-```js
-import { BackgroundGradient } from '@blocks/kit'
-```
-
 The BackgroundGradient is a tiny little component to set a gradient. You
 can also optionally pass it `random={true}` to get a new gradient each time
 it renders.
 
+```.js
 <BackgroundGradient random={true}>
-
-### Hello, world!
-
-I'm MDX inside BackgroundGradient.
-
+  <h1>Hello, world!</h1>
 </BackgroundGradient>
+```
+
+## Usage
+
+```js
+import { BackgroundGradient } from '@blocks/kit'
+```
 
 ## Table of properties
 
-Prop | Default | Description
----- | ------- | -----------
-`start` | `rebeccapurple` | Starting color for the gradient
-`end` | None | Ending color for the gradient
-`stop` | `80%` | Location where the ending color gradient takes over
-`angle` | `30` | Angle of the gradient
-`random` | `false` | Random gradient each time.
+<TableOfProps component={BackgroundGradient} />

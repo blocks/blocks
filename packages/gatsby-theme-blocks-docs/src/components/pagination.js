@@ -1,6 +1,5 @@
 import React from 'react'
 import { Location } from '@reach/router'
-import { ComponentProvider } from 'emotion-mdx'
 import css from '@styled-system/css'
 import SidebarContent from './sidebar.mdx'
 
@@ -38,63 +37,47 @@ export default () => (
             const next = links[index + 1]
 
             return (
-              <ComponentProvider
-                theme={{
-                  styles: {
-                    a: {
-                      color: 'inherit',
-                      textDecoration: 'none',
-                      fontWeight: 'bold',
-                      fontSize: [2, 3],
-                      '&:hover': {
-                        color: 'primary'
-                      }
-                    }
-                  }
-                }}
+              <div
+                css={css({
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  py: 5
+                })}
               >
-                <div
-                  css={css({
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    py: 5
-                  })}
-                >
-                  {hasPagination &&
-                    previous &&
-                    React.cloneElement(
-                      previous,
-                      {},
-                      <div>
-                        <div
-                          css={css({
-                            fontSize: 0
-                          })}
-                        >
-                          Previous:
-                        </div>
-                        {previous.props.children}
+                {hasPagination &&
+                  previous &&
+                  React.cloneElement(
+                    previous,
+                    {},
+                    <div>
+                      <div
+                        css={css({
+                          fontSize: 0
+                        })}
+                      >
+                        Previous:
                       </div>
-                    )}
-                  <div css={{ margin: 'auto' }} />
-                  {hasPagination &&
-                    next &&
-                    React.cloneElement(
-                      next,
-                      {},
-                      <div>
-                        <div
-                          css={css({
-                            fontSize: 0
-                          })}
-                        >
-                          Next:
-                        </div>
-                        {next.props.children}
+                      {previous.props.children}
+                    </div>
+                  )}
+                <div css={{ margin: 'auto' }} />
+                {hasPagination &&
+                  next &&
+                  React.cloneElement(
+                    next,
+                    {},
+                    <div>
+                      <div
+                        css={css({
+                          fontSize: 0
+                        })}
+                      >
+                        Next:
                       </div>
-                    )}
-                </div>
-              </ComponentProvider>
+                      {next.props.children}
+                    </div>
+                  )}
+              </div>
             )
           }}
         />

@@ -1,12 +1,12 @@
-/** @jsx jsx */
+/* @jsx jsx */
 import { jsx } from '@emotion/core'
 import { TwitterTweetEmbed } from 'react-twitter-embed'
 import isURL from 'is-url'
 import parse from 'url-parse'
 
-const Tweet = props => (
+const Tweet = ({ tweetId, ...props }) => (
   <div>
-    {props.tweetId ? (
+    {tweetId ? (
       <TwitterTweetEmbed
         {...props}
         options={{
