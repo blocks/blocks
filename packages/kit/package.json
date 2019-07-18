@@ -1,6 +1,6 @@
 {
   "name": "@blocks/kit",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "The React standard library for MDX and the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
