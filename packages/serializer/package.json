@@ -33,5 +33,6 @@
     "slate-mdast-serializer": "^3.0.0",
     "unified": "^7.1.0",
     "unist-util-visit": "^1.4.0"
-  }
+  },
+  "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
 }

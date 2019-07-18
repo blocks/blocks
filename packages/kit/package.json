@@ -24,5 +24,6 @@
     "react-youtube": "^7.9.0",
     "theme-ui": "^0.0.10",
     "url-parse": "^1.4.7"
-  }
+  },
+  "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
 }
