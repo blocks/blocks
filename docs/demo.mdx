@@ -1,6 +1,6 @@
 import * as Rebass from '@rebass/emotion'
 
-import { Editor, serializer, stringifyMDX } from '@blocks/editor/src'
+import { Editor, serializer, stringifyMDX } from '@blocks/editor'
 
 export const __DEVELOPER_SAVE = value => {
   const result = stringifyMDX(serializer.serialize(value))
