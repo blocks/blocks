@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Flex } from 'theme-ui/layout'
+import { Flex } from 'theme-ui'
 
 export const ListViewItem = styled(Flex)`
   border-bottom: thin solid;

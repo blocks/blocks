@@ -1,5 +1,5 @@
 export { Styled, css } from 'theme-ui'
-export { Flex, Box } from 'theme-ui/layout'
+export { Flex, Box } from 'theme-ui'
 
 export { ListView, ListViewItem } from './ListView'
 export { default as Pre } from './Pre'
