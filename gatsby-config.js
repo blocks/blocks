@@ -1,10 +1,7 @@
-const path = require('path')
-
 module.exports = {
-  __experimentalThemes: [
-    {
-      resolve: 'gatsby-theme-blocks-docs',
-      options: {}
-    }
-  ]
+  siteMetadata: {
+    title: 'Blocks',
+    description: 'An MDX-based WYSIWYG for the content web'
+  },
+  plugins: ['gatsby-theme-documentation']
 }
