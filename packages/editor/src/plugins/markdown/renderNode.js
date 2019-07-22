@@ -4,6 +4,8 @@ import { Styled } from 'theme-ui'
 export default (props, editor, next) => {
   const { node, attributes, children } = props
 
+  console.log(node.type)
+
   switch (node.type) {
     case 'block-quote':
       return <Styled.blockquote {...attributes}>{children}</Styled.blockquote>
@@ -16,6 +18,7 @@ export default (props, editor, next) => {
     case 'list-item-child':
       return <Styled.p {...attributes}>{children}</Styled.p>
     case 'heading-one':
+    case 'heading-1':
       return <Styled.h1 {...attributes}>{children}</Styled.h1>
     case 'heading-two':
       return <Styled.h2 {...attributes}>{children}</Styled.h2>

@@ -12,16 +12,17 @@ import { getComponentName, toJS } from './util'
 import { parseJSXBlock, applyProps } from './parse-jsx'
 import { Visitor } from 'handlebars'
 
-const parser = unified()
-  .use(parse, {
-    commonmark: true,
-    position: false
-  })
-  .use(squeezeParagraphs)
-  .use(interleave)
-  .use(mdx)
-
-export const parseMDX = md => parser.runSync(parser.parse(md))
+const transform = mdxString =>
+  unified()
+    .use(parse, {
+      commonmark: true,
+      position: false
+    })
+    .use(squeezeParagraphs)
+    .use(interleave)
+    .use(mdx)
+    .use(slateCompiler)
+    .processSync(mdxString)
 
 const stringifier = unified()
   .use(stringify, {
@@ -35,8 +36,8 @@ export const stringifyMDX = mdxast =>
   stringifier.stringify(stringifier.runSync(mdxast))
 
 // Turn an MDX string into Slate schema
-export const deserialize = mdx => {
-  const result = parser.use(slateCompiler).processSync(mdx)
+export const deserialize = mdxString => {
+  const result = transform(mdxString)
 
   return Value.fromJSON(result.contents)
 }

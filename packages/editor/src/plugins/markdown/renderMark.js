@@ -4,6 +4,8 @@ import { Styled } from 'theme-ui'
 export default (props, editor, next) => {
   const { mark, attributes, children } = props
 
+  console.log(mark.type)
+
   switch (mark.type) {
     case 'bold':
       return <Styled.strong {...attributes}>{children}</Styled.strong>

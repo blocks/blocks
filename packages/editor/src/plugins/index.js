@@ -15,7 +15,7 @@ import ThemeEditorPlugin from '../plugins/theme-editor'
 export default [
   // ThemeEditorPlugin(),
   // SoftBreak({ shift: true }),
-  // MarkdownPlugin(),
+  MarkdownPlugin()
   // CodePlugin(),
   // JSXBlocksPlugin(),
   // LiveJSXPlugin(),

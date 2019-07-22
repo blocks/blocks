@@ -11,7 +11,6 @@ import LinkIcon from '@material-ui/icons/InsertLink'
 import ImageIcon from '@material-ui/icons/InsertPhoto'
 import QuoteIcon from '@material-ui/icons/FormatQuote'
 import CodeIcon from '@material-ui/icons/Code'
-import VideoIcon from '@material-ui/icons/Slideshow'
 import ListIcon from '@material-ui/icons/FormatListBulleted'
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered'
 import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit'
@@ -30,7 +29,6 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
-const Gist = () => <B>GIST</B>
 
 const Context = React.createContext(null)
 

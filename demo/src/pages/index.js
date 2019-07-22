@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core'
 import * as Rebass from '@rebass/emotion'
 
-import { Editor, serializer, stringifyMDX } from '@blocks/editor/src'
+import { Editor } from '@blocks/editor/src'
 
 // These are probably gonna change later
 const __DEVELOPER_SAVE = value => {
@@ -27,12 +27,8 @@ export default () => (
   >
     <Editor
       initialValue={initialValue}
-      onChange={({ title, value, emoji }) => {
-        __DEVELOPER_SAVE(value)
-      }}
-      components={{
-        ...Rebass
-      }}
+      components={Rebass}
+      onChange={({ value }) => __DEVELOPER_SAVE(value)}
     />
   </div>
 )

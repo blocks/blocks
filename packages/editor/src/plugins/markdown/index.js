@@ -1,15 +1,13 @@
-import React from 'react'
-
 import queries from './queries'
 import commands from './commands'
 import renderMark from './renderMark'
-import renderNode from './renderNode'
+import renderBlock from './renderNode'
 import onKeyDown from './onKeyDown'
 
-export default (opts = {}) => ({
+export default () => ({
   queries,
   commands,
   renderMark,
-  renderNode,
+  renderBlock,
   onKeyDown
 })

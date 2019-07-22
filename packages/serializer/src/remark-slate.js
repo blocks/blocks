@@ -70,7 +70,6 @@ export default function remarkSlate() {
 
   function compiler(node) {
     if (node.type === 'root') {
-      console.log(node.children)
       return {
         object: 'value',
         document: {
