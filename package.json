@@ -4,6 +4,7 @@
   "scripts": {
     "start": "yarn workspace demo start",
     "build": "lerna run prepare",
+    "clean": "gatsby clean",
     "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
     "docs-build": "gatsby build",
@@ -16,9 +17,9 @@
     "demo"
   ],
   "devDependencies": {
-    "gatsby": "^2.13.28",
+    "gatsby": "^2.13.32",
     "husky": "^3.0.1",
-    "lerna": "^3.15.0",
+    "lerna": "^3.16.1",
     "lint-staged": "^9.2.0",
     "prettier": "^1.18.2"
   },

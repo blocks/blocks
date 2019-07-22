@@ -13,22 +13,22 @@ import MarkdownShortcutsPlugin from './markdown-shortcuts'
 import ThemeEditorPlugin from '../plugins/theme-editor'
 
 export default [
-  ThemeEditorPlugin(),
-  SoftBreak({ shift: true }),
-  MarkdownPlugin(),
-  CodePlugin(),
-  JSXBlocksPlugin(),
-  LiveJSXPlugin(),
-  TablePlugin(),
-  DeepTable(),
-  ImagePlugin(),
-  LinkPlugin(),
-  ListsPlugin({
-    blocks: {
-      ordered_list: 'numbered-list',
-      unordered_list: 'bulleted-list',
-      list_item: 'list-item'
-    }
-  }),
-  MarkdownShortcutsPlugin()
+  // ThemeEditorPlugin(),
+  // SoftBreak({ shift: true }),
+  // MarkdownPlugin(),
+  // CodePlugin(),
+  // JSXBlocksPlugin(),
+  // LiveJSXPlugin(),
+  // TablePlugin(),
+  // DeepTable(),
+  // ImagePlugin(),
+  // LinkPlugin(),
+  // ListsPlugin({
+  //   blocks: {
+  //     ordered_list: 'numbered-list',
+  //     unordered_list: 'bulleted-list',
+  //     list_item: 'list-item'
+  //   }
+  // }),
+  // MarkdownShortcutsPlugin()
 ]

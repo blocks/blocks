@@ -140,12 +140,7 @@ BlockEditor.defaultProps = {
   plugins: defaultPlugins,
   renderEditor: (props, editor, next) => {
     const children = next()
-    return (
-      <ThemeProvider theme={props.theme}>
-        <Toolbar {...props} editor={editor} />
-        {children}
-      </ThemeProvider>
-    )
+    return <ThemeProvider theme={props.theme}>{children}</ThemeProvider>
   }
 }
 

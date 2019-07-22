@@ -1,28 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`correctly passes props in JSX blocks 1`] = `
-Object {
-  "document": Object {
-    "data": Object {},
-    "nodes": Array [
-      Object {
-        "data": Object {
-          "props": Immutable.Map {
-            "id": "1234",
-          },
-          "type": "YouTube",
-        },
-        "nodes": Array [],
-        "object": "block",
-        "type": "jsx-void",
-      },
-    ],
-    "object": "document",
-  },
-  "object": "value",
-}
-`;
-
 exports[`correctly serializes MDX to Slate schema 1`] = `
 Object {
   "document": Object {
@@ -32,33 +9,44 @@ Object {
         "data": Object {},
         "nodes": Array [
           Object {
-            "leaves": Array [
+            "marks": Array [],
+            "object": "text",
+            "text": "Hello, ",
+          },
+          Object {
+            "marks": Array [
               Object {
-                "marks": Array [],
-                "object": "leaf",
-                "text": "Hello, ",
-              },
-              Object {
-                "marks": Array [
-                  Object {
-                    "data": Object {},
-                    "object": "mark",
-                    "type": "bold",
-                  },
-                ],
-                "object": "leaf",
-                "text": "world!",
+                "data": Object {},
+                "object": "mark",
+                "type": "strong",
               },
             ],
             "object": "text",
+            "text": "world",
+          },
+          Object {
+            "marks": Array [
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "strong",
+              },
+              Object {
+                "data": Object {},
+                "object": "mark",
+                "type": "emphasis",
+              },
+            ],
+            "object": "text",
+            "text": "",
           },
         ],
         "object": "block",
-        "type": "heading-one",
+        "type": "heading-1",
       },
       Object {
         "data": Object {
-          "props": Immutable.Map {},
+          "props": Object {},
           "type": "Block",
         },
         "nodes": Array [
@@ -66,31 +54,32 @@ Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "leaves": Array [
+                "marks": Array [],
+                "object": "text",
+                "text": "Here's another ",
+              },
+              Object {
+                "marks": Array [
                   Object {
-                    "marks": Array [],
-                    "object": "leaf",
-                    "text": "Other",
+                    "data": Object {},
+                    "object": "mark",
+                    "type": "emphasis",
                   },
                 ],
                 "object": "text",
+                "text": "heading",
               },
             ],
             "object": "block",
-            "type": "heading-two",
+            "type": "heading-2",
           },
           Object {
             "data": Object {},
             "nodes": Array [
               Object {
-                "leaves": Array [
-                  Object {
-                    "marks": Array [],
-                    "object": "leaf",
-                    "text": "Stuff",
-                  },
-                ],
+                "marks": Array [],
                 "object": "text",
+                "text": "Stuff",
               },
             ],
             "object": "block",
@@ -104,18 +93,77 @@ Object {
         "data": Object {},
         "nodes": Array [
           Object {
-            "leaves": Array [
-              Object {
-                "marks": Array [],
-                "object": "leaf",
-                "text": "And more stuff",
-              },
-            ],
+            "marks": Array [],
             "object": "text",
+            "text": "And more stuff",
           },
         ],
         "object": "block",
         "type": "paragraph",
+      },
+      Object {
+        "data": Object {},
+        "nodes": Array [
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "apples",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "listItem",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "oranges",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "listItem",
+          },
+          Object {
+            "data": Object {},
+            "nodes": Array [
+              Object {
+                "data": Object {},
+                "nodes": Array [
+                  Object {
+                    "marks": Array [],
+                    "object": "text",
+                    "text": "potato",
+                  },
+                ],
+                "object": "block",
+                "type": "paragraph",
+              },
+            ],
+            "object": "block",
+            "type": "listItem",
+          },
+        ],
+        "object": "block",
+        "type": "list",
       },
     ],
     "object": "document",

@@ -18,21 +18,23 @@
   "repository": "blocks/blocks",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
+    "@babel/cli": "^7.5.5",
     "jest": "^24.8.0"
   },
   "dependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.5.5",
     "@babel/helper-plugin-utils": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
-    "remark-mdx": "^1.0.18",
-    "remark-parse": "^6.0.3",
-    "remark-squeeze-paragraphs": "^3.0.3",
-    "remark-stringify": "^6.0.4",
-    "slate": "^0.47.2",
-    "slate-mdast-serializer": "^3.0.0",
-    "unified": "^7.1.0",
-    "unist-util-visit": "^1.4.0"
+    "lodash.flatten": "^4.4.0",
+    "lodash.isequal": "^4.5.0",
+    "mdast-util-phrasing": "^1.0.3",
+    "remark-mdx": "^1.1.0",
+    "remark-parse": "^7.0.0",
+    "remark-squeeze-paragraphs": "^3.0.4",
+    "remark-stringify": "^7.0.0",
+    "slate": "^0.47.4",
+    "unified": "^8.3.2",
+    "unist-util-visit": "^1.4.1"
   },
   "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
 }

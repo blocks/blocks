@@ -1,15 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
 import * as Rebass from '@rebass/emotion'
 
 import { Editor, serializer, stringifyMDX } from '@blocks/editor/src'
 
 // These are probably gonna change later
 const __DEVELOPER_SAVE = value => {
-  const result = stringifyMDX(serializer.serialize(value))
-  window.localStorage['lastMDX'] = result
-  console.log(result)
+  //const result = stringifyMDX(serializer.serialize(value))
+  //window.localStorage['lastMDX'] = result
+  //console.log(result)
 }
 
 const initialValue =
