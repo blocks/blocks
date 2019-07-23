@@ -7,7 +7,7 @@
     "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
     "docs-build": "gatsby build",
-    "docs-deploy": "now && now alias $(pbpaste) mdx-blocks.com && now alias $(pbpaste) www.mdx-blocks.com",
+    "docs-deploy": "now switch mdx-blocks && now && now alias $(pbpaste) mdx-blocks.com && now alias $(pbpaste) www.mdx-blocks.com",
     "now-build": "yarn docs-build",
     "publish": "lerna publish"
   },
