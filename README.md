@@ -37,4 +37,4 @@ And a GitHub Gist:
 
 [mdx]: https://mdxjs.com/
 [npm]: https://npmjs.com/
-[authorable]: https://johno.com/authorable
+[authorable]: https://johno.com/authorable-format
