@@ -3,7 +3,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
-        modules: ['@blocks/editor', 'theme-ui']
+        modules: ['@blocks/builder', '@blocks/editor', 'theme-ui']
       }
     }
   ]

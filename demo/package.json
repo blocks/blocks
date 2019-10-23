@@ -8,6 +8,7 @@
     "now-build": "yarn build"
   },
   "dependencies": {
+    "@blocks/builder": "*",
     "@blocks/editor": "*",
     "@blocks/kit": "*",
     "@emotion/core": "^10.0.10",
