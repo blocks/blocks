@@ -9,10 +9,10 @@ export default () => {
           return
         }
 
-        const attributesWithoutTuid = path.node.attributes.filter(
+        const attributesWithoutUuid = path.node.attributes.filter(
           node => node.name && node.name.name !== '___tuid'
         )
-        path.node.attributes = attributesWithoutTuid
+        path.node.attributes = attributesWithoutUuid
       }
     }
   }

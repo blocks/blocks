@@ -1,22 +1,4 @@
 export default `/** @jsx revisual */
-const BLOCKS_Root = ({ children }) => {
-  return (
-    <BLOCKS_DragDropContext onDragEnd={BLOCKS_onDragEnd}>
-      <BLOCKS_Droppable droppableId="root">
-        {(provided, snapshot) => (
-          <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {children}
-            {provided.placeholder}
-          </div>
-        )}
-      </BLOCKS_Droppable>
-    </BLOCKS_DragDropContext>
-  )
-}
-
 const Blocks = {}
 Blocks.Root = React.Fragment
 

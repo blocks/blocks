@@ -12,12 +12,14 @@ import babelPluginDnd from './babel-plugin-dnd'
 import babelPluginRemoveTuid from './babel-plugin-remove-tuid'
 import babelPluginReorderBlocks from './babel-plugin-reorder-blocks'
 import babelPluginApplySxProp from './babel-plugin-apply-sx-prop'
+import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
 
 import CODE from './fixture'
 
 const transformPlugins = [
   babelPluginSetDefaultExportToContainer,
   babelPluginDnd,
+  babelPluginInjectBlocksRoot,
   babelPluginRemoveNamedExports,
   babelPluginTransformJsx
 ]
@@ -42,7 +44,6 @@ const toRawJSX = code => {
   }
 }
 
-// This should never error
 const reorderJSXBlocks = (code, drag) => {
   return transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginReorderBlocks, drag]]
@@ -97,6 +98,8 @@ export default () => {
     if (!transformedCode) {
       return null
     }
+
+    console.log(transformedCode)
 
     /* eslint-disable */
     const fn = new Function(
