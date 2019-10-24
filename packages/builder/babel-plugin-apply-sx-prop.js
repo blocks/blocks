@@ -28,7 +28,6 @@ export default (api, { elementId }) => {
             )
           )
         } else {
-          debugger
           sxProp.value.expression.properties.push(
             t.objectProperty(
               t.identifier('border'),

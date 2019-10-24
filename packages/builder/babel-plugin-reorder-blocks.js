@@ -2,7 +2,7 @@ export default (api, { destination, source }) => {
   const { types: t } = api
 
   if (!destination) {
-    return
+    return {}
   }
 
   return {

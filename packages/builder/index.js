@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { Styled, jsx } from 'theme-ui'
+import { Styled, ThemeProvider } from 'theme-ui'
+import { system } from '@theme-ui/presets'
 
 import { transform } from '@babel/standalone'
 import babelPluginTransformJsx from '@babel/plugin-transform-react-jsx'
@@ -14,6 +15,7 @@ import babelPluginReorderBlocks from './babel-plugin-reorder-blocks'
 import babelPluginApplySxProp from './babel-plugin-apply-sx-prop'
 import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
 
+import pragma from './pragma'
 import CODE from './fixture'
 
 const transformPlugins = [
@@ -50,23 +52,6 @@ const reorderJSXBlocks = (code, drag) => {
   }).code
 }
 
-const revisual = elementSelectionHandler => (type, props, ...children) => {
-  props = props || {}
-  const { ___tuid: id } = props
-  delete props.___tuid
-
-  return (
-    <div
-      onClick={e => {
-        e.stopPropagation()
-        elementSelectionHandler(id)
-      }}
-    >
-      {jsx(type, props, ...children)}
-    </div>
-  )
-}
-
 export default () => {
   const [code, setCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -79,27 +64,29 @@ export default () => {
     BLOCKS_DraggableInner: props => <div {...props} />,
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_onDragEnd: drag => {
+      if (!drag.destination) {
+        return
+      }
+
       const newCode = reorderJSXBlocks(code, drag)
       setCode(newCode)
     },
-    revisual: revisual(setElementId),
+    jsx: pragma(setElementId),
     Styled
   }
 
   useEffect(() => {
-    const { code: raw } = transform(CODE, {
+    const { code: newCode } = transform(CODE, {
       plugins: [babelPluginSyntaxJsx, babelPluginAddTuid]
     })
 
-    setCode(raw)
+    setCode(newCode)
   }, [])
 
   const element = useMemo(() => {
     if (!transformedCode) {
       return null
     }
-
-    console.log(transformedCode)
 
     /* eslint-disable */
     const fn = new Function(
@@ -111,7 +98,7 @@ export default () => {
     /* eslint-enable */
 
     return fn(React, ...Object.values(scope))
-  }, [transformedCode])
+  }, [transformedCode, scope])
 
   useEffect(() => {
     const newTransformedCode = toTransformedJSX(code)
@@ -125,36 +112,49 @@ export default () => {
     return null
   }
 
+  const handleChange = () => {
+    const { code: newCode } = transform(code, {
+      plugins: [babelPluginSyntaxJsx, [babelPluginApplySxProp, { elementId }]]
+    })
+
+    setCode(newCode)
+  }
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        marginTop: 100,
-        marginBottom: 100,
-        width: 4000
-      }}
-    >
-      {element}
-      <textarea
-        style={{
-          width: 300,
-          maxHeight: 300,
-          fontSize: 20,
-          marginLeft: 100
-        }}
-        onChange={e => setCode(e.target.value)}
-        value={toRawJSX(code)}
-      />
-      <textarea
-        style={{
-          width: 300,
-          maxHeight: 300,
-          fontSize: 10,
-          marginLeft: 100
-        }}
-        onChange={e => setCode(e.target.value)}
-        value={transformedCode.trim()}
-      />
-    </div>
+    <ThemeProvider theme={system}>
+      <Styled.root>
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 100,
+            marginBottom: 100,
+            width: 4000
+          }}
+        >
+          {element}
+          <textarea
+            style={{
+              width: 300,
+              maxHeight: 300,
+              fontSize: 20,
+              marginLeft: 100
+            }}
+            onChange={e => setCode(e.target.value)}
+            value={toRawJSX(code)}
+          />
+          <textarea
+            style={{
+              width: 300,
+              maxHeight: 300,
+              fontSize: 10,
+              marginLeft: 100
+            }}
+            onChange={e => setCode(e.target.value)}
+            value={transformedCode.trim()}
+          />
+        </div>
+        {elementId ? <button onClick={handleChange}>Change me!</button> : null}
+      </Styled.root>
+    </ThemeProvider>
   )
 }

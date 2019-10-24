@@ -1,4 +1,4 @@
-export default `/** @jsx revisual */
+export default `/** @jsx jsx */
 const Blocks = {}
 Blocks.Root = React.Fragment
 
