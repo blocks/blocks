@@ -29,6 +29,7 @@ import babelPluginApplyProp from './babel-plugin-apply-prop'
 import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
 import babelPluginRemoveImports from './babel-plugin-remove-imports'
 import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
+import babelPluginRemoveSxProp from './babel-plugin-remove-sx-prop'
 
 import pragma from './pragma'
 import CODE from './fixture'
@@ -63,6 +64,11 @@ const toTransformedJSX = code => {
 const applySxProp = (code, options = {}) =>
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginApplySxProp, options]]
+  })
+
+const removeSxProp = (code, options = {}) =>
+  transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginRemoveSxProp, options]]
   })
 
 const applyProp = (code, options = {}) =>
@@ -169,7 +175,20 @@ export default () => {
     return null
   }
 
+  const handleRemove = key => () => {
+    const sx = elementData.props.sx || {}
+    delete sx[key]
+
+    setElementData({ ...elementData, props: { ...elementData.props, sx } })
+
+    const { code: newCode } = removeSxProp(code, { elementId, key })
+    setCode(newCode)
+  }
+
   const handleChange = key => e => {
+    const sx = elementData.props.sx || {}
+    sx[key] = e.target.value
+
     setElementData({ ...elementData, props: { ...elementData.props, sx } })
 
     const { code: newCode } = applySxProp(code, {
@@ -177,9 +196,6 @@ export default () => {
       key,
       value: e.target.value
     })
-
-    const sx = elementData.props.sx || {}
-    sx[key] = e.target.value
 
     setCode(newCode)
   }
@@ -220,11 +236,7 @@ export default () => {
             borderBottom: 'thin solid #e1e6eb'
           }}
         >
-          {elementData ? (
-            <h3 sx={{ fontWeight: 'normal', m: 0 }}>{elementData.name}</h3>
-          ) : (
-            <h3 sx={{ fontWeight: 'normal', m: 0 }}>Blocks</h3>
-          )}
+          <h3 sx={{ fontWeight: 'normal', m: 0 }}>Blocks</h3>
         </div>
         <div
           sx={{
@@ -246,13 +258,28 @@ export default () => {
             sx={{
               borderLeft: 'thin solid #e1e6eb',
               width: '30%',
-              minHeight: '100vh',
-              backgroundColor: '#fafbfc'
+              minHeight: '100vh'
             }}
           >
+            {elementData && (
+              <h3
+                sx={{
+                  textTransform: 'uppercase',
+                  fontSize: 2,
+                  fontWeight: 600,
+                  m: 0,
+                  px: 3,
+                  py: 1,
+                  borderBottom: 'thin solid #e1e6eb'
+                }}
+              >
+                {elementData.name}
+              </h3>
+            )}
             <div
               sx={{
-                minHeight: '80vh'
+                minHeight: '80vh',
+                backgroundColor: '#fafbfc'
               }}
             >
               {elementData && (
@@ -284,7 +311,7 @@ export default () => {
                   >
                     Styles
                   </h3>
-                  {elementData.props.sx && (
+                  {elementData.props.sx && elementData.props.sx.p && (
                     <React.Fragment>
                       <Label>Padding</Label>
                       <Input
@@ -295,6 +322,7 @@ export default () => {
                         onChange={handleChange('p')}
                         value={elementData.props.sx.p}
                       />
+                      <button onClick={handleRemove('p')}>Remove</button>
                     </React.Fragment>
                   )}
                   <h3
@@ -308,7 +336,7 @@ export default () => {
                   >
                     Variant
                   </h3>
-                  {elementData.props.sx.variant && (
+                  {elementData.props.sx && elementData.props.sx.variant && (
                     <React.Fragment>
                       <Label>
                         {elementData.props.sx.variant.replace('styles.', '')}
