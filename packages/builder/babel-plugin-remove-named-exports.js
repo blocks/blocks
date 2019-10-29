@@ -4,7 +4,7 @@ export default () => {
       ExportNamedDeclaration(path) {
         const declaration = path.node.declaration
 
-        // Ignore "export { Foo as default }" syntax
+        // Ignore "export { Foo as default }" syntax for now
         if (declaration) {
           path.replaceWith(declaration)
         }

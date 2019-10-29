@@ -1,6 +1,6 @@
 import template from '@babel/template'
 
-export default (api, { elementId }) => {
+export default (api, { elementId, key, value }) => {
   const { types: t } = api
 
   return {
@@ -22,17 +22,14 @@ export default (api, { elementId }) => {
           path.node.attributes.push(
             t.jSXAttribute(
               t.jSXIdentifier('sx'),
-              template.ast(`<>{{border: 'thin solid tomato'}}</>`, {
+              template.ast(`<>{{${key}: '${value}'}}</>`, {
                 plugins: ['jsx']
               }).expression.children[0]
             )
           )
         } else {
           sxProp.value.expression.properties.push(
-            t.objectProperty(
-              t.identifier('border'),
-              t.stringLiteral('thin solid tomato')
-            )
+            t.objectProperty(t.identifier(key), t.stringLiteral(value))
           )
         }
       }
