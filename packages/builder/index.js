@@ -27,17 +27,27 @@ import babelPluginReorderBlocks from './babel-plugin-reorder-blocks'
 import babelPluginApplySxProp from './babel-plugin-apply-sx-prop'
 import babelPluginApplyProp from './babel-plugin-apply-prop'
 import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
+import babelPluginRemoveImports from './babel-plugin-remove-imports'
 import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
 
 import pragma from './pragma'
 import CODE from './fixture'
+
+const Blocks = {}
+Blocks.Root = React.Fragment
 
 const transformPlugins = [
   babelPluginSetDefaultExportToContainer,
   babelPluginDnd,
   babelPluginInjectBlocksRoot,
   babelPluginRemoveNamedExports,
-  babelPluginTransformJsx
+  babelPluginRemoveImports,
+  [
+    babelPluginTransformJsx,
+    {
+      pragma: 'jsx'
+    }
+  ]
 ]
 
 const toTransformedJSX = code => {
@@ -56,7 +66,6 @@ const applySxProp = (code, options = {}) =>
   })
 
 const applyProp = (code, options = {}) =>
-  console.log(options) ||
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginApplyProp, options]]
   })
@@ -94,6 +103,9 @@ export default () => {
   const [elementData, setElementData] = useState(null)
 
   const scope = {
+    Blocks,
+    Styled,
+    jsx: pragma(setElementId),
     BLOCKS_DragDropContext: DragDropContext,
     BLOCKS_Droppable: Droppable,
     BLOCKS_Draggable: Draggable,
@@ -106,9 +118,7 @@ export default () => {
 
       const newCode = reorderJSXBlocks(code, drag)
       setCode(newCode)
-    },
-    jsx: pragma(setElementId),
-    Styled
+    }
   }
 
   useEffect(() => {

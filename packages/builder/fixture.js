@@ -1,6 +1,7 @@
-export default `/** @jsx jsx */
-const Blocks = {}
-Blocks.Root = React.Fragment
+export default `
+/** @jsx jsx */
+import { Styled, jsx } from 'theme-ui'
+import { Blocks } from '@blocks/kit'
 
 const Header = () =>
   <header
