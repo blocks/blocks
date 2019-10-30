@@ -30,6 +30,7 @@ import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
 import babelPluginRemoveImports from './babel-plugin-remove-imports'
 import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
 import babelPluginRemoveSxProp from './babel-plugin-remove-sx-prop'
+import babelPluginRemove from './babel-plugin-remove'
 
 import pragma from './pragma'
 import CODE from './fixture'
@@ -69,6 +70,11 @@ const applySxProp = (code, options = {}) =>
 const removeSxProp = (code, options = {}) =>
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginRemoveSxProp, options]]
+  })
+
+const removeElement = (code, options = {}) =>
+  transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginRemove, options]]
   })
 
 const applyProp = (code, options = {}) =>
@@ -185,6 +191,13 @@ export default () => {
     setCode(newCode)
   }
 
+  const handleRemoveElement = () => {
+    const { code: newCode } = removeElement(code, { elementId })
+    setCode(newCode)
+    setElementId(null)
+    setElementData(null)
+  }
+
   const handleChange = key => e => {
     const sx = elementData.props.sx || {}
     sx[key] = e.target.value
@@ -274,6 +287,7 @@ export default () => {
                 }}
               >
                 {elementData.name}
+                <button onClick={handleRemoveElement}>Remove</button>
               </h3>
             )}
             <div
