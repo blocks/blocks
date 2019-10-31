@@ -134,7 +134,8 @@ const insertJSXBlock = (code, drag) => {
   return transform(code, {
     plugins: [
       babelPluginSyntaxJsx,
-      [babelPluginInsertBlock, { ...drag, components: recipes }]
+      [babelPluginInsertBlock, { ...drag, components: recipes }],
+      babelPluginAddTuid
     ]
   }).code
 }
