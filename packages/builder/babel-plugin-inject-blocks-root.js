@@ -4,19 +4,17 @@ const root = template.ast(
   `
   const BLOCKS_Root = ({ children }) => {
     return (
-      <BLOCKS_DragDropContext onDragEnd={BLOCKS_onDragEnd}>
-        <BLOCKS_Droppable droppableId="root">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {children}
-              {provided.placeholder}
-            </div>
-          )}
-        </BLOCKS_Droppable>
-      </BLOCKS_DragDropContext>
+      <BLOCKS_Droppable droppableId="root">
+        {(provided, snapshot) => (
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {children}
+            {provided.placeholder}
+          </div>
+        )}
+      </BLOCKS_Droppable>
     )
   }
 `,

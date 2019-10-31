@@ -16,7 +16,7 @@ export default (_, { elementId } = {}) => {
           return
         }
 
-        path.parentPath.insertBefore(ast.expression)
+        path.parentPath.insertAfter(ast.expression)
       }
     }
   }

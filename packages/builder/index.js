@@ -32,6 +32,9 @@ import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
 import babelPluginRemoveSxProp from './babel-plugin-remove-sx-prop'
 import babelPluginRemove from './babel-plugin-remove'
 import babelPluginInsertBefore from './babel-plugin-insert-before'
+import babelPluginInsertAfter from './babel-plugin-insert-after'
+import babelPluginClone from './babel-plugin-clone'
+import babelPluginInsertBlock from './babel-plugin-insert-block'
 
 import pragma from './pragma'
 import CODE from './fixture'
@@ -73,14 +76,24 @@ const removeSxProp = (code, options = {}) =>
     plugins: [babelPluginSyntaxJsx, [babelPluginRemoveSxProp, options]]
   })
 
+const cloneElement = (code, options = {}) =>
+  transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginClone, options]]
+  })
+
 const removeElement = (code, options = {}) =>
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginRemove, options]]
   })
 
-const insertElement = (code, options = {}) =>
+const insertElementBefore = (code, options = {}) =>
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginInsertBefore, options]]
+  })
+
+const insertElementAfter = (code, options = {}) =>
+  transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginInsertAfter, options]]
   })
 
 const applyProp = (code, options = {}) =>
@@ -104,6 +117,12 @@ const reorderJSXBlocks = (code, drag) => {
   }).code
 }
 
+const insertJSXBlock = (code, drag) => {
+  return transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginInsertBlock, drag]]
+  }).code
+}
+
 const getCurrentElement = (code, elementId) => {
   const plugin = new BabelPluginGetCurrentElement({ elementId })
 
@@ -119,24 +138,14 @@ export default () => {
   const [transformedCode, setTransformedCode] = useState(null)
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
-
   const scope = {
     Blocks,
     Styled,
     jsx: pragma(setElementId),
-    BLOCKS_DragDropContext: DragDropContext,
     BLOCKS_Droppable: Droppable,
     BLOCKS_Draggable: Draggable,
     BLOCKS_DraggableInner: props => <div {...props} />,
-    BLOCKS_DroppableInner: props => <div {...props} />,
-    BLOCKS_onDragEnd: drag => {
-      if (!drag.destination) {
-        return
-      }
-
-      const newCode = reorderJSXBlocks(code, drag)
-      setCode(newCode)
-    }
+    BLOCKS_DroppableInner: props => <div {...props} />
   }
 
   useEffect(() => {
@@ -187,6 +196,20 @@ export default () => {
     return null
   }
 
+  const onDragEnd = drag => {
+    if (!drag.destination) {
+      return
+    }
+
+    if (drag.source.droppableId === 'components') {
+      const newCode = insertJSXBlock(code, drag)
+      setCode(newCode)
+    } else {
+      const newCode = reorderJSXBlocks(code, drag)
+      setCode(newCode)
+    }
+  }
+
   const handleRemove = key => () => {
     const sx = elementData.props.sx || {}
     delete sx[key]
@@ -204,8 +227,13 @@ export default () => {
     setElementData(null)
   }
 
+  const handleClone = () => {
+    const { code: newCode } = cloneElement(code, { elementId })
+    setCode(newCode)
+  }
+
   const handleInsertElement = () => {
-    const { code: newCode } = insertElement(code, { elementId })
+    const { code: newCode } = insertElementAfter(code, { elementId })
     setCode(newCode)
   }
 
@@ -262,30 +290,20 @@ export default () => {
         >
           <h3 sx={{ fontWeight: 'normal', m: 0 }}>Blocks</h3>
         </div>
-        <div
-          sx={{
-            display: 'flex',
-            width: '100%'
-          }}
-        >
+        <DragDropContext onDragEnd={onDragEnd}>
           <div
             sx={{
-              width: '70%',
-              backgroundColor: 'white',
-              padding: 20,
-              minHeight: '100vh'
+              display: 'flex',
+              width: '100%'
             }}
           >
-            {element}
-          </div>
-          <div
-            sx={{
-              borderLeft: 'thin solid #e1e6eb',
-              width: '30%',
-              minHeight: '100vh'
-            }}
-          >
-            {elementData && (
+            <div
+              sx={{
+                borderRight: 'thin solid #e1e6eb',
+                width: '15%',
+                minHeight: '100vh'
+              }}
+            >
               <h3
                 sx={{
                   textTransform: 'uppercase',
@@ -297,107 +315,159 @@ export default () => {
                   borderBottom: 'thin solid #e1e6eb'
                 }}
               >
-                {elementData.name}
-                <button onClick={handleRemoveElement}>Remove</button>
-                <button onClick={handleInsertElement}>Insert</button>
+                Components
               </h3>
-            )}
+              <Droppable droppableId="components">
+                {(provided, snapshot) => (
+                  <div {...provided.droppableProps} ref={provided.innerRef}>
+                    <Draggable draggableId="123" index={123}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <h1 sx={{ m: 0 }}>Hello, world!</h1>
+                        </div>
+                      )}
+                    </Draggable>
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </div>
             <div
               sx={{
-                minHeight: '80vh',
-                backgroundColor: '#fafbfc'
+                width: '60%',
+                backgroundColor: 'white',
+                padding: 20,
+                minHeight: '100vh'
+              }}
+            >
+              {element}
+            </div>
+            <div
+              sx={{
+                borderLeft: 'thin solid #e1e6eb',
+                width: '25%',
+                minHeight: '100vh'
               }}
             >
               {elementData && (
-                <div sx={{ px: 3 }}>
-                  <h3 sx={{ fontWeight: 'normal', m: 0, pb: 2, pt: 4 }}>
-                    Props
-                  </h3>
-                  {elementData.props.hasOwnProperty('to') && (
-                    <React.Fragment>
-                      <Label>To</Label>
-                      <Input
-                        sx={{
-                          display: 'block',
-                          width: '100%'
-                        }}
-                        onChange={handlePropChange('to')}
-                        value={elementData.props.to || ''}
-                      />
-                    </React.Fragment>
-                  )}
-                  <h3
-                    sx={{
-                      fontWeight: 'normal',
-                      mt: 4,
-                      mb: 0,
-                      pt: 4,
-                      borderTop: 'thin solid'
-                    }}
-                  >
-                    Styles
-                  </h3>
-                  {elementData.props.sx && elementData.props.sx.p && (
-                    <React.Fragment>
-                      <Label>Padding</Label>
-                      <Input
-                        sx={{
-                          display: 'block',
-                          width: '100%'
-                        }}
-                        onChange={handleChange('p')}
-                        value={elementData.props.sx.p}
-                      />
-                      <button onClick={handleRemove('p')}>Remove</button>
-                    </React.Fragment>
-                  )}
-                  <h3
-                    sx={{
-                      fontWeight: 'normal',
-                      mt: 4,
-                      mb: 0,
-                      pt: 4,
-                      borderTop: 'thin solid'
-                    }}
-                  >
-                    Variant
-                  </h3>
-                  {elementData.props.sx && elementData.props.sx.variant && (
-                    <React.Fragment>
-                      <Label>
-                        {elementData.props.sx.variant.replace('styles.', '')}
-                      </Label>
-                      <Input
-                        sx={{
-                          display: 'block',
-                          width: '100%'
-                        }}
-                        onChange={handleChange('variant')}
-                        value={elementData.props.sx.variant}
-                      />
-                    </React.Fragment>
-                  )}
-                  <pre>{JSON.stringify(elementData, null, 2)}</pre>
-                </div>
+                <h3
+                  sx={{
+                    textTransform: 'uppercase',
+                    fontSize: 2,
+                    fontWeight: 600,
+                    m: 0,
+                    px: 3,
+                    py: 1,
+                    borderBottom: 'thin solid #e1e6eb'
+                  }}
+                >
+                  {elementData.name}
+                  <button onClick={handleRemoveElement}>Remove</button>
+                  <button onClick={handleInsertElement}>Insert</button>
+                  <button onClick={handleClone}>Clone</button>
+                </h3>
               )}
+              <div
+                sx={{
+                  minHeight: '80vh',
+                  backgroundColor: '#fafbfc'
+                }}
+              >
+                {elementData && (
+                  <div sx={{ px: 3 }}>
+                    <h3 sx={{ fontWeight: 'normal', m: 0, pb: 2, pt: 4 }}>
+                      Props
+                    </h3>
+                    {elementData.props.hasOwnProperty('to') && (
+                      <React.Fragment>
+                        <Label>To</Label>
+                        <Input
+                          sx={{
+                            display: 'block',
+                            width: '100%'
+                          }}
+                          onChange={handlePropChange('to')}
+                          value={elementData.props.to || ''}
+                        />
+                      </React.Fragment>
+                    )}
+                    <h3
+                      sx={{
+                        fontWeight: 'normal',
+                        mt: 4,
+                        mb: 0,
+                        pt: 4,
+                        borderTop: 'thin solid'
+                      }}
+                    >
+                      Styles
+                    </h3>
+                    {elementData.props.sx && elementData.props.sx.p && (
+                      <React.Fragment>
+                        <Label>Padding</Label>
+                        <Input
+                          sx={{
+                            display: 'block',
+                            width: '100%'
+                          }}
+                          onChange={handleChange('p')}
+                          value={elementData.props.sx.p}
+                        />
+                        <button onClick={handleRemove('p')}>Remove</button>
+                      </React.Fragment>
+                    )}
+                    <h3
+                      sx={{
+                        fontWeight: 'normal',
+                        mt: 4,
+                        mb: 0,
+                        pt: 4,
+                        borderTop: 'thin solid'
+                      }}
+                    >
+                      Variant
+                    </h3>
+                    {elementData.props.sx && elementData.props.sx.variant && (
+                      <React.Fragment>
+                        <Label>
+                          {elementData.props.sx.variant.replace('styles.', '')}
+                        </Label>
+                        <Input
+                          sx={{
+                            display: 'block',
+                            width: '100%'
+                          }}
+                          onChange={handleChange('variant')}
+                          value={elementData.props.sx.variant}
+                        />
+                      </React.Fragment>
+                    )}
+                    <pre>{JSON.stringify(elementData, null, 2)}</pre>
+                  </div>
+                )}
+              </div>
+              <textarea
+                sx={{
+                  p: 3,
+                  width: '100%',
+                  height: '20vh',
+                  fontSize: 16,
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: 'none',
+                  borderTop: 'thin solid #e1e6eb',
+                  fontFamily: 'monospace'
+                }}
+                onChange={e => setCode(e.target.value)}
+                value={toRawJSX(code)}
+              />
             </div>
-            <textarea
-              sx={{
-                p: 3,
-                width: '100%',
-                height: '20vh',
-                fontSize: 16,
-                borderLeft: 'none',
-                borderRight: 'none',
-                borderBottom: 'none',
-                borderTop: 'thin solid #e1e6eb',
-                fontFamily: 'monospace'
-              }}
-              onChange={e => setCode(e.target.value)}
-              value={toRawJSX(code)}
-            />
           </div>
-        </div>
+        </DragDropContext>
       </Styled.root>
     </ThemeProvider>
   )
