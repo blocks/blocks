@@ -1,20 +1,21 @@
 import template from '@babel/template'
 
-const newBlock = template.ast(
-  `
-  <h1>Hello, world!</h1>
-`,
-  {
-    plugins: ['jsx']
-  }
-).expression
-
-export default (api, { destination }) => {
+export default (api, { destination, source, components }) => {
   const { types: t } = api
 
   if (!destination) {
     return {}
   }
+
+  const componentName = Object.keys(components)[source.index - 1]
+  const newBlock = template.ast(
+    `
+      <${componentName} />
+    `,
+    {
+      plugins: ['jsx']
+    }
+  ).expression
 
   return {
     visitor: {

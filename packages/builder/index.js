@@ -36,8 +36,21 @@ import babelPluginInsertAfter from './babel-plugin-insert-after'
 import babelPluginClone from './babel-plugin-clone'
 import babelPluginInsertBlock from './babel-plugin-insert-block'
 
+import * as recipes from './recipes'
 import pragma from './pragma'
 import CODE from './fixture'
+
+const theme = {
+  ...system,
+  styles: {
+    ...system.styles,
+    navlink: {
+      color: 'inherit',
+      textDecoration: 'none',
+      fontWeight: 600
+    }
+  }
+}
 
 const Blocks = {}
 Blocks.Root = React.Fragment
@@ -119,7 +132,10 @@ const reorderJSXBlocks = (code, drag) => {
 
 const insertJSXBlock = (code, drag) => {
   return transform(code, {
-    plugins: [babelPluginSyntaxJsx, [babelPluginInsertBlock, drag]]
+    plugins: [
+      babelPluginSyntaxJsx,
+      [babelPluginInsertBlock, { ...drag, components: recipes }]
+    ]
   }).code
 }
 
@@ -145,7 +161,8 @@ export default () => {
     BLOCKS_Droppable: Droppable,
     BLOCKS_Draggable: Draggable,
     BLOCKS_DraggableInner: props => <div {...props} />,
-    BLOCKS_DroppableInner: props => <div {...props} />
+    BLOCKS_DroppableInner: props => <div {...props} />,
+    ...recipes
   }
 
   useEffect(() => {
@@ -268,7 +285,7 @@ export default () => {
   }
 
   return (
-    <ThemeProvider theme={system}>
+    <ThemeProvider theme={theme}>
       <Styled.root>
         <Global
           styles={{
@@ -301,7 +318,8 @@ export default () => {
               sx={{
                 borderRight: 'thin solid #e1e6eb',
                 width: '15%',
-                minHeight: '100vh'
+                minHeight: '100vh',
+                overflow: 'scroll'
               }}
             >
               <h3
@@ -320,17 +338,26 @@ export default () => {
               <Droppable droppableId="components">
                 {(provided, snapshot) => (
                   <div {...provided.droppableProps} ref={provided.innerRef}>
-                    <Draggable draggableId="123" index={123}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <h1 sx={{ m: 0 }}>Hello, world!</h1>
-                        </div>
-                      )}
-                    </Draggable>
+                    {Object.keys(recipes).map((key, i) => (
+                      <Draggable key={key} draggableId={key} index={i + 1}>
+                        {(provided, snapshot) => {
+                          const Component = recipes[key]
+
+                          return (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              sx={{
+                                transform: 'scale(.6)'
+                              }}
+                            >
+                              <Component />
+                            </div>
+                          )
+                        }}
+                      </Draggable>
+                    ))}
                     {provided.placeholder}
                   </div>
                 )}
