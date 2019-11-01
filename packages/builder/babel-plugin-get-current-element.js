@@ -52,6 +52,7 @@ class BabelPluginGetCurrentElement {
 
     this.plugin = declare((api, { elementId }) => {
       api.assertVersion(7)
+      const { types: t } = api
 
       return {
         visitor: {
@@ -64,11 +65,20 @@ class BabelPluginGetCurrentElement {
               return
             }
 
+            const children = path.container.children
+            const hasElements = children && children.some(n => !t.isJSXText(n))
+
+            let text = null
+            if (!hasElements) {
+              text = children.map(n => n.value.trim()).join(' ')
+            }
+
             this.state.element = {
               id: elementId,
               name: getElementName(path.node),
               props: getElementProps(path.node.attributes),
-              parentId: getParentId(path)
+              parentId: getParentId(path),
+              text
             }
           }
         }

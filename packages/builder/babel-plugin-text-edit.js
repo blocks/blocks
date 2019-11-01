@@ -18,8 +18,8 @@ export default api => {
           }
         )
 
-        wrapper.children = [path.node]
-        path.replaceWith(wrapper)
+        //wrapper.children = [path.node]
+        //path.replaceWith(wrapper)
       }
     }
   }

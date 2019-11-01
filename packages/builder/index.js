@@ -35,13 +35,14 @@ import babelPluginInsertBefore from './babel-plugin-insert-before'
 import babelPluginInsertAfter from './babel-plugin-insert-after'
 import babelPluginClone from './babel-plugin-clone'
 import babelPluginInsertBlock from './babel-plugin-insert-block'
+import babelPluginTextEdit from './babel-plugin-text-edit'
+import babelPluginRemoveTextEdit from './babel-plugin-remove-text-edit'
+import babelPluginReplaceText from './babel-plugin-replace-text'
 
 import * as recipes from './recipes'
 import recipesSrc from 'raw-loader!./recipes.txt'
 import pragma from './pragma'
 import CODE from './fixture'
-import babelPluginTextEdit from './babel-plugin-text-edit'
-import babelPluginRemoveTextEdit from './babel-plugin-remove-text-edit'
 
 const theme = {
   ...system,
@@ -100,6 +101,11 @@ const cloneElement = (code, options = {}) =>
 const removeElement = (code, options = {}) =>
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [babelPluginRemove, options]]
+  })
+
+const replaceText = (code, options = {}) =>
+  transform(code, {
+    plugins: [babelPluginSyntaxJsx, [babelPluginReplaceText, options]]
   })
 
 const insertElementBefore = (code, options = {}) =>
@@ -260,6 +266,14 @@ export default () => {
 
   const handleInsertElement = () => {
     const { code: newCode } = insertElementAfter(code, { elementId })
+    setCode(newCode)
+  }
+
+  const handleTextUpdate = e => {
+    const text = e.target.value
+    setElementData({ ...elementData, text })
+
+    const { code: newCode } = replaceText(code, { text, elementId })
     setCode(newCode)
   }
 
@@ -424,6 +438,19 @@ export default () => {
               >
                 {elementData && (
                   <div sx={{ px: 3 }}>
+                    {elementData.text && (
+                      <React.Fragment>
+                        <Label>Text</Label>
+                        <Input
+                          sx={{
+                            display: 'block',
+                            width: '100%'
+                          }}
+                          onChange={handleTextUpdate}
+                          value={elementData.text}
+                        />
+                      </React.Fragment>
+                    )}
                     <h3 sx={{ fontWeight: 'normal', m: 0, pb: 2, pt: 4 }}>
                       Props
                     </h3>
