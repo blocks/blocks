@@ -23,12 +23,27 @@ const getElementProps = (attributes = {}) => {
         return acc
       }, {})
     } else {
-      debugger
+      //debugger
     }
 
     acc[curr.name.name] = value
     return acc
   }, {})
+}
+
+const getParentId = node => {
+  const parent = node.parentPath.parentPath.node
+  const openingElement = parent && parent.openingElement
+
+  if (!openingElement) {
+    return null
+  }
+
+  const id = openingElement.attributes.find(
+    node => node && node.name && node.name.name === '___tuid'
+  )
+
+  return id && id.value && id.value.value
 }
 
 class BabelPluginGetCurrentElement {
@@ -52,7 +67,8 @@ class BabelPluginGetCurrentElement {
             this.state.element = {
               id: elementId,
               name: getElementName(path.node),
-              props: getElementProps(path.node.attributes)
+              props: getElementProps(path.node.attributes),
+              parentId: getParentId(path)
             }
           }
         }

@@ -270,6 +270,12 @@ export default () => {
     setCode(newCode)
   }
 
+  const handleParentSelect = () => {
+    if (elementData.parentId) {
+      setElementId(elementData.parentId)
+    }
+  }
+
   const handlePropChange = key => e => {
     setElementData({
       ...elementData,
@@ -397,6 +403,9 @@ export default () => {
                   <button onClick={handleRemoveElement}>Remove</button>
                   <button onClick={handleInsertElement}>Insert</button>
                   <button onClick={handleClone}>Clone</button>
+                  {elementData.parentId && (
+                    <button onClick={handleParentSelect}>Parent</button>
+                  )}
                 </h3>
               )}
               <div
