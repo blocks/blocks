@@ -37,8 +37,11 @@ import babelPluginClone from './babel-plugin-clone'
 import babelPluginInsertBlock from './babel-plugin-insert-block'
 
 import * as recipes from './recipes'
+import recipesSrc from 'raw-loader!./recipes.txt'
 import pragma from './pragma'
 import CODE from './fixture'
+import babelPluginTextEdit from './babel-plugin-text-edit'
+import babelPluginRemoveTextEdit from './babel-plugin-remove-text-edit'
 
 const theme = {
   ...system,
@@ -117,7 +120,11 @@ const applyProp = (code, options = {}) =>
 const toRawJSX = code => {
   try {
     return transform(code, {
-      plugins: [babelPluginSyntaxJsx, babelPluginRemoveTuid]
+      plugins: [
+        babelPluginSyntaxJsx,
+        babelPluginRemoveTextEdit,
+        babelPluginRemoveTuid
+      ]
     }).code
   } catch (e) {
     return null
@@ -163,12 +170,13 @@ export default () => {
     BLOCKS_Draggable: Draggable,
     BLOCKS_DraggableInner: props => <div {...props} />,
     BLOCKS_DroppableInner: props => <div {...props} />,
+    BLOCKS_Text: props => <span {...props} />,
     ...recipes
   }
 
   useEffect(() => {
     const { code: newCode } = transform(CODE, {
-      plugins: [babelPluginSyntaxJsx, babelPluginAddTuid]
+      plugins: [babelPluginSyntaxJsx, babelPluginTextEdit, babelPluginAddTuid]
     })
 
     setCode(newCode)
