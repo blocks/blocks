@@ -7,13 +7,13 @@ export default elementSelectionHandler => (type, props, ...children) => {
   delete props.___tuid
 
   return (
-    <div
+    <span
       onClick={e => {
         e.stopPropagation()
         elementSelectionHandler(id)
       }}
     >
       {jsx(type, props, ...children)}
-    </div>
+    </span>
   )
 }

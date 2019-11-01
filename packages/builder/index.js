@@ -7,12 +7,12 @@ import { Global } from '@emotion/core'
 
 import {
   Label,
-  Input,
-  Select,
-  Textarea,
-  Radio,
-  Checkbox,
-  Slider
+  Input
+  // Select,
+  // Textarea,
+  // Radio,
+  // Checkbox,
+  // Slider
 } from '@theme-ui/components'
 
 import { transform } from '@babel/standalone'
@@ -35,12 +35,10 @@ import babelPluginInsertBefore from './babel-plugin-insert-before'
 import babelPluginInsertAfter from './babel-plugin-insert-after'
 import babelPluginClone from './babel-plugin-clone'
 import babelPluginInsertBlock from './babel-plugin-insert-block'
-import babelPluginTextEdit from './babel-plugin-text-edit'
-import babelPluginRemoveTextEdit from './babel-plugin-remove-text-edit'
 import babelPluginReplaceText from './babel-plugin-replace-text'
 
 import * as recipes from './recipes'
-import recipesSrc from 'raw-loader!./recipes.txt'
+//import recipesSrc from 'raw-loader!./recipes.txt'
 import pragma from './pragma'
 import CODE from './fixture'
 
@@ -126,11 +124,7 @@ const applyProp = (code, options = {}) =>
 const toRawJSX = code => {
   try {
     return transform(code, {
-      plugins: [
-        babelPluginSyntaxJsx,
-        babelPluginRemoveTextEdit,
-        babelPluginRemoveTuid
-      ]
+      plugins: [babelPluginSyntaxJsx, babelPluginRemoveTuid]
     }).code
   } catch (e) {
     return null
@@ -182,7 +176,7 @@ export default () => {
 
   useEffect(() => {
     const { code: newCode } = transform(CODE, {
-      plugins: [babelPluginSyntaxJsx, babelPluginTextEdit, babelPluginAddTuid]
+      plugins: [babelPluginSyntaxJsx, babelPluginAddTuid]
     })
 
     setCode(newCode)
@@ -212,7 +206,7 @@ export default () => {
 
     const newElementData = getCurrentElement(code, elementId)
     setElementData(newElementData)
-  }, [elementId])
+  }, [elementId, code])
 
   useEffect(() => {
     try {
