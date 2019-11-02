@@ -1,21 +1,9 @@
-import template from '@babel/template'
-
-export default (api, { destination, source, components }) => {
+export default (api, { destination, block }) => {
   const { types: t } = api
 
   if (!destination) {
     return {}
   }
-
-  const componentName = Object.keys(components)[source.index - 1]
-  const newBlock = template.ast(
-    `
-      <${componentName} />
-    `,
-    {
-      plugins: ['jsx']
-    }
-  ).expression
 
   return {
     visitor: {
@@ -36,7 +24,7 @@ export default (api, { destination, source, components }) => {
         }
 
         const children = path.node.children.filter(node => t.isJSXElement(node))
-        children.splice(destination.index, 0, newBlock)
+        children.splice(destination.index, 0, block)
         path.node.children = children
       }
     }

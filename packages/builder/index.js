@@ -29,6 +29,7 @@ import babelPluginApplyProp from './babel-plugin-apply-prop'
 import babelPluginInjectBlocksRoot from './babel-plugin-inject-blocks-root'
 import babelPluginRemoveImports from './babel-plugin-remove-imports'
 import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
+import BabelPluginGetExportedElements from './babel-plugin-get-exported-elements'
 import babelPluginRemoveSxProp from './babel-plugin-remove-sx-prop'
 import babelPluginRemove from './babel-plugin-remove'
 import babelPluginInsertBefore from './babel-plugin-insert-before'
@@ -38,9 +39,11 @@ import babelPluginInsertBlock from './babel-plugin-insert-block'
 import babelPluginReplaceText from './babel-plugin-replace-text'
 
 import * as recipes from './recipes'
-//import recipesSrc from 'raw-loader!./recipes.txt'
 import pragma from './pragma'
 import CODE from './fixture'
+
+// TODO: Make this less hacky
+import recipesSrc from 'raw-loader!./recipes.txt'
 
 const theme = {
   ...system,
@@ -79,6 +82,16 @@ const toTransformedJSX = code => {
   } catch (e) {
     return null
   }
+}
+
+const getRecipes = () => {
+  const plugin = new BabelPluginGetExportedElements()
+
+  transform(recipesSrc, {
+    plugins: [babelPluginSyntaxJsx, plugin.plugin]
+  })
+
+  return plugin.state.elements
 }
 
 const applySxProp = (code, options = {}) =>
@@ -137,11 +150,18 @@ const reorderJSXBlocks = (code, drag) => {
   }).code
 }
 
-const insertJSXBlock = (code, drag) => {
+const insertJSXBlock = (code, { components, ...drag }) => {
+  const componentName = Object.keys(components)[drag.source.index - 1]
+  const block = components[componentName]
+
+  if (!block) {
+    return
+  }
+
   return transform(code, {
     plugins: [
       babelPluginSyntaxJsx,
-      [babelPluginInsertBlock, { ...drag, components: recipes }],
+      [babelPluginInsertBlock, { ...drag, block }],
       babelPluginAddTuid
     ]
   }).code
@@ -162,9 +182,12 @@ export default () => {
   const [transformedCode, setTransformedCode] = useState(null)
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
+  const [components, setComponents] = useState(null)
+
   const scope = {
     Blocks,
     Styled,
+    Link: Styled.a,
     jsx: pragma(setElementId),
     BLOCKS_Droppable: Droppable,
     BLOCKS_Draggable: Draggable,
@@ -180,6 +203,7 @@ export default () => {
     })
 
     setCode(newCode)
+    setComponents(getRecipes())
   }, [])
 
   const element = useMemo(() => {
@@ -228,7 +252,7 @@ export default () => {
     }
 
     if (drag.source.droppableId === 'components') {
-      const newCode = insertJSXBlock(code, drag)
+      const newCode = insertJSXBlock(code, { ...drag, components })
       setCode(newCode)
     } else {
       const newCode = reorderJSXBlocks(code, drag)
