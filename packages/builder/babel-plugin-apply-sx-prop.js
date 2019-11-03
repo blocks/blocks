@@ -28,6 +28,15 @@ export default (api, { elementId, key, value }) => {
             )
           )
         } else {
+          const existingProp = sxProp.value.expression.properties.find(
+            node => node.key.name === key
+          )
+
+          if (existingProp) {
+            existingProp.value = t.stringLiteral(value)
+            return
+          }
+
           sxProp.value.expression.properties.push(
             t.objectProperty(t.identifier(key), t.stringLiteral(value))
           )
