@@ -510,6 +510,32 @@ export default () => {
                         <button onClick={handleRemove('p')}>Remove</button>
                       </React.Fragment>
                     )}
+                    <React.Fragment>
+                      <Label>Background</Label>
+                      <Input
+                        sx={{
+                          display: 'block',
+                          width: '100%'
+                        }}
+                        onChange={handleChange('backgroundColor')}
+                        value={elementData.props.sx.backgroundColor}
+                      />
+                      <button onClick={handleRemove('backgroundColor')}>
+                        Remove
+                      </button>
+                    </React.Fragment>
+                    <React.Fragment>
+                      <Label>Color</Label>
+                      <Input
+                        sx={{
+                          display: 'block',
+                          width: '100%'
+                        }}
+                        onChange={handleChange('color')}
+                        value={elementData.props.sx.color}
+                      />
+                      <button onClick={handleRemove('color')}>Remove</button>
+                    </React.Fragment>
                     <h3
                       sx={{
                         fontWeight: 'normal',
