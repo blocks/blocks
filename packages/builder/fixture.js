@@ -39,6 +39,45 @@ const AuthorBio = () =>
 
 export default () => (
   <Blocks.Root>
+    <header
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        variant: 'styles.header',
+        justifyContent: 'space-between',
+        p: 4
+      }}
+    >
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Hello
+      </Link>
+      <nav>
+        <Link
+          to="/blog"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          Blog
+        </Link>
+        <Link
+          to="/about"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          About
+        </Link>
+      </nav>
+    </header>
     <AuthorBio />
   </Blocks.Root>
 )`
