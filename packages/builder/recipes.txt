@@ -189,6 +189,200 @@ export const HeaderC = () => (
   </header>
 )
 
+export const HeaderC2 = () => (
+  <header
+    sx={{
+      display: 'grid',
+      gridGap: 3,
+      maxWidth: 768,
+      mx: 'auto',
+      px: 3,
+      py: 3,
+      gridAutoFlow: 'row',
+      gridTemplateColumns: ['repeat(2, 1fr)', 'repeat(3, 1fr)'],
+      variant: 'styles.header'
+    }}
+  >
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gridColumnStart: [1, 2],
+        gridColumnEnd: [3, 3],
+        order: [0, 1]
+      }}
+    >
+      <Link to="/" title="Home">
+        <img
+          alt="UI Logo"
+          src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+        />
+        <span
+          sx={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            overflow: 'hidden',
+            top: -9999
+          }}
+        >
+          Home
+        </span>
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+      }}
+    >
+      <Link
+        to="/work"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Work
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        order: 2
+      }}
+    >
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+      <Link
+        to="/contact"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Contact
+      </Link>
+    </div>
+  </header>
+)
+
+export const HeaderC3 = () => (
+  <header
+    sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      maxWidth: 768,
+      mx: 'auto',
+      px: 3,
+      py: 3,
+      variant: 'styles.header',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        order: [0, 1],
+        width: ['100%', 'auto'],
+        px: 2
+      }}
+    >
+      <Link to="/" title="Home" sx={{ lineHeight: 1 }}>
+        <img
+          alt="UI Logo"
+          src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+        />
+        <span
+          sx={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            overflow: 'hidden',
+            top: -9999
+          }}
+        >
+          Home
+        </span>
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center'
+      }}
+    >
+      <Link
+        to="/work"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Work
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        order: 2
+      }}
+    >
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+      <Link
+        to="/contact"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Contact
+      </Link>
+    </div>
+  </header>
+)
+
 export const HeaderD = () => (
   <header
     sx={{
@@ -528,6 +722,38 @@ export const FooterD = () => (
         Terms of Use
       </Link>
       <div sx={{ mx: 1 }} />© 2019 Jane Doe
+    </div>
+  </footer>
+)
+
+export const FooterE = () => (
+  <footer
+    sx={{
+      variant: 'styles.footer',
+      maxWidth: 768,
+      mx: 'auto',
+      py: [4, 6]
+    }}
+  >
+    <Link
+      to="mailto:hello@example.org"
+      sx={{
+        fontWeight: 'bold',
+        fontSize: 5,
+        color: 'inherit'
+      }}
+    >
+      hello@example.org
+    </Link>
+    <p sx={{ mt: -1, mb: 4, fontSize: 1  }}>© 2019 Jane Doe</p>
+    <div sx={{ display: 'flex' }}>
+      <Link to="/privacy-policy" sx={{ color: 'inherit' }}>
+        Privacy Policy
+      </Link>
+      <div sx={{ ml: 3 }} />
+      <Link to="/terms-of-use" sx={{ color: 'inherit' }}>
+        Terms of Use
+      </Link>
     </div>
   </footer>
 )

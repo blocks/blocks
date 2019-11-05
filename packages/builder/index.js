@@ -496,7 +496,7 @@ export default () => {
                     >
                       Styles
                     </h3>
-                    {elementData.props.sx && elementData.props.sx.p && (
+                    {elementData.props.sx && (
                       <React.Fragment>
                         <Label>Padding</Label>
                         <Input
@@ -517,10 +517,10 @@ export default () => {
                           display: 'block',
                           width: '100%'
                         }}
-                        onChange={handleChange('backgroundColor')}
+                        onChange={handleChange('background')}
                         value={elementData.props.sx.backgroundColor}
                       />
-                      <button onClick={handleRemove('backgroundColor')}>
+                      <button onClick={handleRemove('background')}>
                         Remove
                       </button>
                     </React.Fragment>
