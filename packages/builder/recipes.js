@@ -757,3 +757,68 @@ export const FooterE = () => (
     </div>
   </footer>
 )
+
+export const ImageTitleA = () => (
+  <div>
+    <h1
+      sx={{
+        backgroundImage: 'url(http://dc28c2r6oodom.cloudfront.net/p/h/006.jpg)',
+        backgroundPositionX: 'center',
+        backgroundPositionY: 'center',
+        backgroundSize: 'cover',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        fontSize: 8,
+        fontWeight: 800
+      }}
+    >
+      Hello, world!
+    </h1>
+  </div>
+)
+
+export const ImageTitleB = () => (
+  <div>
+    <h1
+      sx={{
+        backgroundImage: 'url(http://dc28c2r6oodom.cloudfront.net/p/h/058.jpg)',
+        backgroundPositionX: 'center',
+        backgroundPositionY: 'center',
+        backgroundSize: 'cover',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        fontSize: 8,
+        fontWeight: 800
+      }}
+    >
+      Hello, world!
+    </h1>
+  </div>
+)
+
+export const ImageTitleC = () => (
+  <div
+    sx={{
+      backgroundColor: 'black',
+      color: 'white',
+      py: 4
+    }}
+  >
+    <h1
+      sx={{
+        backgroundImage: 'url(http://dc28c2r6oodom.cloudfront.net/p/h/048.jpg)',
+        backgroundPositionX: 'center',
+        backgroundPositionY: 'center',
+        backgroundSize: 'contain',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        fontSize: 8,
+        fontWeight: 800,
+        backgroundColor: 'text',
+        color: 'background'
+      }}
+    >
+      Hello, world!
+    </h1>
+  </div>
+)
