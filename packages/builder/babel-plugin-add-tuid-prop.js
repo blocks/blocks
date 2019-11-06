@@ -1,4 +1,4 @@
-import randomize from 'randomatic'
+import { uuid } from './util'
 
 export default api => {
   const { types: t } = api
@@ -23,10 +23,7 @@ export default api => {
 
         // TODO: Ensure no clashes with uuid
         path.node.attributes.push(
-          t.jSXAttribute(
-            t.jSXIdentifier('___tuid'),
-            t.stringLiteral(randomize('a0', 16))
-          )
+          t.jSXAttribute(t.jSXIdentifier('___tuid'), t.stringLiteral(uuid()))
         )
       }
     }
