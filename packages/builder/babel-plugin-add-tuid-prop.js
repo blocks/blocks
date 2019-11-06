@@ -21,6 +21,7 @@ export default api => {
           return
         }
 
+        // TODO: Ensure no clashes with uuid
         path.node.attributes.push(
           t.jSXAttribute(
             t.jSXIdentifier('___tuid'),
