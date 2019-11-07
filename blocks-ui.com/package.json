@@ -1,0 +1,23 @@
+{
+  "name": "blocks-ui.com",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn develop",
+    "develop": "gatsby develop"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "@theme-ui/components": "^0.2.46",
+    "@theme-ui/presets": "^0.2.44",
+    "gatsby": "^2.17.10",
+    "gatsby-plugin-mdx": "^1.0.55",
+    "gatsby-plugin-theme-ui": "^0.2.43",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "theme-ui": "^0.2.46"
+  }
+}
