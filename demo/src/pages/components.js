@@ -1,6 +1,6 @@
-import React from 'react'
+/** @jsx jsx */
 import * as recipes from '@blocks/builder/recipes'
-import { ThemeProvider, Styled } from 'theme-ui'
+import { jsx, ThemeProvider, Styled } from 'theme-ui'
 import { system } from '@theme-ui/presets'
 
 const theme = {
@@ -12,6 +12,19 @@ const theme = {
       textDecoration: 'none',
       fontWeight: 600
     }
+  },
+  buttons: {
+    primary: {
+      color: 'background',
+      bg: 'primary',
+      '&:hover': {
+        bg: 'text'
+      }
+    },
+    secondary: {
+      color: 'background',
+      bg: 'secondary'
+    }
   }
 }
 
@@ -20,13 +33,14 @@ export default () => (
     <Styled.root>
       {Object.entries(recipes).map(([name, Component]) => (
         <div
-          style={{
-            marginTop: '40px',
-            marginBottom: '40px',
-            border: 'thin solid'
+          key={name}
+          sx={{
+            backgroundColor: 'primary'
           }}
         >
-          <h3>{name}</h3>
+          <h3 style={{ borderBottom: 'thin solid', margin: 0, padding: 8 }}>
+            {name}
+          </h3>
           <Component />
         </div>
       ))}

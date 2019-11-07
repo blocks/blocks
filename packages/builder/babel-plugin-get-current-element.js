@@ -12,7 +12,7 @@ const getElementName = node => {
 }
 
 const getElementProps = (attributes = {}) => {
-  return attributes.reduce((acc, curr) => {
+  const props = attributes.reduce((acc, curr) => {
     let value = null
 
     if (curr.value.value) {
@@ -29,6 +29,9 @@ const getElementProps = (attributes = {}) => {
     acc[curr.name.name] = value
     return acc
   }, {})
+
+  props.sx = props.sx || {}
+  return props
 }
 
 const getParentId = node => {

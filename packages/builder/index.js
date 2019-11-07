@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 import React, { useState, useEffect, useMemo } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, ThemeProvider, jsx } from 'theme-ui'
@@ -14,6 +14,7 @@ import {
   // Checkbox,
   // Slider
 } from '@theme-ui/components'
+import * as themeComponents from '@theme-ui/components'
 
 import * as transforms from './transforms'
 import * as queries from './queries'
@@ -33,6 +34,21 @@ const theme = {
       color: 'inherit',
       textDecoration: 'none',
       fontWeight: 600
+    }
+  },
+  buttons: {
+    primary: {
+      color: 'background',
+      bg: 'primary',
+      '&:hover': {
+        bg: 'text'
+      }
+    },
+    secondary: {
+      color: 'text',
+      bg: 'background',
+      borderColor: 'text',
+      border: 'thin solid'
     }
   }
 }
@@ -57,7 +73,8 @@ export default () => {
     BLOCKS_DraggableInner: props => <div {...props} />,
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
-    ...recipes
+    ...recipes,
+    ...themeComponents
   }
 
   useEffect(() => {
@@ -116,6 +133,8 @@ export default () => {
     if (drag.source.droppableId === 'components') {
       const newCode = transforms.insertJSXBlock(code, { ...drag, components })
       setCode(newCode)
+    } else if (drag.source.droppableId.startsWith('element-')) {
+      console.log(drag)
     } else {
       const newCode = transforms.reorderJSXBlocks(code, drag)
       setCode(newCode)
@@ -193,6 +212,8 @@ export default () => {
     setCode(newCode)
   }
 
+  console.log({ elementId, elementData, transformedCode })
+
   return (
     <ThemeProvider theme={theme}>
       <Styled.root>
@@ -210,11 +231,12 @@ export default () => {
           sx={{
             display: 'flex',
             width: '100%',
-            padding: 3,
+            py: 1,
+            px: 3,
             borderBottom: 'thin solid #e1e6eb'
           }}
         >
-          <h3 sx={{ fontWeight: 'normal', m: 0 }}>Blocks</h3>
+          <h3 sx={{ fontSize: 2, fontWeight: 'normal', m: 0 }}>Blocks</h3>
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div
@@ -226,7 +248,7 @@ export default () => {
             <div
               sx={{
                 borderRight: 'thin solid #e1e6eb',
-                width: '15%',
+                width: '25%',
                 minHeight: '100vh',
                 overflow: 'scroll'
               }}
@@ -380,7 +402,10 @@ export default () => {
                           width: '100%'
                         }}
                         onChange={handleChange('background')}
-                        value={elementData.props.sx.backgroundColor}
+                        value={
+                          elementData.props.sx &&
+                          elementData.props.sx.backgroundColor
+                        }
                       />
                       <button onClick={handleRemove('background')}>
                         Remove

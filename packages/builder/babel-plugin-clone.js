@@ -1,4 +1,4 @@
-import randomize from 'randomatic'
+import { uuid } from './util'
 
 export default (api, { elementId } = {}) => {
   const { types: t } = api
@@ -20,7 +20,7 @@ export default (api, { elementId } = {}) => {
           const tuid = newElement.openingElement.attributes.find(
             node => node && node.name && node.name.name === '___tuid'
           )
-          tuid.value = t.stringLiteral(randomize('a0', 16))
+          tuid.value = t.stringLiteral(uuid())
           element.insertBefore(newElement)
         } catch (e) {
           console.log(e)

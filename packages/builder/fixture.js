@@ -47,14 +47,16 @@ export default () => (
     <div
       sx={{
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        p: 2
       }}
     >
       <img
         sx={{
           width: 150,
           borderRadius: 9999,
-          marginRight: 20
+          marginRight: 20,
+          p: 4
         }}
         src="https://avatars3.githubusercontent.com/u/1424573?s=460&v=4"
       />

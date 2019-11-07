@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
+import { Button } from '@theme-ui/components'
 const Link = Styled.a
 
 export const HeaderA = () => (
@@ -38,6 +39,51 @@ export const HeaderA = () => (
     >
       About
     </Link>
+  </header>
+)
+
+export const HeaderAA = () => (
+  <header
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      variant: 'styles.header',
+      justifyContent: 'space-between'
+    }}
+  >
+    <Link
+      to="/"
+      sx={{
+        variant: 'styles.navlink',
+        p: 2
+      }}
+    >
+      Hello
+    </Link>
+    <nav>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+      <Button mx={2} variant="secondary">
+        Login
+      </Button>
+      <Button>Sign Up</Button>
+    </nav>
   </header>
 )
 
@@ -559,6 +605,194 @@ export const HeaderF = () => (
   </header>
 )
 
+export const HeaderFA = () => (
+  <header
+    sx={{
+      py: 4,
+      variant: 'styles.header',
+      textAlign: 'center'
+    }}
+  >
+    <div
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        mb: 3
+      }}
+    >
+      <Link to="/" title="Home">
+        <img
+          alt="UI Logo"
+          src="https://contrast.now.sh/black/white?height=160&width=480&fontSize=1.4&baseline=2&fontWeight=900&text=Awesomeness"
+        />
+        <span
+          sx={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            overflow: 'hidden',
+            top: -9999
+          }}
+        >
+          Home
+        </span>
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'inline-block',
+        justifyContent: 'center',
+        width: 'auto',
+        mx: 'auto',
+        mb: 4,
+        borderTopStyle: 'solid',
+        borderTopWidth: 'thin',
+        borderTopColor: 'gray',
+        borderBottomStyle: 'solid',
+        borderBottomWidth: 'thin',
+        borderBottomColor: 'gray',
+        px: 4,
+        py: 3
+      }}
+    >
+      <Link
+        to="/work"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Work
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+      <Link
+        to="/contact"
+        sx={{
+          variant: 'styles.navlink',
+          p: 2
+        }}
+      >
+        Contact
+      </Link>
+    </div>
+  </header>
+)
+
+export const HeaderFB = () => (
+  <header
+    sx={{
+      py: 4,
+      variant: 'styles.header',
+      textAlign: 'center'
+    }}
+  >
+    <div
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        mb: 3
+      }}
+    >
+      <Link to="/" title="Home">
+        <img
+          alt="UI Logo"
+          src="https://contrast.now.sh/black/white?height=160&width=480&fontSize=1.4&baseline=2&fontWeight=900&text=Awesomeness"
+        />
+        <span
+          sx={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            overflow: 'hidden',
+            top: -9999
+          }}
+        >
+          Home
+        </span>
+      </Link>
+    </div>
+    <div
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        mx: 'auto',
+        mb: 4,
+        borderTopStyle: 'solid',
+        borderTopWidth: 'thin',
+        borderTopColor: 'gray',
+        borderBottomStyle: 'solid',
+        borderBottomWidth: 'thin',
+        borderBottomColor: 'gray',
+        p: 3
+      }}
+    >
+      <nav>
+        <Link
+          to="/work"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          Work
+        </Link>
+        <Link
+          to="/blog"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          Blog
+        </Link>
+        <Link
+          to="/about"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          About
+        </Link>
+        <Link
+          to="/contact"
+          sx={{
+            variant: 'styles.navlink',
+            p: 2
+          }}
+        >
+          Contact
+        </Link>
+      </nav>
+      <nav>
+        <Button variant="secondary" mr={2}>
+          Sign In
+        </Button>
+        <Button>Sign Up</Button>
+      </nav>
+    </div>
+  </header>
+)
+
 export const FooterA = () => (
   <footer
     sx={{
@@ -820,5 +1054,31 @@ export const ImageTitleC = () => (
     >
       Hello, world!
     </h1>
+  </div>
+)
+
+export const H1 = () => (
+  <div>
+    <Styled.h1>Heading One</Styled.h1>
+  </div>
+)
+export const H2 = () => (
+  <div>
+    <Styled.h2>Heading Two</Styled.h2>
+  </div>
+)
+export const H3 = () => (
+  <div>
+    <Styled.h3>Heading Three</Styled.h3>
+  </div>
+)
+export const H4 = () => (
+  <div>
+    <Styled.h4>Heading Four</Styled.h4>
+  </div>
+)
+export const P = () => (
+  <div>
+    <Styled.p sx={{ maxWidth: 320 }}>Here's an awesome paragraph</Styled.p>
   </div>
 )

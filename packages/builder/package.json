@@ -5,12 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/standalone": "^7.6.4",
-    "@babel/template": "^7.6.0",
-    "@theme-ui/components": "^0.2.45",
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/standalone": "^7.7.2",
+    "@babel/template": "^7.7.0",
+    "@theme-ui/components": "^0.2.46",
     "@theme-ui/presets": "^0.2.44",
-    "react-beautiful-dnd": "^11.0.5",
-    "theme-ui": "^0.2.44"
+    "react-beautiful-dnd": "^12.0.0",
+    "theme-ui": "^0.2.46"
   }
 }

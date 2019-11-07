@@ -11,14 +11,15 @@
     "@blocks/builder": "*",
     "@blocks/editor": "*",
     "@blocks/kit": "*",
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.10",
-    "@mdx-js/mdx": "^1.0.10",
-    "@mdx-js/react": "^1.0.6",
-    "@rebass/emotion": "^3.1.0",
-    "gatsby": "^2.3.25",
-    "gatsby-plugin-compile-es6-packages": "^1.1.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "@rebass/emotion": "^3.2.0",
+    "gatsby": "^2.17.10",
+    "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-plugin-theme-ui": "^0.2.43",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   }
 }

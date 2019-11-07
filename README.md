@@ -1,9 +1,9 @@
-# 📚 Blocks
+# Blocks
 
 > Empowering authors to write dynamic, engaging, and immersive content without leaving
 their editor
 
-Blocks is a rich text editor with all the capabilities of components thanks to [MDX][mdx].
+Blocks is a 
 It's a powerful WYSIWYG (what you see is what you get) built for the content web. You can
 choose a Block from an ever-expanding library or even install your own from [npm][].
 
@@ -37,4 +37,4 @@ And a GitHub Gist:
 
 [mdx]: https://mdxjs.com/
 [npm]: https://npmjs.com/
-[authorable]: https://johno.com/authorable
+[authorable]: https://johno.com/authorable-format
