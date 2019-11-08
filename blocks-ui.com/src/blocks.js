@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
-import { Button, Input } from '@theme-ui/components'
+import { Button, Box, Flex } from '@theme-ui/components'
 const Link = Styled.a
 
 export const HeaderA = () => (
@@ -145,6 +145,56 @@ export const HeaderAAA = () => (
       </Link>
     </nav>
     <nav sx={{ width: '20%', textAlign: 'right' }}>
+      <Button mx={2} variant="secondary">
+        Login
+      </Button>
+      <Button>Sign Up</Button>
+    </nav>
+  </header>
+)
+
+export const HeaderAAAA = () => (
+  <header
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      variant: 'styles.header',
+      justifyContent: 'space-between'
+    }}
+  >
+    <nav>
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2,
+          pr: 3,
+          fontSize: 3,
+          color: 'primary'
+        }}
+      >
+        Hello
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+    </nav>
+    <nav>
       <Button mx={2} variant="secondary">
         Login
       </Button>
@@ -979,9 +1029,10 @@ export const HeaderH = () => (
 export const HeaderI = () => (
   <header
     sx={{
+      color: 'background',
+      backgroundColor: 'text',
       display: 'flex',
       justifyContent: 'space-between',
-      mx: 5,
       px: 3,
       py: 4,
       variant: 'styles.header'
@@ -1268,6 +1319,88 @@ export const ImageTitleC = () => (
       Hello, world!
     </h1>
   </div>
+)
+
+export const TagLineA = () => (
+  <Box sx={{ py: [3, 4, 5], backgroundColor: 'primary', color: 'background' }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        A Block refers to a piece of content or a component. It's a section of
+        your content while a document is a collection of blocks.
+      </Styled.p>
+      <Styled.p sx={{ mb: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be complex like an embedded
+        spreadsheet or a chart that fetches live data.
+      </Styled.p>
+    </Box>
+  </Box>
+)
+
+export const TagLineB = () => (
+  <Box sx={{ py: [3, 4, 5] }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ mb: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be complex like an embedded
+        spreadsheet or a chart that fetches live data.
+      </Styled.p>
+      <Button>Take it for a spin</Button>
+    </Box>
+  </Box>
+)
+
+export const TagLineC = () => (
+  <Flex sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Box sx={{ pr: 3 }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Button>Take it for a spin</Button>
+    </Box>
+  </Flex>
+)
+
+export const TagLineD = () => (
+  <Flex sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Box sx={{ pr: 3 }}>
+      <Button>Take it for a spin</Button>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+    </Box>
+  </Flex>
+)
+
+export const TagLineE = () => (
+  <Box sx={{ textAlign: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Styled.h1 as="h3" sx={{ m: 0 }}>
+      What is a block?
+    </Styled.h1>
+    <Styled.p sx={{ mt: 0, mx: 'auto', maxWidth: 600 }}>
+      Blocks can be simple like a paragraph of text or even a box with a tomato
+      background color.
+    </Styled.p>
+    <Button>Take it for a spin</Button>
+  </Box>
 )
 
 export const H1 = () => (

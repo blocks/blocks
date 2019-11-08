@@ -4,10 +4,12 @@ import * as recipes from '../blocks'
 
 export default () => (
   <Styled.root>
-    <title>Blocks UI</title>
+    <style>{`*{ box-sizing: border-box } body { margin: 0 }`}</style>
+    <title>Components - Blocks UI</title>
+    <h1 sx={{ ml: 2 }}>{Object.keys(recipes).length} Components</h1>
     {Object.entries(recipes).map(([name, Component]) => (
-      <div key={name}>
-        <h3>{name}</h3>
+      <div key={name} sx={{ marginTop: 3, borderBottom: 'thin solid' }}>
+        <h3 sx={{ ml: 2, color: '#888' }}>{name}</h3>
         <Component />
       </div>
     ))}

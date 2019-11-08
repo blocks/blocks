@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn develop",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "build": "gatsby build"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
