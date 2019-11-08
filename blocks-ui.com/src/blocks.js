@@ -1403,6 +1403,229 @@ export const TagLineE = () => (
   </Box>
 )
 
+export const TagLineF = () => (
+  <Box
+    sx={{
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Box sx={{ textAlign: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, mb: 4, mx: 'auto', maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Button
+        sx={{
+          color: '#471091',
+          backgroundColor: '#acaedf',
+          px: 5,
+          py: 3,
+          fontSize: 3,
+          fontWeight: 600
+        }}
+      >
+        Take it for a spin
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const TagLineFA = () => (
+  <Box
+    sx={{
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Box sx={{ py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, mb: 4, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Button
+        sx={{
+          color: '#471091',
+          backgroundColor: '#acaedf',
+          px: 5,
+          py: 3,
+          fontSize: 3,
+          fontWeight: 600
+        }}
+      >
+        Take it for a spin
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const HeroA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+    <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroB = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase' }}>Kicker</Styled.h6>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+    <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroBG = () => (
+  <Box
+    sx={{
+      py: 4,
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Flex
+      sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+    >
+      <Box sx={{ pr: 3, width: '50%' }}>
+        <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase', color: '#acaedf' }}>
+          Kicker
+        </Styled.h6>
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+        <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+          This is a hero, with some convincing copy and a call to action.
+        </Styled.p>
+        <Box sx={{ pt: 4 }}>
+          <Button
+            sx={{
+              color: '#471091',
+              backgroundColor: '#acaedf',
+              px: 5,
+              py: 3,
+              fontSize: 3,
+              fontWeight: 600
+            }}
+          >
+            Take it for a spin
+          </Button>
+        </Box>
+      </Box>
+      <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+        <img
+          alt="Hologram graphic"
+          src="https://assets.blocks-ui.com/hologram.svg"
+          sx={{
+            maxWidth: '100%'
+          }}
+        />
+      </Box>
+    </Flex>
+  </Box>
+)
+
+export const HeroC = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ width: '50%', pr: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+    <Box sx={{ pl: 3, width: '50%' }}>
+      <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase' }}>Kicker</Styled.h6>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const HeroD = () => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      width: '50%'
+    }}
+  >
+    <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+    <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 500 }}>
+      This is a hero, with some convincing copy and a call to action.
+    </Styled.p>
+    <Box sx={{ pt: 4 }}>
+      <Button sx={{ mr: 2 }}>Try it</Button>
+      <span>or</span>
+      <Button sx={{ ml: 2 }} variant="secondary">
+        Doc
+      </Button>
+    </Box>
+  </Box>
+)
+
 export const H1 = () => (
   <div>
     <Styled.h1>Heading One</Styled.h1>

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "yarn develop",
     "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "deploy": "now switch mdx-blocks && now && now alias $(pbpaste) blocks-ui.com && now assets && now alias $(pbpaste) assets.blocks-ui.com"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
