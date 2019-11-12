@@ -1403,6 +1403,27 @@ export const TagLineE = () => (
   </Box>
 )
 
+export const TagLineEA = () => (
+  <Box sx={{ backgroundColor: '#2B2D2D' }}>
+    <Box sx={{ textAlign: 'center', py: [4, 5, 6], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ mt: 0, color: 'white' }}>
+        Let's do something great together
+      </Styled.h1>
+      <Button
+        sx={{
+          backgroundColor: 'transparent',
+          border: '2px solid',
+          color: 'white',
+          fontSize: 3,
+          px: 5
+        }}
+      >
+        Get started
+      </Button>
+    </Box>
+  </Box>
+)
+
 export const TagLineF = () => (
   <Box
     sx={{
@@ -1623,6 +1644,270 @@ export const HeroD = () => (
         Doc
       </Button>
     </Box>
+  </Box>
+)
+
+export const HeroE = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '60%'
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/lachlan-gowen-building.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroF = () => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto'
+    }}
+  >
+    <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+    <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 500 }}>
+      This is a hero, with some convincing copy and a call to action.
+    </Styled.p>
+    <Box sx={{ pt: 4, pb: 5 }}>
+      <Button sx={{ backgroundColor: '#173383' }}>Give it a go</Button>
+    </Box>
+    <img
+      src="https://assets.blocks-ui.com/house-interior.jpg"
+      sx={{
+        width: '100%'
+      }}
+    />
+  </Box>
+)
+
+export const HeroG = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '60%'
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0, color: '#0F5A3D' }}>
+        Awesomeness
+      </Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], mt: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Button sx={{ backgroundColor: '#0F5A3D' }}>Give it a try</Button>
+    </Box>
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/jude-beck-plant.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const DescriptionA = () => (
+  <Flex sx={{ py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}>
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: 0,
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        This is an amazing quote about something very interesting.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be simple like a paragraph of text
+        or even a box with a tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Do something</Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const DescriptionAA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: 0,
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        This is an amazing quote about something very interesting.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be simple like a paragraph of text
+        or even a box with a tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Do something</Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const DescriptionAAA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be simple like a paragraph of text
+        or even a box with a tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Do something</Button>
+      </Box>
+    </Box>
+    <Box sx={{ pl: [3, 4, 5], width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: 0,
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        This is an amazing quote about something very interesting.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+    </Box>
+  </Flex>
+)
+
+export const BlockQuote = () => (
+  <Box
+    sx={{ px: 3, py: [3, 4, 5], textAlign: 'center', m: 'auto', maxWidth: 700 }}
+  >
+    <Styled.h1
+      as="blockquote"
+      sx={{
+        mx: 0,
+        mt: 0,
+        mb: 2,
+        ':before': {
+          content: '"“"',
+          position: 'absolute',
+          transform: 'translateX(-30px)'
+        },
+        ':after': {
+          content: '"”"'
+        }
+      }}
+    >
+      This is an amazing quote about something very interesting.
+    </Styled.h1>
+    <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
   </Box>
 )
 
