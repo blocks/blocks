@@ -5012,6 +5012,11 @@ gatsby-plugin-mdx@^1.0.55:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
+gatsby-plugin-now@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-now/-/gatsby-plugin-now-1.2.3.tgz#d7943e226ed2321a47e24d173aaef6922bd6ebf4"
+  integrity sha512-tUkCTOX/x21LkaEF1+g4FmYMUt7v1yXeHErmZFM0NRmKa0xRZLNsLiSc0KoC4MDfHMQruktGR9umG2r0H/11DA==
+
 gatsby-plugin-page-creator@^2.1.28:
   version "2.1.28"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.1.28.tgz#32deac5b848b7494b0f2091d193f62236f742702"
