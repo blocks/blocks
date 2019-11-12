@@ -1519,7 +1519,7 @@ export const TagLineB = () => (
         tomato background color. Blocks can be complex like an embedded
         spreadsheet or a chart that fetches live data.
       </Styled.p>
-      <Button>Take it for a spin</Button>
+      <Button>Get started</Button>
     </Box>
   </Box>
 )
@@ -1536,7 +1536,7 @@ export const TagLineC = () => (
       </Styled.p>
     </Box>
     <Box sx={{ pl: 3 }}>
-      <Button>Take it for a spin</Button>
+      <Button>Get started</Button>
     </Box>
   </Flex>
 )
@@ -1544,7 +1544,7 @@ export const TagLineC = () => (
 export const TagLineD = () => (
   <Flex sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
     <Box sx={{ pr: 3 }}>
-      <Button>Take it for a spin</Button>
+      <Button>Get started</Button>
     </Box>
     <Box sx={{ pl: 3 }}>
       <Styled.h1 as="h3" sx={{ m: 0 }}>
@@ -1567,7 +1567,7 @@ export const TagLineE = () => (
       Blocks can be simple like a paragraph of text or even a box with a tomato
       background color.
     </Styled.p>
-    <Button>Take it for a spin</Button>
+    <Button>Get started</Button>
   </Box>
 )
 
@@ -1830,9 +1830,10 @@ export const HeroE = () => (
         width: '60%'
       }}
     >
-      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Hello, world!</Styled.h1>
       <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, maxWidth: 500 }}>
-        This is a hero, with some convincing copy and a call to action.
+        This is a hero, with some convincing copy and a rad picture of the top
+        of a building.
       </Styled.p>
     </Box>
     <Box
@@ -1968,8 +1969,8 @@ export const HeroFA = () => (
       sx={{
         p: [3, 4, 5],
         pb: [7, 7, 7],
-        backgroundColor: 'text',
-        color: 'background'
+        backgroundColor: '#2B2D2D',
+        color: 'white'
       }}
     >
       <Box
@@ -1981,14 +1982,29 @@ export const HeroFA = () => (
           mx: 'auto'
         }}
       >
-        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>
+          Demo content is interesting
+        </Styled.h1>
         <Styled.p
-          sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 500 }}
+          sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 540 }}
         >
-          This is a hero, with some convincing copy and a call to action.
+          It often shows houses that are way cleaner than my own. How do those
+          blankets stay folded? I guess they don't have kids.
         </Styled.p>
-        <Box sx={{ pt: 4, pb: 5 }}>
-          <Button sx={{ backgroundColor: '#173383' }}>Give it a go</Button>
+        <Box sx={{ py: 5 }}>
+          <Button
+            sx={{
+              backgroundColor: 'transparent',
+              color: 'white',
+              px: 4,
+              fontSize: 3,
+              fontWeight: 500,
+              border: '2px solid white',
+              borderRadius: 0
+            }}
+          >
+            Click a button
+          </Button>
         </Box>
       </Box>
     </Box>
@@ -1999,7 +2015,7 @@ export const HeroFA = () => (
       }}
     >
       <img
-        src="https://assets.blocks-ui.com/house-interior.jpg"
+        src="https://assets.blocks-ui.com/kara-eads-interior.jpg"
         sx={{
           mt: -7,
           width: '100%',
@@ -2055,7 +2071,7 @@ export const DescriptionA = () => (
         as="blockquote"
         sx={{
           mx: 0,
-          mt: 0,
+          mt: '-8px',
           mb: 2,
           ':before': {
             content: '"“"',
@@ -2067,27 +2083,27 @@ export const DescriptionA = () => (
           }
         }}
       >
-        This is an amazing quote about something very interesting.
+        It's pretty fun to turn JSX into a WYSIWYG.
       </Styled.h1>
-      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+      <footer sx={{ fontSize: 2 }}>&mdash; Me</footer>
     </Box>
     <Box sx={{ pl: 3 }}>
       <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
-        Blocks can be simple like a paragraph of text or even a box with a
-        tomato background color. Blocks can be simple like a paragraph of text
-        or even a box with a tomato background color.
-      </Styled.p>
-      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
-      <Styled.p sx={{ maxWidth: 600 }}>
-        Blocks can be simple like a paragraph of text or even a box with a
-        tomato background color.
+        Blocks can be simple like a paragraph of text or a box with a tomato
+        background color. They can be complex and contain state or even fetch
+        data. They're pre-built components that can be drag and dropped onto the
+        canvas.
       </Styled.p>
       <Styled.p sx={{ maxWidth: 600 }}>
-        Blocks can be simple like a paragraph of text or even a box with a
-        tomato background color.
+        It's “low code” because you don't have to peek into the JSX until you
+        have bespoke needs.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks are typically composed of multiple components which allows you to
+        edit styling of a particular element.
       </Styled.p>
       <Box sx={{ mt: 4 }}>
-        <Button>Do something</Button>
+        <Button>Get started</Button>
       </Box>
     </Box>
   </Flex>
