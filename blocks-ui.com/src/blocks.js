@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
-import { Button, Box, Flex } from '@theme-ui/components'
+import { Button, Box, Flex, Input } from '@theme-ui/components'
 const Link = Styled.a
 
 export const HeaderA = () => (
@@ -1761,6 +1761,63 @@ export const HeroBG = () => (
   </Box>
 )
 
+export const HeroBGNewsletter = () => (
+  <Box
+    sx={{
+      py: 4,
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Flex
+      sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+    >
+      <Box sx={{ pr: 3, width: '50%' }}>
+        <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase', color: '#acaedf' }}>
+          Coming Soon
+        </Styled.h6>
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Some product</Styled.h1>
+        <Styled.p
+          sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500, color: '#d1d3ff' }}
+        >
+          This is a hero, with some convincing copy and a call to action.
+        </Styled.p>
+        <Styled.p sx={{ mt: [3, 4, 4], mb: 2, maxWidth: 500 }}>
+          Sign up for project updates and releases.
+        </Styled.p>
+        <Flex>
+          <Input
+            sx={{
+              maxWidth: '18rem'
+            }}
+            placeholder={'hello@example.com'}
+          />
+          <Button
+            sx={{
+              color: '#471091',
+              backgroundColor: '#acaedf',
+              ml: 3,
+              fontWeight: 600
+            }}
+          >
+            Subscribe
+          </Button>
+        </Flex>
+      </Box>
+      <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+        <img
+          alt="Hologram graphic"
+          src="https://assets.blocks-ui.com/hologram.svg"
+          sx={{
+            maxWidth: '100%'
+          }}
+        />
+      </Box>
+    </Flex>
+  </Box>
+)
+
 export const HeroC = () => (
   <Flex
     sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
@@ -2251,6 +2308,506 @@ export const ImageBlock = () => (
       }}
     />
   </figure>
+)
+
+/*
+export const ImageGridItem
+export const ImageGridText.Heading
+export const ImageGridText.Description = () => (
+  <>
+    <Styled.h3 sx={{ m: 0 }}>
+      Hello, world!
+    </Styled.h3>
+    <Styled.p ___uuid="kjsflkshdflkjsdlkfjslkdf" sx={{ mt: 0 }}>
+      Here is some text about things, more things,
+      and yet other things.
+    </Styled.p>
+  </>
+)
+
+import * as ImageTextGrid
+
+<ImageTextGrid>
+  <ImageTextGrid.Item
+    sx={{
+      background: 'tomato'
+    }}
+  >
+
+  </ImageTextGrid.Item>
+</ImageTextGrid>
+
+export const ImageTextGrid = () => (
+  <Flex>
+    <ImageGridItem>
+
+    </ImageGridItem>
+  </Flex>
+)
+*/
+
+export const ImageGrid = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5]
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+  </Flex>
+)
+
+export const ImageTextGrid = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5]
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+  </Flex>
+)
+
+export const ImageTextGridA = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5],
+      textAlign: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+  </Flex>
 )
 
 export const H1 = () => (
