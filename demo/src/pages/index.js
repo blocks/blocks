@@ -1,4 +1,4 @@
 import React from 'react'
-import Builder from '@blocks/builder'
+import Blocks from 'blocks-ui'
 
-export default () => <Builder />
+export default () => <Blocks />

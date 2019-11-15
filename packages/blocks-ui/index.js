@@ -231,12 +231,18 @@ export default () => {
           sx={{
             display: 'flex',
             width: '100%',
-            py: 1,
+            py: 2,
             px: 3,
             borderBottom: 'thin solid #e1e6eb'
           }}
         >
-          <h3 sx={{ fontSize: 2, fontWeight: 'normal', m: 0 }}>Blocks</h3>
+          <img
+            alt="Blocks logo"
+            src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+            sx={{
+              height: 20
+            }}
+          />
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div
@@ -249,7 +255,7 @@ export default () => {
               sx={{
                 borderRight: 'thin solid #e1e6eb',
                 width: '25%',
-                minHeight: '100vh',
+                height: '100vh',
                 overflow: 'scroll'
               }}
             >
@@ -266,40 +272,47 @@ export default () => {
               >
                 Components
               </h3>
-              <Droppable droppableId="components">
-                {(provided, snapshot) => (
-                  <div {...provided.droppableProps} ref={provided.innerRef}>
-                    {Object.keys(recipes).map((key, i) => (
-                      <Draggable key={key} draggableId={key} index={i + 1}>
-                        {(provided, snapshot) => {
-                          const Component = recipes[key]
+              <div
+                sx={{
+                  height: '100vh',
+                  overflow: 'scroll'
+                }}
+              >
+                <Droppable droppableId="components">
+                  {(provided, snapshot) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {Object.keys(recipes).map((key, i) => (
+                        <Draggable key={key} draggableId={key} index={i + 1}>
+                          {(provided, snapshot) => {
+                            const Component = recipes[key]
 
-                          return (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              sx={{
-                                transform: 'scale(.6)'
-                              }}
-                            >
-                              <Component />
-                            </div>
-                          )
-                        }}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
+                            return (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                sx={{
+                                  transform: 'scale(.6)'
+                                }}
+                              >
+                                <Component />
+                              </div>
+                            )
+                          }}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </div>
             </div>
             <div
               sx={{
                 width: '60%',
                 backgroundColor: 'white',
-                padding: 20,
-                minHeight: '100vh'
+                height: '100vh',
+                overflow: 'scroll'
               }}
             >
               {element}
@@ -308,7 +321,8 @@ export default () => {
               sx={{
                 borderLeft: 'thin solid #e1e6eb',
                 width: '25%',
-                minHeight: '100vh'
+                height: '100vh',
+                overflow: 'scroll'
               }}
             >
               {elementData && (

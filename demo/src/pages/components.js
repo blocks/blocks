@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import * as recipes from '@blocks/builder/recipes'
+import * as recipes from 'blocks-ui/recipes'
 import { jsx, ThemeProvider, Styled } from 'theme-ui'
 import { system } from '@theme-ui/presets'
 

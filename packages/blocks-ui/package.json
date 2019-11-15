@@ -1,8 +1,9 @@
 {
-  "name": "@blocks/builder",
+  "name": "blocks-ui",
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "repo": "blocks/blocks",
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
