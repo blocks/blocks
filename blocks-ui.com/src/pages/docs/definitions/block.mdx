@@ -7,46 +7,113 @@ A Block is a component that the editor can control. It's typically a
 component that has pre-made styles and accepts a few props for changing
 the content.
 
-Components can expose a styling API using `Controls.Sx` which maps to the
+Components can expose a styling API using `Controls.Style` which maps to the
 `sx` prop in Theme UI. There are component types you can specify like
 `Typography` and `Layout` to constrain which props are possible.
 
-### Example component
+## Adding controls to a component
+
+There are two types of controls that can be exposed. Prop controls map to
+common JSX primitive prop types like strings, numbers, and enums. There are
+also style properties which can be added to expose styling knobs and dials.
+
+### Prop controls
+
+After instantiating a component, you can use `Controls.addPropertyControls`
+which will expose controls in the editor sidepanel.
+
+The following adds a string input for the quote.
+
+```js
+Controls.addPropertyControls(BlockQuote.Quote, {
+  children: {
+    type: Controls.String,
+    required: true,
+    placeholder: 'What did someone say?'
+  },
+  sx: {
+    type: Controls.Style.Typography
+  }
+})
+```
+
+[See Controls page &rarr;](/docs/controls)
+
+### Style controls
+
+If you want to expose style controls, you can do so with `Controls.addStyleControls`.
+
+```js
+Controls.addStyleControls(BlockQuote, Controls.Style.Layout)
+```
+
+Styles controls have particular presets that can be used, too.
+
+- `Controls.Style.Layout`
+- `Controls.Style.Typography`
+- `Controls.Style.Variant`
+
+### `sx` or `css` prop controls
+
+You can combine `Controls.addPropertyControls` with `Controls.Style` as a shortcut to
+avoid `Controls.addStyleControls`. For Theme UI, you'd set it to `sx`. Using Emotion
+or Styled Components you can specify `css`.
+
+```js
+Controls.addPropertyControls(BlockQuote.Quote, {
+  children: {
+    type: Controls.String,
+    required: true,
+    placeholder: 'What did someone say?'
+  },
+  sx: {
+    type: Controls.Style.Typography
+  }
+})
+```
+
+## Using a block
+
+The Blocks editor accepts a `blocks` prop where you specify
+the component, its import location, and its usage. When the
+block is dragged onto the canvas, the usage code is what ends
+up in the document.
+
+```js
+import React from 'react'
+import { Editor } from 'blocks-ui'
+import BlockQuote from '@blocks/components/blockquote'
+
+export default () => (
+  <Editor
+    blocks={{
+      BlockQuote: {
+        component: BlockQuote,
+        importLocation: '@blocks/components/blockquote',
+        usage: `
+          <BlockQuote>
+            <BlockQuote.Quote>
+              Yabba dabba dooooooo.
+            </BlockQuote.Quote>
+            <BlockQuote.Footer>
+              Fred Flintstone
+            </BlockQuote.Footer>
+          </BlockQuote>
+        `
+      }
+    }}
+  />
+)
+```
+
+## Example block component
 
 ```js
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
 import { Box } from '@theme-ui/components'
-import { Controls, CompType } from 'blocks-ui'
+import { Controls } from 'blocks-ui'
 
-/**
- * @blocks BlockQuote
- * 
- * The BlockQuote component is great for testimonials and quotes
- * in long form content.
- * 
- * ```js variant=default
- * <BlockQuote>
- *  <BlockQuote.Quote>
- *    Yabba dabba dooooooo.
- *  </BlockQuote.Quote>
- *  <BlockQuote.Footer>
- *    Fred Flintstone
- *  </BlockQuote.Footer>
- * </BlockQuote>
- * ```
- * 
- * ```js variant=reversed
- * <BlockQuote>
- *  <BlockQuote.Footer>
- *    Fred Flintstone
- *  </BlockQuote.Footer>
- *  <BlockQuote.Quote>
- *    Yabba dabba dooooooo.
- *  </BlockQuote.Quote>
- * </BlockQuote>
- * ```
- */
 const BlockQuote = props => (
   <Box
     sx={{
@@ -60,7 +127,7 @@ const BlockQuote = props => (
   />
   </Box>
 )
-Controls.addStyleControls(BlockQuote, Controls.Sx.Layout)
+Controls.addStyleControls(BlockQuote, Controls.Style.Layout)
 
 BlockQuote.Quote = props => (
   <Styled.h1
@@ -88,7 +155,7 @@ Controls.addPropertyControls(BlockQuote.Quote, {
     placeholder: 'What did someone say?'
   },
   sx: {
-    type: Controls.Sx.Typography
+    type: Controls.Style.Typography
   }
 })
 
@@ -108,7 +175,7 @@ Controls.addPropertyControls(BlockQuote.Author, {
     placeholder: 'Who said it?'
   },
   sx: {
-    type: Controls.Sx.Typography
+    type: Controls.Style.Typography
   }
 })
 
