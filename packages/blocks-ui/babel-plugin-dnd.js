@@ -80,15 +80,21 @@ export default api => {
         path.node.children = path.node.children
           .filter(node => t.isJSXElement(node))
           .map((node, i) => {
-            const id = uuid()
+            const tuid = node.openingElement.attributes.find(
+              node => node.name && node.name.name === '___tuid'
+            )
+
+            if (!tuid) {
+              return
+            }
+
+            const id = tuid.value.value
+
             const { expression: childWrapper } = isNav
               ? buildInlineDraggable(id, i)
               : buildDraggable(id, i)
             childWrapper.children[1].expression.body.children = [node]
 
-            node.openingElement.attributes.push(
-              t.jSXAttribute(t.jSXIdentifier('___tuid'), t.stringLiteral(id))
-            )
             return childWrapper
           })
 

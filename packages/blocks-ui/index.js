@@ -130,6 +130,10 @@ export default () => {
       return
     }
 
+    if (drag.source.index === drag.destination.index) {
+      return
+    }
+
     if (drag.source.droppableId === 'components') {
       const newCode = transforms.insertJSXBlock(code, { ...drag, components })
       setCode(newCode)
@@ -139,6 +143,10 @@ export default () => {
       const newCode = transforms.reorderJSXBlocks(code, drag)
       setCode(newCode)
     }
+  }
+
+  const onBeforeDragStart = drag => {
+    setElementId(drag.draggableId)
   }
 
   const handleRemove = key => () => {
@@ -244,7 +252,10 @@ export default () => {
             }}
           />
         </div>
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext
+          onDragEnd={onDragEnd}
+          onBeforeDragStart={onBeforeDragStart}
+        >
           <div
             sx={{
               display: 'flex',
@@ -291,11 +302,14 @@ export default () => {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                sx={{
-                                  transform: 'scale(.6)'
-                                }}
                               >
-                                <Component />
+                                <div
+                                  sx={{
+                                    transform: 'scale(.6)'
+                                  }}
+                                >
+                                  <Component />
+                                </div>
                               </div>
                             )
                           }}
