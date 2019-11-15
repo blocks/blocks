@@ -1082,6 +1082,7 @@ export const HeaderE = () => (
     sx={{
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
       mx: 'auto',
       px: 3,
       py: 3,
@@ -1110,6 +1111,7 @@ export const HeaderE2 = () => (
     sx={{
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
       maxWidth: 800,
       mx: 'auto',
       px: 3,
@@ -1928,12 +1930,13 @@ export const HeroEA = () => (
         zIndex: 999
       }}
     >
-      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>An image overlap</Styled.h1>
       <Styled.p sx={{ fontSize: [2, 3, 4], mt: 0, maxWidth: 500 }}>
-        This is a hero, with some convincing copy and a call to action.
+        Having your written content overlap the image on the side is playful. It
+        gives a unique, modern feel to your site.
       </Styled.p>
       <Styled.p sx={{ fontSize: [2, 3, 4], maxWidth: 500 }}>
-        This is a hero, with some convincing copy and a call to action.
+        It's a nice touch for minimal websites and stores.
       </Styled.p>
     </Box>
     <Box

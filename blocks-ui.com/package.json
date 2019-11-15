@@ -15,6 +15,7 @@
     "@mdx-js/react": "^1.5.1",
     "@theme-ui/components": "^0.2.46",
     "@theme-ui/presets": "^0.2.44",
+    "framer": "^1.1.5",
     "gatsby": "^2.17.10",
     "gatsby-plugin-mdx": "^1.0.55",
     "gatsby-plugin-now": "^1.2.3",

@@ -1,0 +1,116 @@
+import Layout from '../../../components/layout'
+export default Layout
+
+# Block definition
+
+A Block is a component that is passed to the editor. It's typically a
+component that has pre-made styles and accepts a few props for changing
+the content.
+
+Components can expose a styling API using `Controls.Sx` which maps to the
+`sx` prop in Theme UI. There are component types you can specify like
+`Typography` and `Layout` to constrain which props are possible.
+
+### Example of a component 
+
+```js
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui'
+import { Box } from '@theme-ui/components'
+import { Controls, CompType } from 'blocks-ui'
+
+/**
+ * @blocks BlockQuote
+ * 
+ * The BlockQuote component is great for testimonials and quotes
+ * in long form content.
+ * 
+ * ```js variant=default
+ * <BlockQuote>
+ *  <BlockQuote.Quote>
+ *    Yabba dabba dooooooo.
+ *  </BlockQuote.Quote>
+ *  <BlockQuote.Footer>
+ *    Fred Flintstone
+ *  </BlockQuote.Footer>
+ * </BlockQuote>
+ * ```
+ * 
+ * ```js variant=reversed
+ * <BlockQuote>
+ *  <BlockQuote.Footer>
+ *    Fred Flintstone
+ *  </BlockQuote.Footer>
+ *  <BlockQuote.Quote>
+ *    Yabba dabba dooooooo.
+ *  </BlockQuote.Quote>
+ * </BlockQuote>
+ * ```
+ */
+const BlockQuote = props => (
+  <Box
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      textAlign: 'center',
+      m: 'auto',
+      maxWidth: 700
+    }}
+    {...props}
+  />
+  </Box>
+)
+Controls.addStyleControls(BlockQuote, Controls.Sx.Layout)
+
+BlockQuote.Quote = props => (
+  <Styled.h1
+    as="blockquote"
+    sx={{
+      mx: 0,
+      mt: 0,
+      mb: 2,
+      ':before': {
+        content: '"“"',
+        position: 'absolute',
+        transform: 'translateX(-30px)'
+      },
+      ':after': {
+        content: '"”"'
+      }
+    }}
+    {...props}
+  />
+)
+Controls.addPropertyControls(BlockQuote.Quote, {
+  children: {
+    type: Controls.String,
+    required: true,
+    placeholder: 'What did someone say?'
+  },
+  sx: {
+    type: Controls.Sx.Typography
+  }
+})
+
+BlockQuote.Author = ({ children, ...props }) => (
+  children ? (
+    <footer
+      sx={{ fontSize: 2 }}
+      {...props}
+    >
+      &mdash; {children}
+    </footer>
+  ) : null
+)
+Controls.addPropertyControls(BlockQuote.Author, {
+  children: {
+    type: Controls.String,
+    placeholder: 'Who said it?'
+  },
+  sx: {
+    type: Controls.Sx.Typography
+  }
+})
+
+export default BlockQuote
+```

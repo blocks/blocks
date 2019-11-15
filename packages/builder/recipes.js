@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
-import { Button } from '@theme-ui/components'
+import { Button, Box, Flex, Input } from '@theme-ui/components'
 const Link = Styled.a
 
 export const HeaderA = () => (
@@ -14,7 +14,7 @@ export const HeaderA = () => (
     <Link
       to="/"
       sx={{
-        variant: 'styles.navlink',
+        variant: 'styles.navLink',
         p: 2
       }}
     >
@@ -24,7 +24,7 @@ export const HeaderA = () => (
     <Link
       to="/blog"
       sx={{
-        variant: 'styles.navlink',
+        variant: 'styles.navLink',
         p: 2
       }}
     >
@@ -33,7 +33,7 @@ export const HeaderA = () => (
     <Link
       to="/about"
       sx={{
-        variant: 'styles.navlink',
+        variant: 'styles.navLink',
         p: 2
       }}
     >
@@ -54,7 +54,7 @@ export const HeaderAA = () => (
     <Link
       to="/"
       sx={{
-        variant: 'styles.navlink',
+        variant: 'styles.navLink',
         p: 2
       }}
     >
@@ -64,7 +64,7 @@ export const HeaderAA = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -73,12 +73,128 @@ export const HeaderAA = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
         About
       </Link>
+      <Button mx={2} variant="secondary">
+        Login
+      </Button>
+      <Button>Sign Up</Button>
+    </nav>
+  </header>
+)
+
+export const HeaderAAA = () => (
+  <header
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      variant: 'styles.header',
+      justifyContent: 'space-between'
+    }}
+  >
+    <Link
+      to="/"
+      sx={{
+        variant: 'styles.navLink',
+        p: 2,
+        width: '20%'
+      }}
+    >
+      Hello
+    </Link>
+    <nav>
+      <Link
+        to="/resources"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        Resources
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+      <Link
+        to="/contact"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        Contact
+      </Link>
+    </nav>
+    <nav sx={{ width: '20%', textAlign: 'right' }}>
+      <Button mx={2} variant="secondary">
+        Login
+      </Button>
+      <Button>Sign Up</Button>
+    </nav>
+  </header>
+)
+
+export const HeaderAAAA = () => (
+  <header
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      variant: 'styles.header',
+      justifyContent: 'space-between'
+    }}
+  >
+    <nav>
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2,
+          pr: 3,
+          fontSize: 3,
+          color: 'primary'
+        }}
+      >
+        Hello
+      </Link>
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          p: 2
+        }}
+      >
+        About
+      </Link>
+    </nav>
+    <nav>
       <Button mx={2} variant="secondary">
         Login
       </Button>
@@ -105,7 +221,7 @@ export const HeaderB = () => (
       <Link
         to="/"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           fontSize: 5,
           py: 2
         }}
@@ -116,7 +232,7 @@ export const HeaderB = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           ml: 3,
           py: 2
         }}
@@ -126,9 +242,177 @@ export const HeaderB = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           ml: 3,
           py: 2
+        }}
+      >
+        About
+      </Link>
+    </div>
+  </header>
+)
+
+export const HeaderBA = () => (
+  <header
+    sx={{
+      variant: 'styles.header'
+    }}
+  >
+    <div
+      sx={{
+        mx: 'auto',
+        px: 3,
+        display: 'flex',
+        alignItems: 'baseline'
+      }}
+    >
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navLink',
+          fontSize: 5,
+          textTransform: 'uppercase',
+          py: 2,
+          letterSpacing: 3
+        }}
+      >
+        Hello
+      </Link>
+      <div sx={{ mx: 'auto' }} />
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          borderBottomStyle: 'solid',
+          borderBottomWidth: 4,
+          letterSpacing: 3
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          borderBottomStyle: 'solid',
+          borderBottomWidth: 4,
+          letterSpacing: 3
+        }}
+      >
+        About
+      </Link>
+    </div>
+  </header>
+)
+
+export const HeaderBB = () => (
+  <header
+    sx={{
+      variant: 'styles.header'
+    }}
+  >
+    <div
+      sx={{
+        mx: 'auto',
+        px: 3,
+        display: 'flex',
+        alignItems: 'baseline'
+      }}
+    >
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navLink',
+          fontSize: 5,
+          textTransform: 'uppercase',
+          py: 2,
+          letterSpacing: 3
+        }}
+      >
+        Hello
+      </Link>
+      <div sx={{ mx: 'auto' }} />
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          letterSpacing: 3
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          letterSpacing: 3
+        }}
+      >
+        About
+      </Link>
+    </div>
+  </header>
+)
+
+export const HeaderBC = () => (
+  <header
+    sx={{
+      variant: 'styles.header'
+    }}
+  >
+    <div
+      sx={{
+        mx: 'auto',
+        px: 3,
+        display: 'flex',
+        alignItems: 'baseline'
+      }}
+    >
+      <Link
+        to="/"
+        sx={{
+          variant: 'styles.navLink',
+          textTransform: 'uppercase',
+          py: 2,
+          letterSpacing: 3
+        }}
+      >
+        Hello
+      </Link>
+      <div sx={{ mx: 'auto' }} />
+      <Link
+        to="/blog"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          letterSpacing: 3
+        }}
+      >
+        Blog
+      </Link>
+      <Link
+        to="/about"
+        sx={{
+          variant: 'styles.navLink',
+          ml: 3,
+          py: 2,
+          textTransform: 'uppercase',
+          letterSpacing: 3
         }}
       >
         About
@@ -189,7 +473,7 @@ export const HeaderC = () => (
       <Link
         to="/work"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -198,7 +482,7 @@ export const HeaderC = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -216,7 +500,7 @@ export const HeaderC = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -225,7 +509,7 @@ export const HeaderC = () => (
       <Link
         to="/contact"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -287,7 +571,7 @@ export const HeaderC2 = () => (
       <Link
         to="/work"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -296,7 +580,7 @@ export const HeaderC2 = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -314,7 +598,7 @@ export const HeaderC2 = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -323,7 +607,7 @@ export const HeaderC2 = () => (
       <Link
         to="/contact"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -384,7 +668,7 @@ export const HeaderC3 = () => (
       <Link
         to="/work"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -393,7 +677,7 @@ export const HeaderC3 = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -410,7 +694,7 @@ export const HeaderC3 = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -419,7 +703,7 @@ export const HeaderC3 = () => (
       <Link
         to="/contact"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -484,7 +768,7 @@ export const HeaderD = () => (
       <Link
         to="/"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           px: 3,
           py: 1,
           textTransform: 'uppercase',
@@ -506,7 +790,7 @@ export const HeaderD = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           ml: 3,
           py: 3
         }}
@@ -516,7 +800,7 @@ export const HeaderD = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           ml: 3,
           py: 3
         }}
@@ -568,7 +852,7 @@ export const HeaderF = () => (
       <Link
         to="/work"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -577,7 +861,7 @@ export const HeaderF = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -586,7 +870,7 @@ export const HeaderF = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -595,7 +879,7 @@ export const HeaderF = () => (
       <Link
         to="/contact"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -658,7 +942,7 @@ export const HeaderFA = () => (
       <Link
         to="/work"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -667,7 +951,7 @@ export const HeaderFA = () => (
       <Link
         to="/blog"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -676,7 +960,7 @@ export const HeaderFA = () => (
       <Link
         to="/about"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -685,7 +969,7 @@ export const HeaderFA = () => (
       <Link
         to="/contact"
         sx={{
-          variant: 'styles.navlink',
+          variant: 'styles.navLink',
           p: 2
         }}
       >
@@ -749,7 +1033,7 @@ export const HeaderFB = () => (
         <Link
           to="/work"
           sx={{
-            variant: 'styles.navlink',
+            variant: 'styles.navLink',
             p: 2
           }}
         >
@@ -758,7 +1042,7 @@ export const HeaderFB = () => (
         <Link
           to="/blog"
           sx={{
-            variant: 'styles.navlink',
+            variant: 'styles.navLink',
             p: 2
           }}
         >
@@ -767,7 +1051,7 @@ export const HeaderFB = () => (
         <Link
           to="/about"
           sx={{
-            variant: 'styles.navlink',
+            variant: 'styles.navLink',
             p: 2
           }}
         >
@@ -776,7 +1060,7 @@ export const HeaderFB = () => (
         <Link
           to="/contact"
           sx={{
-            variant: 'styles.navlink',
+            variant: 'styles.navLink',
             p: 2
           }}
         >
@@ -793,6 +1077,152 @@ export const HeaderFB = () => (
   </header>
 )
 
+export const HeaderE = () => (
+  <header
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      mx: 'auto',
+      px: 3,
+      py: 3,
+      variant: 'styles.header'
+    }}
+  >
+    <Link to="/" title="Home">
+      <img
+        alt="UI Logo"
+        src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+      />
+    </Link>
+    <nav>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
+        Blog
+      </Link>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
+        About
+      </Link>
+    </nav>
+  </header>
+)
+
+export const HeaderE2 = () => (
+  <header
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      maxWidth: 800,
+      mx: 'auto',
+      px: 3,
+      py: 3,
+      variant: 'styles.header'
+    }}
+  >
+    <Link to="/" title="Home">
+      <img
+        alt="UI Logo"
+        src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+      />
+    </Link>
+    <nav>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
+        Blog
+      </Link>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
+        About
+      </Link>
+    </nav>
+  </header>
+)
+
+export const HeaderG = () => (
+  <header
+    sx={{
+      maxWidth: 800,
+      mx: 'auto',
+      px: 3,
+      py: 4,
+      variant: 'styles.header'
+    }}
+  >
+    <Link to="/" title="Home">
+      <img
+        alt="UI Logo"
+        src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+      />
+    </Link>
+    <nav
+      sx={{
+        mt: 4
+      }}
+    >
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
+        Blog
+      </Link>
+      <Link to="/about" sx={{ variant: 'styles.navLink', p: 2 }}>
+        About
+      </Link>
+      <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
+        Contact
+      </Link>
+    </nav>
+  </header>
+)
+
+export const HeaderH = () => (
+  <header
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      mx: 5,
+      px: 3,
+      py: 4,
+      variant: 'styles.header'
+    }}
+  >
+    <Link to="/blog" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Blocks
+    </Link>
+    <Link to="/blog" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Blog
+    </Link>
+    <Link to="/about" sx={{ variant: 'styles.navLink', p: 2 }}>
+      About
+    </Link>
+    <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Contact
+    </Link>
+  </header>
+)
+
+export const HeaderI = () => (
+  <header
+    sx={{
+      color: 'background',
+      backgroundColor: 'text',
+      display: 'flex',
+      justifyContent: 'space-between',
+      px: 3,
+      py: 4,
+      variant: 'styles.header'
+    }}
+  >
+    <Link to="/blog" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Blocks
+    </Link>
+    <Link to="/blog" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Blog
+    </Link>
+    <Link to="/about" sx={{ variant: 'styles.navLink', p: 2 }}>
+      About
+    </Link>
+    <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
+      Contact
+    </Link>
+  </header>
+)
+
 export const FooterA = () => (
   <footer
     sx={{
@@ -803,13 +1233,13 @@ export const FooterA = () => (
       variant: 'styles.footer'
     }}
   >
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       Home
     </Link>
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       Blog
     </Link>
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       About
     </Link>
     <div sx={{ mx: 'auto' }} />
@@ -837,13 +1267,13 @@ export const FooterB = () => (
         py: 4
       }}
     >
-      <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
         Home
       </Link>
-      <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
         Blog
       </Link>
-      <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
         About
       </Link>
       <div sx={{ mx: 'auto' }} />
@@ -863,13 +1293,13 @@ export const FooterC = () => (
       variant: 'styles.footer'
     }}
   >
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       Home
     </Link>
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       Blog
     </Link>
-    <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+    <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
       About
     </Link>
   </footer>
@@ -892,59 +1322,60 @@ export const FooterD = () => (
         py: 4
       }}
     >
-      <Link to="/" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/" sx={{ variant: 'styles.navLink', p: 2 }}>
         Home
       </Link>
-      <Link to="/work" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/work" sx={{ variant: 'styles.navLink', p: 2 }}>
         Work
       </Link>
-      <Link to="/blog" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/blog" sx={{ variant: 'styles.navLink', p: 2 }}>
         Blog
       </Link>
-      <Link to="/about" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/about" sx={{ variant: 'styles.navLink', p: 2 }}>
         About
       </Link>
-      <Link to="/products" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/products" sx={{ variant: 'styles.navLink', p: 2 }}>
         Products
       </Link>
-      <Link to="/community" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/community" sx={{ variant: 'styles.navLink', p: 2 }}>
         Community
       </Link>
-      <Link to="/support" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/support" sx={{ variant: 'styles.navLink', p: 2 }}>
         Support
       </Link>
-      <Link to="/contact" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
         Contact
       </Link>
-      <Link to="/support" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/support" sx={{ variant: 'styles.navLink', p: 2 }}>
         Support
       </Link>
-      <Link to="/products" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/products" sx={{ variant: 'styles.navLink', p: 2 }}>
         Products
       </Link>
-      <Link to="/contact" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
         Contact
       </Link>
-      <Link to="/community" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/community" sx={{ variant: 'styles.navLink', p: 2 }}>
         Community
       </Link>
-      <Link to="/products" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/products" sx={{ variant: 'styles.navLink', p: 2 }}>
         Products
       </Link>
-      <Link to="/community" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/community" sx={{ variant: 'styles.navLink', p: 2 }}>
         Community
       </Link>
-      <Link to="/support" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/support" sx={{ variant: 'styles.navLink', p: 2 }}>
         Support
       </Link>
-      <Link to="/contact" sx={{ variant: 'styles.navlink', p: 2 }}>
+      <Link to="/contact" sx={{ variant: 'styles.navLink', p: 2 }}>
         Contact
       </Link>
     </div>
     <div
       sx={{
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
+        color: 'gray',
         p: 3
       }}
     >
@@ -996,6 +1427,7 @@ export const ImageTitleA = () => (
   <div>
     <h1
       sx={{
+        textAlign: 'center',
         backgroundImage: 'url(http://dc28c2r6oodom.cloudfront.net/p/h/006.jpg)',
         backgroundPositionX: 'center',
         backgroundPositionY: 'center',
@@ -1015,6 +1447,7 @@ export const ImageTitleB = () => (
   <div>
     <h1
       sx={{
+        textAlign: 'center',
         backgroundImage: 'url(http://dc28c2r6oodom.cloudfront.net/p/h/058.jpg)',
         backgroundPositionX: 'center',
         backgroundPositionY: 'center',
@@ -1033,6 +1466,7 @@ export const ImageTitleB = () => (
 export const ImageTitleC = () => (
   <div
     sx={{
+      textAlign: 'center',
       backgroundColor: 'black',
       color: 'white',
       py: 4
@@ -1055,6 +1489,1328 @@ export const ImageTitleC = () => (
       Hello, world!
     </h1>
   </div>
+)
+
+export const TagLineA = () => (
+  <Box sx={{ py: [3, 4, 5], backgroundColor: 'primary', color: 'background' }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        A Block refers to a piece of content or a component. It's a section of
+        your content while a document is a collection of blocks.
+      </Styled.p>
+      <Styled.p sx={{ mb: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be complex like an embedded
+        spreadsheet or a chart that fetches live data.
+      </Styled.p>
+    </Box>
+  </Box>
+)
+
+export const TagLineB = () => (
+  <Box sx={{ py: [3, 4, 5] }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ mb: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be complex like an embedded
+        spreadsheet or a chart that fetches live data.
+      </Styled.p>
+      <Button>Get started</Button>
+    </Box>
+  </Box>
+)
+
+export const TagLineC = () => (
+  <Flex sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Box sx={{ pr: 3 }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Button>Get started</Button>
+    </Box>
+  </Flex>
+)
+
+export const TagLineD = () => (
+  <Flex sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Box sx={{ pr: 3 }}>
+      <Button>Get started</Button>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ m: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+    </Box>
+  </Flex>
+)
+
+export const TagLineE = () => (
+  <Box sx={{ textAlign: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+    <Styled.h1 as="h3" sx={{ m: 0 }}>
+      What is a block?
+    </Styled.h1>
+    <Styled.p sx={{ mt: 0, mx: 'auto', maxWidth: 600 }}>
+      Blocks can be simple like a paragraph of text or even a box with a tomato
+      background color.
+    </Styled.p>
+    <Button>Get started</Button>
+  </Box>
+)
+
+export const TagLineEA = () => (
+  <Box sx={{ backgroundColor: '#2B2D2D' }}>
+    <Box sx={{ textAlign: 'center', py: [4, 5, 6], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ mt: 0, color: 'white' }}>
+        Let's do something great together
+      </Styled.h1>
+      <Button
+        sx={{
+          backgroundColor: 'transparent',
+          border: '2px solid',
+          color: 'white',
+          fontSize: 3,
+          px: 5
+        }}
+      >
+        Get started
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const TagLineF = () => (
+  <Box
+    sx={{
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Box sx={{ textAlign: 'center', py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, mb: 4, mx: 'auto', maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Button
+        sx={{
+          color: '#471091',
+          backgroundColor: '#acaedf',
+          px: 5,
+          py: 3,
+          fontSize: 3,
+          fontWeight: 600
+        }}
+      >
+        Take it for a spin
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const TagLineFA = () => (
+  <Box
+    sx={{
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Box sx={{ py: [3, 4, 5], maxWidth: 800, mx: 'auto' }}>
+      <Styled.h1 as="h3" sx={{ m: 0 }}>
+        What is a block?
+      </Styled.h1>
+      <Styled.p sx={{ mt: 0, mb: 4, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Button
+        sx={{
+          color: '#471091',
+          backgroundColor: '#acaedf',
+          px: 5,
+          py: 3,
+          fontSize: 3,
+          fontWeight: 600
+        }}
+      >
+        Take it for a spin
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const HeroA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+    <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroB = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase' }}>Kicker</Styled.h6>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+    <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroBG = () => (
+  <Box
+    sx={{
+      py: 4,
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Flex
+      sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+    >
+      <Box sx={{ pr: 3, width: '50%' }}>
+        <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase', color: '#acaedf' }}>
+          Kicker
+        </Styled.h6>
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+        <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+          This is a hero, with some convincing copy and a call to action.
+        </Styled.p>
+        <Box sx={{ pt: 4 }}>
+          <Button
+            sx={{
+              color: '#471091',
+              backgroundColor: '#acaedf',
+              px: 5,
+              py: 3,
+              fontSize: 3,
+              fontWeight: 600
+            }}
+          >
+            Take it for a spin
+          </Button>
+        </Box>
+      </Box>
+      <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+        <img
+          alt="Hologram graphic"
+          src="https://assets.blocks-ui.com/hologram.svg"
+          sx={{
+            maxWidth: '100%'
+          }}
+        />
+      </Box>
+    </Flex>
+  </Box>
+)
+
+export const HeroBGNewsletter = () => (
+  <Box
+    sx={{
+      py: 4,
+      background: 'linear-gradient(330deg, #471091 34%, #2D2BAB 79%)',
+      backgroundColor: '#471091',
+      color: 'white'
+    }}
+  >
+    <Flex
+      sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+    >
+      <Box sx={{ pr: 3, width: '50%' }}>
+        <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase', color: '#acaedf' }}>
+          Coming Soon
+        </Styled.h6>
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Some product</Styled.h1>
+        <Styled.p
+          sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500, color: '#d1d3ff' }}
+        >
+          This is a hero, with some convincing copy and a call to action.
+        </Styled.p>
+        <Styled.p sx={{ mt: [3, 4, 4], mb: 2, maxWidth: 500 }}>
+          Sign up for project updates and releases.
+        </Styled.p>
+        <Flex>
+          <Input
+            sx={{
+              maxWidth: '18rem'
+            }}
+            placeholder={'hello@example.com'}
+          />
+          <Button
+            sx={{
+              color: '#471091',
+              backgroundColor: '#acaedf',
+              ml: 3,
+              fontWeight: 600
+            }}
+          >
+            Subscribe
+          </Button>
+        </Flex>
+      </Box>
+      <Box sx={{ width: '50%', pl: [null, 3, 4] }}>
+        <img
+          alt="Hologram graphic"
+          src="https://assets.blocks-ui.com/hologram.svg"
+          sx={{
+            maxWidth: '100%'
+          }}
+        />
+      </Box>
+    </Flex>
+  </Box>
+)
+
+export const HeroC = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ width: '50%', pr: [null, 3, 4] }}>
+      <img
+        alt="Hologram graphic"
+        src="https://assets.blocks-ui.com/hologram.svg"
+        sx={{
+          maxWidth: '100%'
+        }}
+      />
+    </Box>
+    <Box sx={{ pl: 3, width: '50%' }}>
+      <Styled.h6 sx={{ mb: 1, textTransform: 'uppercase' }}>Kicker</Styled.h6>
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], m: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Box sx={{ pt: 3 }}>
+        <Button>Try it</Button>
+        <Button sx={{ ml: 2 }} variant="secondary">
+          Doc
+        </Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const HeroD = () => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      width: '50%'
+    }}
+  >
+    <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+    <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 500 }}>
+      This is a hero, with some convincing copy and a call to action.
+    </Styled.p>
+    <Box sx={{ pt: 4 }}>
+      <Button sx={{ mr: 2 }}>Try it</Button>
+      <span>or</span>
+      <Button sx={{ ml: 2 }} variant="secondary">
+        Doc
+      </Button>
+    </Box>
+  </Box>
+)
+
+export const HeroE = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '60%'
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Hello, world!</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a rad picture of the top
+        of a building.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/lachlan-gowen-building.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroEA = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '60%',
+        backgroundColor: 'background',
+        mr: -5,
+        px: 5,
+        py: 5,
+        zIndex: 999
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>An image overlap</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], mt: 0, maxWidth: 500 }}>
+        Having your written content overlap the image on the side is playful. It
+        gives a unique, modern feel to your site.
+      </Styled.p>
+      <Styled.p sx={{ fontSize: [2, 3, 4], maxWidth: 500 }}>
+        It's a nice touch for minimal websites and stores.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/minh-pham-interior.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const HeroEB = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/minh-pham-interior.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+    <Box
+      sx={{
+        width: '60%',
+        backgroundColor: 'background',
+        ml: -5,
+        px: 5,
+        py: 5,
+        zIndex: 999
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], mt: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Styled.p sx={{ fontSize: [2, 3, 4], maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+    </Box>
+  </Flex>
+)
+
+export const HeroF = () => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto'
+    }}
+  >
+    <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>Awesomeness</Styled.h1>
+    <Styled.p sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 500 }}>
+      This is a hero, with some convincing copy and a call to action.
+    </Styled.p>
+    <Box sx={{ pt: 4, pb: 5 }}>
+      <Button sx={{ backgroundColor: '#173383' }}>Give it a go</Button>
+    </Box>
+    <img
+      src="https://assets.blocks-ui.com/house-interior.jpg"
+      sx={{
+        width: '100%'
+      }}
+    />
+  </Box>
+)
+
+export const HeroFA = () => (
+  <Box>
+    <Box
+      sx={{
+        p: [3, 4, 5],
+        pb: [7, 7, 7],
+        backgroundColor: '#2B2D2D',
+        color: 'white'
+      }}
+    >
+      <Box
+        sx={{
+          textAlign: 'center',
+          px: 3,
+          py: [3, 4, 5],
+          maxWidth: 1200,
+          mx: 'auto'
+        }}
+      >
+        <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0 }}>
+          Demo content is interesting
+        </Styled.h1>
+        <Styled.p
+          sx={{ fontSize: [2, 3, 4], my: 0, mx: 'auto', maxWidth: 540 }}
+        >
+          It often shows houses that are way cleaner than my own. How do those
+          blankets stay folded? I guess they don't have kids.
+        </Styled.p>
+        <Box sx={{ py: 5 }}>
+          <Button
+            sx={{
+              backgroundColor: 'transparent',
+              color: 'white',
+              px: 4,
+              fontSize: 3,
+              fontWeight: 500,
+              border: '2px solid white',
+              borderRadius: 0
+            }}
+          >
+            Click a button
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+    <Box
+      sx={{
+        textAlign: 'center',
+        pb: [3, 4, 5]
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/kara-eads-interior.jpg"
+        sx={{
+          mt: -7,
+          width: '100%',
+          maxWidth: 1200
+        }}
+      />
+    </Box>
+  </Box>
+)
+
+export const HeroG = () => (
+  <Flex
+    sx={{
+      px: 3,
+      py: [3, 4, 5],
+      maxWidth: 1200,
+      mx: 'auto',
+      alignItems: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: '60%'
+      }}
+    >
+      <Styled.h1 sx={{ fontSize: [5, 6, 8], m: 0, color: '#0F5A3D' }}>
+        Awesomeness
+      </Styled.h1>
+      <Styled.p sx={{ fontSize: [2, 3, 4], mt: 0, maxWidth: 500 }}>
+        This is a hero, with some convincing copy and a call to action.
+      </Styled.p>
+      <Button sx={{ backgroundColor: '#0F5A3D' }}>Give it a try</Button>
+    </Box>
+    <Box
+      sx={{
+        width: '40%'
+      }}
+    >
+      <img
+        src="https://assets.blocks-ui.com/jude-beck-plant.jpg"
+        sx={{
+          width: '100%'
+        }}
+      />
+    </Box>
+  </Flex>
+)
+
+export const DescriptionA = () => (
+  <Flex sx={{ py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}>
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: '-8px',
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        It's pretty fun to turn JSX into a WYSIWYG.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Me</footer>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or a box with a tomato
+        background color. They can be complex and contain state or even fetch
+        data. They're pre-built components that can be drag and dropped onto the
+        canvas.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        It's “low code” because you don't have to peek into the JSX until you
+        have bespoke needs.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks are typically composed of multiple components which allows you to
+        edit styling of a particular element.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Get started</Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const DescriptionAA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pr: 3, width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: 0,
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        This is an amazing quote about something very interesting.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+    </Box>
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be simple like a paragraph of text
+        or even a box with a tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Do something</Button>
+      </Box>
+    </Box>
+  </Flex>
+)
+
+export const DescriptionAAA = () => (
+  <Flex
+    sx={{ alignItems: 'center', py: [3, 4, 5], maxWidth: 1200, mx: 'auto' }}
+  >
+    <Box sx={{ pl: 3 }}>
+      <Styled.p sx={{ mt: 0, maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color. Blocks can be simple like a paragraph of text
+        or even a box with a tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>Blocks can be simple.</Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Styled.p sx={{ maxWidth: 600 }}>
+        Blocks can be simple like a paragraph of text or even a box with a
+        tomato background color.
+      </Styled.p>
+      <Box sx={{ mt: 4 }}>
+        <Button>Do something</Button>
+      </Box>
+    </Box>
+    <Box sx={{ pl: [3, 4, 5], width: '50%' }}>
+      <Styled.h1
+        as="blockquote"
+        sx={{
+          mx: 0,
+          mt: 0,
+          mb: 2,
+          ':before': {
+            content: '"“"',
+            position: 'absolute',
+            transform: 'translateX(-30px)'
+          },
+          ':after': {
+            content: '"”"'
+          }
+        }}
+      >
+        This is an amazing quote about something very interesting.
+      </Styled.h1>
+      <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+    </Box>
+  </Flex>
+)
+
+export const BlockQuote = () => (
+  <Box
+    sx={{ px: 3, py: [3, 4, 5], textAlign: 'center', m: 'auto', maxWidth: 700 }}
+  >
+    <Styled.h1
+      as="blockquote"
+      sx={{
+        mx: 0,
+        mt: 0,
+        mb: 2,
+        ':before': {
+          content: '"“"',
+          position: 'absolute',
+          transform: 'translateX(-30px)'
+        },
+        ':after': {
+          content: '"”"'
+        }
+      }}
+    >
+      This is an amazing quote about something very interesting.
+    </Styled.h1>
+    <footer sx={{ fontSize: 2 }}>&mdash; Some person</footer>
+  </Box>
+)
+
+export const ImageBlock = () => (
+  <figure
+    sx={{
+      left: 'calc(50% - 50vw)',
+      maxWidth: '100vw',
+      position: 'relative',
+      width: '100vw',
+      ml: 0,
+      mr: 0
+    }}
+  >
+    <img
+      alt="Pine branch"
+      src="https://assets.blocks-ui.com/tim-foster-pine-branch.jpg"
+      sx={{
+        height: 'auto',
+        verticalAlign: 'middle',
+        display: 'block',
+        width: '100%'
+      }}
+    />
+  </figure>
+)
+
+/*
+export const ImageGridItem
+export const ImageGridText.Heading
+export const ImageGridText.Description = () => (
+  <>
+    <Styled.h3 sx={{ m: 0 }}>
+      Hello, world!
+    </Styled.h3>
+    <Styled.p ___uuid="kjsflkshdflkjsdlkfjslkdf" sx={{ mt: 0 }}>
+      Here is some text about things, more things,
+      and yet other things.
+    </Styled.p>
+  </>
+)
+
+import * as ImageTextGrid
+
+<ImageTextGrid>
+  <ImageTextGrid.Item
+    sx={{
+      background: 'tomato'
+    }}
+  >
+
+  </ImageTextGrid.Item>
+</ImageTextGrid>
+
+export const ImageTextGrid = () => (
+  <Flex>
+    <ImageGridItem>
+
+    </ImageGridItem>
+  </Flex>
+)
+*/
+
+export const ImageGrid = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5]
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+    </Box>
+  </Flex>
+)
+
+export const ImageTextGrid = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5]
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+  </Flex>
+)
+
+export const ImageTextGridA = () => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
+      px: [null, 3, 3],
+      py: [3, 4, 5],
+      textAlign: 'center'
+    }}
+  >
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          pt: '100%',
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/banter-snaps-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3 / 4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/daniel-mirlea-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+    <Box
+      sx={{
+        width: [1, 'calc(1/3 * 100%)', 'calc(1/3 * 100%)'],
+        overflow: 'hidden',
+        px: 3,
+        pb: 3
+      }}
+    >
+      <figure
+        sx={{
+          display: 'flex',
+          width: '100%',
+          position: 'relative',
+          padding: 'calc(3/4 * 100%) 0 0',
+          overflow: 'hidden',
+          mr: [null, 2, 3],
+          ml: 0
+        }}
+      >
+        <img
+          alt="Pine branch"
+          src="https://assets.blocks-ui.com/jason-blackeye-trees.jpg"
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            objectFit: 'cover',
+            top: 0,
+            width: '100%',
+            verticalAlign: 'middle',
+            maxWidth: '100%'
+          }}
+        />
+      </figure>
+      <Styled.h3 sx={{ m: 0 }}>Hello, world!</Styled.h3>
+      <Styled.p sx={{ mt: 0 }}>
+        Here is some text about things, more things, and yet other things.
+      </Styled.p>
+    </Box>
+  </Flex>
 )
 
 export const H1 = () => (
