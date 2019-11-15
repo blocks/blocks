@@ -39,15 +39,15 @@ export default elementSelectionHandler => (type, props, ...children) => {
     console.log(type)
   }
 
-  return (
-    <span
-      onClick={e => {
+  return jsx(
+    type,
+    {
+      ...props,
+      onClick: e => {
         e.stopPropagation()
         elementSelectionHandler(id)
-      }}
-      sx={null && styles}
-    >
-      {jsx(type, props, ...children)}
-    </span>
+      }
+    },
+    ...children
   )
 }
