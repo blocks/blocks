@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, ThemeProvider, jsx } from 'theme-ui'
 import { system } from '@theme-ui/presets'
 import { Global } from '@emotion/core'
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
 import {
   Label,
@@ -62,6 +63,7 @@ export default () => {
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
   const [components, setComponents] = useState(null)
+  const [activeTab, setActiveTab] = useState(1)
 
   const scope = {
     Blocks,
@@ -109,6 +111,10 @@ export default () => {
 
     const newElementData = queries.getCurrentElement(code, elementId)
     setElementData(newElementData)
+
+    if (newElementData) {
+      setActiveTab(1)
+    }
   }, [elementId, code])
 
   useEffect(() => {
@@ -220,7 +226,7 @@ export default () => {
     setCode(newCode)
   }
 
-  console.log({ elementId, elementData, transformedCode })
+  // console.log({ elementId, elementData, transformedCode })
 
   return (
     <ThemeProvider theme={theme}>
@@ -264,65 +270,6 @@ export default () => {
           >
             <div
               sx={{
-                borderRight: 'thin solid #e1e6eb',
-                width: '25%',
-                height: '100vh',
-                overflow: 'scroll'
-              }}
-            >
-              <h3
-                sx={{
-                  textTransform: 'uppercase',
-                  fontSize: 2,
-                  fontWeight: 600,
-                  m: 0,
-                  px: 3,
-                  py: 1,
-                  borderBottom: 'thin solid #e1e6eb'
-                }}
-              >
-                Components
-              </h3>
-              <div
-                sx={{
-                  height: '100vh',
-                  overflow: 'scroll'
-                }}
-              >
-                <Droppable droppableId="components">
-                  {(provided, snapshot) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                      {Object.keys(recipes).map((key, i) => (
-                        <Draggable key={key} draggableId={key} index={i + 1}>
-                          {(provided, snapshot) => {
-                            const Component = recipes[key]
-
-                            return (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <div
-                                  sx={{
-                                    transform: 'scale(.6)'
-                                  }}
-                                >
-                                  <Component />
-                                </div>
-                              </div>
-                            )
-                          }}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              </div>
-            </div>
-            <div
-              sx={{
                 width: '60%',
                 backgroundColor: 'white',
                 height: '100vh',
@@ -334,168 +281,263 @@ export default () => {
             <div
               sx={{
                 borderLeft: 'thin solid #e1e6eb',
-                width: '25%',
+                width: '40%',
                 height: '100vh',
                 overflow: 'scroll'
               }}
             >
-              {elementData && (
-                <h3
-                  sx={{
-                    textTransform: 'uppercase',
-                    fontSize: 2,
-                    fontWeight: 600,
-                    m: 0,
-                    px: 3,
-                    py: 1,
-                    borderBottom: 'thin solid #e1e6eb'
-                  }}
-                >
-                  {elementData.name}
-                  <button onClick={handleRemoveElement}>Remove</button>
-                  <button onClick={handleInsertElement}>Insert</button>
-                  <button onClick={handleClone}>Clone</button>
-                  {elementData.parentId && (
-                    <button onClick={handleParentSelect}>Parent</button>
-                  )}
-                </h3>
-              )}
               <div
                 sx={{
-                  minHeight: '80vh',
-                  backgroundColor: '#fafbfc'
+                  height: '100vh',
+                  overflow: 'scroll',
+                  order: 10
                 }}
               >
-                {elementData && (
-                  <div sx={{ px: 3 }}>
-                    {elementData.text && (
-                      <React.Fragment>
-                        <Label>Text</Label>
-                        <Input
-                          sx={{
-                            display: 'block',
-                            width: '100%'
-                          }}
-                          onChange={handleTextUpdate}
-                          value={elementData.text}
-                        />
-                      </React.Fragment>
-                    )}
-                    <h3 sx={{ fontWeight: 'normal', m: 0, pb: 2, pt: 4 }}>
-                      Props
-                    </h3>
-                    {elementData.props.hasOwnProperty('to') && (
-                      <React.Fragment>
-                        <Label>To</Label>
-                        <Input
-                          sx={{
-                            display: 'block',
-                            width: '100%'
-                          }}
-                          onChange={handlePropChange('to')}
-                          value={elementData.props.to || ''}
-                        />
-                      </React.Fragment>
-                    )}
-                    <h3
+                <Tabs index={activeTab} onChange={index => setActiveTab(index)}>
+                  <TabList
+                    sx={{
+                      display: 'flex',
+                      width: '100%'
+                    }}
+                  >
+                    <Tab
                       sx={{
-                        fontWeight: 'normal',
-                        mt: 4,
-                        mb: 0,
-                        pt: 4,
-                        borderTop: 'thin solid'
+                        flex: 1,
+                        appearance: 'none',
+                        border: 0,
+                        py: 2,
+                        borderRight: 'thin solid #e1e6eb',
+                        borderBottom:
+                          activeTab === 0 ? 0 : 'thin solid #e1e6eb',
+                        backgroundColor: activeTab === 0 ? null : '#fafafa'
                       }}
                     >
-                      Styles
-                    </h3>
-                    {elementData.props.sx && (
-                      <React.Fragment>
-                        <Label>Padding</Label>
-                        <Input
-                          sx={{
-                            display: 'block',
-                            width: '100%'
-                          }}
-                          onChange={handleChange('p')}
-                          value={elementData.props.sx.p}
-                        />
-                        <button onClick={handleRemove('p')}>Remove</button>
-                      </React.Fragment>
-                    )}
-                    <React.Fragment>
-                      <Label>Background</Label>
-                      <Input
-                        sx={{
-                          display: 'block',
-                          width: '100%'
-                        }}
-                        onChange={handleChange('background')}
-                        value={
-                          elementData.props.sx &&
-                          elementData.props.sx.backgroundColor
-                        }
-                      />
-                      <button onClick={handleRemove('background')}>
-                        Remove
-                      </button>
-                    </React.Fragment>
-                    <React.Fragment>
-                      <Label>Color</Label>
-                      <Input
-                        sx={{
-                          display: 'block',
-                          width: '100%'
-                        }}
-                        onChange={handleChange('color')}
-                        value={elementData.props.sx.color}
-                      />
-                      <button onClick={handleRemove('color')}>Remove</button>
-                    </React.Fragment>
-                    <h3
+                      Components
+                    </Tab>
+                    <Tab
                       sx={{
-                        fontWeight: 'normal',
-                        mt: 4,
-                        mb: 0,
-                        pt: 4,
-                        borderTop: 'thin solid'
+                        flex: 1,
+                        appearance: 'none',
+                        border: 0,
+                        py: 2,
+                        borderBottom:
+                          activeTab === 1 ? 0 : 'thin solid #e1e6eb',
+                        backgroundColor: activeTab === 1 ? null : '#fafafa'
                       }}
                     >
-                      Variant
-                    </h3>
-                    {elementData.props.sx && elementData.props.sx.variant && (
-                      <React.Fragment>
-                        <Label>
-                          {elementData.props.sx.variant.replace('styles.', '')}
-                        </Label>
-                        <Input
-                          sx={{
-                            display: 'block',
-                            width: '100%'
-                          }}
-                          onChange={handleChange('variant')}
-                          value={elementData.props.sx.variant}
-                        />
-                      </React.Fragment>
-                    )}
-                    <pre>{JSON.stringify(elementData, null, 2)}</pre>
-                  </div>
-                )}
+                      Editor
+                    </Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
+                      <Droppable droppableId="components">
+                        {(provided, snapshot) => (
+                          <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                          >
+                            {Object.keys(recipes).map((key, i) => (
+                              <Draggable
+                                key={key}
+                                draggableId={key}
+                                index={i + 1}
+                              >
+                                {(provided, snapshot) => {
+                                  const Component = recipes[key]
+
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                    >
+                                      <div
+                                        sx={{
+                                          transform: 'scale(.6)'
+                                        }}
+                                      >
+                                        <Component />
+                                      </div>
+                                    </div>
+                                  )
+                                }}
+                              </Draggable>
+                            ))}
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    </TabPanel>
+                    <TabPanel>
+                      <div
+                        sx={{
+                          height: '100vh',
+                          overflow: 'scroll'
+                        }}
+                      >
+                        {elementData && (
+                          <h3
+                            sx={{
+                              textTransform: 'uppercase',
+                              fontSize: 2,
+                              fontWeight: 600,
+                              m: 0,
+                              px: 3,
+                              py: 1,
+                              borderBottom: 'thin solid #e1e6eb'
+                            }}
+                          >
+                            {elementData.name}
+                            <button onClick={handleRemoveElement}>
+                              Remove
+                            </button>
+                            <button onClick={handleInsertElement}>
+                              Insert
+                            </button>
+                            <button onClick={handleClone}>Clone</button>
+                            {elementData.parentId && (
+                              <button onClick={handleParentSelect}>
+                                Parent
+                              </button>
+                            )}
+                          </h3>
+                        )}
+                        <div>
+                          {elementData && (
+                            <div sx={{ px: 3 }}>
+                              {elementData.text && (
+                                <React.Fragment>
+                                  <Label>Text</Label>
+                                  <Input
+                                    sx={{
+                                      display: 'block',
+                                      width: '100%'
+                                    }}
+                                    onChange={handleTextUpdate}
+                                    value={elementData.text}
+                                  />
+                                </React.Fragment>
+                              )}
+                              <h3
+                                sx={{
+                                  fontWeight: 'normal',
+                                  m: 0,
+                                  pb: 2,
+                                  pt: 4
+                                }}
+                              >
+                                Props
+                              </h3>
+                              {elementData.props.hasOwnProperty('to') && (
+                                <React.Fragment>
+                                  <Label>To</Label>
+                                  <Input
+                                    sx={{
+                                      display: 'block',
+                                      width: '100%'
+                                    }}
+                                    onChange={handlePropChange('to')}
+                                    value={elementData.props.to || ''}
+                                  />
+                                </React.Fragment>
+                              )}
+                              <h3
+                                sx={{
+                                  fontWeight: 'normal',
+                                  mt: 4,
+                                  mb: 0,
+                                  pt: 4,
+                                  borderTop: 'thin solid'
+                                }}
+                              >
+                                Styles
+                              </h3>
+                              {elementData.props.sx && (
+                                <React.Fragment>
+                                  <Label>Padding</Label>
+                                  <Input
+                                    sx={{
+                                      display: 'block',
+                                      width: '100%'
+                                    }}
+                                    onChange={handleChange('p')}
+                                    value={elementData.props.sx.p}
+                                  />
+                                  <button onClick={handleRemove('p')}>
+                                    Remove
+                                  </button>
+                                </React.Fragment>
+                              )}
+                              <React.Fragment>
+                                <Label>Background</Label>
+                                <Input
+                                  sx={{
+                                    display: 'block',
+                                    width: '100%'
+                                  }}
+                                  onChange={handleChange('background')}
+                                  value={
+                                    elementData.props.sx &&
+                                    elementData.props.sx.backgroundColor
+                                  }
+                                />
+                                <button onClick={handleRemove('background')}>
+                                  Remove
+                                </button>
+                              </React.Fragment>
+                              <React.Fragment>
+                                <Label>Color</Label>
+                                <Input
+                                  sx={{
+                                    display: 'block',
+                                    width: '100%'
+                                  }}
+                                  onChange={handleChange('color')}
+                                  value={elementData.props.sx.color}
+                                />
+                                <button onClick={handleRemove('color')}>
+                                  Remove
+                                </button>
+                              </React.Fragment>
+                              <h3
+                                sx={{
+                                  fontWeight: 'normal',
+                                  mt: 4,
+                                  mb: 0,
+                                  pt: 4,
+                                  borderTop: 'thin solid'
+                                }}
+                              >
+                                Variant
+                              </h3>
+                              {elementData.props.sx &&
+                                elementData.props.sx.variant && (
+                                  <React.Fragment>
+                                    <Label>
+                                      {elementData.props.sx.variant.replace(
+                                        'styles.',
+                                        ''
+                                      )}
+                                    </Label>
+                                    <Input
+                                      sx={{
+                                        display: 'block',
+                                        width: '100%'
+                                      }}
+                                      onChange={handleChange('variant')}
+                                      value={elementData.props.sx.variant}
+                                    />
+                                  </React.Fragment>
+                                )}
+                              <pre>{JSON.stringify(elementData, null, 2)}</pre>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
               </div>
-              <textarea
-                sx={{
-                  p: 3,
-                  width: '100%',
-                  height: '20vh',
-                  fontSize: 16,
-                  borderLeft: 'none',
-                  borderRight: 'none',
-                  borderBottom: 'none',
-                  borderTop: 'thin solid #e1e6eb',
-                  fontFamily: 'monospace'
-                }}
-                onChange={e => setCode(e.target.value)}
-                value={transforms.toRawJSX(code)}
-              />
             </div>
           </div>
         </DragDropContext>
