@@ -59,6 +59,28 @@ const theme = {
 const Blocks = {}
 Blocks.Root = React.Fragment
 
+const BLOCKS_Draggable = ({ active, children, ...props }) => {
+  return (
+    <Draggable {...props}>
+      {(provided, snapshot) =>
+        children(
+          {
+            ...provided,
+            draggableProps: {
+              ...provided.draggableProps,
+              css: {
+                boxShadow: active ? 'inset 0px 0px 0px 2px #bbbbbb' : undefined,
+                ':hover': { boxShadow: 'inset 0px 0px 0px 2px #0079FF' }
+              }
+            }
+          },
+          snapshot
+        )
+      }
+    </Draggable>
+  )
+}
+
 export default () => {
   const [code, setCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -77,7 +99,9 @@ export default () => {
     Link: Styled.a,
     jsx: pragma(setElementId),
     BLOCKS_Droppable: Droppable,
-    BLOCKS_Draggable: Draggable,
+    BLOCKS_Draggable: props => (
+      <BLOCKS_Draggable active={props.draggableId === elementId} {...props} />
+    ),
     BLOCKS_DraggableInner: props => <div {...props} />,
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
@@ -115,7 +139,7 @@ export default () => {
     /* eslint-enable */
 
     return fn(React, ...Object.values(scope))
-  }, [transformedCode])
+  }, [elementId, transformedCode])
 
   useEffect(() => {
     if (!elementId) {
