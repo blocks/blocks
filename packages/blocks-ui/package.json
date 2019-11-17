@@ -12,6 +12,7 @@
     "@reach/tabs": "^0.6.1",
     "@theme-ui/components": "^0.2.46",
     "@theme-ui/presets": "^0.2.44",
+    "property-controls": "^0.0.28",
     "react-beautiful-dnd": "^12.0.0",
     "theme-ui": "^0.2.46"
   }
