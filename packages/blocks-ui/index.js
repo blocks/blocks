@@ -67,6 +67,7 @@ export default () => {
   const [components, setComponents] = useState(null)
   const [activeTab, setActiveTab] = useState(1)
   const [textField, setTextField] = useState('')
+  const [blocks, setBlocks] = useState([])
 
   const debouncedText = useDebounce(textField)
 
@@ -88,6 +89,9 @@ export default () => {
     const newCode = transforms.addTuid(CODE)
     setCode(newCode)
 
+    const allBlocks = queries.getBlocks(newCode)
+    setBlocks(allBlocks)
+
     const exportedElements = queries.getExportedElements(recipesSrc)
     setComponents(exportedElements)
   }, [])
@@ -97,7 +101,6 @@ export default () => {
   }, [elementData])
 
   const element = useMemo(() => {
-    console.log('element render')
     if (!transformedCode) {
       return null
     }
@@ -121,6 +124,9 @@ export default () => {
 
     const newElementData = queries.getCurrentElement(code, elementId)
     setElementData(newElementData)
+
+    const allBlocks = queries.getBlocks(code)
+    setBlocks(allBlocks)
 
     if (newElementData) {
       setActiveTab(1)
@@ -147,7 +153,7 @@ export default () => {
       elementId
     })
     setCode(newCode)
-  }, [debouncedText])
+  }, [debouncedText, code, elementId])
 
   if (!code || !transformedCode) {
     return null
@@ -395,7 +401,7 @@ export default () => {
                           overflow: 'scroll'
                         }}
                       >
-                        {elementData && (
+                        {elementData ? (
                           <h3
                             sx={{
                               textTransform: 'uppercase',
@@ -421,6 +427,17 @@ export default () => {
                               </button>
                             )}
                           </h3>
+                        ) : (
+                          <ul>
+                            {blocks.map(block => (
+                              <li
+                                key={block.id}
+                                onClick={() => setElementId(block.id)}
+                              >
+                                {block.name}
+                              </li>
+                            ))}
+                          </ul>
                         )}
                         <div>
                           {elementData && (

@@ -1,3 +1,5 @@
+import * as t from '@babel/types'
+
 export const uuid = (
   a // placeholder
 ) => {
@@ -23,4 +25,22 @@ export const uuid = (
           /[018]/g, // zeroes, ones, and eights with
           uuid // random hex digits
         )
+}
+
+export const getElementName = node => {
+  const elementName = node.name
+
+  if (t.isJSXMemberExpression(elementName)) {
+    return [elementName.object.name, elementName.property.name].join('.')
+  } else {
+    return elementName.name
+  }
+}
+
+export const getUuid = node => {
+  const id = node.attributes.find(
+    node => node && node.name && node.name.name === '___tuid'
+  )
+
+  return id && id.value.value
 }

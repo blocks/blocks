@@ -1,5 +1,4 @@
 import template from '@babel/template'
-import { uuid } from './util'
 
 const navRoot = id =>
   template.ast(
