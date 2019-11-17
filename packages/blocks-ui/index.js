@@ -139,7 +139,7 @@ export default () => {
     /* eslint-enable */
 
     return fn(React, ...Object.values(scope))
-  }, [elementId, transformedCode])
+  }, [transformedCode])
 
   useEffect(() => {
     if (!elementId) {
