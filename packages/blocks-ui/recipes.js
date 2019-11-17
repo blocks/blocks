@@ -2314,41 +2314,6 @@ export const ImageBlock = () => (
 )
 
 /*
-export const ImageGridItem
-export const ImageGridText.Heading
-export const ImageGridText.Description = () => (
-  <>
-    <Styled.h3 sx={{ m: 0 }}>
-      Hello, world!
-    </Styled.h3>
-    <Styled.p ___uuid="kjsflkshdflkjsdlkfjslkdf" sx={{ mt: 0 }}>
-      Here is some text about things, more things,
-      and yet other things.
-    </Styled.p>
-  </>
-)
-
-import * as ImageTextGrid
-
-<ImageTextGrid>
-  <ImageTextGrid.Item
-    sx={{
-      background: 'tomato'
-    }}
-  >
-
-  </ImageTextGrid.Item>
-</ImageTextGrid>
-
-export const ImageTextGrid = () => (
-  <Flex>
-    <ImageGridItem>
-
-    </ImageGridItem>
-  </Flex>
-)
-*/
-
 export const ImageGrid = () => (
   <Flex
     sx={{
@@ -2812,6 +2777,7 @@ export const ImageTextGridA = () => (
     </Box>
   </Flex>
 )
+*/
 
 export const H1 = () => (
   <div>
