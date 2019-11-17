@@ -34,6 +34,7 @@ const transformPlugins = [
 ]
 
 export const toTransformedJSX = code => {
+  console.log('Transforming JSX')
   try {
     return transform(code, {
       plugins: transformPlugins

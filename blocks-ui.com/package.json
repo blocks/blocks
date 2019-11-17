@@ -23,5 +23,8 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "theme-ui": "^0.2.46"
+  },
+  "resolutions": {
+    "react": "16.11.0"
   }
 }

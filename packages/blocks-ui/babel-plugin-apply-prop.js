@@ -1,3 +1,4 @@
+// TODO: Accept the type of value from Controls
 export default (api, { elementId, key, value } = {}) => {
   const { types: t } = api
 
@@ -16,7 +17,10 @@ export default (api, { elementId, key, value } = {}) => {
           node => node && node.name && node.name.name === key
         )
 
-        attr.value = t.stringLiteral(value)
+        if (attr) {
+        } else {
+          attr.value = t.stringLiteral(value)
+        }
       }
     }
   }

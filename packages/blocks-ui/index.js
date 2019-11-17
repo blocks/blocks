@@ -20,6 +20,8 @@ import * as themeComponents from '@theme-ui/components'
 import * as transforms from './transforms'
 import * as queries from './queries'
 
+import useDebounce from './use-debounce'
+
 import * as recipes from './recipes'
 import pragma from './pragma'
 import CODE from './fixture'
@@ -64,6 +66,9 @@ export default () => {
   const [elementData, setElementData] = useState(null)
   const [components, setComponents] = useState(null)
   const [activeTab, setActiveTab] = useState(1)
+  const [textField, setTextField] = useState('')
+
+  const debouncedText = useDebounce(textField)
 
   const scope = {
     Blocks,
@@ -87,7 +92,12 @@ export default () => {
     setComponents(exportedElements)
   }, [])
 
+  useEffect(() => {
+    setTextField(elementData && elementData.text)
+  }, [elementData])
+
   const element = useMemo(() => {
+    console.log('element render')
     if (!transformedCode) {
       return null
     }
@@ -126,6 +136,18 @@ export default () => {
       }
     } catch (e) {}
   }, [code])
+
+  useEffect(() => {
+    if (!debouncedText) {
+      return
+    }
+
+    const { code: newCode } = transforms.replaceText(code, {
+      text: debouncedText,
+      elementId
+    })
+    setCode(newCode)
+  }, [debouncedText])
 
   if (!code || !transformedCode) {
     return null
@@ -184,10 +206,7 @@ export default () => {
 
   const handleTextUpdate = e => {
     const text = e.target.value
-    setElementData({ ...elementData, text })
-
-    const { code: newCode } = transforms.replaceText(code, { text, elementId })
-    setCode(newCode)
+    setTextField(text)
   }
 
   const handleChange = key => e => {
@@ -228,6 +247,7 @@ export default () => {
 
   // console.log({ elementId, elementData, transformedCode })
 
+  console.log('rerender')
   return (
     <ThemeProvider theme={theme}>
       <Styled.root>
@@ -405,7 +425,7 @@ export default () => {
                         <div>
                           {elementData && (
                             <div sx={{ px: 3 }}>
-                              {elementData.text && (
+                              {textField && (
                                 <React.Fragment>
                                   <Label>Text</Label>
                                   <Input
@@ -414,7 +434,7 @@ export default () => {
                                       width: '100%'
                                     }}
                                     onChange={handleTextUpdate}
-                                    value={elementData.text}
+                                    value={textField}
                                   />
                                 </React.Fragment>
                               )}
