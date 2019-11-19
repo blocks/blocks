@@ -1,4 +1,4 @@
-import { uuid } from './util'
+import { uuid } from '../util'
 
 export default api => {
   const { types: t } = api

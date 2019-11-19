@@ -823,10 +823,10 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/standalone@^7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.7.2.tgz#b367e6b92ce6d4e145aa0430b623e80cb0fe4eaf"
-  integrity sha512-L2iWJ/5CFAiGng0LkK1YazxMV6/kBgBVi01wYhbxsjAlZPwzEWNaC3HStN8+mErppQe5+ZUsPGSXkrClZebDvQ==
+"@babel/standalone@^7.7.3":
+  version "7.7.3"
+  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.7.3.tgz#9a4f7fc64876b11398e7371665969ccfdb0c9806"
+  integrity sha512-tVwxALbq7HGudHD0oZ6SQPkWM2L/Snw1vcbrtirDTqZsgswZ9xyuOOsSplqGtyazCCt9fidbymM47ZfYjASscg==
 
 "@babel/template@^7.1.0", "@babel/template@^7.4.0", "@babel/template@^7.4.4", "@babel/template@^7.6.0":
   version "7.6.0"
@@ -1015,7 +1015,7 @@
     "@emotion/serialize" "^0.11.14"
     "@emotion/utils" "0.11.2"
 
-"@emotion/styled@^10.0.0", "@emotion/styled@^10.0.11", "@emotion/styled@^10.0.17":
+"@emotion/styled@^10.0.0", "@emotion/styled@^10.0.11":
   version "10.0.22"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.22.tgz#ee398710876ebda5a418f84359516c6a1c5c41b1"
   integrity sha512-3+dnBk8NjXnddI8Gi2VJLMmup0bCG8HQkZLaeNky+GSLl8VyxQfuaK5I5aDVvgQ3UzkxrcZrFB3vHYU/iUakBA==
@@ -2471,12 +2471,13 @@
     "@styled-system/core" "^5.1.2"
     "@styled-system/css" "^5.0.23"
 
-"@theme-ui/components@^0.2.46":
-  version "0.2.46"
-  resolved "https://registry.yarnpkg.com/@theme-ui/components/-/components-0.2.46.tgz#1199610d6bb4281445f587e2805c36394e935e39"
-  integrity sha512-c53r7sjZ9QWzasuYDddiAyuiNPB7/o8CP0zGeBstzlTpMrbrPc42NzmCytCMiFRbnZugY43D6dDBYC+cikR4JA==
+"@theme-ui/components@^0.2.49":
+  version "0.2.49"
+  resolved "https://registry.yarnpkg.com/@theme-ui/components/-/components-0.2.49.tgz#3c7e02ec96aac790d1d9408cd3f1591cef3168c6"
+  integrity sha512-0Q9jfUTJMRIZ+NF7oCJtVIoY8wyh0soMIlbbdPCCkU+BWLpCEuJ+FFCjWclkIuUiRCVJg6RD1JOyOer9MbUxXQ==
   dependencies:
-    "@emotion/styled" "^10.0.17"
+    "@emotion/core" "^10.0.0"
+    "@emotion/styled" "^10.0.0"
     "@styled-system/color" "^5.1.2"
     "@styled-system/css" "^5.0.23"
     "@styled-system/should-forward-prop" "^5.1.2"
@@ -10236,7 +10237,7 @@ jest-worker@^24.6.0, jest-worker@^24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
-jest@^24.8.0:
+jest@^24.8.0, jest@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-24.9.0.tgz#987d290c05a08b52c56188c1002e368edb007171"
   integrity sha512-YvkBL1Zm7d2B1+h5fHEOdyjCG+sGMz4f8D86/0HiqJ6MB4MnDc8FgP5vdWsGnemOQro7lnYo8UakZ3+5A0jxGw==
@@ -13544,10 +13545,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-beautiful-dnd@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-12.0.0.tgz#38b76446455c332870bf0d05f14a97af2a07dfca"
-  integrity sha512-NdttVdqLL1y8vKNx7VlcBCsC4c/8R/H4NIYo5rqPGU1HF48oXHrTpSDWw1HPMTBifVty4OKOkSIwo1NcvE3bDw==
+react-beautiful-dnd@^12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-12.1.1.tgz#810f9b9d94f667b15b253793e853d016a0f3f07c"
+  integrity sha512-w/mpIXMEXowc53PCEnMoFyAEYFgxMfygMK5msLo5ifJ2/CiSACLov9A79EomnPF7zno3N207QGXsraBxAJnyrw==
   dependencies:
     "@babel/runtime-corejs2" "^7.6.3"
     css-box-model "^1.2.0"
@@ -15902,10 +15903,10 @@ theme-ui@^0.2.43:
     "@styled-system/css" "^5.0.16"
     deepmerge "^4.0.0"
 
-theme-ui@^0.2.46:
-  version "0.2.46"
-  resolved "https://registry.yarnpkg.com/theme-ui/-/theme-ui-0.2.46.tgz#efaf5850e7047c3abe848b5bf37a9f53d6271d5d"
-  integrity sha512-/20TAjKBFTwrzm1U+N7+ucs7knim21di0liP/QUEl0DxbEzksPOKFX6ol+zjxHjPUoArg8UqS3bBcHvF0z0UnQ==
+theme-ui@^0.2.49:
+  version "0.2.49"
+  resolved "https://registry.yarnpkg.com/theme-ui/-/theme-ui-0.2.49.tgz#3803952907e74e6835d40b063aed0d46c213e2d9"
+  integrity sha512-hgULYonGu8iY3delv/GrMx4L/3nAJyEu55gEAAK3GDKVEVf4VNng3lM9/tgx4kUizTFVEB5MN5y+1JTHHOQLXQ==
   dependencies:
     "@emotion/is-prop-valid" "^0.8.1"
     "@styled-system/css" "^5.0.16"

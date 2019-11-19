@@ -1,5 +1,5 @@
 import { declare } from '@babel/helper-plugin-utils'
-import { getElementName, getUuid } from './util'
+import { getElementName, getUuid } from '../util'
 
 class BabelPluginGetBlocks {
   constructor() {
@@ -20,8 +20,6 @@ class BabelPluginGetBlocks {
               const propertyName =
                 openingElement.name.property &&
                 openingElement.name.property.name
-
-              console.log('heeeeeeey')
 
               if (objectName !== 'Blocks' && propertyName !== 'Root') {
                 return

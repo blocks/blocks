@@ -7,13 +7,16 @@
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
-    "@babel/standalone": "^7.7.2",
+    "@babel/standalone": "^7.7.3",
     "@babel/template": "^7.7.0",
     "@reach/tabs": "^0.6.1",
-    "@theme-ui/components": "^0.2.46",
+    "@theme-ui/components": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
     "property-controls": "^0.0.28",
-    "react-beautiful-dnd": "^12.0.0",
-    "theme-ui": "^0.2.46"
+    "react-beautiful-dnd": "^12.1.1",
+    "theme-ui": "^0.2.49"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

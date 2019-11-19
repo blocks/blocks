@@ -1,8 +1,8 @@
 import { transform } from '@babel/standalone'
 import babelPluginSyntaxJsx from '@babel/plugin-syntax-jsx'
-import BabelPluginGetBlocks from './babel-plugin-get-blocks'
-import BabelPluginGetCurrentElement from './babel-plugin-get-current-element'
-import BabelPluginGetExportedElements from './babel-plugin-get-exported-elements'
+import BabelPluginGetBlocks from './babel-plugins/get-blocks'
+import BabelPluginGetCurrentElement from './babel-plugins/get-current-element'
+import BabelPluginGetExportedElements from './babel-plugins/get-exported-elements'
 
 export const getExportedElements = code => {
   const plugin = new BabelPluginGetExportedElements()

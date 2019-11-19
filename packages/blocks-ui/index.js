@@ -6,21 +6,11 @@ import { system } from '@theme-ui/presets'
 import { Global } from '@emotion/core'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
-import {
-  Label,
-  Input
-  // Select,
-  // Textarea,
-  // Radio,
-  // Checkbox,
-  // Slider
-} from '@theme-ui/components'
+import { Label, Input } from '@theme-ui/components'
 import * as themeComponents from '@theme-ui/components'
 
 import * as transforms from './transforms'
 import * as queries from './queries'
-
-import useDebounce from './use-debounce'
 
 import * as recipes from './recipes'
 import pragma from './pragma'
