@@ -1,9 +1,12 @@
 {
   "name": "blocks-ui",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
-  "repo": "blocks/blocks",
+  "repository": "blocks/blocks",
+  "scripts": {
+    "prepare": "babel src -d dist && cp src/recipes.txt dist/recipes.txt"
+  },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
@@ -17,6 +20,10 @@
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "jest": "^24.9.0"
   }
 }

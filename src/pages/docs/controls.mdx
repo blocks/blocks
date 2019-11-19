@@ -1,0 +1,189 @@
+import Layout from '../../components/layout'
+export default Layout
+
+# Controls
+
+Components can use the controls API to expose form elements in the Blocks
+editor for manipulating props. It adheres to
+[Framer's Property Controls](https://www.framer.com/api/property-controls/)
+in order to ensure interoperability.
+
+```js
+import { Controls } from 'blocks-ui'
+```
+
+## Types
+
+Name | Description | String
+---- | ----------- | ------
+**Boolean** | true/false property | `boolean`
+**Enum** | Collection of possible values for a property | `enum`
+**Number** | Single number property | `number`
+**String** | String property | `string`
+
+##### Future considerations
+
+- Components as props
+- Objects as props (with particular shapes and/or nesting)
+- Arrays as props
+- Babel plugin to remove the controls for production builds
+
+### Boolean
+
+```js
+Controls.Boolean
+```
+
+You can use the boolean control type to expose a checkbox that turns a property
+on or off.
+
+Key | Required | Default | Description
+--- | -------- | ------- | -----------
+`title` | Yes | N/A | The label for the checkbox
+`defaultValue` | No | `true` | The checkbox's default value
+
+#### Example
+
+```js
+import { Controls } from 'blocks-ui'
+
+export const Component = ({ isTomato, ...props }) => (
+  <h1
+    {...props}
+    style={{
+      color: isTomato ? 'tomato' : 'inherit'
+    }}
+  />
+)
+
+Controls.applyPropertyControls(Component, {
+  isTomato: {
+    type: Controls.Boolean,
+    title: 'Tomato'
+  }
+})
+```
+
+### Enum
+
+```js
+Controls.Enum
+```
+
+You can use the enum control type to expose a select that contains all
+provided possible values.
+
+Key | Required | Default | Description
+--- | -------- | ------- | -----------
+`title` | Yes | N/A | The label the select
+`defaultValue` | No | `null` | The select's default value
+`options` | Yes | N/A | The values for the options
+`optionTitles` | No | `options` values | Titles for the given options
+
+#### Example
+
+```js
+import { Controls } from 'blocks-ui'
+
+export const Component = ({ color, ...props }) => (
+  <h1
+    {...props}
+    style={{ color }}
+  />
+)
+
+Controls.applyPropertyControls(Component, {
+  color: {
+    type: Controls.Enum,
+    title: 'Color',
+    defaultValue: 'tomato',
+    options: ['tomato', 'purple', 'black'],
+    optionTitles: ['Tomato', 'Purple', 'Black']
+  }
+})
+```
+
+### Number
+
+```js
+Controls.Number
+```
+
+You can use the enum control type to expose a select that contains all
+provided possible values.
+
+Key | Required | Default | Description
+--- | -------- | ------- | -----------
+`title` | Yes | N/A | The label for the prop
+`defaultValue` | No | `null` | The default value for the number
+`min` | No | 0 | The minimum value
+`max` | No | 10 | The maximum value
+`step` | No | 1 | The step value for the slider
+`unit` | No | `null` | The unit which is appended to the number (returned as a string if provided)
+
+#### Example
+
+```js
+import { Controls } from 'blocks-ui'
+
+export const Component = ({ lineHeight, ...props }) => (
+  <h1
+    {...props}
+    style={{ lineHeight }}
+  />
+)
+
+Controls.applyPropertyControls(Component, {
+  lineHeight: {
+    type: Controls.Number,
+    title: 'Line Height',
+    defaultValue: 1.2,
+    min: 1,
+    max: 2,
+    step: .1
+  }
+})
+```
+
+### String
+
+```js
+Controls.String
+```
+
+Display a text input for a string-based prop
+
+Key | Required | Default | Description
+--- | -------- | ------- | -----------
+`title` | Yes | N/A | The label for the prop
+`defaultValue` | No | `null` | The default value for the string
+`required` | No | `false` | Whether the string is required
+`placeholder` | No | `null` | Placeholder in the text input
+
+#### Example
+
+```js
+import { Controls } from 'blocks-ui'
+
+export const Component = ({ text, ...props }) => (
+  <h1
+    {...props}
+    children={text}
+  />
+)
+
+Controls.applyPropertyControls(Component, {
+  text: {
+    type: Controls.String,
+    required: true,
+    placeholder: 'Enter a title...'
+  }
+})
+```
+
+<br /><br />
+
+---
+
+_Note: Controls are also available as a standalone package,
+[property-controls](https://npmjs.com/package/property-controls)_

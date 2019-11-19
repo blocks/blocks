@@ -34,7 +34,15 @@
     ]
   },
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "@theme-ui/components": "^0.2.49",
+    "@theme-ui/presets": "^0.2.44",
     "gatsby-plugin-fathom": "^1.1.0",
-    "gatsby-theme-documentation": "^0.0.27"
+    "gatsby-plugin-mdx": "^1.0.57",
+    "gatsby-plugin-theme-ui": "^0.2.43",
+    "gatsby-source-filesystem": "^2.1.38",
+    "theme-ui": "^0.2.49"
   }
 }
