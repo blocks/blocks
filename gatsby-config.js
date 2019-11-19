@@ -1,10 +1,19 @@
 module.exports = {
   siteMetadata: {
     title: 'Blocks',
-    description: 'An MDX-based WYSIWYG for the content web'
+    description:
+      'A JSX-based page builder for creating beautiful websites without writing code'
   },
   plugins: [
-    'gatsby-theme-documentation',
+    'gatsby-plugin-theme-ui',
+    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'blocks',
+        path: 'packages/blocks/src'
+      }
+    },
     {
       resolve: 'gatsby-plugin-fathom',
       options: {

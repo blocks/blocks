@@ -1,0 +1,29 @@
+# Getting started
+
+To get started with Blocks you need to install the library and
+then use the component in your app.
+
+## Installation
+
+```sh
+yarn add @blocks/editor
+```
+
+## Usage
+
+```js
+import React from 'react'
+import { Editor } from '@blocks/editor'
+import { serializer, stringifyMDX } from '@blocks/serializer'
+
+export default () => (
+  <Editor
+    initialValue='# Hello, world!'
+    onChange={({ value }) => {
+      console.log(value)
+      const mdx = stringifyMDX(serializer.serialize(value))
+      console.log(value)
+    }}
+  />
+)
+```
