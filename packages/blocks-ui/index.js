@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, ThemeProvider, jsx } from 'theme-ui'
 import { system } from '@theme-ui/presets'
@@ -27,6 +27,7 @@ import pragma from './pragma'
 import CODE from './fixture'
 
 import BlocksListing from './blocks-listing'
+import InlineRender from './inline-render'
 
 // TODO: Make this less hacky
 import recipesSrc from 'raw-loader!./recipes.txt'
@@ -118,23 +119,6 @@ export default () => {
     const exportedElements = queries.getExportedElements(recipesSrc)
     setComponents(exportedElements)
   }, [])
-
-  const element = useMemo(() => {
-    if (!transformedCode) {
-      return null
-    }
-
-    /* eslint-disable */
-    const fn = new Function(
-      'React',
-      ...Object.keys(scope),
-      `${transformedCode};
-      return React.createElement(BLOCKS_Container)`
-    )
-    /* eslint-enable */
-
-    return fn(React, ...Object.values(scope))
-  }, [transformedCode])
 
   useEffect(() => {
     if (!elementId) {
@@ -312,7 +296,7 @@ export default () => {
                 overflow: 'scroll'
               }}
             >
-              {element}
+              <InlineRender scope={scope} code={transformedCode} />
             </div>
             <div
               sx={{
