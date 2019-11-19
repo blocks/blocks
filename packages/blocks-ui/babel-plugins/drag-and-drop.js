@@ -100,10 +100,6 @@ export default api => {
         if (t.isJSXMemberExpression(openingElement.name)) {
           path.node.openingElement.name = t.jsxIdentifier('BLOCKS_Root')
           path.node.closingElement.name = t.jsxIdentifier('BLOCKS_Root')
-        } else {
-          const children = path.node.children
-          path.replaceWith(navRoot('123').expression)
-          path.node.children[1].expression.body.children.push(...children)
         }
       }
     }

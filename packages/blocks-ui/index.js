@@ -237,7 +237,6 @@ export default () => {
 
   // console.log({ elementId, elementData, transformedCode })
 
-  console.log('rerender')
   return (
     <ThemeProvider theme={theme}>
       <Styled.root>
