@@ -26,6 +26,8 @@ import * as recipes from './recipes'
 import pragma from './pragma'
 import CODE from './fixture'
 
+import BlocksListing from './blocks-listing'
+
 // TODO: Make this less hacky
 import recipesSrc from 'raw-loader!./recipes.txt'
 
@@ -88,10 +90,7 @@ export default () => {
   const [elementData, setElementData] = useState(null)
   const [components, setComponents] = useState(null)
   const [activeTab, setActiveTab] = useState(1)
-  const [textField, setTextField] = useState('')
   const [blocks, setBlocks] = useState([])
-
-  const debouncedText = useDebounce(textField)
 
   const scope = {
     Blocks,
@@ -119,10 +118,6 @@ export default () => {
     const exportedElements = queries.getExportedElements(recipesSrc)
     setComponents(exportedElements)
   }, [])
-
-  useEffect(() => {
-    setTextField(elementData && elementData.text)
-  }, [elementData])
 
   const element = useMemo(() => {
     if (!transformedCode) {
@@ -166,18 +161,6 @@ export default () => {
       }
     } catch (e) {}
   }, [code])
-
-  useEffect(() => {
-    if (!debouncedText) {
-      return
-    }
-
-    const { code: newCode } = transforms.replaceText(code, {
-      text: debouncedText,
-      elementId
-    })
-    setCode(newCode)
-  }, [debouncedText, code, elementId])
 
   if (!code || !transformedCode) {
     return null
@@ -236,7 +219,10 @@ export default () => {
 
   const handleTextUpdate = e => {
     const text = e.target.value
-    setTextField(text)
+    setElementData({ ...elementData, text })
+
+    const { code: newCode } = transforms.replaceText(code, { text, elementId })
+    setCode(newCode)
   }
 
   const handleChange = key => e => {
@@ -380,43 +366,9 @@ export default () => {
                   </TabList>
                   <TabPanels>
                     <TabPanel>
-                      <Droppable droppableId="components">
-                        {(provided, snapshot) => (
-                          <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                          >
-                            {Object.keys(recipes).map((key, i) => (
-                              <Draggable
-                                key={key}
-                                draggableId={key}
-                                index={i + 1}
-                              >
-                                {(provided, snapshot) => {
-                                  const Component = recipes[key]
-
-                                  return (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                    >
-                                      <div
-                                        sx={{
-                                          transform: 'scale(.6)'
-                                        }}
-                                      >
-                                        <Component />
-                                      </div>
-                                    </div>
-                                  )
-                                }}
-                              </Draggable>
-                            ))}
-                            {provided.placeholder}
-                          </div>
-                        )}
-                      </Droppable>
+                      {activeTab === 0 ? (
+                        <BlocksListing components={recipes} />
+                      ) : null}
                     </TabPanel>
                     <TabPanel>
                       <div
@@ -466,7 +418,7 @@ export default () => {
                         <div>
                           {elementData && (
                             <div sx={{ px: 3 }}>
-                              {textField && (
+                              {elementData.hasOwnProperty('text') && (
                                 <React.Fragment>
                                   <Label>Text</Label>
                                   <Input
@@ -475,7 +427,7 @@ export default () => {
                                       width: '100%'
                                     }}
                                     onChange={handleTextUpdate}
-                                    value={textField}
+                                    value={elementData.text}
                                   />
                                 </React.Fragment>
                               )}
