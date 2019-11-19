@@ -9,10 +9,10 @@
     "prepare": "babel src -d dist"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0"
   },
   "dependencies": {
     "adaptive-gradient": "^1.0.6",
@@ -20,9 +20,9 @@
     "is-url": "^1.2.4",
     "random-hex-color": "^1.0.1",
     "react-gist": "^1.2.1",
-    "react-twitter-embed": "^2.0.8",
+    "react-twitter-embed": "^3.0.3",
     "react-youtube": "^7.9.0",
-    "theme-ui": "^0.0.14",
+    "theme-ui": "^0.2.49",
     "url-parse": "^1.4.7"
   },
   "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"

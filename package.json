@@ -2,26 +2,18 @@
   "private": true,
   "name": "blocks",
   "scripts": {
-    "start": "yarn workspace demo start",
-    "build": "lerna run prepare",
+    "start": "yarn docs",
+    "build": "gatsby build",
     "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
     "docs-build": "gatsby build",
-    "docs-deploy": "now switch mdx-blocks && now && now alias $(pbpaste) mdx-blocks.com && now alias $(pbpaste) www.mdx-blocks.com",
-    "now-build": "yarn docs-build",
+    "docs-deploy": "now switch mdx-blocks && now && now alias $(pbpaste) blocks-ui.com",
+    "prepare": "lerna run prepare",
     "publish": "lerna publish"
   },
   "workspaces": [
-    "packages/*",
-    "demo"
+    "packages/*"
   ],
-  "devDependencies": {
-    "gatsby": "^2.17.2",
-    "husky": "^3.0.9",
-    "lerna": "^3.18.3",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -43,6 +35,15 @@
     "gatsby-plugin-mdx": "^1.0.57",
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-source-filesystem": "^2.1.38",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "theme-ui": "^0.2.49"
+  },
+  "devDependencies": {
+    "gatsby": "^2.18.0",
+    "husky": "^3.1.0",
+    "lerna": "^3.18.4",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1"
   }
 }
