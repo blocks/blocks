@@ -1,4 +1,5 @@
 const transforms = require('blocks-ui/dist/transforms')
+const queries = require('blocks-ui/dist/queries')
 const BlockTemplate = require.resolve('./src/templates/block')
 
 const toComponentName = name => name.charAt(0).toUpperCase() + name.slice(1)
@@ -9,7 +10,8 @@ exports.sourceNodes = ({ actions }) => {
       displayName: String!
       slug: String!
       src: String!
-      transformedSrc: String!
+      usage: String!
+      transformed: String!
     }
   `)
 }
@@ -32,7 +34,10 @@ exports.onCreateNode = async ({
   }
 
   const src = await loadNodeContent(node)
-  const transformedSrc = transforms.toTransformedJSX(src)
+  const usage = queries.getBlocksUsage(src)
+  const transformed = transforms.toTransformedJSX(
+    'export default () => ' + usage
+  )
   const displayName = [node.relativeDirectory.replace(/s$/, ''), node.name]
     .map(toComponentName)
     .join('')
@@ -43,8 +48,9 @@ exports.onCreateNode = async ({
   const blocksNode = {
     src,
     slug,
-    transformedSrc,
+    transformed,
     displayName,
+    usage,
     id: createNodeId(nodeId),
     children: [],
     internal: {

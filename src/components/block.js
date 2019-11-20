@@ -15,6 +15,7 @@ const scope = {
   jsx,
   Styled,
   ...components,
+  ...blocks,
   ...controls
 }
 
@@ -32,7 +33,7 @@ export default ({ block }) => {
 
   return (
     <Styled.root>
-      <title>Blocks UI</title>
+      <title>{block.displayName} / Blocks UI</title>
       <main>
         <Container>
           <Styled.h2 as="h1">{block.displayName}</Styled.h2>
@@ -44,7 +45,7 @@ export default ({ block }) => {
             borderBottom: 'thin solid #e1e6eb'
           }}
         >
-          <InlineRender scope={scope} code={block.transformedSrc} />
+          <InlineRender scope={scope} code={block.transformed} />
         </section>
         <Container>
           <Styled.h3>Property controls</Styled.h3>
@@ -63,7 +64,7 @@ export default ({ block }) => {
               </div>
             ))}
           <Styled.h3>Example usage</Styled.h3>
-          <Styled.pre>{block.usage}</Styled.pre>
+          <Styled.pre>{component.usage}</Styled.pre>
           <Styled.h3>Source code</Styled.h3>
           <Styled.pre>{block.src}</Styled.pre>
         </Container>

@@ -74,7 +74,7 @@ const linkControls = {
 applyPropertyControls(HeaderBasic.Logo, linkControls)
 applyPropertyControls(HeaderBasic.Link, linkControls)
 
-export default () => (
+HeaderBasic.usage = `
   <HeaderBasic>
     <HeaderBasic.Logo to="/">Hello</HeaderBasic.Logo>
     <HeaderBasic.Nav>
@@ -83,4 +83,6 @@ export default () => (
       <HeaderBasic.Link to="/contact">Contact</HeaderBasic.Link>
     </HeaderBasic.Nav>
   </HeaderBasic>
-)
+`
+
+export default HeaderBasic

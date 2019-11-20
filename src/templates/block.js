@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 
 import Block from '../components/block'
 
@@ -8,7 +9,7 @@ export const pageQuery = graphql`
       id
       displayName
       src
-      transformedSrc
+      transformed
     }
   }
 `
