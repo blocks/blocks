@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, ThemeProvider, jsx } from 'theme-ui'
-import { system } from '@theme-ui/presets'
+import * as presets from '@theme-ui/presets'
 import { Global } from '@emotion/core'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
@@ -18,14 +18,16 @@ import CODE from './fixture'
 
 import BlocksListing from './blocks-listing'
 import InlineRender from './inline-render'
+import ThemePanel from './theme-panel'
 
 // TODO: Make this less hacky
 import recipesSrc from 'raw-loader!./recipes.txt'
 
-const theme = {
-  ...system,
+// blocks app theme
+const appTheme = {
+  // ...presets.system,
   styles: {
-    ...system.styles,
+    // ...presets.system.styles,
     navlink: {
       color: 'inherit',
       textDecoration: 'none',
@@ -82,6 +84,9 @@ export default () => {
   const [components, setComponents] = useState(null)
   const [activeTab, setActiveTab] = useState(1)
   const [blocks, setBlocks] = useState([])
+  const [themeName, setThemeName] = useState('tosh')
+
+  const theme = presets[themeName]
 
   const scope = {
     Blocks,
@@ -238,7 +243,7 @@ export default () => {
   // console.log({ elementId, elementData, transformedCode })
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appTheme}>
       <Styled.root>
         <Global
           styles={{
@@ -285,7 +290,11 @@ export default () => {
                 overflow: 'scroll'
               }}
             >
-              <InlineRender scope={scope} code={transformedCode} />
+              <InlineRender
+                scope={scope}
+                code={transformedCode}
+                theme={theme}
+              />
             </div>
             <div
               sx={{
@@ -336,11 +345,27 @@ export default () => {
                     >
                       Editor
                     </Tab>
+                    <Tab
+                      sx={{
+                        flex: 1,
+                        appearance: 'none',
+                        border: 0,
+                        py: 2,
+                        borderBottom:
+                        activeTab === 2 ? 0 : 'thin solid #e1e6eb',
+                        backgroundColor: activeTab === 2 ? null : '#fafafa'
+                      }}
+                    >
+                      Theme
+                    </Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel>
                       {activeTab === 0 ? (
-                        <BlocksListing components={recipes} />
+                        <BlocksListing
+                          components={recipes}
+                          theme={theme}
+                        />
                       ) : null}
                     </TabPanel>
                     <TabPanel>
@@ -520,6 +545,12 @@ export default () => {
                           )}
                         </div>
                       </div>
+                    </TabPanel>
+                    <TabPanel>
+                      <ThemePanel
+                        themeName={themeName}
+                        setThemeName={setThemeName}
+                      />
                     </TabPanel>
                   </TabPanels>
                 </Tabs>

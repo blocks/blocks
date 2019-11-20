@@ -1,6 +1,14 @@
+/** @jsx jsx */
 import React, { useMemo } from 'react'
+import { jsx, ThemeProvider, Styled } from 'theme-ui'
 
-export default ({ code, scope, ...props }) => {
+export default ({
+  code,
+  scope,
+  theme,
+  ...props
+}) => {
+  console.log({ theme, colors: theme.colors.background })
   const element = useMemo(() => {
     if (!code) {
       return null
@@ -20,5 +28,16 @@ export default ({ code, scope, ...props }) => {
   //       I think it has to do with the inline render
   //       definition of scope.
 
-  return <div {...props}>{element}</div>
+  return (
+    <ThemeProvider theme={theme}>
+      <Styled.root
+        {...props}
+        sx={{
+          color: 'text',
+          bg: 'background',
+        }}>
+        {element}
+      </Styled.root>
+    </ThemeProvider>
+  )
 }
