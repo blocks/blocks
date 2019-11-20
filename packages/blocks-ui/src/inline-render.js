@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-export default ({ code, scope }) => {
+export default ({ code, scope, ...props }) => {
   const element = useMemo(() => {
     if (!code) {
       return null
@@ -20,5 +20,5 @@ export default ({ code, scope }) => {
   //       I think it has to do with the inline render
   //       definition of scope.
 
-  return element
+  return <div {...props}>{element}</div>
 }

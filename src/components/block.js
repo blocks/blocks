@@ -2,6 +2,7 @@
 import React from 'react'
 import { jsx, Styled } from 'theme-ui'
 import * as components from '@theme-ui/components'
+import { Global } from '@emotion/core'
 import * as blocks from '@blocks/blocks'
 import InlineRender from 'blocks-ui/dist/inline-render'
 import * as controls from 'property-controls'
@@ -19,6 +20,27 @@ const scope = {
   ...controls
 }
 
+const PropertyControlsTable = ({ controls, name }) => (
+  <Styled.table sx={{ m: 0 }}>
+    <Styled.tr>
+      <Styled.th sx={{ width: '33%' }}>
+        <Styled.code>{name}</Styled.code>
+      </Styled.th>
+      <Styled.th sx={{ width: '16%' }}>Type</Styled.th>
+      <Styled.th sx={{ width: '33%' }}>Default Value</Styled.th>
+    </Styled.tr>
+    {Object.entries(controls).map(([key, val]) => (
+      <Styled.tr key={key}>
+        <Styled.td>{val.title || key}</Styled.td>
+        <Styled.td>
+          <Styled.code>{val.type}</Styled.code>
+        </Styled.td>
+        <Styled.td>{val.defaultValue || 'None'}</Styled.td>
+      </Styled.tr>
+    ))}
+  </Styled.table>
+)
+
 export default ({ block }) => {
   const component = blocks[block.displayName]
 
@@ -33,38 +55,87 @@ export default ({ block }) => {
 
   return (
     <Styled.root>
+      <Global
+        styles={{
+          '*': {
+            boxSizing: 'border-box'
+          },
+          body: {
+            margin: 0
+          }
+        }}
+      />
       <title>{block.displayName} / Blocks UI</title>
-      <main>
-        <Container>
-          <Styled.h2 as="h1">{block.displayName}</Styled.h2>
-        </Container>
-        <section
+      <header
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          py: 2,
+          px: 3,
+          borderBottom: 'thin solid #e1e6eb'
+        }}
+      >
+        <img
+          alt="Blocks logo"
+          src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
           sx={{
-            my: 4,
-            borderTop: 'thin solid #e1e6eb',
-            borderBottom: 'thin solid #e1e6eb'
+            height: 20,
+            mr: 2
+          }}
+        />
+        <Styled.h1
+          sx={{
+            m: 0,
+            lineHeight: 1,
+            fontWeight: 'body',
+            fontSize: [1, 1, 1]
           }}
         >
-          <InlineRender scope={scope} code={block.transformed} />
+          {block.displayName}
+        </Styled.h1>
+      </header>
+      <main>
+        <section
+          sx={{
+            mb: [3, 4, 5],
+            p: [3, 4, 5],
+            borderBottom: 'thin solid #e1e6eb',
+            backgroundColor: '#fafafa'
+          }}
+        >
+          <InlineRender
+            sx={{
+              backgroundColor: 'background'
+            }}
+            scope={scope}
+            code={block.transformed}
+          />
         </section>
         <Container>
           <Styled.h3>Property controls</Styled.h3>
-          <Styled.h4>Root</Styled.h4>
-          <Styled.pre>
-            {JSON.stringify(component.propertyControls, null, 2)}
-          </Styled.pre>
+          <PropertyControlsTable
+            name={block.displayName}
+            controls={component.propertyControls}
+          />
           {Object.entries(components)
             .filter(([_, val]) => !!val.propertyControls)
             .map(([key, val]) => (
-              <div key={key}>
-                <Styled.h4>{key}</Styled.h4>
-                <Styled.pre>
-                  {JSON.stringify(val.propertyControls, null, 2)}
-                </Styled.pre>
-              </div>
+              <PropertyControlsTable
+                key={key}
+                name={key}
+                controls={val.propertyControls}
+              />
             ))}
-          <Styled.h3>Example usage</Styled.h3>
-          <Styled.pre>{component.usage}</Styled.pre>
+          <Styled.h3 sx={{ mt: [3, 4, 5] }}>Example usage</Styled.h3>
+          <Styled.pre>
+            {"/** @jsx jsx */\nimport { jsx } from 'theme-ui'\n" +
+              `import { ${block.displayName} }  from '@blocks/components'` +
+              '\n\n' +
+              'export default () => (\n  ' +
+              component.usage.trim() +
+              '\n)'}
+          </Styled.pre>
           <Styled.h3>Source code</Styled.h3>
           <Styled.pre>{block.src}</Styled.pre>
         </Container>
