@@ -20,4 +20,9 @@ export default () => (
 )
 `
 
-export default () => <Editor src={JSX} blocks={Blocks} />
+export default () => (
+  <>
+    <title>Blocks UI</title>
+    <Editor src={JSX} blocks={Blocks} />
+  </>
+)

@@ -1,6 +1,8 @@
 import { declare } from '@babel/helper-plugin-utils'
 import * as t from '@babel/types'
 
+import { textTrim } from '../util'
+
 const getElementName = node => {
   const elementName = node.name
 
@@ -73,8 +75,7 @@ class BabelPluginGetCurrentElement {
 
             let text = null
             if (!hasElements) {
-              // TODO: Don't trim trailing space
-              text = children.map(n => n.value.trim()).join(' ')
+              text = children.map(n => textTrim(n.value)).join(' ')
             }
 
             this.state.element = {

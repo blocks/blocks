@@ -27,6 +27,10 @@ export const uuid = (
         )
 }
 
+// Leave last space on a string since a user could
+// be in the middle of typing into a text input
+export const textTrim = str => str.replace(/^\s*/, '').replace(/\s{1,}$/, ' ')
+
 export const getElementName = node => {
   const elementName = node.name
 
