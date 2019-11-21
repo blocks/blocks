@@ -1,3 +1,5 @@
+import template from '@babel/template'
+
 export default (api, { destination, block }) => {
   const { types: t } = api
 
@@ -23,8 +25,12 @@ export default (api, { destination, block }) => {
           return
         }
 
+        // TODO: Make this a util
+        const blockAST = template.ast(block.usage, { plugins: ['jsx'] })
+          .expression
+
         const children = path.node.children.filter(node => t.isJSXElement(node))
-        children.splice(destination.index, 0, block)
+        children.splice(destination.index, 0, blockAST)
         path.node.children = children
       }
     }

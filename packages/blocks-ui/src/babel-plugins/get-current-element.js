@@ -73,6 +73,7 @@ class BabelPluginGetCurrentElement {
 
             let text = null
             if (!hasElements) {
+              // TODO: Don't trim trailing space
               text = children.map(n => n.value.trim()).join(' ')
             }
 

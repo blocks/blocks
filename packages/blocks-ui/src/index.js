@@ -12,15 +12,10 @@ import * as themeComponents from '@theme-ui/components'
 import * as transforms from './transforms'
 import * as queries from './queries'
 
-import * as recipes from './recipes'
 import pragma from './pragma'
-import CODE from './fixture'
 
 import BlocksListing from './blocks-listing'
 import InlineRender from './inline-render'
-
-// TODO: Make this less hacky
-import recipesSrc from 'raw-loader!./recipes.txt'
 
 const theme = {
   ...system,
@@ -74,14 +69,14 @@ const BLOCKS_Draggable = ({ active, children, ...props }) => {
   )
 }
 
-export default () => {
+export default ({ src: initialCode, blocks: providedBlocks }) => {
   const [code, setCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
-  const [components, setComponents] = useState(null)
   const [activeTab, setActiveTab] = useState(1)
-  const [blocks, setBlocks] = useState([])
+
+  const blocks = { ...providedBlocks }
 
   const scope = {
     Blocks,
@@ -95,19 +90,13 @@ export default () => {
     BLOCKS_DraggableInner: props => <div {...props} />,
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
-    ...recipes,
-    ...themeComponents
+    ...themeComponents,
+    ...providedBlocks
   }
 
   useEffect(() => {
-    const newCode = transforms.addTuid(CODE)
+    const newCode = transforms.addTuid(initialCode)
     setCode(newCode)
-
-    const allBlocks = queries.getBlocks(newCode)
-    setBlocks(allBlocks)
-
-    const exportedElements = queries.getExportedElements(recipesSrc)
-    setComponents(exportedElements)
   }, [])
 
   useEffect(() => {
@@ -118,8 +107,8 @@ export default () => {
     const newElementData = queries.getCurrentElement(code, elementId)
     setElementData(newElementData)
 
-    const allBlocks = queries.getBlocks(code)
-    setBlocks(allBlocks)
+    // const allBlocks = queries.getBlocks(code)
+    // setBlocks(allBlocks)
 
     if (newElementData) {
       setActiveTab(1)
@@ -145,12 +134,15 @@ export default () => {
       return
     }
 
-    if (drag.source.index === drag.destination.index) {
+    if (
+      drag.destination === 'root' &&
+      drag.source.index === drag.destination.index
+    ) {
       return
     }
 
     if (drag.source.droppableId === 'components') {
-      const newCode = transforms.insertJSXBlock(code, { ...drag, components })
+      const newCode = transforms.insertJSXBlock(code, { ...drag, blocks })
       setCode(newCode)
     } else if (drag.source.droppableId.startsWith('element-')) {
       console.log(drag)
@@ -234,8 +226,6 @@ export default () => {
 
     setCode(newCode)
   }
-
-  // console.log({ elementId, elementData, transformedCode })
 
   return (
     <ThemeProvider theme={theme}>
@@ -340,7 +330,7 @@ export default () => {
                   <TabPanels>
                     <TabPanel>
                       {activeTab === 0 ? (
-                        <BlocksListing components={recipes} />
+                        <BlocksListing components={providedBlocks} />
                       ) : null}
                     </TabPanel>
                     <TabPanel>
@@ -378,14 +368,15 @@ export default () => {
                           </h3>
                         ) : (
                           <ul>
-                            {blocks.map(block => (
-                              <li
-                                key={block.id}
-                                onClick={() => setElementId(block.id)}
-                              >
-                                {block.name}
-                              </li>
-                            ))}
+                            {blocks.map &&
+                              blocks.map(block => (
+                                <li
+                                  key={block.id}
+                                  onClick={() => setElementId(block.id)}
+                                >
+                                  {block.name}
+                                </li>
+                              ))}
                           </ul>
                         )}
                         <div>

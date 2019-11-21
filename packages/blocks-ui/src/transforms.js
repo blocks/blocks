@@ -34,10 +34,30 @@ const transformPlugins = [
 ]
 
 export const toTransformedJSX = code => {
-  console.log('Transforming JSX')
   try {
     return transform(code, {
       plugins: transformPlugins
+    }).code
+  } catch (e) {
+    return null
+  }
+}
+
+export const toTransformedBlockJSX = code => {
+  const fullCode = 'export default () => ' + code.trim()
+
+  try {
+    return transform(fullCode, {
+      plugins: [
+        babelPluginRemoveImports,
+        babelPluginSetDefaultExportToContainer,
+        [
+          babelPluginTransformJsx,
+          {
+            pragma: 'jsx'
+          }
+        ]
+      ]
     }).code
   } catch (e) {
     return null
@@ -105,9 +125,8 @@ export const reorderJSXBlocks = (code, drag) => {
   }).code
 }
 
-export const insertJSXBlock = (code, { components, ...drag }) => {
-  const componentName = Object.keys(components)[drag.source.index - 1]
-  const block = components[componentName]
+export const insertJSXBlock = (code, { blocks, ...drag }) => {
+  const block = blocks[drag.draggableId]
 
   if (!block) {
     return

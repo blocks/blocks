@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
+import InlineBlockRender from './inline-block-render'
+
 export default ({ components }) => {
   const list = useMemo(() => {
     return Object.keys(components).map((key, i) => (
@@ -19,7 +21,12 @@ export default ({ components }) => {
                   transform: 'scale(.6)'
                 }}
               >
-                <Component />
+                <InlineBlockRender
+                  code={Component.usage}
+                  scope={{
+                    [key]: Component
+                  }}
+                />
               </div>
             </div>
           )
