@@ -25,9 +25,9 @@ import recipesSrc from 'raw-loader!./recipes.txt'
 
 // blocks app theme
 const appTheme = {
-  // ...presets.system,
+  ...presets.system,
   styles: {
-    // ...presets.system.styles,
+    ...presets.system.styles,
     navlink: {
       color: 'inherit',
       textDecoration: 'none',

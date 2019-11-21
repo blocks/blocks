@@ -8,7 +8,6 @@ export default ({
   theme,
   ...props
 }) => {
-  console.log({ theme, colors: theme.colors.background })
   const element = useMemo(() => {
     if (!code) {
       return null
