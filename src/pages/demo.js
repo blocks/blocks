@@ -23,6 +23,6 @@ export default () => (
 export default () => (
   <>
     <title>Blocks UI</title>
-    <Editor src={JSX} blocks={Blocks} />
+    <Editor src={JSX} blocks={Blocks} onChange={console.log} />
   </>
 )

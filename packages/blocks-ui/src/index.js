@@ -69,7 +69,7 @@ const BLOCKS_Draggable = ({ active, children, ...props }) => {
   )
 }
 
-export default ({ src: initialCode, blocks: providedBlocks }) => {
+export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [code, setCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
   const [elementId, setElementId] = useState(null)
@@ -107,9 +107,6 @@ export default ({ src: initialCode, blocks: providedBlocks }) => {
     const newElementData = queries.getCurrentElement(code, elementId)
     setElementData(newElementData)
 
-    // const allBlocks = queries.getBlocks(code)
-    // setBlocks(allBlocks)
-
     if (newElementData) {
       setActiveTab(1)
     }
@@ -118,9 +115,14 @@ export default ({ src: initialCode, blocks: providedBlocks }) => {
   useEffect(() => {
     try {
       const newTransformedCode = transforms.toTransformedJSX(code)
+      const rawCode = transforms.toRawJSX(code)
 
       if (newTransformedCode) {
         setTransformedCode(newTransformedCode)
+      }
+
+      if (rawCode) {
+        onChange(rawCode)
       }
     } catch (e) {}
   }, [code])
