@@ -21,6 +21,9 @@ const theme = {
     p: {
       ...system.styles.p,
       fontSize: [2, 3]
+    },
+    li: {
+      fontSize: [2, 3]
     }
   },
   buttons: {

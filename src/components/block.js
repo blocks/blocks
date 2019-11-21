@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import React from 'react'
+import { Link } from 'gatsby'
 import { jsx, Styled } from 'theme-ui'
 import * as components from '@theme-ui/components'
 import { Global } from '@emotion/core'
-import * as blocks from '@blocks/blocks'
+import * as blocks from '@blocks/blocks/src'
 import InlineRender from 'blocks-ui/dist/inline-render'
 import * as controls from 'property-controls'
 
@@ -76,14 +77,30 @@ export default ({ block }) => {
           borderBottom: 'thin solid #e1e6eb'
         }}
       >
-        <img
-          alt="Blocks logo"
-          src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+        <Link to="/blocks">
+          <img
+            alt="Blocks logo"
+            src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+            sx={{
+              mt: -1,
+              height: 24,
+              verticalAlign: 'middle',
+              mr: 2
+            }}
+          />
+        </Link>
+        <Link
+          to="/blocks"
           sx={{
-            height: 20,
-            mr: 2
+            color: 'inherit',
+            textDecoration: 'none',
+            fontSize: [1, 1, 1],
+            lineHeight: 1
           }}
-        />
+        >
+          Blocks
+        </Link>
+        <span sx={{ px: 1, fontSize: 0 }}>/</span>
         <Styled.h1
           sx={{
             m: 0,
