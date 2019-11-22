@@ -14,6 +14,7 @@ import * as queries from './queries'
 
 import pragma from './pragma'
 
+import Header from './header'
 import BlocksListing from './blocks-listing'
 import InlineRender from './inline-render'
 import ElementContext from './element-context'
@@ -244,23 +245,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
               }
             }}
           />
-          <div
-            sx={{
-              display: 'flex',
-              width: '100%',
-              py: 2,
-              px: 3,
-              borderBottom: 'thin solid #e1e6eb'
-            }}
-          >
-            <img
-              alt="Blocks logo"
-              src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
-              sx={{
-                height: 20
-              }}
-            />
-          </div>
+          <Header />
           <DragDropContext
             onDragEnd={onDragEnd}
             onBeforeDragStart={onBeforeDragStart}
@@ -391,7 +376,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
                               <div sx={{ px: 3 }}>
                                 {elementData.hasOwnProperty('text') && (
                                   <React.Fragment>
-                                    <Label>Text</Label>
+                                    <Label id="text">Text</Label>
                                     <Input
                                       sx={{
                                         display: 'block',
@@ -399,6 +384,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
                                       }}
                                       onChange={handleTextUpdate}
                                       value={elementData.text}
+                                      aria-labelledby="text"
                                     />
                                   </React.Fragment>
                                 )}
@@ -414,7 +400,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
                                 </h3>
                                 {elementData.props.hasOwnProperty('to') && (
                                   <React.Fragment>
-                                    <Label>To</Label>
+                                    <Label id="to">To</Label>
                                     <Input
                                       sx={{
                                         display: 'block',
@@ -422,6 +408,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
                                       }}
                                       onChange={handlePropChange('to')}
                                       value={elementData.props.to || ''}
+                                      aria-labelledby="to"
                                     />
                                   </React.Fragment>
                                 )}

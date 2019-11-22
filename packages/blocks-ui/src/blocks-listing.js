@@ -22,6 +22,7 @@ export default ({ components }) => {
                 }}
               >
                 <InlineBlockRender
+                  aria-label={key}
                   code={Component.usage}
                   scope={{
                     [key]: Component
