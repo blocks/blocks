@@ -16,6 +16,7 @@ import pragma from './pragma'
 
 import BlocksListing from './blocks-listing'
 import InlineRender from './inline-render'
+import ElementContext from './element-context'
 
 const theme = {
   ...system,
@@ -230,297 +231,304 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Styled.root>
-        <Global
-          styles={{
-            '*': {
-              boxSizing: 'border-box'
-            },
-            body: {
-              margin: 0
-            }
-          }}
-        />
-        <div
-          sx={{
-            display: 'flex',
-            width: '100%',
-            py: 2,
-            px: 3,
-            borderBottom: 'thin solid #e1e6eb'
-          }}
-        >
-          <img
-            alt="Blocks logo"
-            src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
-            sx={{
-              height: 20
+    <ElementContext.Provider value={elementData}>
+      <ThemeProvider theme={theme}>
+        <Styled.root>
+          <Global
+            styles={{
+              '*': {
+                boxSizing: 'border-box'
+              },
+              body: {
+                margin: 0
+              }
             }}
           />
-        </div>
-        <DragDropContext
-          onDragEnd={onDragEnd}
-          onBeforeDragStart={onBeforeDragStart}
-        >
           <div
             sx={{
               display: 'flex',
-              width: '100%'
+              width: '100%',
+              py: 2,
+              px: 3,
+              borderBottom: 'thin solid #e1e6eb'
             }}
+          >
+            <img
+              alt="Blocks logo"
+              src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+              sx={{
+                height: 20
+              }}
+            />
+          </div>
+          <DragDropContext
+            onDragEnd={onDragEnd}
+            onBeforeDragStart={onBeforeDragStart}
           >
             <div
               sx={{
-                width: '60%',
-                backgroundColor: 'white',
-                height: '100vh',
-                overflow: 'scroll'
-              }}
-            >
-              <InlineRender scope={scope} code={transformedCode} />
-            </div>
-            <div
-              sx={{
-                borderLeft: 'thin solid #e1e6eb',
-                width: '40%',
-                height: '100vh',
-                overflow: 'scroll'
+                display: 'flex',
+                width: '100%'
               }}
             >
               <div
                 sx={{
+                  width: '60%',
+                  backgroundColor: 'white',
                   height: '100vh',
-                  overflow: 'scroll',
-                  order: 10
+                  overflow: 'scroll'
                 }}
               >
-                <Tabs index={activeTab} onChange={index => setActiveTab(index)}>
-                  <TabList
-                    sx={{
-                      display: 'flex',
-                      width: '100%'
-                    }}
+                <InlineRender scope={scope} code={transformedCode} />
+              </div>
+              <div
+                sx={{
+                  borderLeft: 'thin solid #e1e6eb',
+                  width: '40%',
+                  height: '100vh',
+                  overflow: 'scroll'
+                }}
+              >
+                <div
+                  sx={{
+                    height: '100vh',
+                    overflow: 'scroll',
+                    order: 10
+                  }}
+                >
+                  <Tabs
+                    index={activeTab}
+                    onChange={index => setActiveTab(index)}
                   >
-                    <Tab
+                    <TabList
                       sx={{
-                        flex: 1,
-                        appearance: 'none',
-                        border: 0,
-                        py: 2,
-                        borderRight: 'thin solid #e1e6eb',
-                        borderBottom:
-                          activeTab === 0 ? 0 : 'thin solid #e1e6eb',
-                        backgroundColor: activeTab === 0 ? null : '#fafafa'
+                        display: 'flex',
+                        width: '100%'
                       }}
                     >
-                      Components
-                    </Tab>
-                    <Tab
-                      sx={{
-                        flex: 1,
-                        appearance: 'none',
-                        border: 0,
-                        py: 2,
-                        borderBottom:
-                          activeTab === 1 ? 0 : 'thin solid #e1e6eb',
-                        backgroundColor: activeTab === 1 ? null : '#fafafa'
-                      }}
-                    >
-                      Editor
-                    </Tab>
-                  </TabList>
-                  <TabPanels>
-                    <TabPanel>
-                      {activeTab === 0 ? (
-                        <BlocksListing components={providedBlocks} />
-                      ) : null}
-                    </TabPanel>
-                    <TabPanel>
-                      <div
+                      <Tab
                         sx={{
-                          height: '100vh',
-                          overflow: 'scroll'
+                          flex: 1,
+                          appearance: 'none',
+                          border: 0,
+                          py: 2,
+                          borderRight: 'thin solid #e1e6eb',
+                          borderBottom:
+                            activeTab === 0 ? 0 : 'thin solid #e1e6eb',
+                          backgroundColor: activeTab === 0 ? null : '#fafafa'
                         }}
                       >
-                        {elementData ? (
-                          <h3
-                            sx={{
-                              textTransform: 'uppercase',
-                              fontSize: 2,
-                              fontWeight: 600,
-                              m: 0,
-                              px: 3,
-                              py: 1,
-                              borderBottom: 'thin solid #e1e6eb'
-                            }}
-                          >
-                            {elementData.name}
-                            <button onClick={handleRemoveElement}>
-                              Remove
-                            </button>
-                            <button onClick={handleInsertElement}>
-                              Insert
-                            </button>
-                            <button onClick={handleClone}>Clone</button>
-                            {elementData.parentId && (
-                              <button onClick={handleParentSelect}>
-                                Parent
+                        Components
+                      </Tab>
+                      <Tab
+                        sx={{
+                          flex: 1,
+                          appearance: 'none',
+                          border: 0,
+                          py: 2,
+                          borderBottom:
+                            activeTab === 1 ? 0 : 'thin solid #e1e6eb',
+                          backgroundColor: activeTab === 1 ? null : '#fafafa'
+                        }}
+                      >
+                        Editor
+                      </Tab>
+                    </TabList>
+                    <TabPanels>
+                      <TabPanel>
+                        {activeTab === 0 ? (
+                          <BlocksListing components={providedBlocks} />
+                        ) : null}
+                      </TabPanel>
+                      <TabPanel>
+                        <div
+                          sx={{
+                            height: '100vh',
+                            overflow: 'scroll'
+                          }}
+                        >
+                          {elementData ? (
+                            <h3
+                              sx={{
+                                textTransform: 'uppercase',
+                                fontSize: 2,
+                                fontWeight: 600,
+                                m: 0,
+                                px: 3,
+                                py: 1,
+                                borderBottom: 'thin solid #e1e6eb'
+                              }}
+                            >
+                              {elementData.name}
+                              <button onClick={handleRemoveElement}>
+                                Remove
                               </button>
-                            )}
-                          </h3>
-                        ) : (
-                          <ul>
-                            {blocks.map &&
-                              blocks.map(block => (
-                                <li
-                                  key={block.id}
-                                  onClick={() => setElementId(block.id)}
-                                >
-                                  {block.name}
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                        <div>
-                          {elementData && (
-                            <div sx={{ px: 3 }}>
-                              {elementData.hasOwnProperty('text') && (
-                                <React.Fragment>
-                                  <Label>Text</Label>
-                                  <Input
-                                    sx={{
-                                      display: 'block',
-                                      width: '100%'
-                                    }}
-                                    onChange={handleTextUpdate}
-                                    value={elementData.text}
-                                  />
-                                </React.Fragment>
-                              )}
-                              <h3
-                                sx={{
-                                  fontWeight: 'normal',
-                                  m: 0,
-                                  pb: 2,
-                                  pt: 4
-                                }}
-                              >
-                                Props
-                              </h3>
-                              {elementData.props.hasOwnProperty('to') && (
-                                <React.Fragment>
-                                  <Label>To</Label>
-                                  <Input
-                                    sx={{
-                                      display: 'block',
-                                      width: '100%'
-                                    }}
-                                    onChange={handlePropChange('to')}
-                                    value={elementData.props.to || ''}
-                                  />
-                                </React.Fragment>
-                              )}
-                              <h3
-                                sx={{
-                                  fontWeight: 'normal',
-                                  mt: 4,
-                                  mb: 0,
-                                  pt: 4,
-                                  borderTop: 'thin solid'
-                                }}
-                              >
-                                Styles
-                              </h3>
-                              {elementData.props.sx && (
-                                <React.Fragment>
-                                  <Label>Padding</Label>
-                                  <Input
-                                    sx={{
-                                      display: 'block',
-                                      width: '100%'
-                                    }}
-                                    onChange={handleChange('p')}
-                                    value={elementData.props.sx.p}
-                                  />
-                                  <button onClick={handleRemove('p')}>
-                                    Remove
-                                  </button>
-                                </React.Fragment>
-                              )}
-                              <React.Fragment>
-                                <Label>Background</Label>
-                                <Input
-                                  sx={{
-                                    display: 'block',
-                                    width: '100%'
-                                  }}
-                                  onChange={handleChange('background')}
-                                  value={
-                                    elementData.props.sx &&
-                                    elementData.props.sx.backgroundColor
-                                  }
-                                />
-                                <button onClick={handleRemove('background')}>
-                                  Remove
+                              <button onClick={handleInsertElement}>
+                                Insert
+                              </button>
+                              <button onClick={handleClone}>Clone</button>
+                              {elementData.parentId && (
+                                <button onClick={handleParentSelect}>
+                                  Parent
                                 </button>
-                              </React.Fragment>
-                              <React.Fragment>
-                                <Label>Color</Label>
-                                <Input
-                                  sx={{
-                                    display: 'block',
-                                    width: '100%'
-                                  }}
-                                  onChange={handleChange('color')}
-                                  value={elementData.props.sx.color}
-                                />
-                                <button onClick={handleRemove('color')}>
-                                  Remove
-                                </button>
-                              </React.Fragment>
-                              <h3
-                                sx={{
-                                  fontWeight: 'normal',
-                                  mt: 4,
-                                  mb: 0,
-                                  pt: 4,
-                                  borderTop: 'thin solid'
-                                }}
-                              >
-                                Variant
-                              </h3>
-                              {elementData.props.sx &&
-                                elementData.props.sx.variant && (
+                              )}
+                            </h3>
+                          ) : (
+                            <ul>
+                              {blocks.map &&
+                                blocks.map(block => (
+                                  <li
+                                    key={block.id}
+                                    onClick={() => setElementId(block.id)}
+                                  >
+                                    {block.name}
+                                  </li>
+                                ))}
+                            </ul>
+                          )}
+                          <div>
+                            {elementData && (
+                              <div sx={{ px: 3 }}>
+                                {elementData.hasOwnProperty('text') && (
                                   <React.Fragment>
-                                    <Label>
-                                      {elementData.props.sx.variant.replace(
-                                        'styles.',
-                                        ''
-                                      )}
-                                    </Label>
+                                    <Label>Text</Label>
                                     <Input
                                       sx={{
                                         display: 'block',
                                         width: '100%'
                                       }}
-                                      onChange={handleChange('variant')}
-                                      value={elementData.props.sx.variant}
+                                      onChange={handleTextUpdate}
+                                      value={elementData.text}
                                     />
                                   </React.Fragment>
                                 )}
-                              <pre>{JSON.stringify(elementData, null, 2)}</pre>
-                            </div>
-                          )}
+                                <h3
+                                  sx={{
+                                    fontWeight: 'normal',
+                                    m: 0,
+                                    pb: 2,
+                                    pt: 4
+                                  }}
+                                >
+                                  Props
+                                </h3>
+                                {elementData.props.hasOwnProperty('to') && (
+                                  <React.Fragment>
+                                    <Label>To</Label>
+                                    <Input
+                                      sx={{
+                                        display: 'block',
+                                        width: '100%'
+                                      }}
+                                      onChange={handlePropChange('to')}
+                                      value={elementData.props.to || ''}
+                                    />
+                                  </React.Fragment>
+                                )}
+                                <h3
+                                  sx={{
+                                    fontWeight: 'normal',
+                                    mt: 4,
+                                    mb: 0,
+                                    pt: 4,
+                                    borderTop: 'thin solid'
+                                  }}
+                                >
+                                  Styles
+                                </h3>
+                                {elementData.props.sx && (
+                                  <React.Fragment>
+                                    <Label>Padding</Label>
+                                    <Input
+                                      sx={{
+                                        display: 'block',
+                                        width: '100%'
+                                      }}
+                                      onChange={handleChange('p')}
+                                      value={elementData.props.sx.p}
+                                    />
+                                    <button onClick={handleRemove('p')}>
+                                      Remove
+                                    </button>
+                                  </React.Fragment>
+                                )}
+                                <React.Fragment>
+                                  <Label>Background</Label>
+                                  <Input
+                                    sx={{
+                                      display: 'block',
+                                      width: '100%'
+                                    }}
+                                    onChange={handleChange('background')}
+                                    value={
+                                      elementData.props.sx &&
+                                      elementData.props.sx.backgroundColor
+                                    }
+                                  />
+                                  <button onClick={handleRemove('background')}>
+                                    Remove
+                                  </button>
+                                </React.Fragment>
+                                <React.Fragment>
+                                  <Label>Color</Label>
+                                  <Input
+                                    sx={{
+                                      display: 'block',
+                                      width: '100%'
+                                    }}
+                                    onChange={handleChange('color')}
+                                    value={elementData.props.sx.color}
+                                  />
+                                  <button onClick={handleRemove('color')}>
+                                    Remove
+                                  </button>
+                                </React.Fragment>
+                                <h3
+                                  sx={{
+                                    fontWeight: 'normal',
+                                    mt: 4,
+                                    mb: 0,
+                                    pt: 4,
+                                    borderTop: 'thin solid'
+                                  }}
+                                >
+                                  Variant
+                                </h3>
+                                {elementData.props.sx &&
+                                  elementData.props.sx.variant && (
+                                    <React.Fragment>
+                                      <Label>
+                                        {elementData.props.sx.variant.replace(
+                                          'styles.',
+                                          ''
+                                        )}
+                                      </Label>
+                                      <Input
+                                        sx={{
+                                          display: 'block',
+                                          width: '100%'
+                                        }}
+                                        onChange={handleChange('variant')}
+                                        value={elementData.props.sx.variant}
+                                      />
+                                    </React.Fragment>
+                                  )}
+                                <pre>
+                                  {JSON.stringify(elementData, null, 2)}
+                                </pre>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </TabPanel>
-                  </TabPanels>
-                </Tabs>
+                      </TabPanel>
+                    </TabPanels>
+                  </Tabs>
+                </div>
               </div>
             </div>
-          </div>
-        </DragDropContext>
-      </Styled.root>
-    </ThemeProvider>
+          </DragDropContext>
+        </Styled.root>
+      </ThemeProvider>
+    </ElementContext.Provider>
   )
 }
