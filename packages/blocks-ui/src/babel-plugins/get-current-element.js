@@ -73,18 +73,18 @@ class BabelPluginGetCurrentElement {
             const children = path.container.children
             const hasElements = children && children.some(n => !t.isJSXText(n))
 
-            let text = null
-            if (!hasElements) {
-              text = children.map(n => textTrim(n.value)).join(' ')
-            }
-
-            this.state.element = {
+            const element = {
               id: elementId,
               name: getElementName(path.node),
               props: getElementProps(path.node.attributes),
-              parentId: getParentId(path),
-              text
+              parentId: getParentId(path)
             }
+
+            if (!hasElements) {
+              element.text = children.map(n => textTrim(n.value)).join(' ')
+            }
+
+            this.state.element = element
           }
         }
       }
