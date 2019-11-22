@@ -5,7 +5,8 @@
   "license": "MIT",
   "repository": "blocks/blocks",
   "scripts": {
-    "prepare": "babel src -d dist && cp src/recipes.txt dist/recipes.txt"
+    "prepare": "babel src -d dist && cp src/recipes.txt dist/recipes.txt",
+    "watch": "babel src -d dist --watch"
   },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
