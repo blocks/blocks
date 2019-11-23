@@ -18,8 +18,9 @@ export default (api, { elementId, key, value } = {}) => {
         )
 
         if (attr) {
-        } else {
           attr.value = t.stringLiteral(value)
+        } else {
+          //attr.value = t.stringLiteral(value)
         }
       }
     }

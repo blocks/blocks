@@ -138,7 +138,9 @@ export default ({
       <PropertyControlsPanel
         elementData={elementData}
         propertyControls={propertyControls}
-        onChange={console.log}
+        onChange={handleChange}
+        onPropChange={handlePropChange}
+        onTextChange={handleTextUpdate}
       />
     </div>
   )
