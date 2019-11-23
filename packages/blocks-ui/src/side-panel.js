@@ -81,18 +81,20 @@ export default ({
       </TabList>
       <TabPanels>
         <TabPanel>
-          <EditorPanel
-            elementData={elementData}
-            handleChange={handleChange}
-            handlePropChange={handlePropChange}
-            handleRemove={handleRemove}
-            handleRemoveElement={handleRemoveElement}
-            handleParentSelect={handleParentSelect}
-            handleInsertElement={handleInsertElement}
-            handleClone={handleClone}
-            handleTextUpdate={handleTextUpdate}
-            setElementId={setElementId}
-          />
+          {elementData ? (
+            <EditorPanel
+              elementData={elementData}
+              handleChange={handleChange}
+              handlePropChange={handlePropChange}
+              handleRemove={handleRemove}
+              handleRemoveElement={handleRemoveElement}
+              handleParentSelect={handleParentSelect}
+              handleInsertElement={handleInsertElement}
+              handleClone={handleClone}
+              handleTextUpdate={handleTextUpdate}
+              setElementId={setElementId}
+            />
+          ) : null}
         </TabPanel>
         <TabPanel>
           {activeTab === 1 ? (

@@ -76,7 +76,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
-  const [themeName, setThemeName] = useState('tosh')
+  const [themeName, setThemeName] = useState('system')
 
   const blocks = { ...providedBlocks }
   const theme = presets[themeName]

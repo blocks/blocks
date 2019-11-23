@@ -15,7 +15,6 @@ export default ({
   handleRemove,
   handleRemoveElement,
   handleParentSelect,
-  handleInsertElement,
   handleClone,
   handleTextUpdate,
   setElementId,
@@ -27,55 +26,84 @@ export default ({
       overflow: 'scroll'
     }}
   >
-    {elementData ? (
-      <Flex
+    <Flex
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderBottom: 'thin solid #e1e6eb',
+        px: 3,
+        py: 1
+      }}
+    >
+      <h3
         sx={{
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderBottom: 'thin solid #e1e6eb',
-          px: 3,
-          py: 1
+          fontSize: 1,
+          fontWeight: 600,
+          m: 0,
+          lineHeight: 1
         }}
       >
-        <h3
+        {elementData.name}
+      </h3>
+      <nav
+        sx={{
+          lineHeight: 1,
+          aignItems: 'center'
+        }}
+      >
+        <IconButton onClick={handleClone} aria-label="Copy element">
+          <Copy size={17} />
+        </IconButton>
+        {elementData.parentId && (
+          <IconButton onClick={handleParentSelect} aria-label="Go to parent">
+            <CornerRightUp size={18} />
+          </IconButton>
+        )}
+        <IconButton onClick={handleRemoveElement} aria-label="Remove">
+          <Delete size={18} />
+        </IconButton>
+      </nav>
+    </Flex>
+    {elementData.children && elementData.children.length ? (
+      <div
+        sx={{
+          borderBottom: 'thin solid #e1e6eb',
+          backgroundColor: '#fafafa',
+          p: 3,
+          'div + div': {
+            mt: 2
+          }
+        }}
+      >
+        <h4
           sx={{
-            fontSize: 1,
-            fontWeight: 600,
             m: 0,
-            lineHeight: 1
+            fontSize: 0,
+            fontWeight: 500,
+            textTransform: 'uppercase',
+            letterSpacing: 1
           }}
         >
-          {elementData.name}
-        </h3>
-        <nav
-          sx={{
-            lineHeight: 1,
-            aignItems: 'center'
-          }}
-        >
-          <IconButton onClick={handleClone} aria-label="Copy element">
-            <Copy size={17} />
-          </IconButton>
-          {elementData.parentId && (
-            <IconButton onClick={handleParentSelect} aria-label="Go to parent">
-              <CornerRightUp size={18} />
-            </IconButton>
-          )}
-          <IconButton onClick={handleRemoveElement} aria-label="Remove">
-            <Delete size={18} />
-          </IconButton>
-        </nav>
-      </Flex>
-    ) : (
-      <ul>
-        {blocks.map &&
-          blocks.map(block => (
-            <li key={block.id} onClick={() => setElementId(block.id)}>
-              {block.name}
-            </li>
-          ))}
-      </ul>
-    )}
+          Children
+        </h4>
+        {elementData.children.map(c => (
+          <div
+            key={c.id}
+            tabIndex={0}
+            onClick={() => setElementId(c.id)}
+            sx={{
+              backgroundColor: 'background',
+              borderRadius: 4,
+              border: 'thin solid #e1e6eb',
+              px: 3,
+              py: 2
+            }}
+          >
+            {c.name}
+          </div>
+        ))}
+      </div>
+    ) : null}
     <div>
       {elementData && (
         <div sx={{ px: 3 }}>
