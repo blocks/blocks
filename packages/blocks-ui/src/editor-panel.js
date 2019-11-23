@@ -38,7 +38,7 @@ export default ({
       <h3
         sx={{
           fontSize: 1,
-          fontWeight: 600,
+          fontWeight: 500,
           m: 0,
           lineHeight: 1
         }}
@@ -70,7 +70,7 @@ export default ({
           borderBottom: 'thin solid #e1e6eb',
           backgroundColor: '#fafafa',
           p: 3,
-          'div + div': {
+          button: {
             mt: 2
           }
         }}
@@ -79,28 +79,31 @@ export default ({
           sx={{
             m: 0,
             fontSize: 0,
-            fontWeight: 500,
-            textTransform: 'uppercase',
-            letterSpacing: 1
+            fontWeight: 500
           }}
         >
           Children
         </h4>
         {elementData.children.map(c => (
-          <div
-            key={c.id}
-            tabIndex={0}
+          <button
             onClick={() => setElementId(c.id)}
             sx={{
+              fontSize: 1,
+              color: 'inherit',
+              textDecoration: 'none',
+              appearance: 'none',
               backgroundColor: 'background',
               borderRadius: 4,
               border: 'thin solid #e1e6eb',
+              display: 'block',
+              textAlign: 'left',
+              width: '100%',
               px: 3,
               py: 2
             }}
           >
             {c.name}
-          </div>
+          </button>
         ))}
       </div>
     ) : null}

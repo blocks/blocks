@@ -46,6 +46,8 @@ export default ({
             appearance: 'none',
             border: 0,
             py: 2,
+            fontSize: 0,
+            fontWeight: 500,
             borderBottom: activeTab === 0 ? 0 : 'thin solid #e1e6eb',
             backgroundColor: activeTab === 0 ? null : '#fafafa'
           }}
@@ -58,6 +60,8 @@ export default ({
             appearance: 'none',
             border: 0,
             py: 2,
+            fontSize: 0,
+            fontWeight: 500,
             borderLeft: 'thin solid #e1e6eb',
             borderRight: 'thin solid #e1e6eb',
             borderBottom: activeTab === 1 ? 0 : 'thin solid #e1e6eb',
@@ -72,6 +76,8 @@ export default ({
             appearance: 'none',
             border: 0,
             py: 2,
+            fontSize: 0,
+            fontWeight: 500,
             borderBottom: activeTab === 2 ? 0 : 'thin solid #e1e6eb',
             backgroundColor: activeTab === 2 ? null : '#fafafa'
           }}
