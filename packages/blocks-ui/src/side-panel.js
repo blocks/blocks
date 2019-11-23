@@ -89,6 +89,7 @@ export default ({
         <TabPanel>
           {elementData ? (
             <EditorPanel
+              blocks={blocks}
               elementData={elementData}
               handleChange={handleChange}
               handlePropChange={handlePropChange}
