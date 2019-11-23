@@ -12,7 +12,7 @@ export default elementSelectionHandler => (type, props, ...children) => {
   const { ___tuid: id, sx = {} } = props
   delete props.___tuid
 
-  const isCurrentElement = id === element.id
+  const isCurrentElement = id && id === element.id
 
   if (IGNORED_TYPES.includes(type)) {
     return jsx(type, props, ...children)

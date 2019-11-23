@@ -3,6 +3,8 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { Label, Input } from '@theme-ui/components'
 
+// TODO: Fix this prop drilling dance for common editor
+// interactions.
 export default ({
   elementData,
   handleChange,
