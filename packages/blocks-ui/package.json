@@ -18,6 +18,7 @@
     "@theme-ui/presets": "^0.2.44",
     "property-controls": "^0.0.28",
     "react-beautiful-dnd": "^12.1.1",
+    "react-feather": "^2.0.3",
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {

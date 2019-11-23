@@ -232,6 +232,8 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     setCode(newCode)
   }
 
+  console.log(elementData)
+
   return (
     <ElementContext.Provider value={elementData}>
       <ThemeProvider theme={theme}>

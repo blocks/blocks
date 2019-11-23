@@ -1,7 +1,10 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Label, Input } from '@theme-ui/components'
+import { Label, Input, Flex } from '@theme-ui/components'
+import { Delete, CornerRightUp, Copy } from 'react-feather'
+
+import { IconButton } from './ui'
 
 // TODO: Fix this prop drilling dance for common editor
 // interactions.
@@ -25,25 +28,44 @@ export default ({
     }}
   >
     {elementData ? (
-      <h3
+      <Flex
         sx={{
-          textTransform: 'uppercase',
-          fontSize: 2,
-          fontWeight: 600,
-          m: 0,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderBottom: 'thin solid #e1e6eb',
           px: 3,
-          py: 1,
-          borderBottom: 'thin solid #e1e6eb'
+          py: 1
         }}
       >
-        {elementData.name}
-        <button onClick={handleRemoveElement}>Remove</button>
-        <button onClick={handleInsertElement}>Insert</button>
-        <button onClick={handleClone}>Clone</button>
-        {elementData.parentId && (
-          <button onClick={handleParentSelect}>Parent</button>
-        )}
-      </h3>
+        <h3
+          sx={{
+            fontSize: 1,
+            fontWeight: 600,
+            m: 0,
+            lineHeight: 1
+          }}
+        >
+          {elementData.name}
+        </h3>
+        <nav
+          sx={{
+            lineHeight: 1,
+            aignItems: 'center'
+          }}
+        >
+          <IconButton onClick={handleClone} aria-label="Copy element">
+            <Copy size={17} />
+          </IconButton>
+          {elementData.parentId && (
+            <IconButton onClick={handleParentSelect} aria-label="Go to parent">
+              <CornerRightUp size={18} />
+            </IconButton>
+          )}
+          <IconButton onClick={handleRemoveElement} aria-label="Remove">
+            <Delete size={18} />
+          </IconButton>
+        </nav>
+      </Flex>
     ) : (
       <ul>
         {blocks.map &&

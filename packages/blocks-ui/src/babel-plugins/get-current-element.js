@@ -1,17 +1,7 @@
 import { declare } from '@babel/helper-plugin-utils'
 import * as t from '@babel/types'
 
-import { textTrim } from '../util'
-
-const getElementName = node => {
-  const elementName = node.name
-
-  if (t.isJSXMemberExpression(elementName)) {
-    return [elementName.object.name, elementName.property.name].join('.')
-  } else {
-    return elementName.name
-  }
-}
+import { textTrim, getElementName, getUuid } from '../util'
 
 const getElementProps = (attributes = {}) => {
   const props = attributes.reduce((acc, curr) => {
@@ -70,8 +60,8 @@ class BabelPluginGetCurrentElement {
               return
             }
 
-            const children = path.container.children
-            const hasElements = children && children.some(n => !t.isJSXText(n))
+            const children = path.container.children || []
+            const hasElements = children.some(n => !t.isJSXText(n))
 
             const element = {
               id: elementId,
@@ -80,7 +70,20 @@ class BabelPluginGetCurrentElement {
               parentId: getParentId(path)
             }
 
-            if (!hasElements) {
+            if (hasElements) {
+              element.children = children
+                .map(c => {
+                  if (t.isJSXText(c)) {
+                    return
+                  }
+
+                  return {
+                    id: getUuid(c.openingElement),
+                    name: getElementName(c.openingElement)
+                  }
+                })
+                .filter(Boolean)
+            } else if (children.length) {
               element.text = children.map(n => textTrim(n.value)).join(' ')
             }
 
