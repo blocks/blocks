@@ -85,11 +85,22 @@ export default ({
                   <Input value={fieldValue} onChange={onPropChange(key)} />
                 </div>
               )
+            } else if (value.type === ControlType.Number) {
+              return (
+                <div className="fieldset" key={key}>
+                  <Label>{title}</Label>
+                  <Input
+                    type="number"
+                    value={fieldValue}
+                    onChange={onPropChange(key)}
+                  />
+                </div>
+              )
             } else if (value.type === ControlType.Enum) {
               return (
                 <div className="fieldset" key={key}>
                   <Label>{title}</Label>
-                  <Select value={fieldValue} onChange={console.log}>
+                  <Select value={fieldValue} onChange={onPropChange(key)}>
                     {value.options.map(option => (
                       <option key={option}>{option}</option>
                     ))}

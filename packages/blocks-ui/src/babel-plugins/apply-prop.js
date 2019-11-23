@@ -17,10 +17,14 @@ export default (api, { elementId, key, value } = {}) => {
           node => node && node.name && node.name.name === key
         )
 
+        // TODO: Handle the property control/type here. Not
+        //       all props are string literals.
         if (attr) {
           attr.value = t.stringLiteral(value)
         } else {
-          //attr.value = t.stringLiteral(value)
+          path.node.attributes.push(
+            t.JSXAttribute(t.JSXIdentifier(key), t.stringLiteral(value))
+          )
         }
       }
     }
