@@ -12,9 +12,33 @@ So, we're building a tool, Blocks, that can:
 - returns modified source code
 - can be extended and used by other projects
 
+It's still in the very early stages of development, but Blocks
+is being built in a way where different layers of the library
+can be used in different ways by projects with varying needs.
+
+**Need something lower level to manipulate JSX in your own design
+or development tool?** Use the babel transforms and queries.
+
+**Do you want your own components in the editor?** Build your
+own Blocks and pass them to the editor.
+
+**Do you want to drastically customize the UI?** Eventually you
+will be able to use the plugin system (it's currently in the
+planning phases).
+
+**Do you use Bootstrap, Bulma, or some other CSS library rather
+than Theme UI?** Build your own components and expose your own
+controls!
+
 ## Authors
 
 - [John Otander](https://johno.com)
 - [Brent Jackson](https://jxnblk.com)
 - [Chris Biscardi](https://christopherbiscardi.com)
 - [... our wonderful contributors](https://github.com/blocks/blocks/graphs/contributors)
+
+## Thanks
+
+- **[Prior art](/prior-art/)**: Blocks didn't come out of a vacuum
+- **[Uses](/uses/)**: Tools that Blocks uses
+- **[Gatsby](https://gatsbyjs.org)**: For incubating Blocks development
