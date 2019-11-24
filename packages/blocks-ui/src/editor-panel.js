@@ -121,14 +121,14 @@ export default ({
           <IconButton onClick={handleClone} aria-label="Copy element">
             <Copy size={17} />
           </IconButton>
+          <IconButton onClick={handleRemoveElement} aria-label="Remove">
+            <Delete size={18} />
+          </IconButton>
           {elementData.parentId && (
             <IconButton onClick={handleParentSelect} aria-label="Go to parent">
               <CornerRightUp size={18} />
             </IconButton>
           )}
-          <IconButton onClick={handleRemoveElement} aria-label="Remove">
-            <Delete size={18} />
-          </IconButton>
         </nav>
       </Flex>
       <ChildrenSection
