@@ -4,6 +4,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
 import * as presets from '@theme-ui/presets'
 
+import * as DEFAULT_BLOCKS from '@blocks/blocks/src'
+
 import * as themeComponents from '@theme-ui/components'
 
 import * as transforms from './transforms'
@@ -82,7 +84,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [themeName, setThemeName] = useState('system')
 
-  const blocks = { ...providedBlocks }
+  const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
   const theme = presets[themeName]
 
   const scope = {
@@ -98,7 +100,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
     ...themeComponents,
-    ...providedBlocks
+    ...blocks
   }
 
   useEffect(() => {
