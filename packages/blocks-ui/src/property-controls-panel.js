@@ -117,11 +117,11 @@ export default ({
         <React.Fragment>
           <FieldGroup>
             <h4>Color</h4>
-            <SxColors value={elementData.props.sx} onChange={console.log} />
+            <SxColors value={elementData.props.sx} onChange={onChange} />
           </FieldGroup>
           <FieldGroup>
             <h4>Typography</h4>
-            <SxTypography value={elementData.props.sx} onChange={console.log} />
+            <SxTypography value={elementData.props.sx} onChange={onChange} />
           </FieldGroup>
         </React.Fragment>
       ) : null}

@@ -197,16 +197,17 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     setCode(newCode)
   }
 
-  const handleChange = key => e => {
+  const handleChange = newSx => {
     const sx = elementData.props.sx || {}
-    sx[key] = e.target.value
 
-    setElementData({ ...elementData, props: { ...elementData.props, sx } })
+    setElementData({
+      ...elementData,
+      props: { ...elementData.props, sx: { ...sx, ...newSx } }
+    })
 
     const { code: newCode } = transforms.applySxProp(code, {
       elementId,
-      key,
-      value: e.target.value
+      sx: newSx
     })
 
     setCode(newCode)
