@@ -25,12 +25,6 @@ export default ({ components, theme }) => {
                 }}
               >
                 <InlineBlockRender
-                  sx={{
-                    '& > *': {
-                      m: 0,
-                      p: 0
-                    }
-                  }}
                   aria-label={key}
                   code={Component.usage}
                   scope={{
