@@ -27,6 +27,14 @@ export const uuid = (
         )
 }
 
+export const toLiteral = val => {
+  if (typeof val === 'number') {
+    return t.numericLiteral(val || 0)
+  }
+
+  return t.stringLiteral(val.toString())
+}
+
 // Leave last space on a string since a user could
 // be in the middle of typing into a text input
 export const textTrim = str =>

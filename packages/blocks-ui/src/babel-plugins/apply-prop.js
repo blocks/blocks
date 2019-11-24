@@ -1,3 +1,5 @@
+import { toLiteral } from '../util'
+
 // TODO: Accept the type of value from Controls
 export default (api, { elementId, key, value } = {}) => {
   const { types: t } = api
@@ -20,10 +22,10 @@ export default (api, { elementId, key, value } = {}) => {
         // TODO: Handle the property control/type here. Not
         //       all props are string literals.
         if (attr) {
-          attr.value = t.stringLiteral(value)
+          attr.value = toLiteral(value)
         } else {
           path.node.attributes.push(
-            t.JSXAttribute(t.JSXIdentifier(key), t.stringLiteral(value))
+            t.JSXAttribute(t.JSXIdentifier(key), toLiteral(value))
           )
         }
       }

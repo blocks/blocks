@@ -1,15 +1,9 @@
 import template from '@babel/template'
 
+import { toLiteral } from '../util'
+
 export default (api, { elementId, sx }) => {
   const { types: t } = api
-
-  const toLiteral = val => {
-    if (typeof val === 'number') {
-      return t.numericLiteral(val || 0)
-    }
-
-    return t.stringLiteral(val.toString())
-  }
 
   return {
     visitor: {
