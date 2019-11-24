@@ -59,7 +59,11 @@ const BLOCKS_Draggable = ({ active, children, ...props }) => {
               ...provided.draggableProps,
               css: {
                 boxShadow: active ? 'inset 0px 0px 0px 2px #0079FF' : undefined,
-                ':hover': { boxShadow: 'inset 0px 0px 0px 2px #bbbbbb' }
+                ':hover': { boxShadow: 'inset 0px 0px 0px 2px #bbbbbb' },
+                '&:focus': {
+                  outline: 'none',
+                  boxShadow: 'inset 0px 0px 0px 1px #4d9ef7'
+                }
               }
             }
           },

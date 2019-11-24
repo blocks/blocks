@@ -50,7 +50,13 @@ export default ({
             fontSize: 0,
             fontWeight: 500,
             borderBottom: activeTab === 0 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 0 ? null : '#fafafa'
+            backgroundColor: activeTab === 0 ? null : '#fafafa',
+            '&:focus': {
+              zIndex: 99,
+              outline: 'none',
+              fontWeight: 500,
+              textDecoration: 'underline'
+            }
           }}
         >
           Editor
@@ -66,7 +72,13 @@ export default ({
             borderLeft: 'thin solid #e1e6eb',
             borderRight: 'thin solid #e1e6eb',
             borderBottom: activeTab === 1 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 1 ? null : '#fafafa'
+            backgroundColor: activeTab === 1 ? null : '#fafafa',
+            '&:focus': {
+              zIndex: 99,
+              outline: 'none',
+              fontWeight: 500,
+              textDecoration: 'underline'
+            }
           }}
         >
           Components
@@ -80,7 +92,13 @@ export default ({
             fontSize: 0,
             fontWeight: 500,
             borderBottom: activeTab === 2 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 2 ? null : '#fafafa'
+            backgroundColor: activeTab === 2 ? null : '#fafafa',
+            '&:focus': {
+              zIndex: 99,
+              outline: 'none',
+              fontWeight: 500,
+              textDecoration: 'underline'
+            }
           }}
         >
           Theme
