@@ -1,6 +1,7 @@
+/** @jsx jsx */
 import React, { useMemo } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { ThemeProvider } from 'theme-ui'
+import { jsx, ThemeProvider } from 'theme-ui'
 
 import InlineBlockRender from './inline-block-render'
 
@@ -19,10 +20,17 @@ export default ({ components, theme }) => {
             >
               <div
                 sx={{
-                  transform: 'scale(.6)'
+                  m: 2,
+                  border: 'thin solid #e1e6eb'
                 }}
               >
                 <InlineBlockRender
+                  sx={{
+                    '& > *': {
+                      m: 0,
+                      p: 0
+                    }
+                  }}
                   aria-label={key}
                   code={Component.usage}
                   scope={{
