@@ -139,7 +139,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   }
 
   const onDragEnd = drag => {
-    if (!drag.destination) {
+    if (!drag.destination || drag.destination.droppableId === 'components') {
       return
     }
 
