@@ -25,7 +25,7 @@ export default elementSelectionHandler => (type, props, ...children) => {
       sx: {
         ...sx,
         boxShadow: isCurrentElement
-          ? 'inset 0px 0px 0px 2px #bbbbbb'
+          ? 'inset 0px 0px 0px 2px #0079FF'
           : sx.boxShadow
       },
       onClick: e => {

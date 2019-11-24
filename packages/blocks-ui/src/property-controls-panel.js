@@ -115,8 +115,16 @@ export default ({
       ) : null}
       {hasStyles ? (
         <React.Fragment>
-          <FieldGroup>
-            <h4>Color</h4>
+          <FieldGroup
+            sx={{
+              // TODO: Fix this in @theme-ui/editor
+              'div div div': {
+                fontSize: 0,
+                fontWeight: 400
+              }
+            }}
+          >
+            <h4>Colors</h4>
             <SxColors value={elementData.props.sx} onChange={onChange} />
           </FieldGroup>
           <FieldGroup>
