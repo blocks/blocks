@@ -28,6 +28,10 @@ export const uuid = (
 }
 
 export const toLiteral = val => {
+  if (!val) {
+    return t.nullLiteral()
+  }
+
   if (typeof val === 'number') {
     return t.numericLiteral(val || 0)
   }

@@ -2,7 +2,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { Label, Input, Select } from '@theme-ui/components'
-import { SxColors, SxTypography } from '@theme-ui/editor'
+import { SxColors, SxTypography, SxMargin, SxPadding } from '@theme-ui/editor'
 import { ControlType } from 'property-controls'
 
 const FieldGroup = props => (
@@ -122,6 +122,14 @@ export default ({
           <FieldGroup>
             <h4>Typography</h4>
             <SxTypography value={elementData.props.sx} onChange={onChange} />
+          </FieldGroup>
+          <FieldGroup>
+            <h4>Padding</h4>
+            <SxPadding value={elementData.props.sx} onChange={onChange} />
+          </FieldGroup>
+          <FieldGroup>
+            <h4>Margin</h4>
+            <SxMargin value={elementData.props.sx} onChange={onChange} />
           </FieldGroup>
         </React.Fragment>
       ) : null}
