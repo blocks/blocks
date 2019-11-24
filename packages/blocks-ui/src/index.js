@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { Styled, ThemeProvider, jsx } from 'theme-ui'
+import { Styled, jsx } from 'theme-ui'
 import * as presets from '@theme-ui/presets'
-import { Global } from '@emotion/core'
 
 import * as themeComponents from '@theme-ui/components'
 
@@ -14,9 +13,7 @@ import pragma from './pragma'
 
 import Header from './header'
 import Canvas from './canvas'
-import InlineRender from './inline-render'
-import { EditorProvider } from './editor-context'
-import { ElementProvider } from './element-context'
+import Layout from './layout'
 import SidePanel from './side-panel'
 
 // blocks app theme
@@ -244,59 +241,43 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   console.log(elementData)
 
   return (
-    <EditorProvider>
-      <ElementProvider value={elementData}>
-        <ThemeProvider theme={theme}>
-          <Styled.root>
-            <Global
-              styles={{
-                '*': {
-                  boxSizing: 'border-box'
-                },
-                body: {
-                  margin: 0
-                }
-              }}
-            />
-            <Header />
-            <DragDropContext
-              onDragEnd={onDragEnd}
-              onBeforeDragStart={onBeforeDragStart}
-            >
-              <div
-                sx={{
-                  display: 'flex'
-                }}
-              >
-                <Canvas
-                  code={rawCode}
-                  transformedCode={transformedCode}
-                  scope={scope}
-                  theme={theme}
-                />
-                <SidePanel
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  blocks={blocks}
-                  theme={appTheme}
-                  themeName={themeName}
-                  elementData={elementData}
-                  handleChange={handleChange}
-                  handlePropChange={handlePropChange}
-                  handleRemove={handleRemove}
-                  handleRemoveElement={handleRemoveElement}
-                  handleParentSelect={handleParentSelect}
-                  handleInsertElement={handleInsertElement}
-                  handleClone={handleClone}
-                  handleTextUpdate={handleTextUpdate}
-                  setThemeName={setThemeName}
-                  setElementId={setElementId}
-                />
-              </div>
-            </DragDropContext>
-          </Styled.root>
-        </ThemeProvider>
-      </ElementProvider>
-    </EditorProvider>
+    <Layout elementData={elementData} theme={theme}>
+      <Header />
+      <DragDropContext
+        onDragEnd={onDragEnd}
+        onBeforeDragStart={onBeforeDragStart}
+      >
+        <div
+          sx={{
+            display: 'flex'
+          }}
+        >
+          <Canvas
+            code={rawCode}
+            transformedCode={transformedCode}
+            scope={scope}
+            theme={theme}
+          />
+          <SidePanel
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            blocks={blocks}
+            theme={appTheme}
+            themeName={themeName}
+            elementData={elementData}
+            handleChange={handleChange}
+            handlePropChange={handlePropChange}
+            handleRemove={handleRemove}
+            handleRemoveElement={handleRemoveElement}
+            handleParentSelect={handleParentSelect}
+            handleInsertElement={handleInsertElement}
+            handleClone={handleClone}
+            handleTextUpdate={handleTextUpdate}
+            setThemeName={setThemeName}
+            setElementId={setElementId}
+          />
+        </div>
+      </DragDropContext>
+    </Layout>
   )
 }
