@@ -8,7 +8,7 @@ const root = template.ast(
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
-            style={{ minHeight: '100vh' }}
+            style={{ minHeight: 'calc(100vh - 41px)' }}
             ref={provided.innerRef}
           >
             {children}

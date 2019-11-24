@@ -77,7 +77,6 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [elementData, setElementData] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
   const [themeName, setThemeName] = useState('system')
-  const [currentBlock, setCurrentBlock] = useState(null)
 
   const blocks = { ...providedBlocks }
   const theme = presets[themeName]
@@ -264,7 +263,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
                 sx={{
                   width: '60%',
                   backgroundColor: 'white',
-                  height: '100vh',
+                  height: 'calc(100vh - 41px)',
                   overflow: 'scroll'
                 }}
               >

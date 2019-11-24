@@ -17,6 +17,7 @@
     "@theme-ui/components": "^0.2.49",
     "@theme-ui/editor": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
+    "prettier": "^1.19.1",
     "property-controls": "^0.0.28",
     "react-beautiful-dnd": "^12.1.1",
     "react-feather": "^2.0.3",

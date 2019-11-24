@@ -29,8 +29,9 @@ export default ({
     sx={{
       borderLeft: 'thin solid #e1e6eb',
       width: '40%',
-      height: '100vh',
-      overflow: 'scroll'
+      height: 'calc(100vh - 41px)',
+      overflow: 'scroll',
+      pb: 3
     }}
   >
     <Tabs index={activeTab} onChange={index => setActiveTab(index)}>
