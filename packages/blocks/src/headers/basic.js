@@ -54,6 +54,12 @@ applyPropertyControls(HeaderBasic, {
   }
 })
 
+applyPropertyControls(HeaderBasic.Nav, {
+  sx: {
+    type: ControlType.Style
+  }
+})
+
 const linkControls = {
   children: {
     title: 'Text',
