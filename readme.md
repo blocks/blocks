@@ -9,4 +9,3 @@
 A JSX-based page builder for creating beautiful websites without writing code.
 
 [Read the docs &rarr;](https://blocks-ui.com)
-
