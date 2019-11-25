@@ -1,0 +1,260 @@
+import Layout from '../../../components/layout'
+export default Layout
+
+# How it works
+
+Blocks is a parser, transformer, and renderer/compiler.
+
+It's unique because it reads in valid, production-ready JSX code
+and treats the AST as its data structure. Information is _queried_
+from the AST and then changes to the canvas _transform_ the AST.
+
+It uses Babel and its plugin API for parsing and transforming.
+Events that happen in the canvas are emitted and run corresponding
+plugins on the source code.
+
+**Note**: _Blocks is still extremely alpha software so a wide array
+of optimizations and other enhancements are missing which includes
+maintaining the source as the AST structure rather than a JSX string
+and maintaining an internal representation for rendering after the
+first inline function evaluation_.
+
+## Preparing the source code
+
+Blocks essentially maintains two states of the source code internally.
+One is a slight transform from the original source code with a UUID added.
+This is used to determine what JSX elements to modify. The second state
+of source code is the transformed version which is used to render the
+canvas.
+
+### Internal representation
+
+The internal representation of the source code looks pretty similar to
+what was passed in. The only noticeable change is the addition of a
+UUID that's passed as a prop (`___uuid`).
+
+#### Input
+
+```js
+import React from 'react'
+import Blocks from 'blocks-ui/components'
+
+export default () => (
+  <Blocks.Root>
+    <h1>Hello, world!</h1>
+  </Blocks.Root>
+)
+```
+
+#### Output
+
+```js
+import React from 'react'
+import Blocks from 'blocks-ui/components'
+
+export default () => (
+  <Blocks.Root>
+    <h1 ___uuid="123abc">Hello, world!</h1>
+  </Blocks.Root>
+)
+```
+
+### Renderable representation
+
+The render transform takes the internal representation and
+then does the following:
+
+- converts JSX to function calls (using the Blocks pragma)
+- replaces `Blocks.Root` with a special `BLOCKS_Root` for drag and drop
+- injects the implementation of `BLOCKS_Root`
+- removes imports
+- rewrites the default export to be a `BLOCKS_Container` variable
+- rewrites all named exports to be variable declarations
+- wraps all blocks on the canvas in the draggable implementation
+
+#### Input
+
+```js
+import React from 'react'
+import Blocks from 'blocks-ui/components'
+
+export default () => (
+  <Blocks.Root>
+    <h1 ___uuid="123abc">Hello, world!</h1>
+  </Blocks.Root>
+)
+```
+
+#### Output
+
+```js
+TODO
+```
+
+## Rendering the canvas
+
+After the transform for a renderable output, Blocks uses a
+custom pragma, AST metadata, custom scope (including blocks
+passed to the editor) and inline function evaluation
+to render the canvas.
+
+### Pragma
+
+Blocks uses its own custom pragma which is used when rendering
+to the canvas. This is used for handling the UUID, element
+selection, and styling based on selection/hover/focus state.
+
+It's a light wrapper around Theme UI's custom pragma. It's
+rough implementation looks something like:
+
+```jsx
+export default elementSelectionHandler => (type, props, ...children) => {
+  // Grab the current selected element from context
+  const element = useElement() || {}
+
+  props = props || {}
+  const { ___uuid: id, sx = {} } = props
+  delete props.___uuid
+
+  const isCurrentElement = id && id === element.id
+
+  return jsx(
+    type,
+    {
+      ...props,
+      sx: {
+        ...sx,
+        boxShadow: isCurrentElement
+          ? 'inset 0px 0px 0px 2px #0079FF'
+          : sx.boxShadow
+      },
+      onClick: e => {
+        e.stopPropagation()
+        if (id) {
+          elementSelectionHandler(id)
+        }
+      }
+    },
+    ...children
+  )
+}
+```
+
+### Renderer
+
+The renderer itself receives the transformed source code
+and the scope of the canvas and its Blocks. Then, it initializes
+a function and evaluates it inline:
+
+```js
+const fn = new Function(
+  'React',
+  ...Object.keys(scope),
+  `${code};
+  return React.createElement(BLOCKS_Container)`
+)
+
+return fn(React, ...Object.values(scope))
+```
+
+This is wrapped up in a component so the API is nicer:
+
+```js
+<InlineRender
+  scope={scope}
+  code={transformedCode}
+  theme={theme}
+/>
+```
+
+### Querying element information
+
+In addition to Babel transforms, Blocks needs to query information
+from the AST in order to query information about a selected element.
+Blocks uses information including:
+
+- element name
+- parent UUID
+- child names and UUIDs
+- text (if all children are text nodes)
+
+In order to achieve this, a Babel plugin is run to search for a
+JSX element with a matching UUID and then pulling information from
+the node in the AST.
+
+```js
+{
+  JSXOpeningElement: path => {
+    const id = path.node.attributes.find(
+      node => node && node.name && node.name.name === '___tuid'
+    )
+
+    if (!id || id.value.value !== elementId) {
+      return
+    }
+
+    const children = path.container.children || []
+    const hasElements = children.some(n => !t.isJSXText(n))
+
+    const element = {
+      id: elementId,
+      name: getElementName(path.node),
+      props: getElementProps(path.node.attributes),
+      parentId: getParentId(path)
+    }
+
+    // ...
+  }
+}
+```
+
+In addition to the current element, Blocks queries other metadata
+from the AST including imports, exports, and the Blocks for the
+canvas.
+
+Queries are wrapped up into a `queries` module which can be used
+like so:
+
+```js
+queries.getCurrentElement(code, elementId)
+```
+
+## Returning new JSX
+
+The new, modified JSX code is returned in an `onChange` event.
+It takes the internal representation of the JSX and runs a
+Babel plugin to remove the UUID and any other Blocks metadata.
+This results in 
+
+#### Input
+
+```js
+import React from 'react'
+import Blocks from 'blocks-ui/components'
+
+export default () => (
+  <Blocks.Root>
+    <h1
+      ___uuid="123abc"
+      sx={{
+        color: 'tomato'
+      }}
+    >
+      Hello, world!
+    </h1>
+  </Blocks.Root>
+)
+```
+
+#### Output
+
+```js
+import React from 'react'
+import Blocks from 'blocks-ui/components'
+
+export default () => (
+  <Blocks.Root>
+    <h1 sx={{ color: 'tomato' }}>Hello, world!</h1>
+  </Blocks.Root>
+)
+```
