@@ -27,6 +27,7 @@ module.exports = {
         siteId: 'YFORTJIX'
       }
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
