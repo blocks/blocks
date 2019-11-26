@@ -1,6 +1,6 @@
 {
   "name": "property-controls",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "Expose dials and knobs for your components in design tools",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
