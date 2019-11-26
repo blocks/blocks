@@ -4,6 +4,7 @@ import { jsx } from 'theme-ui'
 export const IconButton = props => (
   <button
     sx={{
+      background: 'none',
       appearance: 'none',
       border: 0,
       px: 2,
