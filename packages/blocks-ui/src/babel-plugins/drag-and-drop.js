@@ -1,5 +1,7 @@
 import template from '@babel/template'
 
+import { isBlocksRootElement } from '../util'
+
 const navRoot = id =>
   template.ast(
     `
@@ -58,22 +60,8 @@ export default api => {
         const openingElement = path.node.openingElement
         let isNav = false
 
-        if (t.isJSXMemberExpression(openingElement.name)) {
-          const objectName =
-            openingElement.name.object && openingElement.name.object.name
-          const propertyName =
-            openingElement.name.property && openingElement.name.property.name
-
-          if (objectName !== 'Blocks' && propertyName !== 'Root') {
-            return
-          }
-        } else {
-          if (openingElement.name.name !== 'nav') {
-            return
-          }
+        if (!isBlocksRootElement(openingElement)) {
           return
-
-          isNav = true
         }
 
         path.node.children = path.node.children

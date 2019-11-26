@@ -1,6 +1,6 @@
 {
   "name": "blocks-ui",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": "blocks/blocks",
@@ -18,17 +18,16 @@
     "@theme-ui/editor": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
     "prettier": "^1.19.1",
-    "property-controls": "^0.0.30",
+    "property-controls": "^0.0.31",
     "react-beautiful-dnd": "^12.1.1",
     "react-feather": "^2.0.3",
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/preset-react": "^7.7.0",
-    "jest": "^24.9.0"
-  },
-  "gitHead": "3e47f4ae8550682b83b07eef00b97d3dc2004402"
+    "@babel/cli": "7.7.4",
+    "@babel/core": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@babel/preset-react": "7.7.4",
+    "jest": "24.9.0"
+  }
 }

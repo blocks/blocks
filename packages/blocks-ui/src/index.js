@@ -46,9 +46,6 @@ const appTheme = {
   }
 }
 
-const Blocks = {}
-Blocks.Root = React.Fragment
-
 const BLOCKS_Draggable = ({ active, children, ...props }) => {
   return (
     <Draggable {...props}>
@@ -88,7 +85,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const theme = presets[themeName]
 
   const scope = {
-    Blocks,
+    Blocks: DEFAULT_BLOCKS.Blocks,
     Styled,
     Link: Styled.a,
     jsx: pragma(setElementId),

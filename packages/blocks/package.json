@@ -1,7 +1,6 @@
 {
   "name": "@blocks/blocks",
-  "scope": "public",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
@@ -10,13 +9,12 @@
     "prepare": "babel src -d dist"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/preset-react": "^7.7.0"
+    "@babel/cli": "7.7.4",
+    "@babel/core": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@babel/preset-react": "7.7.4"
   },
   "dependencies": {
-    "property-controls": "^0.0.30"
-  },
-  "gitHead": "3e47f4ae8550682b83b07eef00b97d3dc2004402"
+    "property-controls": "^0.0.31"
+  }
 }
