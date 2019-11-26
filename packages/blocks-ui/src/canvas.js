@@ -28,7 +28,8 @@ export default ({ code, transformedCode, scope, theme }) => {
           language="js"
           sx={{
             mt: 0,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            color: 'black'
           }}
         >
           {prettier.format(code, {
