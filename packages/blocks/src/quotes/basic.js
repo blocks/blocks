@@ -52,7 +52,8 @@ applyPropertyControls(QuoteBasic, {
 applyPropertyControls(QuoteBasic.Content, {
   children: {
     title: 'Text',
-    type: ControlType.String
+    type: ControlType.String,
+    required: true
   },
   sx: {
     type: ControlType.Style
@@ -62,8 +63,7 @@ applyPropertyControls(QuoteBasic.Content, {
 applyPropertyControls(QuoteBasic.Author, {
   children: {
     title: 'Text',
-    type: ControlType.String,
-    required: true
+    type: ControlType.String
   },
   sx: {
     type: ControlType.Style
@@ -73,8 +73,7 @@ applyPropertyControls(QuoteBasic.Author, {
 QuoteBasic.usage = `
   <QuoteBasic>
     <QuoteBasic.Content>
-      We have to continually be jumping off cliffs and developing
-      our wings on the way down.
+      Science is magic that works.
     </QuoteBasic.Content>
     <QuoteBasic.Author>
       Kurt Vonnegut
