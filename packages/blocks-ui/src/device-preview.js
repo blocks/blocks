@@ -11,8 +11,8 @@ const MIN_ZOOM_LEVEL = 25
 
 const PreviewAreaContext = createContext()
 
-const Spacer = ({ size }) => (
-  <div css={{ flex: `0 0 ${size}px`, height: size }} />
+const VSpacer = ({ size }) => (
+  <div css={{ flex: `0 0 ${size}px`, height: '100%' }} />
 )
 
 export const Device = ({ children, width, height, name }) => {
@@ -22,38 +22,40 @@ export const Device = ({ children, width, height, name }) => {
   )
   return (
     <div css={{ flex: '0 0 auto', margin: 16 }}>
-      <div
-        css={{
-          fontSize: 14,
-          textAlign: 'left',
-          marginBottom: 8,
-          color: '#444'
-        }}
-      >
-        <strong>{name}:</strong> {width}px
-      </div>
-      <div
-        style={{
-          width: width * zoomLevel,
-          height: height * zoomLevel,
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
-        }}
-      >
-        <Frame
-          head={head}
+      <div css={{ flex: '1 1 auto' }}>
+        <div
           css={{
-            margin: 0,
-            border: 0,
-            transformOrigin: `top left`
-          }}
-          style={{
-            width: width,
-            height: '100%',
-            transform: `scale(${zoomLevel})`
+            fontSize: 14,
+            textAlign: 'left',
+            marginBottom: 8,
+            color: '#444'
           }}
         >
-          {children}
-        </Frame>
+          <strong>{name}:</strong> {width}px
+        </div>
+        <div
+          style={{
+            width: width * zoomLevel,
+            height: height * zoomLevel,
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+          }}
+        >
+          <Frame
+            head={head}
+            css={{
+              margin: 0,
+              border: 0,
+              transformOrigin: `top left`
+            }}
+            style={{
+              width: width,
+              height: height,
+              transform: `scale(${zoomLevel})`
+            }}
+          >
+            {children}
+          </Frame>
+        </div>
       </div>
     </div>
   )
@@ -68,7 +70,6 @@ export function PreviewArea({ children }) {
       css={{
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
-        gridGap: 16,
         width: '60%',
         height: 'calc(100vh - 41px)',
         overflow: 'auto'
@@ -150,7 +151,9 @@ export function PreviewArea({ children }) {
           <span style={{ fontSize: 14 }}>wrap</span>
         </label>
       </div>
-      <div css={{ overflow: 'auto' }}>
+      <div
+        css={{ display: 'flex', overflow: 'auto', backgroundColor: '#f0f0f0' }}
+      >
         <div
           css={{
             display: 'flex',
@@ -158,14 +161,12 @@ export function PreviewArea({ children }) {
             alignItems: 'start',
             alignContent: 'start',
             height: '100%',
-            margin: -16
+            padding: 16
           }}
         >
-          <Spacer size={32} />
           <PreviewAreaContext.Provider value={{ zoomLevel }}>
             {children}
           </PreviewAreaContext.Provider>
-          <Spacer size={16} />
         </div>
       </div>
     </div>

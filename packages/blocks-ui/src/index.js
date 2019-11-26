@@ -11,6 +11,7 @@ import * as themeComponents from '@theme-ui/components'
 import * as transforms from './transforms'
 import * as queries from './queries'
 
+import { useEditor } from './editor-context'
 import pragma from './pragma'
 
 import Header from './header'
@@ -46,9 +47,15 @@ const appTheme = {
   }
 }
 
+const BLOCKS_Droppable = props => {
+  const { mode } = useEditor()
+  return <Droppable isDropDisabled={mode === 'viewports'} {...props} />
+}
+
 const BLOCKS_Draggable = ({ active, children, ...props }) => {
+  const { mode, ...rest } = useEditor()
   return (
-    <Draggable {...props}>
+    <Draggable isDragDisabled={mode === 'viewports'} {...props}>
       {(provided, snapshot) =>
         children(
           {
@@ -89,7 +96,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     Styled,
     Link: Styled.a,
     jsx: pragma(setElementId),
-    BLOCKS_Droppable: Droppable,
+    BLOCKS_Droppable: props => <BLOCKS_Droppable {...props} />,
     BLOCKS_Draggable: props => (
       <BLOCKS_Draggable active={props.draggableId === elementId} {...props} />
     ),

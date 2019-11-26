@@ -16,7 +16,7 @@ function ToggleIconButton({ type, label, icon: IconComponent }) {
       <IconComponent
         size={15}
         sx={{
-          stroke: editorState.mode === type ? 'blue' : 'grey',
+          stroke: editorState.mode === type ? '#0079FF' : undefined,
           position: 'relative',
           top: '1px'
         }}
@@ -46,12 +46,12 @@ export default () => {
           }}
         />
       </a>
+      <ToggleIconButton type="canvas" label="View canvas" icon={Layers} />
       <ToggleIconButton
         type="viewports"
         label="View multiple viewports"
         icon={Monitor}
       />
-      <ToggleIconButton type="canvas" label="View canvas" icon={Layers} />
       <ToggleIconButton type="code" label="View code" icon={Code} />
     </header>
   )
