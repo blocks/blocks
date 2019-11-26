@@ -1,6 +1,6 @@
 {
   "name": "@blocks/blocks",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
@@ -15,6 +15,6 @@
     "@babel/preset-react": "7.7.4"
   },
   "dependencies": {
-    "property-controls": "^0.0.33"
+    "property-controls": "^0.0.34"
   }
 }
