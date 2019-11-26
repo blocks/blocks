@@ -8,7 +8,7 @@ import { Twitter, GitHub } from 'react-feather'
 import Nav from '../nav.mdx'
 import SEO from './seo'
 
-export default ({ children, _frontmatter: { title } = {} }) => (
+export default ({ children, _frontmatter: { title, noNav } = {} }) => (
   <Styled.root>
     <SEO title={title} />
     <Global
@@ -146,7 +146,7 @@ export default ({ children, _frontmatter: { title } = {} }) => (
           }
         }}
       >
-        <Nav />
+        {noNav ? null : <Nav />}
       </Box>
       <Box
         as="aside"
