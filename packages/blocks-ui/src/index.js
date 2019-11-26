@@ -80,6 +80,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [elementData, setElementData] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
   const [themeName, setThemeName] = useState('system')
+  const [srcBlocks, setSrcBlocks] = useState([])
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
   const theme = presets[themeName]
@@ -122,7 +123,10 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     try {
       const newTransformedCode = transforms.toTransformedJSX(code)
       const newRawCode = transforms.toRawJSX(code)
+      const newSrcBlocks = queries.getBlocks(code)
+
       setRawCode(newRawCode)
+      setSrcBlocks(newSrcBlocks)
 
       if (newTransformedCode) {
         setTransformedCode(newTransformedCode)
@@ -223,6 +227,9 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const handleParentSelect = () => {
     if (elementData.parentId) {
       setElementId(elementData.parentId)
+    } else {
+      setElementId(null)
+      setElementData(null)
     }
   }
 
@@ -265,6 +272,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             blocks={blocks}
+            srcBlocks={srcBlocks}
             theme={appTheme}
             themeName={themeName}
             elementData={elementData}
