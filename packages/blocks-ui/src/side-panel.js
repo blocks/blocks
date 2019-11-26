@@ -1,15 +1,18 @@
 /** @jsx jsx */
+import React from 'react'
 import { jsx } from 'theme-ui'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
 import EditorPanel from './editor-panel'
 import ThemePanel from './theme-panel'
 import BlocksListing from './blocks-listing'
+import TreeView from './tree-view'
 
 export default ({
   activeTab,
   setActiveTab,
   blocks,
+  srcBlocks,
   theme,
   themeName,
   elementData,
@@ -120,7 +123,24 @@ export default ({
               handleTextUpdate={handleTextUpdate}
               setElementId={setElementId}
             />
-          ) : null}
+          ) : (
+            <div>
+              <h3
+                sx={{
+                  fontSize: 1,
+                  fontWeight: 500,
+                  m: 0,
+                  lineHeight: 1,
+                  px: 3,
+                  py: 2,
+                  borderBottom: 'thin solid #e1e6eb'
+                }}
+              >
+                Canvas
+              </h3>
+              <TreeView children={srcBlocks} onSelect={setElementId} />
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
           {activeTab === 1 ? (
