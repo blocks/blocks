@@ -18,8 +18,8 @@
   "repository": "blocks/blocks",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "jest": "^24.9.0"
+    "@babel/cli": "7.7.4",
+    "jest": "24.9.0"
   },
   "dependencies": {
     "@babel/core": "^7.7.2",
