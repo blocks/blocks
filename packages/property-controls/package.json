@@ -13,5 +13,6 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0"
-  }
+  },
+  "gitHead": "3e47f4ae8550682b83b07eef00b97d3dc2004402"
 }
