@@ -30,5 +30,5 @@
     "@babel/preset-react": "^7.7.0",
     "jest": "^24.9.0"
   },
-  "gitHead": "3e47f4ae8550682b83b07eef00b97d3dc2004402"
+  "gitHead": "441f63e960eafb26c09068f8de1c8784c59d62a6"
 }
