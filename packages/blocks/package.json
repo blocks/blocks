@@ -1,6 +1,5 @@
 {
   "name": "@blocks/blocks",
-  "scope": "public",
   "version": "0.0.30",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
@@ -17,6 +16,5 @@
   },
   "dependencies": {
     "property-controls": "^0.0.30"
-  },
-  "gitHead": "441f63e960eafb26c09068f8de1c8784c59d62a6"
+  }
 }
