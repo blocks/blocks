@@ -32,14 +32,17 @@
     "@mdx-js/react": "^1.5.1",
     "@theme-ui/components": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
+    "gatsby-plugin-catch-links": "^2.1.17",
     "gatsby-plugin-compile-es6-packages": "^2.1.0",
     "gatsby-plugin-fathom": "^1.1.0",
     "gatsby-plugin-manifest": "^2.2.29",
     "gatsby-plugin-mdx": "^1.0.57",
+    "gatsby-plugin-react-helmet": "^3.1.15",
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-source-filesystem": "^2.1.38",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {

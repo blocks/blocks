@@ -7058,6 +7058,14 @@ gatsby-page-utils@^0.0.31:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-catch-links@^2.1.17:
+  version "2.1.17"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.1.17.tgz#5568d9bb71c675711fd9dcb6c93da44e877e9099"
+  integrity sha512-UxsKeALrGW5QTEIRQwO2BFEcc8CjQFvK9e0vhc5BzF1Cj1hgF3MVQYy/JH76rIGuBjKqLLeCiC8RMbc20WxfEA==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
+    escape-string-regexp "^1.0.5"
+
 gatsby-plugin-compile-es6-packages@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-compile-es6-packages/-/gatsby-plugin-compile-es6-packages-2.1.0.tgz#eb6068d8936fd8b404716e47b821d09bf0656af7"
@@ -7137,6 +7145,13 @@ gatsby-plugin-page-creator@^2.1.31:
     glob "^7.1.6"
     lodash "^4.17.15"
     micromatch "^3.1.10"
+
+gatsby-plugin-react-helmet@^3.1.15:
+  version "3.1.15"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.1.15.tgz#0f81ec0106e86ac2d44cb714a79a3a928e5c40a6"
+  integrity sha512-VrPv3rD/YrYN7lZsRX7YpFO8qj2uZj0iHvhNEeg2+iEVI2GTegK5wlRut85bnlR/ezpeuzm7v4qhCx2mgeYEKw==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
 
 gatsby-plugin-theme-ui@^0.2.43:
   version "0.2.43"
@@ -12493,7 +12508,11 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
+<<<<<<< Updated upstream
 prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+=======
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+>>>>>>> Stashed changes
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -12777,6 +12796,11 @@ react-error-overlay@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
   integrity sha512-XzgvowFrwDo6TWcpJ/WTiarb9UI6lhA4PMzS7n1joK3sHfBBBOQHUc0U4u57D6DWO9vHv6lVSWx2Q/Ymfyv4hw==
 
+react-fast-compare@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
 react-feather@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-2.0.3.tgz#1453ff5d8c242f72b8c02846118fbd2d406375ad"
@@ -12784,6 +12808,19 @@ react-feather@^2.0.3:
   dependencies:
     prop-types "^15.7.2"
 
+<<<<<<< Updated upstream
+=======
+react-helmet@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"
+  integrity sha512-CnwD822LU8NDBnjCpZ4ySh8L6HYyngViTZLfBBb3NjtrpN8m49clH8hidHouq20I51Y6TpCTISCBbqiY5GamwA==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.5.4"
+    react-fast-compare "^2.0.2"
+    react-side-effect "^1.1.0"
+
+>>>>>>> Stashed changes
 react-hot-loader@^4.12.16:
   version "4.12.18"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.18.tgz#a9029e34af2690d76208f9a35189d73c2dfea6a7"
@@ -12830,6 +12867,16 @@ react-redux@^7.1.1:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
+<<<<<<< Updated upstream
+=======
+react-side-effect@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.2.0.tgz#0e940c78faba0c73b9b0eba9cd3dda8dfb7e7dae"
+  integrity sha512-v1ht1aHg5k/thv56DRcjw+WtojuuDHFUgGfc+bFHOWsF4ZK6C2V57DO0Or0GPsg6+LSTE0M6Ry/gfzhzSwbc5w==
+  dependencies:
+    shallowequal "^1.0.1"
+
+>>>>>>> Stashed changes
 react@16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
@@ -13849,7 +13896,7 @@ shallow-compare@^1.2.2:
   resolved "https://registry.yarnpkg.com/shallow-compare/-/shallow-compare-1.2.2.tgz#fa4794627bf455a47c4f56881d8a6132d581ffdb"
   integrity sha512-LUMFi+RppPlrHzbqmFnINTrazo0lPNwhcgzuAXVVcfy/mqPDrQmHAyz5bvV0gDAuRFrk804V0HpQ6u9sZ0tBeg==
 
-shallowequal@^1.1.0:
+shallowequal@^1.0.1, shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==

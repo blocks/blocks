@@ -6,10 +6,11 @@ import { Link } from 'gatsby'
 import { Twitter, GitHub } from 'react-feather'
 
 import Nav from '../nav.mdx'
+import SEO from './seo'
 
-export default ({ children, title }) => (
+export default ({ children, _frontmatter: { title } = {} }) => (
   <Styled.root>
-    <title>{title ? title + ' / ' : null} Blocks UI</title>
+    <SEO title={title} />
     <Global
       styles={{
         '*': {
@@ -36,6 +37,7 @@ export default ({ children, title }) => (
       }}
     >
       <Box
+        as="header"
         sx={{
           gridArea: 'header',
           borderBottom: 'thin solid #e1e6eb',
@@ -76,6 +78,9 @@ export default ({ children, title }) => (
         >
           <a
             href="https://github.com/blocks/blocks"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               mt: '5px',
               color: 'inherit'
@@ -84,7 +89,10 @@ export default ({ children, title }) => (
             <GitHub size={18} />
           </a>
           <a
-            href="https://github.com/blocks/blocks"
+            href="https://twitter.com/blocks_ui"
+            aria-label="Twitter"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               mt: '5px',
               color: 'inherit',
@@ -96,6 +104,7 @@ export default ({ children, title }) => (
         </div>
       </Box>
       <Box
+        as="main"
         sx={{
           gridArea: 'main'
         }}
@@ -103,6 +112,7 @@ export default ({ children, title }) => (
         <Container sx={{ px: 3, py: [3, 4, 4] }}>{children}</Container>
       </Box>
       <Box
+        as="aside"
         sx={{
           gridArea: 'nav',
           px: 3,
@@ -139,10 +149,11 @@ export default ({ children, title }) => (
         <Nav />
       </Box>
       <Box
+        as="aside"
         sx={{
           gridArea: 'toc'
         }}
-      ></Box>
+      />
       <Box
         as="footer"
         sx={{
@@ -174,6 +185,9 @@ export default ({ children, title }) => (
           </Link>
           <a
             href="https://github.com/blocks/blocks"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               mt: '5px',
               ml: 'auto',
@@ -183,7 +197,10 @@ export default ({ children, title }) => (
             <GitHub size={18} />
           </a>
           <a
-            href="https://github.com/blocks/blocks"
+            href="https://twitter.com/blocks_ui"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               mt: '5px',
               color: 'inherit',
