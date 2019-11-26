@@ -1,6 +1,6 @@
 {
   "name": "blocks-ui",
-  "version": "0.0.1",
+  "version": "0.0.29",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": "blocks/blocks",
@@ -18,7 +18,7 @@
     "@theme-ui/editor": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
     "prettier": "^1.19.1",
-    "property-controls": "^0.0.28",
+    "property-controls": "^0.0.29",
     "react-beautiful-dnd": "^12.1.1",
     "react-feather": "^2.0.3",
     "theme-ui": "^0.2.49"
