@@ -33,6 +33,7 @@
     "@theme-ui/presets": "^0.2.44",
     "gatsby-plugin-compile-es6-packages": "^2.1.0",
     "gatsby-plugin-fathom": "^1.1.0",
+    "gatsby-plugin-manifest": "^2.2.29",
     "gatsby-plugin-mdx": "^1.0.57",
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-source-filesystem": "^2.1.38",
