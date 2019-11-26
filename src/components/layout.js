@@ -37,6 +37,7 @@ export default ({ children, _frontmatter: { title } = {} }) => (
       }}
     >
       <Box
+        as="header"
         sx={{
           gridArea: 'header',
           borderBottom: 'thin solid #e1e6eb',
@@ -77,6 +78,9 @@ export default ({ children, _frontmatter: { title } = {} }) => (
         >
           <a
             href="https://github.com/blocks/blocks"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener"
             sx={{
               mt: '5px',
               color: 'inherit'
@@ -85,7 +89,10 @@ export default ({ children, _frontmatter: { title } = {} }) => (
             <GitHub size={18} />
           </a>
           <a
-            href="https://github.com/blocks/blocks"
+            href="https://twitter.com/blocks_ui"
+            aria-label="Twitter"
+            target="_blank"
+            rel="noopener"
             sx={{
               mt: '5px',
               color: 'inherit',
@@ -97,6 +104,7 @@ export default ({ children, _frontmatter: { title } = {} }) => (
         </div>
       </Box>
       <Box
+        as="main"
         sx={{
           gridArea: 'main'
         }}
@@ -104,6 +112,7 @@ export default ({ children, _frontmatter: { title } = {} }) => (
         <Container sx={{ px: 3, py: [3, 4, 4] }}>{children}</Container>
       </Box>
       <Box
+        as="aside"
         sx={{
           gridArea: 'nav',
           px: 3,
@@ -140,10 +149,11 @@ export default ({ children, _frontmatter: { title } = {} }) => (
         <Nav />
       </Box>
       <Box
+        as="aside"
         sx={{
           gridArea: 'toc'
         }}
-      ></Box>
+      />
       <Box
         as="footer"
         sx={{
@@ -175,6 +185,9 @@ export default ({ children, _frontmatter: { title } = {} }) => (
           </Link>
           <a
             href="https://github.com/blocks/blocks"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener"
             sx={{
               mt: '5px',
               ml: 'auto',
@@ -184,7 +197,10 @@ export default ({ children, _frontmatter: { title } = {} }) => (
             <GitHub size={18} />
           </a>
           <a
-            href="https://github.com/blocks/blocks"
+            href="https://twitter.com/blocks_ui"
+            aria-label="Github"
+            target="_blank"
+            rel="noopener"
             sx={{
               mt: '5px',
               color: 'inherit',
