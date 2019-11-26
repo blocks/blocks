@@ -4,6 +4,7 @@
   "scripts": {
     "start": "yarn docs",
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
     "docs-build": "gatsby build",
