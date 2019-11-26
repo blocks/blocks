@@ -12,4 +12,7 @@ export { default as QuoteBasic } from './quotes/basic'
 export { default as TaglineContent } from './taglines/content'
 export { default as TaglineBold } from './taglines/bold'
 
+// FOOTERS
+export { default as FooterBasic } from './footers/basic'
+
 export const Blocks = { Root: React.Fragment }
