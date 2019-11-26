@@ -181,7 +181,11 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const handleRemoveElement = () => {
     const { code: newCode } = transforms.removeElement(code, { elementId })
     setCode(newCode)
-    setElementId(null)
+    if (elementData.parentId) {
+      setElementId(elementData.parentId)
+    } else {
+      setElementId(null)
+    }
     setElementData(null)
   }
 
