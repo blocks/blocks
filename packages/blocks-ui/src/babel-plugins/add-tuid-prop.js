@@ -1,4 +1,4 @@
-import { uuid } from '../util'
+import { uuid, isBlocksRootElement } from '../util'
 
 export default api => {
   const { types: t } = api
@@ -10,6 +10,10 @@ export default api => {
         // prefix them with BLOCKS_
         const name = path.node.name && path.node.name.name
         if (name && name.startsWith('BLOCKS_')) {
+          return
+        }
+
+        if (isBlocksRootElement(path.node)) {
           return
         }
 
