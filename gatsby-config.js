@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-fathom',
       options: {
-        siteId: 'YFORTJIX'
+        siteId: 'ZGBAXRBH'
       }
     },
     'gatsby-plugin-react-helmet',
