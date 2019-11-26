@@ -24,6 +24,9 @@ const theme = {
     },
     li: {
       fontSize: [2, 3]
+    },
+    img: {
+      maxWidth: '100%'
     }
   },
   buttons: {
