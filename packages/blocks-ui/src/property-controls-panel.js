@@ -75,14 +75,22 @@ export default ({
               return (
                 <div className="fieldset" key={key}>
                   <Label>{title}</Label>
-                  <Input value={elementData.text} onChange={onTextChange} />
+                  <Input
+                    sx={{ backgroundColor: 'white' }}
+                    value={elementData.text}
+                    onChange={onTextChange}
+                  />
                 </div>
               )
             } else if (value.type === ControlType.String) {
               return (
                 <div className="fieldset" key={key}>
                   <Label>{title}</Label>
-                  <Input value={fieldValue} onChange={onPropChange(key)} />
+                  <Input
+                    sx={{ backgroundColor: 'white' }}
+                    value={fieldValue}
+                    onChange={onPropChange(key)}
+                  />
                 </div>
               )
             } else if (value.type === ControlType.Number) {
@@ -90,6 +98,7 @@ export default ({
                 <div className="fieldset" key={key}>
                   <Label>{title}</Label>
                   <Input
+                    sx={{ backgroundColor: 'white' }}
                     type="number"
                     value={fieldValue}
                     onChange={onPropChange(key)}
