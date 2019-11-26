@@ -2,10 +2,11 @@
 import { jsx, Styled } from 'theme-ui'
 import { Container } from '@theme-ui/components'
 import { Link } from 'gatsby'
+import SEO from './seo'
 
-export default ({ children, title }) => (
+export default ({ children, _frontmatter: { title } = {} }) => (
   <Styled.root>
-    <title>{title ? title + ' / ' : null} Blocks UI</title>
+    <SEO title={title} />
     <Container as="main" mb={[3, 4, 5]}>
       <Link to="/">
         <img
