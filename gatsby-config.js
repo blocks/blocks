@@ -25,6 +25,18 @@ module.exports = {
       options: {
         siteId: 'YFORTJIX'
       }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Blocks UI`,
+        short_name: `Blocks`,
+        start_url: `/`,
+        background_color: `#fff`,
+        theme_color: `#33e`,
+        display: `standalone`,
+        icon: `src/assets/images/favicon.png`
+      }
     }
   ]
 }
