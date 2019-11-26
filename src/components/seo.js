@@ -18,6 +18,10 @@ const SEO = ({ description, lang, meta, title }) => {
     `
   )
 
+  const titleFormatted = title
+    ? `${title} — ${site.siteMetadata.title}`
+    : site.siteMetadata.title
+
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -25,8 +29,6 @@ const SEO = ({ description, lang, meta, title }) => {
       htmlAttributes={{
         lang
       }}
-      title={title}
-      titleTemplate={`%s – ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -34,7 +36,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           property: `og:title`,
-          content: title
+          content: titleFormatted
         },
         {
           property: `og:description`,
@@ -54,14 +56,16 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:title`,
-          content: title
+          content: titleFormatted
         },
         {
           name: `twitter:description`,
           content: metaDescription
         }
       ].concat(meta)}
-    />
+    >
+      <title>{titleFormatted}</title>
+    </Helmet>
   )
 }
 
