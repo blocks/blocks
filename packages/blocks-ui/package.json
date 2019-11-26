@@ -17,11 +17,13 @@
     "@theme-ui/components": "^0.2.49",
     "@theme-ui/editor": "^0.2.49",
     "@theme-ui/presets": "^0.2.44",
+    "html-react-parser": "^0.10.0",
     "lodash.merge": "^4.6.2",
     "prettier": "^1.19.1",
     "property-controls": "^0.0.41",
     "react-beautiful-dnd": "^12.1.1",
     "react-feather": "^2.0.3",
+    "react-frame-component": "^4.1.1",
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {

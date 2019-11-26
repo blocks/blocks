@@ -5,6 +5,7 @@ import parserJS from 'prettier/parser-babylon'
 
 import { useEditor } from './editor-context'
 import InlineRender from './inline-render'
+import { PreviewArea, Device } from './device-preview'
 
 import { Clipboard, Check } from 'react-feather'
 import { IconButton } from './ui'
@@ -40,6 +41,12 @@ const Copy = ({ toCopy }) => {
   )
 }
 
+const devices = [
+  { name: 'Mobile', width: 380 },
+  { name: 'Tablet', width: 720 },
+  { name: 'Desktop', width: 1200 }
+]
+
 export default ({ code, transformedCode, scope, theme }) => {
   const { mode } = useEditor()
   const formattedCode = prettier.format(code, {
@@ -62,6 +69,23 @@ export default ({ code, transformedCode, scope, theme }) => {
           {formattedCode}
         </Styled.pre>
       </Wrap>
+    )
+  }
+
+  if (mode === 'viewports') {
+    return (
+      <PreviewArea>
+        {devices.map(device => (
+          <Device
+            key={device.name}
+            name={device.name}
+            width={device.width}
+            height={500}
+          >
+            <InlineRender scope={scope} code={transformedCode} theme={theme} />
+          </Device>
+        ))}
+      </PreviewArea>
     )
   }
 
