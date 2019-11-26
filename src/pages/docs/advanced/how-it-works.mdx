@@ -1,3 +1,7 @@
+---
+title: How it works
+---
+
 import Layout from '../../../components/layout'
 export default Layout
 
@@ -160,11 +164,7 @@ return fn(React, ...Object.values(scope))
 This is wrapped up in a component so the API is nicer:
 
 ```js
-<InlineRender
-  scope={scope}
-  code={transformedCode}
-  theme={theme}
-/>
+<InlineRender scope={scope} code={transformedCode} theme={theme} />
 ```
 
 ### Querying element information
@@ -224,7 +224,7 @@ queries.getCurrentElement(code, elementId)
 The new, modified JSX code is returned in an `onChange` event.
 It takes the internal representation of the JSX and runs a
 Babel plugin to remove the UUID and any other Blocks metadata.
-This results in 
+This results in
 
 #### Input
 
