@@ -10,7 +10,7 @@
     "docs-build": "gatsby build",
     "docs-deploy": "now switch mdx-blocks && now && now alias $(pbpaste) blocks-ui.com",
     "prepare": "lerna run prepare",
-    "publish": "lerna publish"
+    "publish": "lerna publish --force-publish=\"*\""
   },
   "workspaces": [
     "packages/*"
