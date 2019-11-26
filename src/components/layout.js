@@ -7,6 +7,7 @@ import { Twitter, GitHub } from 'react-feather'
 
 import Nav from '../nav.mdx'
 import SEO from './seo'
+import { version } from '../../lerna.json'
 
 export default ({ children, _frontmatter: { title, noNav } = {} }) => (
   <Styled.root>
@@ -68,6 +69,15 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
             }}
           />
           Blocks
+          <span
+            sx={{
+              fontSize: 0,
+              mt: '2px',
+              ml: 2
+            }}
+          >
+            v{version}
+          </span>
         </Link>
         <div
           sx={{
