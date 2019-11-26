@@ -32,10 +32,10 @@ export default ({ children, onSelect }) => {
           onClick={() => onSelect(c.id)}
           sx={{
             fontSize: 1,
-            color: 'inherit',
+            // color: 'black',
             textDecoration: 'none',
             appearance: 'none',
-            backgroundColor: 'background',
+            backgroundColor: 'white',
             borderRadius: 4,
             border: 'thin solid #e1e6eb',
             display: 'block',
