@@ -6,3 +6,49 @@ import Layout from '../components/layout'
 export default Layout
 
 # Getting started
+
+While Blocks is in alpha, the recommended way to get started is to
+use the demo.
+
+[Try the demo &rarr;](/demo/)
+
+If you're a pioneering type and want to experiment with the editor in
+other projects you can continue on:
+
+## Installation
+
+Install the library:
+
+```js
+yarn add blocks-ui
+```
+
+## Usage
+
+You can use the block editor with the built-in blocks by only passing
+a JSX source string:
+
+```js
+import React from 'react'
+import Editor from 'blocks-ui'
+
+const JSX = `
+import React from 'react'
+import { HeaderBasic } from '@blocks/blocks'
+
+export default () => (
+  <Blocks.Root>
+    <HeaderBasic>
+      <HeaderBasic.Logo to="/">Hello</HeaderBasic.Logo>
+      <HeaderBasic.Nav>
+        <HeaderBasic.Link to="/about">About</HeaderBasic.Link>
+        <HeaderBasic.Link to="/blog">Blog</HeaderBasic.Link>
+        <HeaderBasic.Link to="/contact">Contact</HeaderBasic.Link>
+      </HeaderBasic.Nav>
+    </HeaderBasic>
+  </Blocks.Root>
+)
+`
+
+export default () => <Editor src={JSX} />
+```
