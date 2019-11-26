@@ -7,5 +7,5 @@ export { default as HeaderLogo2 } from './headers/logo2'
 export { default as QuoteBasic } from './quotes/basic'
 
 // TAGLINES
-export { default as TaglineBold } from './taglines/bold'
 export { default as TaglineContent } from './taglines/content'
+export { default as TaglineBold } from './taglines/bold'
