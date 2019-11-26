@@ -18,7 +18,7 @@ const Wrap = props => (
   />
 )
 
-export default ({ code, transformedCode, scope, theme }) => {
+export default ({ code, transformedCode, scope, theme, isEmpty }) => {
   const { mode } = useEditor()
 
   if (mode === 'code') {
@@ -41,9 +41,13 @@ export default ({ code, transformedCode, scope, theme }) => {
     )
   }
 
-  return (
-    <Wrap>
-      <InlineRender scope={scope} code={transformedCode} theme={theme} />
-    </Wrap>
-  )
+  if (!isEmpty) {
+    return (
+      <Wrap>
+        <InlineRender scope={scope} code={transformedCode} theme={theme} />
+      </Wrap>
+    )
+  } else {
+    return <Wrap />
+  }
 }

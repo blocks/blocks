@@ -81,6 +81,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [themeName, setThemeName] = useState('system')
   const [srcBlocks, setSrcBlocks] = useState([])
+  const [isEmpty, setIsEmpty] = useState(false)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
   const theme = presets[themeName]
@@ -155,11 +156,13 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     }
 
     if (drag.source.droppableId === 'components') {
+      setIsEmpty(false)
       const newCode = transforms.insertJSXBlock(code, { ...drag, blocks })
       setCode(newCode)
     } else if (drag.source.droppableId.startsWith('element-')) {
       console.log(drag)
     } else {
+      setIsEmpty(false)
       const newCode = transforms.reorderJSXBlocks(code, drag)
       setCode(newCode)
     }
@@ -185,6 +188,9 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     if (elementData.parentId) {
       setElementId(elementData.parentId)
     } else {
+      if (queries.getBlocks(code).length == 1) {
+        setIsEmpty(true)
+      }
       setElementId(null)
     }
     setElementData(null)
@@ -197,6 +203,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
 
   const handleInsertElement = () => {
     const { code: newCode } = transforms.insertElementAfter(code, { elementId })
+    setIsEmpty(false)
     setCode(newCode)
   }
 
@@ -221,6 +228,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
       sx: newSx
     })
 
+    setIsEmpty(false)
     setCode(newCode)
   }
 
@@ -267,6 +275,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             transformedCode={transformedCode}
             scope={scope}
             theme={theme}
+            isEmpty={isEmpty}
           />
           <SidePanel
             activeTab={activeTab}
