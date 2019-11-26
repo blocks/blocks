@@ -47,6 +47,17 @@ export const textTrim = str =>
     .replace(/\s{1,}$/, ' ')
     .replace(/\s+/g, ' ')
 
+export const isBlocksRootElement = node => {
+  if (t.isJSXMemberExpression(node.name)) {
+    const objectName = node.name.object && node.name.object.name
+    const propertyName = node.name.property && node.name.property.name
+
+    return objectName === 'Blocks' && propertyName === 'Root'
+  }
+
+  return false
+}
+
 export const getElementName = node => {
   const elementName = node.name
 
