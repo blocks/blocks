@@ -7,6 +7,7 @@ import { Global } from '@emotion/core'
 import * as blocks from '@blocks/blocks/src'
 import InlineRender from 'blocks-ui/dist/inline-render'
 import * as controls from 'property-controls'
+import SEO from './seo'
 
 const { Container } = components
 
@@ -66,7 +67,7 @@ export default ({ block }) => {
           }
         }}
       />
-      <title>{block.displayName} / Blocks UI</title>
+      <SEO title={block.displayName} />
       <header
         sx={{
           display: 'flex',

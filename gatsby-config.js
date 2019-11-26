@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Blocks',
+    title: 'Blocks UI',
     description:
-      'A JSX-based page builder for creating beautiful websites without writing code'
+      'A JSX-based page builder for creating beautiful websites without writing code',
+    author: '@blocks_ui'
   },
   plugins: [
     'gatsby-plugin-theme-ui',

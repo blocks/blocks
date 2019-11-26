@@ -6,10 +6,11 @@ import { Link } from 'gatsby'
 import { Twitter, GitHub } from 'react-feather'
 
 import Nav from '../nav.mdx'
+import SEO from './seo'
 
-export default ({ children, title }) => (
+export default ({ children, _frontmatter: { title } = {} }) => (
   <Styled.root>
-    <title>{title ? title + ' / ' : null} Blocks UI</title>
+    <SEO title={title} />
     <Global
       styles={{
         '*': {
