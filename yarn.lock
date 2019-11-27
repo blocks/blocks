@@ -853,6 +853,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@blocks/blocks@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@blocks/blocks/-/blocks-0.0.34.tgz#4377427463e1594fdb600660c328586e9ad3b394"
+  integrity sha512-V7bjXyXB2+u1w4nOc4+/Dp9RVR7RHTVBwwtswnxoLZTxSjbvZDRf7hB/hnWxUizQpjWBl8imYm05rUAfjRqxoQ==
+  dependencies:
+    property-controls "^0.0.34"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -12293,6 +12300,11 @@ prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2,
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.8.1"
+
+property-controls@^0.0.34:
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/property-controls/-/property-controls-0.0.34.tgz#ebccc34a6036dec1d4001548d0c21e079c32f17f"
+  integrity sha512-mhIFCzaou0NnYbyLDLpxKCfH8SiXmdlK+CSBkl0F+UoB9WpMopFP9Mf6sLePA6Hp8ExuCMcylcn798Z5rHG4xw==
 
 property-information@^5.0.0, property-information@^5.3.0:
   version "5.3.0"
