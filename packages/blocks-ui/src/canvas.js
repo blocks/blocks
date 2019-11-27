@@ -13,6 +13,7 @@ import { IconButton } from './ui'
 const Wrap = props => (
   <div
     sx={{
+      position: 'relative',
       width: '60%',
       backgroundColor: 'white',
       height: 'calc(100vh - 41px)',
@@ -49,15 +50,11 @@ const Copy = ({ toCopy }) => {
   }
 
   return (
-    <IconButton onClick={copyToClipboardOnClick} sx={{ float: "right" }}>
+    <IconButton onClick={copyToClipboardOnClick} sx={{ position: 'absolute', right: 0 }}>
       {hasCopied ? (
-        <>
-          <Check sx={{ color: "green" }} aria-label="Copied" />
-        </>
+        <Check sx={{ color: "green" }} aria-label="Copied" />
       ) : (
-        <>
-          <Clipboard aria-label="Copy" />
-        </>
+        <Clipboard aria-label="Copy" />
       )}
     </IconButton>
   );
@@ -65,14 +62,15 @@ const Copy = ({ toCopy }) => {
 
 export default ({ code, transformedCode, scope, theme }) => {
   const { mode } = useEditor()
+  const formattedCode = prettier.format(code, {
+    parser: 'babel',
+    plugins: [parserJS]
+  })
 
   if (mode === 'code') {
     return (
       <Wrap>
-        <Copy toCopy={prettier.format(code, {
-          parser: 'babel',
-          plugins: [parserJS]
-        })} />
+        <Copy toCopy={formattedCode} />
         <Styled.pre
           language="js"
           sx={{
@@ -81,10 +79,7 @@ export default ({ code, transformedCode, scope, theme }) => {
             color: 'black'
           }}
         >
-          {prettier.format(code, {
-            parser: 'babel',
-            plugins: [parserJS]
-          })}
+          {formattedCode}
         </Styled.pre>
       </Wrap>
     )
