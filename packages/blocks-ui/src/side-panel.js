@@ -41,7 +41,9 @@ export default ({
       <TabList
         sx={{
           display: 'flex',
-          width: '100%'
+          width: '100%',
+          position: 'sticky',
+          top: 0
         }}
       >
         <Tab
