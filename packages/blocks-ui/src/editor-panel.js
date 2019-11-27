@@ -33,7 +33,7 @@ export default ({
     block = block[key]
   })
 
-  const { propertyControls = {} } = block
+  const { propertyControls = {} } = block || {}
 
   return (
     <div
@@ -84,7 +84,9 @@ export default ({
           )}
         </nav>
       </Flex>
-      <TreeView children={elementData.children} onSelect={setElementId} />
+      {block && (
+        <TreeView children={elementData.children} onSelect={setElementId} />
+      )}
       <PropertyControlsPanel
         elementData={elementData}
         propertyControls={propertyControls}
