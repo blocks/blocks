@@ -8,6 +8,7 @@ import { useEditor } from './editor-context'
 import InlineRender from './inline-render'
 
 import { Clipboard, Check } from 'react-feather'
+import { IconButton } from './ui'
 
 const Wrap = props => (
   <div
@@ -48,17 +49,17 @@ const Copy = ({ toCopy }) => {
   }
 
   return (
-    <button onClick={copyToClipboardOnClick}>
+    <IconButton onClick={copyToClipboardOnClick}>
       {hasCopied ? (
         <>
-          <Check />
+          <Check sx={{ color: "green" }} />
         </>
       ) : (
         <>
           <Clipboard />
         </>
       )}
-    </button>
+    </IconButton>
   );
 };
 
@@ -68,6 +69,10 @@ export default ({ code, transformedCode, scope, theme }) => {
   if (mode === 'code') {
     return (
       <Wrap>
+        <Copy toCopy={prettier.format(code, {
+          parser: 'babel',
+          plugins: [parserJS]
+        })} />
         <Styled.pre
           language="js"
           sx={{
@@ -81,10 +86,6 @@ export default ({ code, transformedCode, scope, theme }) => {
             plugins: [parserJS]
           })}
         </Styled.pre>
-        <Copy toCopy={prettier.format(code, {
-          parser: 'babel',
-          plugins: [parserJS]
-        })} />
       </Wrap>
     )
   }
