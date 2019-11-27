@@ -32,8 +32,8 @@ export default ({
     sx={{
       borderLeft: 'thin solid #e1e6eb',
       width: '40%',
-      height: 'calc(100vh - 41px)',
-      overflow: 'scroll',
+      height: 'calc(100vh - 43px)',
+      overflow: 'auto',
       pb: 3
     }}
   >

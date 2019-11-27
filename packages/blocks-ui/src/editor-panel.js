@@ -39,7 +39,7 @@ export default ({
     <div
       sx={{
         height: '100vh',
-        overflow: 'scroll'
+        overflow: 'auto'
       }}
     >
       <Flex
