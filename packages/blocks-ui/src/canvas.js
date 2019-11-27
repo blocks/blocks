@@ -24,41 +24,44 @@ const Wrap = props => (
 )
 
 function copyToClipboard(toCopy) {
-  const el = document.createElement(`textarea`);
-  el.value = toCopy;
-  el.setAttribute(`readonly`, ``);
-  el.style.position = `absolute`;
-  el.style.left = `-9999px`;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand(`copy`);
-  document.body.removeChild(el);
+  const el = document.createElement(`textarea`)
+  el.value = toCopy
+  el.setAttribute(`readonly`, ``)
+  el.style.position = `absolute`
+  el.style.left = `-9999px`
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand(`copy`)
+  document.body.removeChild(el)
 }
 
 const Copy = ({ toCopy }) => {
-  const [hasCopied, setHasCopied] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false)
 
   function copyToClipboardOnClick() {
-    if (hasCopied) return;
+    if (hasCopied) return
 
-    copyToClipboard(toCopy);
-    setHasCopied(true);
+    copyToClipboard(toCopy)
+    setHasCopied(true)
 
     setTimeout(() => {
-      setHasCopied(false);
-    }, 2000);
+      setHasCopied(false)
+    }, 2000)
   }
 
   return (
-    <IconButton onClick={copyToClipboardOnClick} sx={{ position: 'absolute', right: 0 }}>
+    <IconButton
+      onClick={copyToClipboardOnClick}
+      sx={{ position: 'absolute', right: 0 }}
+    >
       {hasCopied ? (
-        <Check sx={{ color: "green" }} aria-label="Copied" />
+        <Check sx={{ color: 'green' }} aria-label="Copied" />
       ) : (
         <Clipboard aria-label="Copy" />
       )}
     </IconButton>
-  );
-};
+  )
+}
 
 export default ({ code, transformedCode, scope, theme }) => {
   const { mode } = useEditor()
