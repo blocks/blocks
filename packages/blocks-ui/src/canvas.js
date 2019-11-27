@@ -1,10 +1,13 @@
 /** @jsx jsx */
+import React, { useState } from 'react'
 import { jsx, Styled } from 'theme-ui'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
 
 import { useEditor } from './editor-context'
 import InlineRender from './inline-render'
+
+import { Clipboard, Check } from 'react-feather'
 
 const Wrap = props => (
   <div
@@ -17,6 +20,47 @@ const Wrap = props => (
     {...props}
   />
 )
+
+function copyToClipboard(toCopy) {
+  const el = document.createElement(`textarea`);
+  el.value = toCopy;
+  el.setAttribute(`readonly`, ``);
+  el.style.position = `absolute`;
+  el.style.left = `-9999px`;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand(`copy`);
+  document.body.removeChild(el);
+}
+
+const Copy = ({ toCopy }) => {
+  const [hasCopied, setHasCopied] = useState(false);
+
+  function copyToClipboardOnClick() {
+    if (hasCopied) return;
+
+    copyToClipboard(toCopy);
+    setHasCopied(true);
+
+    setTimeout(() => {
+      setHasCopied(false);
+    }, 2000);
+  }
+
+  return (
+    <button onClick={copyToClipboardOnClick}>
+      {hasCopied ? (
+        <>
+          <Check />
+        </>
+      ) : (
+        <>
+          <Clipboard />
+        </>
+      )}
+    </button>
+  );
+};
 
 export default ({ code, transformedCode, scope, theme }) => {
   const { mode } = useEditor()
@@ -37,6 +81,10 @@ export default ({ code, transformedCode, scope, theme }) => {
             plugins: [parserJS]
           })}
         </Styled.pre>
+        <Copy toCopy={prettier.format(code, {
+          parser: 'babel',
+          plugins: [parserJS]
+        })} />
       </Wrap>
     )
   }
