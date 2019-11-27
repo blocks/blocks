@@ -96,7 +96,7 @@ applyPropertyControls(HeaderLogo.Logo, linkControls)
 applyPropertyControls(HeaderLogo.Link, linkControls)
 
 HeaderLogo.usage = `
-  <HeaderLogo
+  <HeaderLogo>
     <HeaderLogo.Logo to="/" />
     <HeaderLogo.Nav>
       <HeaderLogo.Link to="/about">About</HeaderLogo.Link>
