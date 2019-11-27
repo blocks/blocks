@@ -251,7 +251,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   console.log(elementData)
 
   return (
-    <Layout elementData={elementData} theme={theme}>
+    <Layout elementData={elementData} theme={appTheme}>
       <Header />
       <DragDropContext
         onDragEnd={onDragEnd}
@@ -273,7 +273,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             setActiveTab={setActiveTab}
             blocks={blocks}
             srcBlocks={srcBlocks}
-            theme={appTheme}
+            theme={theme}
             themeName={themeName}
             elementData={elementData}
             handleChange={handleChange}
