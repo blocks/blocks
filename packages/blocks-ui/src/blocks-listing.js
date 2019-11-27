@@ -41,6 +41,7 @@ export default ({ components, theme }) => {
                     scope={{
                       [key]: Component
                     }}
+                    name={key}
                   />
                 </div>
               </div>

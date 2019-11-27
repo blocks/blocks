@@ -1,22 +1,27 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
+import ComponentError from './component-error'
 
 import { toTransformedBlockJSX } from './transforms'
 
-export default ({ code, scope: providedScope, ...props }) => {
-  const transformed = toTransformedBlockJSX(code)
-  const scope = { jsx, ...providedScope }
+export default ({ code, scope: providedScope, name, ...props }) => {
+  try {
+    const transformed = toTransformedBlockJSX(code)
+    const scope = { jsx, ...providedScope }
 
-  /* eslint-disable */
-  const fn = new Function(
-    'React',
-    ...Object.keys(scope),
-    `${transformed};
+    /* eslint-disable */
+    const fn = new Function(
+      'React',
+      ...Object.keys(scope),
+      `${transformed};
     return React.createElement(BLOCKS_Container)`
-  )
-  /* eslint-enable */
+    )
+    /* eslint-enable */
 
-  const element = fn(React, ...Object.values(scope))
+    const element = fn(React, ...Object.values(scope))
 
-  return <div {...props}>{element}</div>
+    return <div {...props}>{element}</div>
+  } catch (e) {
+    return <ComponentError name={name} message={e.message} />
+  }
 }

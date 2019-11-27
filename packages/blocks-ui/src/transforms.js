@@ -46,22 +46,18 @@ export const toTransformedJSX = code => {
 export const toTransformedBlockJSX = code => {
   const fullCode = 'export default () => ' + code.trim()
 
-  try {
-    return transform(fullCode, {
-      plugins: [
-        babelPluginRemoveImports,
-        babelPluginSetDefaultExportToContainer,
-        [
-          babelPluginTransformJsx,
-          {
-            pragma: 'jsx'
-          }
-        ]
+  return transform(fullCode, {
+    plugins: [
+      babelPluginRemoveImports,
+      babelPluginSetDefaultExportToContainer,
+      [
+        babelPluginTransformJsx,
+        {
+          pragma: 'jsx'
+        }
       ]
-    }).code
-  } catch (e) {
-    return null
-  }
+    ]
+  }).code
 }
 
 export const toRawJSX = code => {
