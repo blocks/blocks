@@ -49,7 +49,7 @@ const Copy = ({ toCopy }) => {
   }
 
   return (
-    <IconButton onClick={copyToClipboardOnClick}>
+    <IconButton onClick={copyToClipboardOnClick} sx={{ float: "right" }}>
       {hasCopied ? (
         <>
           <Check sx={{ color: "green" }} aria-label="Copied" />
