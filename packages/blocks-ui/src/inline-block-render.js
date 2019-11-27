@@ -1,6 +1,6 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
-import ComponentError from './component-error'
+import BlockError from './block-error'
 
 import { toTransformedBlockJSX } from './transforms'
 
@@ -22,6 +22,6 @@ export default ({ code, scope: providedScope, name, ...props }) => {
 
     return <div {...props}>{element}</div>
   } catch (e) {
-    return <ComponentError name={name} message={e.message} />
+    return <BlockError name={name} message={e.message} />
   }
 }
