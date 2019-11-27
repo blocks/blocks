@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
 import * as presets from '@theme-ui/presets'
 
-import * as DEFAULT_BLOCKS from '@blocks/blocks/src'
+import * as DEFAULT_BLOCKS from '@blocks/blocks'
 
 import * as themeComponents from '@theme-ui/components'
 
