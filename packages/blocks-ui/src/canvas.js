@@ -52,12 +52,12 @@ const Copy = ({ toCopy }) => {
   return (
     <IconButton
       onClick={copyToClipboardOnClick}
-      sx={{ position: 'absolute', right: 0 }}
+      sx={{ position: 'absolute', right: '-4px' }}
     >
       {hasCopied ? (
         <Check sx={{ color: 'green' }} aria-label="Copied" />
       ) : (
-        <Clipboard aria-label="Copy" />
+        <Clipboard size={16} aria-label="Copy" />
       )}
     </IconButton>
   )
