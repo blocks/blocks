@@ -1,4 +1,5 @@
 import { system } from '@theme-ui/presets'
+import prism from '@theme-ui/prism/presets/theme-ui'
 
 const theme = {
   ...system,
@@ -13,6 +14,12 @@ const theme = {
   },
   styles: {
     ...system.styles,
+    h1: {
+      ...system.styles.h1,
+      '&:first-child': {
+        mt: 0
+      }
+    },
     navLink: {
       color: 'inherit',
       textDecoration: 'none',
@@ -27,6 +34,9 @@ const theme = {
     },
     img: {
       maxWidth: '100%'
+    },
+    code: {
+      ...prism
     }
   },
   buttons: {
