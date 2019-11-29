@@ -29,9 +29,6 @@ const theme = {
     img: {
       maxWidth: '100%'
     },
-    pre: {
-      ...system.styles.pre
-    },
     code: {
       ...prism
     }
