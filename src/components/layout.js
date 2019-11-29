@@ -126,32 +126,32 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
         sx={{
           gridArea: 'nav',
           px: 3,
-          py: [3, 4, 4],
-          mt: '10px',
+          pt: [3, 4],
           ul: {
             listStyle: 'none',
-            p: 0
+            p: 0,
+            m: 0,
+            mt: [0, '10px']
           },
           li: {
-            mb: 1,
-            fontSize: 1,
-            ul: {
-              li: {
-                mb: 0
-              },
-              pl: 2,
-              a: {
-                fontWeight: 400,
-                color: '#2f353b'
-              }
+            fontSize: 2,
+            fontWeight: 'bold',
+            mb: 2,
+            '& ul': {
+              ml: 2,
+              mt: 2,
+              mb: 3
             },
-            a: {
-              color: 'black',
-              fontWeight: 500,
-              textDecoration: 'none',
-              '&:hover': {
-                color: 'black'
-              }
+            '& li': {
+              fontWeight: 'normal',
+              mb: 0
+            }
+          },
+          a: {
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover, &:focus': {
+              color: 'primary'
             }
           }
         }}

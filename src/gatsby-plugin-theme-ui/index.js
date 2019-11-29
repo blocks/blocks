@@ -14,6 +14,12 @@ const theme = {
   },
   styles: {
     ...system.styles,
+    h1: {
+      ...system.styles.h1,
+      '&:first-child': {
+        mt: 0
+      }
+    },
     navLink: {
       color: 'inherit',
       textDecoration: 'none',
