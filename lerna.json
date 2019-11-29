@@ -4,7 +4,7 @@
   ],
   "command": {
     "publish": {
-      "message": "(chore) :blossom: publish %v"
+      "message": "(chore): :blossom: publish %v"
     }
   },
   "version": "0.0.39"
