@@ -1,4 +1,5 @@
 import { system } from '@theme-ui/presets'
+import prism from '@theme-ui/prism/presets/theme-ui'
 
 const theme = {
   ...system,
@@ -27,6 +28,12 @@ const theme = {
     },
     img: {
       maxWidth: '100%'
+    },
+    pre: {
+      ...system.styles.pre
+    },
+    code: {
+      ...prism
     }
   },
   buttons: {
