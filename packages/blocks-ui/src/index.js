@@ -79,11 +79,10 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [elementId, setElementId] = useState(null)
   const [elementData, setElementData] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
-  const [themeName, setThemeName] = useState('system')
   const [srcBlocks, setSrcBlocks] = useState([])
+  const [theme, setTheme] = useState(presets.system)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
-  const theme = presets[themeName]
 
   const scope = {
     Blocks: DEFAULT_BLOCKS.Blocks,
@@ -248,8 +247,6 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     setCode(newCode)
   }
 
-  console.log(elementData)
-
   return (
     <Layout elementData={elementData} theme={appTheme}>
       <Header />
@@ -274,7 +271,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             blocks={blocks}
             srcBlocks={srcBlocks}
             theme={theme}
-            themeName={themeName}
+            setTheme={setTheme}
             elementData={elementData}
             handleChange={handleChange}
             handlePropChange={handlePropChange}
@@ -284,7 +281,6 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             handleInsertElement={handleInsertElement}
             handleClone={handleClone}
             handleTextUpdate={handleTextUpdate}
-            setThemeName={setThemeName}
             setElementId={setElementId}
           />
         </div>
