@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React, { useState } from 'react'
 import { jsx, Styled } from 'theme-ui'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
@@ -9,6 +8,7 @@ import InlineRender from './inline-render'
 
 import { Clipboard, Check } from 'react-feather'
 import { IconButton } from './ui'
+import useCopyToClipboard from './use-copy-to-clipboard'
 
 const Wrap = props => (
   <div
@@ -23,35 +23,12 @@ const Wrap = props => (
   />
 )
 
-function copyToClipboard(toCopy) {
-  const el = document.createElement(`textarea`)
-  el.value = toCopy
-  el.setAttribute(`readonly`, ``)
-  el.style.position = `absolute`
-  el.style.left = `-9999px`
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand(`copy`)
-  document.body.removeChild(el)
-}
-
 const Copy = ({ toCopy }) => {
-  const [hasCopied, setHasCopied] = useState(false)
-
-  function copyToClipboardOnClick() {
-    if (hasCopied) return
-
-    copyToClipboard(toCopy)
-    setHasCopied(true)
-
-    setTimeout(() => {
-      setHasCopied(false)
-    }, 2000)
-  }
+  const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
     <IconButton
-      onClick={copyToClipboardOnClick}
+      onClick={() => copyToClipboard(toCopy)}
       sx={{ position: 'absolute', right: '-4px' }}
     >
       {hasCopied ? (

@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react'
 import { jsx } from 'theme-ui'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
@@ -14,7 +13,7 @@ export default ({
   blocks,
   srcBlocks,
   theme,
-  themeName,
+  setTheme,
   elementData,
   handleChange,
   handlePropChange,
@@ -24,7 +23,6 @@ export default ({
   handleInsertElement,
   handleClone,
   handleTextUpdate,
-  setThemeName,
   setElementId
 }) => (
   <section
@@ -150,7 +148,7 @@ export default ({
           ) : null}
         </TabPanel>
         <TabPanel>
-          <ThemePanel themeName={themeName} setThemeName={setThemeName} />
+          <ThemePanel theme={theme} setTheme={setTheme} />
         </TabPanel>
       </TabPanels>
     </Tabs>
