@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
+import { Box } from '@theme-ui/components'
 
 import InlineBlockRender from './inline-block-render'
 
@@ -31,8 +32,10 @@ export default ({ components, theme }) => {
               >
                 <div
                   sx={{
-                    m: 2,
-                    border: 'thin solid #e1e6eb'
+                    border: 'thin solid #e1e6eb',
+                    bg: 'background',
+                    color: 'text',
+                    mb: 3
                   }}
                 >
                   <InlineBlockRender
@@ -53,15 +56,17 @@ export default ({ components, theme }) => {
   }, [components])
 
   return (
-    <ThemeProvider theme={theme}>
-      <Droppable droppableId="components">
-        {(provided, snapshot) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {list}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </ThemeProvider>
+    <Box p={3}>
+      <ThemeProvider theme={theme}>
+        <Droppable droppableId="components">
+          {(provided, snapshot) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {list}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </ThemeProvider>
+    </Box>
   )
 }
