@@ -16,8 +16,8 @@ const Wrap = props => (
     sx={{
       position: 'relative',
       width: '60%',
+      height: '100%',
       backgroundColor: 'white',
-      height: 'calc(100vh - 43px)',
       overflow: 'auto'
     }}
     {...props}

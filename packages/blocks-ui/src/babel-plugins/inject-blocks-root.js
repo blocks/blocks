@@ -11,7 +11,7 @@ const root = template.ast(
             {
               ref: provided.innerRef,
               style: {
-                minHeight: 'calc(100vh - 43px)'
+                minHeight: '100%'
               },
             }
           )

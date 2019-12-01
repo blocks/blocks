@@ -263,7 +263,8 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
       >
         <div
           sx={{
-            display: 'flex'
+            display: 'flex',
+            height: 'calc(100vh - 43px)'
           }}
         >
           <Canvas

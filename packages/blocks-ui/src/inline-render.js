@@ -27,6 +27,7 @@ export default ({ code, scope, theme, ...props }) => {
       <Styled.root
         {...props}
         sx={{
+          height: '100%',
           color: 'text',
           bg: 'background'
         }}
