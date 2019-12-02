@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import { jsx, ThemeProvider, Styled } from 'theme-ui'
 
-export default ({ code, scope, theme, ...props }) => {
+export default ({ fullHeight, code, scope, theme, ...props }) => {
   const element = useMemo(() => {
     if (!code) {
       return null
@@ -27,6 +27,7 @@ export default ({ code, scope, theme, ...props }) => {
       <Styled.root
         {...props}
         sx={{
+          height: fullHeight ? '100%' : undefined,
           color: 'text',
           bg: 'background'
         }}

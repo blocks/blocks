@@ -80,7 +80,12 @@ export default ({ code, transformedCode, scope, theme }) => {
 
   return (
     <Wrap>
-      <InlineRender scope={scope} code={transformedCode} theme={theme} />
+      <InlineRender
+        fullHeight
+        scope={scope}
+        code={transformedCode}
+        theme={theme}
+      />
     </Wrap>
   )
 }
