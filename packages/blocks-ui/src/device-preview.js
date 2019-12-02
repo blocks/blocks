@@ -9,11 +9,13 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
+import mergeRefs from 'react-merge-refs'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 import weakMemoize from '@emotion/weak-memoize'
 
 import { IconButton } from './ui'
+import { useScrollSync } from './hooks'
 
 const MIN_ZOOM_LEVEL = 25
 
@@ -21,11 +23,15 @@ const createCacheWithContainer = weakMemoize(container =>
   createCache({ container })
 )
 
-function Frame({ children, ...restProps }) {
+const Frame = ({ children, setFrame, ...restProps }) => {
   const frameRef = useRef()
   const [[head, body], setNodes] = useState([])
   useLayoutEffect(() => {
+    setFrame(frameRef.current)
+  })
+  useLayoutEffect(() => {
     const { contentDocument } = frameRef.current
+    setFrame(frameRef.current)
     setNodes([contentDocument.head, contentDocument.body])
   }, [])
   return (
@@ -43,44 +49,51 @@ function Frame({ children, ...restProps }) {
   )
 }
 
-export const Device = ({ children, width, height, zoomLevel }) => {
+export const Device = ({ children, width, height, setFrame, zoomLevel }) => {
   width = parseFloat(width)
   height = parseFloat(height)
   return (
-    <div css={{ flex: '0 0 auto', margin: 16 }}>
-      <div css={{ flex: '1 1 auto' }}>
-        <div
+    <div
+      css={{
+        flex: '0 0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        padding: 16
+      }}
+    >
+      <div
+        css={{
+          fontSize: 14,
+          textAlign: 'left',
+          marginBottom: 8,
+          color: '#444'
+        }}
+      >
+        {width}px
+      </div>
+      <div
+        style={{
+          flex: 1,
+          width: width * zoomLevel,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        <Frame
+          setFrame={setFrame}
           css={{
-            fontSize: 14,
-            textAlign: 'left',
-            marginBottom: 8,
-            color: '#444'
+            margin: 0,
+            border: 0,
+            transformOrigin: `top left`
           }}
-        >
-          {width}px
-        </div>
-        <div
           style={{
-            width: width * zoomLevel,
-            height: height * zoomLevel,
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+            width: width,
+            height: `${(1 / zoomLevel) * 100}%`,
+            transform: `scale(${zoomLevel})`
           }}
         >
-          <Frame
-            css={{
-              margin: 0,
-              border: 0,
-              transformOrigin: `top left`
-            }}
-            style={{
-              width: width,
-              height: height,
-              transform: `scale(${zoomLevel})`
-            }}
-          >
-            {children}
-          </Frame>
-        </div>
+          {children}
+        </Frame>
       </div>
     </div>
   )
@@ -90,6 +103,9 @@ export function PreviewArea({ children }) {
   const [wrap, setWrap] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(1)
   const shiftKeyDown = useRef()
+  const frames = useRef([])
+  const setFrame = index => ref => (frames.current[index] = ref)
+  useScrollSync(frames)
   return (
     <div
       css={{
@@ -189,7 +205,12 @@ export function PreviewArea({ children }) {
             padding: 16
           }}
         >
-          {Children.map(children, child => cloneElement(child, { zoomLevel }))}
+          {Children.map(children, (child, index) =>
+            cloneElement(child, {
+              setFrame: setFrame(index),
+              zoomLevel
+            })
+          )}
         </div>
       </div>
     </div>
