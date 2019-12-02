@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import {
-  createContext,
-  useContext,
+  Children,
+  cloneElement,
   useLayoutEffect,
   useRef,
   useState
@@ -16,8 +16,6 @@ import weakMemoize from '@emotion/weak-memoize'
 import { IconButton } from './ui'
 
 const MIN_ZOOM_LEVEL = 25
-
-const PreviewAreaContext = createContext()
 
 const createCacheWithContainer = weakMemoize(container =>
   createCache({ container })
@@ -45,8 +43,7 @@ function Frame({ children, ...restProps }) {
   )
 }
 
-export const Device = ({ children, width, height, name }) => {
-  const { zoomLevel } = useContext(PreviewAreaContext)
+export const Device = ({ children, width, height, name, zoomLevel }) => {
   return (
     <div css={{ flex: '0 0 auto', margin: 16 }}>
       <div css={{ flex: '1 1 auto' }}>
@@ -190,9 +187,7 @@ export function PreviewArea({ children }) {
             padding: 16
           }}
         >
-          <PreviewAreaContext.Provider value={{ zoomLevel }}>
-            {children}
-          </PreviewAreaContext.Provider>
+          {Children.map(children, child => cloneElement(child, { zoomLevel }))}
         </div>
       </div>
     </div>
