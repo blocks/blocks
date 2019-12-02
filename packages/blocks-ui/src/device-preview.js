@@ -3,13 +3,15 @@ import { jsx } from 'theme-ui'
 import {
   createContext,
   useContext,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState
 } from 'react'
 import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
+import { CacheProvider, Global } from '@emotion/core'
+import createCache from '@emotion/cache'
+import weakMemoize from '@emotion/weak-memoize'
 
 import { IconButton } from './ui'
 
@@ -17,21 +19,28 @@ const MIN_ZOOM_LEVEL = 25
 
 const PreviewAreaContext = createContext()
 
+const createCacheWithContainer = weakMemoize(container =>
+  createCache({ container })
+)
+
 function Frame({ children, ...restProps }) {
   const frameRef = useRef()
-  const headRef = useRef()
-  const [body, setBody] = useState(null)
+  const [[head, body], setNodes] = useState([])
   useLayoutEffect(() => {
     const { contentDocument } = frameRef.current
-    headRef.current = contentDocument.head
-    setBody(contentDocument.body)
+    setNodes([contentDocument.head, contentDocument.body])
   }, [])
-  useEffect(() => {
-    headRef.current.innerHTML = document.head.innerHTML
-  })
   return (
     <iframe ref={frameRef} {...restProps}>
-      {body ? createPortal(children, body) : null}
+      {body
+        ? createPortal(
+            <CacheProvider value={createCacheWithContainer(head)}>
+              <Global styles={{ body: { margin: 0 } }} />
+              {children}
+            </CacheProvider>,
+            body
+          )
+        : null}
     </iframe>
   )
 }
@@ -88,7 +97,7 @@ export function PreviewArea({ children }) {
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
         width: '60%',
-        height: 'calc(100vh - 41px)',
+        height: '100%',
         overflow: 'auto'
       }}
     >

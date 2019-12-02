@@ -25,7 +25,7 @@ export const useEditor = () => {
 export const EditorProvider = ({ children }) => {
   const [value, update] = useState({
     //activeTab: EDITOR_TAB_INDEX,
-    mode: 'canvas'
+    mode: 'viewports'
   })
 
   // TODO: Make tabs use context

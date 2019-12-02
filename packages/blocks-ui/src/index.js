@@ -253,7 +253,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
 
     setCode(newCode)
   }
-
+  console.log(theme)
   return (
     <Layout elementData={elementData} theme={appTheme}>
       <Header />
