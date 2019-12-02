@@ -46,12 +46,20 @@ export default ({ theme, setTheme }) => {
   )
 }
 
+const defaultBreakpoints = [360, 600, 1024]
+
 const ThemePresetForm = ({ setTheme }) => {
   const [themeName, setThemeName] = useState('system')
 
   const onPresetChange = e => {
     const presetKey = e.target.value
-    setTheme(currentTheme => merge({}, currentTheme, presets[presetKey]))
+    setTheme(currentTheme =>
+      merge(
+        {},
+        { ...currentTheme, breakpoints: defaultBreakpoints },
+        presets[presetKey]
+      )
+    )
     setThemeName(presetKey)
   }
 

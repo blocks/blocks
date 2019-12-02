@@ -53,7 +53,7 @@ const BLOCKS_Droppable = props => {
 }
 
 const BLOCKS_Draggable = ({ active, children, ...props }) => {
-  const { mode, ...rest } = useEditor()
+  const { mode } = useEditor()
   return (
     <Draggable isDragDisabled={mode === 'viewports'} {...props}>
       {(provided, snapshot) =>
@@ -79,6 +79,11 @@ const BLOCKS_Draggable = ({ active, children, ...props }) => {
   )
 }
 
+const defaultTheme = {
+  ...presets.system,
+  breakpoints: [360, 600, 1024]
+}
+
 export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
@@ -87,7 +92,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   const [elementData, setElementData] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
   const [srcBlocks, setSrcBlocks] = useState([])
-  const [theme, setTheme] = useState(presets.system)
+  const [theme, setTheme] = useState(defaultTheme)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
 
@@ -253,7 +258,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
 
     setCode(newCode)
   }
-  console.log(theme)
+
   return (
     <Layout elementData={elementData} theme={appTheme}>
       <Header />

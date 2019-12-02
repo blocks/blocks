@@ -41,12 +41,6 @@ const Copy = ({ toCopy }) => {
   )
 }
 
-const devices = [
-  { name: 'Mobile', width: 380 },
-  { name: 'Tablet', width: 720 },
-  { name: 'Desktop', width: 1200 }
-]
-
 export default ({ code, transformedCode, scope, theme }) => {
   const { mode } = useEditor()
   const formattedCode = prettier.format(code, {
@@ -75,13 +69,8 @@ export default ({ code, transformedCode, scope, theme }) => {
   if (mode === 'viewports') {
     return (
       <PreviewArea>
-        {devices.map(device => (
-          <Device
-            key={device.name}
-            name={device.name}
-            width={device.width}
-            height={500}
-          >
+        {theme.breakpoints.map(breakpoint => (
+          <Device key={breakpoint} width={breakpoint} height={500}>
             <InlineRender scope={scope} code={transformedCode} theme={theme} />
           </Device>
         ))}

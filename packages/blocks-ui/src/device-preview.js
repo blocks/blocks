@@ -43,7 +43,9 @@ function Frame({ children, ...restProps }) {
   )
 }
 
-export const Device = ({ children, width, height, name, zoomLevel }) => {
+export const Device = ({ children, width, height, zoomLevel }) => {
+  width = parseFloat(width)
+  height = parseFloat(height)
   return (
     <div css={{ flex: '0 0 auto', margin: 16 }}>
       <div css={{ flex: '1 1 auto' }}>
@@ -55,7 +57,7 @@ export const Device = ({ children, width, height, name, zoomLevel }) => {
             color: '#444'
           }}
         >
-          <strong>{name}:</strong> {width}px
+          {width}px
         </div>
         <div
           style={{
