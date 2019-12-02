@@ -1,8 +1,14 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { createContext, useContext, useRef, useState } from 'react'
-import Frame, { FrameContextConsumer } from 'react-frame-component'
-import Parser from 'html-react-parser'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react'
+import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
 
 import { IconButton } from './ui'
@@ -11,15 +17,27 @@ const MIN_ZOOM_LEVEL = 25
 
 const PreviewAreaContext = createContext()
 
-const VSpacer = ({ size }) => (
-  <div css={{ flex: `0 0 ${size}px`, height: '100%' }} />
-)
+function Frame({ children, ...restProps }) {
+  const frameRef = useRef()
+  const headRef = useRef()
+  const [body, setBody] = useState(null)
+  useLayoutEffect(() => {
+    const { contentDocument } = frameRef.current
+    headRef.current = contentDocument.head
+    setBody(contentDocument.body)
+  }, [])
+  useEffect(() => {
+    headRef.current.innerHTML = document.head.innerHTML
+  })
+  return (
+    <iframe ref={frameRef} {...restProps}>
+      {body ? createPortal(children, body) : null}
+    </iframe>
+  )
+}
 
 export const Device = ({ children, width, height, name }) => {
   const { zoomLevel } = useContext(PreviewAreaContext)
-  const head = Parser(document.head.innerHTML).filter(
-    element => typeof element === 'object'
-  )
   return (
     <div css={{ flex: '0 0 auto', margin: 16 }}>
       <div css={{ flex: '1 1 auto' }}>
@@ -41,7 +59,6 @@ export const Device = ({ children, width, height, name }) => {
           }}
         >
           <Frame
-            head={head}
             css={{
               margin: 0,
               border: 0,
