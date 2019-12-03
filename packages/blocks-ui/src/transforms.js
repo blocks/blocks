@@ -13,6 +13,7 @@ import babelPluginInjectBlocksRoot from './babel-plugins/inject-blocks-root'
 import babelPluginRemoveImports from './babel-plugins/remove-imports'
 import babelPluginRemoveSxProp from './babel-plugins/remove-sx-prop'
 import babelPluginRemove from './babel-plugins/remove'
+import babelPluginAddBlockImports from './babel-plugins/add-block-imports'
 import babelPluginInsertBefore from './babel-plugins/insert-before'
 import babelPluginInsertAfter from './babel-plugins/insert-after'
 import babelPluginClone from './babel-plugins/clone'
@@ -60,10 +61,14 @@ export const toTransformedBlockJSX = code => {
   }).code
 }
 
-export const toRawJSX = code => {
+export const toRawJSX = (code, { blocks } = {}) => {
   try {
     return transform(code, {
-      plugins: [babelPluginSyntaxJsx, babelPluginRemoveTuid]
+      plugins: [
+        babelPluginSyntaxJsx,
+        babelPluginRemoveTuid,
+        [babelPluginAddBlockImports, { blocks }]
+      ]
     }).code
   } catch (e) {
     return null

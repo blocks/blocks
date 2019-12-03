@@ -133,7 +133,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
   useEffect(() => {
     try {
       const newTransformedCode = transforms.toTransformedJSX(code)
-      const newRawCode = transforms.toRawJSX(code)
+      const newRawCode = transforms.toRawJSX(code, { blocks: srcBlocks })
       const newSrcBlocks = queries.getBlocks(code)
 
       setRawCode(newRawCode)
