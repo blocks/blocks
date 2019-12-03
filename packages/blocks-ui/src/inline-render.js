@@ -2,6 +2,8 @@
 import React, { useMemo } from 'react'
 import { jsx, ThemeProvider, Styled } from 'theme-ui'
 
+import styles from './use-canvas-styles'
+
 export default ({ fullHeight, code, scope, theme, ...props }) => {
   const element = useMemo(() => {
     if (!code) {
@@ -29,7 +31,8 @@ export default ({ fullHeight, code, scope, theme, ...props }) => {
         sx={{
           height: fullHeight ? '100%' : undefined,
           color: 'text',
-          bg: 'background'
+          bg: 'background',
+          ...styles()
         }}
       >
         {element}

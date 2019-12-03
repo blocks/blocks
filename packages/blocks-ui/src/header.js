@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { Code, Layers, Monitor } from 'react-feather'
+import { Code, Layers, Monitor, Grid } from 'react-feather'
 
 import { useEditor } from './editor-context'
 import { IconButton } from './ui'
 
-function ToggleIconButton({ type, label, icon: IconComponent }) {
+function ToggleModeIconButton({ type, label, icon: IconComponent }) {
   const editorState = useEditor()
   return (
     <IconButton
@@ -17,6 +17,28 @@ function ToggleIconButton({ type, label, icon: IconComponent }) {
         size={15}
         sx={{
           stroke: editorState.mode === type ? '#0079FF' : undefined,
+          position: 'relative',
+          top: '1px'
+        }}
+      />
+    </IconButton>
+  )
+}
+
+function ToggleIconButton({ type, label, icon: IconComponent }) {
+  const editorState = useEditor()
+  const isActive = !!editorState[type]
+
+  return (
+    <IconButton
+      title={label}
+      aria-label={label}
+      onClick={() => editorState.update({ ...editorState, [type]: !isActive })}
+    >
+      <IconComponent
+        size={15}
+        sx={{
+          stroke: isActive ? '#0079FF' : undefined,
           position: 'relative',
           top: '1px'
         }}
@@ -46,13 +68,14 @@ export default () => {
           }}
         />
       </a>
-      <ToggleIconButton type="canvas" label="View canvas" icon={Layers} />
-      <ToggleIconButton
+      <ToggleIconButton type="xray" label="XRay mode" icon={Grid} />
+      <ToggleModeIconButton type="canvas" label="View canvas" icon={Layers} />
+      <ToggleModeIconButton
         type="viewports"
         label="View multiple viewports"
         icon={Monitor}
       />
-      <ToggleIconButton type="code" label="View code" icon={Code} />
+      <ToggleModeIconButton type="code" label="View code" icon={Code} />
     </header>
   )
 }
