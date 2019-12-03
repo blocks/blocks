@@ -1,5 +1,7 @@
 import template from '@babel/template'
 
+import { uniq } from '../util'
+
 // TODO: Make this configurable for other "blocks packs"
 const BLOCKS_IMPORT_SOURCE = '@blocks/blocks'
 
@@ -15,7 +17,7 @@ export default (_api, { blocks = [] }) => {
         }
 
         if (blocks.length) {
-          const imports = blocks.map(block => block.name).join(', ')
+          const imports = uniq(blocks.map(block => block.name)).join(', ')
           const importAst = template.ast(
             `import {${imports}} from '${BLOCKS_IMPORT_SOURCE}'`
           )

@@ -1,5 +1,9 @@
 import * as t from '@babel/types'
 
+export const uniq = arr => {
+  return [...new Set(arr)]
+}
+
 export const uuid = (
   a // placeholder
 ) => {
