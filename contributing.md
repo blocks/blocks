@@ -1,6 +1,6 @@
 # Contributing
 
-> This project has a [Code of Conduct][./code-of-conduct.md].
+> This project has a [Code of Conduct](./code-of-conduct.md).
 > By interacting with this repository, organization, or community you agree to
 > abide by its terms.
 
@@ -31,10 +31,21 @@ started making changes to the editor itself.
 Docs pages themselves are located in `src/pages`. All types of
 docs contributions are very welcome!
 
+## How to contribute?
+
 Before undergoing a substantial to docs or the codebase, please
 open up an issue to make sure it's a desired change. We don't want
 you to put in lots of time for something that isn't part of this
 project's goals.
+
+We're working on formalizing the roadmap for **Blocks**, to make 
+the path to contributing a little bit clearer. 
+
+For now, good places to look at are the
+[issues](https://github.com/blocks/blocks/issues) and the 
+[roadmap](https://github.com/orgs/blocks/projects/1). 
+
+Reporting bugs that have not been issued yet also helps!
 
 ## Related
 
