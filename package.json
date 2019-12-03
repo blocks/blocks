@@ -5,9 +5,7 @@
     "start": "yarn docs",
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "deps-update": "ncu -u && lerna exec \"ncu -u\"",
     "docs": "gatsby develop",
-    "docs-build": "gatsby build",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
     "prepare": "lerna run prepare",
     "publish": "lerna publish --force-publish=\"*\""
