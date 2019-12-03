@@ -21,7 +21,7 @@ export default (_api, { blocks = [] }) => {
           )
 
           path.replaceWith(importAst)
-          path.stop()
+          path.skip()
         } else {
           path.remove()
         }
