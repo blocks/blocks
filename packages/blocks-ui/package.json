@@ -13,6 +13,7 @@
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/standalone": "^7.7.4",
     "@babel/template": "^7.7.4",
+    "@blocks/blocks": "^0.0.45",
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
     "@emotion/weak-memoize": "^0.2.4",
