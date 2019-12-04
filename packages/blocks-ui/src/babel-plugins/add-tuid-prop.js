@@ -1,4 +1,5 @@
 import { uuid, isBlocksRootElement } from '../util'
+import { uuidName } from '../constants'
 
 export default api => {
   const { types: t } = api
@@ -18,7 +19,7 @@ export default api => {
         }
 
         const tuid = path.node.attributes.find(
-          node => node.name && node.name.name === '___tuid'
+          node => node.name && node.name.name === uuidName
         )
 
         if (tuid) {
@@ -26,7 +27,7 @@ export default api => {
         }
 
         path.node.attributes.push(
-          t.jSXAttribute(t.jSXIdentifier('___tuid'), t.stringLiteral(uuid()))
+          t.jSXAttribute(t.jSXIdentifier(uuidName), t.stringLiteral(uuid()))
         )
       }
     }

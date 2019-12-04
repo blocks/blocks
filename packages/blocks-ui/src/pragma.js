@@ -2,6 +2,7 @@
 import { jsx } from 'theme-ui'
 
 import { useElement } from './element-context'
+import { uuidName } from './constants'
 
 const IGNORED_TYPES = ['path']
 
@@ -9,8 +10,8 @@ export default elementSelectionHandler => (type, props, ...children) => {
   const element = useElement() || {}
 
   props = props || {}
-  const { ___tuid: id, sx = {} } = props
-  delete props.___tuid
+  const { [uuidName]: id, sx = {} } = props
+  delete props[uuidName]
 
   const isCurrentElement = id && id === element.id
 

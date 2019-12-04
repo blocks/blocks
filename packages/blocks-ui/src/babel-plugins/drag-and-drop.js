@@ -1,6 +1,6 @@
 import template from '@babel/template'
-
 import { isBlocksRootElement } from '../util'
+import { uuidName } from '../constants'
 
 const navRoot = id =>
   template.ast(
@@ -68,7 +68,7 @@ export default api => {
           .filter(node => t.isJSXElement(node))
           .map((node, i) => {
             const tuid = node.openingElement.attributes.find(
-              node => node.name && node.name.name === '___tuid'
+              node => node.name && node.name.name === uuidName
             )
 
             if (!tuid) {

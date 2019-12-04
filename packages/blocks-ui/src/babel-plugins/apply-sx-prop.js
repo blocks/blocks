@@ -1,6 +1,6 @@
 import template from '@babel/template'
-
 import { toLiteral } from '../util'
+import { uuidName } from '../constants'
 
 export default (api, { elementId, sx }) => {
   const { types: t } = api
@@ -9,7 +9,7 @@ export default (api, { elementId, sx }) => {
     visitor: {
       JSXOpeningElement(path) {
         const id = path.node.attributes.find(
-          node => node && node.name && node.name.name === '___tuid'
+          node => node && node.name && node.name.name === uuidName
         )
 
         if (!id || id.value.value !== elementId) {

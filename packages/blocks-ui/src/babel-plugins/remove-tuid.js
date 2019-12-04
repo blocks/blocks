@@ -1,3 +1,5 @@
+import { uuidName } from '../constants'
+
 export default () => {
   return {
     visitor: {
@@ -10,7 +12,7 @@ export default () => {
         }
 
         const attributesWithoutUuid = path.node.attributes.filter(
-          node => node.name && node.name.name !== '___tuid'
+          node => node.name && node.name.name !== uuidName
         )
         path.node.attributes = attributesWithoutUuid
       }
