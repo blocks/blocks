@@ -3,6 +3,8 @@
   "name": "blocks",
   "scripts": {
     "start": "cd packages/docs && yarn start",
+    "build": "cd packages/dosc && yarn build",
+    "clean": "cd packages/docs && yarn clean",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
     "prepare": "lerna run prepare",
     "publish": "lerna publish --force-publish=\"*\""
