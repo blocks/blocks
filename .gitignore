@@ -1,6 +1,8 @@
+readme.md
 node_modules
 dist
 .cache
 public
 gatsby
 *.swp
+yarn-error.log

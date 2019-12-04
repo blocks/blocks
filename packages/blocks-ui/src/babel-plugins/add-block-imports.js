@@ -3,7 +3,7 @@ import template from '@babel/template'
 import { uniq } from '../util'
 
 // TODO: Make this configurable for other "blocks packs"
-const BLOCKS_IMPORT_SOURCE = '@blocks/blocks'
+const BLOCKS_IMPORT_SOURCE = '@blocks/react'
 
 const isBlocksImport = node =>
   node.source && node.source.extra.rawValue === BLOCKS_IMPORT_SOURCE
