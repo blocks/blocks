@@ -4,12 +4,14 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
 
+import { useEditor } from './editor-context'
 import InlineBlockRender from './inline-block-render'
 
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
 
 export default ({ components, theme }) => {
+  const { mode } = useEditor()
   const list = useMemo(() => {
     return Object.keys(components).map((key, i) => {
       const Component = components[key]
@@ -54,6 +56,15 @@ export default ({ components, theme }) => {
       )
     })
   }, [components])
+
+  if (mode === 'viewports') {
+    return (
+      <div sx={{ py: 64, textAlign: 'center' }}>
+        Viewport mode does not work with components. <br /> Switch to{' '}
+        <strong>canvas mode</strong> to add components.
+      </div>
+    )
+  }
 
   return (
     <Box p={3}>

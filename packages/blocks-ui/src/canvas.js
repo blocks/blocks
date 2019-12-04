@@ -5,6 +5,7 @@ import parserJS from 'prettier/parser-babylon'
 
 import { useEditor } from './editor-context'
 import InlineRender from './inline-render'
+import { PreviewArea, Device } from './device-preview'
 
 import { Clipboard, Check } from 'react-feather'
 import { IconButton } from './ui'
@@ -15,8 +16,8 @@ const Wrap = props => (
     sx={{
       position: 'relative',
       width: '60%',
+      height: '100%',
       backgroundColor: 'white',
-      height: 'calc(100vh - 43px)',
       overflow: 'auto'
     }}
     {...props}
@@ -65,9 +66,26 @@ export default ({ code, transformedCode, scope, theme }) => {
     )
   }
 
+  if (mode === 'viewports') {
+    return (
+      <PreviewArea>
+        {theme.breakpoints.map(breakpoint => (
+          <Device key={breakpoint} width={breakpoint} height={500}>
+            <InlineRender scope={scope} code={transformedCode} theme={theme} />
+          </Device>
+        ))}
+      </PreviewArea>
+    )
+  }
+
   return (
     <Wrap>
-      <InlineRender scope={scope} code={transformedCode} theme={theme} />
+      <InlineRender
+        fullHeight
+        scope={scope}
+        code={transformedCode}
+        theme={theme}
+      />
     </Wrap>
   )
 }
