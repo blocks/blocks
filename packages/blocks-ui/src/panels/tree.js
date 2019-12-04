@@ -1,7 +1,10 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-export default function Tree({ tree, depth, selectedId, onSelect }) {
+import { useCode } from '../providers/code'
+import { useEditor } from '../providers/editor'
+
+const Tree = ({ tree, depth, selectedId, onSelect }) => {
   return (
     <div
       sx={{
@@ -50,6 +53,36 @@ export default function Tree({ tree, depth, selectedId, onSelect }) {
           depth={depth + 1}
           selectedId={selectedId}
           onSelect={onSelect}
+        />
+      ))}
+    </div>
+  )
+}
+
+export default () => {
+  const { tree, currentElementId, setCurrentElementId } = useCode()
+  const { updateActiveTabByName } = useEditor()
+
+  return (
+    <div
+      sx={{
+        height: '100%',
+        py: 2,
+        overflow: 'auto',
+        borderRight: '1px solid',
+        borderColor: 'border'
+      }}
+    >
+      {tree.children.map(child => (
+        <Tree
+          key={child.id}
+          tree={child}
+          depth={0}
+          selectedId={currentElementId}
+          onSelect={elementId => {
+            setCurrentElementId(elementId)
+            updateActiveTabByName('editor')
+          }}
         />
       ))}
     </div>

@@ -4,7 +4,7 @@ import * as Blocks from '@blocks/react'
 
 const JSX = `
 import React from 'react'
-import { HeaderBasic } from '@blocks/react'
+import { Blocks, HeaderBasic } from '@blocks/react'
 
 export default () => (
   <Blocks.Root>
@@ -25,5 +25,22 @@ const Layout = props => {
 }
 
 export default () => (
-  <Editor src={JSX} blocks={Blocks} onChange={console.log} layout={Layout} />
+  <Editor
+    src={JSX}
+    blocks={Blocks}
+    layout={Layout}
+    onChange={code => {
+      // return null
+      // fetch('/___blocks', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     code,
+      //     page: 'foo.js'
+      //   })
+      // })
+    }}
+  />
 )

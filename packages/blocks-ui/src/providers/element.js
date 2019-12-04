@@ -9,4 +9,4 @@ export const useElement = () => {
 
 export const ElementProvider = ElementContext.Provider
 
-export default ElementContext
+export default ElementProvider

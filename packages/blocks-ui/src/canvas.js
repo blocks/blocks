@@ -5,12 +5,14 @@ import parserJS from 'prettier/parser-babylon'
 
 import { Clipboard, Check } from 'react-feather'
 
-import { useEditor } from './editor-context'
+import * as transforms from './transforms'
+import { useEditor } from './providers/editor'
+import { useCode } from './providers/code'
 import InlineRender from './inline-render'
 import { PreviewArea, Device } from './device-preview'
-
 import { IconButton } from './ui'
 import useCopyToClipboard from './use-copy-to-clipboard'
+import { useScope } from './providers/scope'
 
 const Wrap = props => (
   <div
@@ -42,9 +44,12 @@ const Copy = ({ toCopy }) => {
   )
 }
 
-export default ({ code, transformedCode, scope, theme }) => {
+export default () => {
+  const { theme, ...scope } = useScope()
+  const { code, transformedCode } = useCode()
   const { mode } = useEditor()
-  const formattedCode = prettier.format(code, {
+  const rawCode = transforms.toRawJSX(code)
+  const formattedCode = prettier.format(rawCode, {
     parser: 'babel',
     plugins: [parserJS]
   })
