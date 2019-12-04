@@ -2,6 +2,7 @@ import { declare } from '@babel/helper-plugin-utils'
 import * as t from '@babel/types'
 
 import { textTrim, getElementName, getUuid } from '../util'
+import { uuidName } from '../constants'
 
 const getElementProps = (attributes = {}) => {
   const props = attributes.reduce((acc, curr) => {
@@ -35,7 +36,7 @@ const getParentId = node => {
   }
 
   const id = openingElement.attributes.find(
-    node => node && node.name && node.name.name === '___tuid'
+    node => node && node.name && node.name.name === uuidName
   )
 
   return id && id.value && id.value.value
@@ -53,7 +54,7 @@ class BabelPluginGetCurrentElement {
         visitor: {
           JSXOpeningElement: path => {
             const id = path.node.attributes.find(
-              node => node && node.name && node.name.name === '___tuid'
+              node => node && node.name && node.name.name === uuidName
             )
 
             if (!id || id.value.value !== elementId) {

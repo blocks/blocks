@@ -1,4 +1,5 @@
 import * as t from '@babel/types'
+import { uuidName } from './constants'
 
 export const uuid = (
   a // placeholder
@@ -70,7 +71,7 @@ export const getElementName = node => {
 
 export const getUuid = node => {
   const id = node.attributes.find(
-    node => node && node.name && node.name.name === '___tuid'
+    node => node && node.name && node.name.name === uuidName
   )
 
   return id && id.value.value
