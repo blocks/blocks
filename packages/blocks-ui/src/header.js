@@ -5,77 +5,118 @@ import { Code, Layers, Monitor, Grid } from 'react-feather'
 import { useEditor } from './editor-context'
 import { IconButton } from './ui'
 
-function ToggleModeIconButton({ type, label, icon: IconComponent }) {
+const modes = [
+  {
+    key: 'canvas',
+    Icon: Layers
+  },
+  {
+    key: 'viewports',
+    Icon: Monitor
+  },
+  {
+    key: 'code',
+    Icon: Code
+  }
+]
+
+const ToggleXRay = () => {
   const editorState = useEditor()
+  const isActive = Boolean(editorState.xray)
   return (
-    <IconButton
-      title={label}
-      aria-label={label}
-      onClick={() => editorState.update({ ...editorState, mode: type })}
-    >
-      <IconComponent
-        size={15}
-        sx={{
-          stroke: editorState.mode === type ? '#0079FF' : undefined,
-          position: 'relative',
-          top: '1px'
-        }}
-      />
-    </IconButton>
+    <ToolbarButton
+      label="XRay mode"
+      Icon={Grid}
+      isActive={isActive}
+      onClick={() => editorState.update({ ...editorState, xray: !isActive })}
+    />
   )
 }
 
-function ToggleIconButton({ type, label, icon: IconComponent }) {
+const Modes = () => {
   const editorState = useEditor()
-  const isActive = !!editorState[type]
-
   return (
-    <IconButton
-      title={label}
-      aria-label={label}
-      onClick={() => editorState.update({ ...editorState, [type]: !isActive })}
-    >
-      <IconComponent
-        size={15}
-        sx={{
-          stroke: isActive ? '#0079FF' : undefined,
-          position: 'relative',
-          top: '1px'
-        }}
-      />
-    </IconButton>
-  )
-}
-
-export default () => {
-  return (
-    <header
+    <div
       sx={{
-        display: 'flex',
-        width: '100%',
-        py: 2,
-        px: 3,
-        borderBottom: 'thin solid #e1e6eb'
+        display: 'grid',
+        gridAutoFlow: 'column',
+        gridGap: '1px',
+        borderRadius: 4,
+        overflow: 'hidden',
+        bg: '#e1e6eb',
+        border: '1px solid #e1e6eb'
       }}
     >
-      <a href="/" sx={{ mr: 'auto' }}>
-        <img
-          alt="Blocks logo"
-          src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
-          sx={{
-            height: 20,
-            verticalAlign: 'middle'
-          }}
+      {modes.map(({ key, Icon }) => (
+        <ToolbarButton
+          key={key}
+          label={`${key} mode`}
+          Icon={Icon}
+          isActive={editorState.mode === key}
+          onClick={() => editorState.update({ ...editorState, mode: key })}
         />
-      </a>
-      <ToggleIconButton type="xray" label="XRay mode" icon={Grid} />
-      <ToggleModeIconButton type="canvas" label="View canvas" icon={Layers} />
-      <ToggleModeIconButton
-        type="viewports"
-        label="View multiple viewports"
-        icon={Monitor}
-      />
-      <ToggleModeIconButton type="code" label="View code" icon={Code} />
-    </header>
+      ))}
+    </div>
   )
 }
+
+const ToolbarButton = ({ label, onClick, isActive, Icon }) => (
+  <IconButton
+    title={label}
+    aria-label={label}
+    onClick={onClick}
+    sx={{
+      bg: isActive ? '#e1e6eb' : 'white',
+      fill: isActive ? 'primary' : null,
+      '&:hover, &:focus': {
+        bg: isActive ? null : '#f2f3f5',
+        stroke: null
+      }
+    }}
+  >
+    <Icon
+      size={14}
+      sx={{
+        stroke: isActive ? 'primary' : undefined,
+        position: 'relative',
+        top: '1px'
+      }}
+    />
+  </IconButton>
+)
+
+const Header = () => (
+  <header
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
+      py: 2,
+      px: 3,
+      borderBottom: 'thin solid #e1e6eb'
+    }}
+  >
+    <a href="/">
+      <img
+        alt="Blocks logo"
+        src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+        sx={{
+          height: 20,
+          verticalAlign: 'middle'
+        }}
+      />
+    </a>
+    <div
+      sx={{
+        display: 'grid',
+        gridAutoFlow: 'column',
+        gridGap: 3
+      }}
+    >
+      <ToggleXRay />
+      <Modes />
+    </div>
+  </header>
+)
+
+export default Header
