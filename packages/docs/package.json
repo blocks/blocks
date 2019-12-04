@@ -1,0 +1,24 @@
+{
+  "name": "@blocks/docs",
+  "version": "0.0.48",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn docs",
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "docs": "gatsby develop"
+  },
+  "dependencies": {
+    "gatsby-plugin-catch-links": "2.1.19",
+    "gatsby-plugin-compile-es6-packages": "2.1.0",
+    "gatsby-plugin-fathom": "1.1.0",
+    "gatsby-plugin-manifest": "2.2.31",
+    "gatsby-plugin-mdx": "1.0.59",
+    "gatsby-plugin-react-helmet": "3.1.16",
+    "gatsby-plugin-theme-ui": "0.2.43",
+    "gatsby-source-filesystem": "2.1.40"
+  },
+  "devDependencies": {
+    "gatsby": "2.18.6"
+  }
+}

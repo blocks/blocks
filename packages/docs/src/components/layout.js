@@ -7,7 +7,7 @@ import { Twitter, GitHub } from 'react-feather'
 
 import Nav from '../nav.mdx'
 import SEO from './seo'
-import { version } from '../../lerna.json'
+import { version } from '../../../../lerna.json'
 
 export default ({ children, _frontmatter: { title, noNav } = {} }) => (
   <Styled.root>
