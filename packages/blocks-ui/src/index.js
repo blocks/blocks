@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
 import * as presets from '@theme-ui/presets'
@@ -84,12 +84,12 @@ const defaultTheme = {
   breakpoints: [360, 600, 1024]
 }
 
-export default function Editor({
+const Editor = ({
   src: initialCode,
   blocks: providedBlocks,
   onChange,
   layouts
-}) {
+}) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -308,3 +308,12 @@ export default function Editor({
     </Layout>
   )
 }
+
+Editor.defaultProps = {
+  layouts: {
+    Block: props => <div {...props} />,
+    Page: props => <div {...props} />
+  }
+}
+
+export default Editor
