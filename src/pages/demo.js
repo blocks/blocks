@@ -20,18 +20,14 @@ export default () => (
 )
 `
 
-const BlockLayout = props => {
-  return <div style={{ border: '5px solid black ' }}>{props.children}</div>
+const PageLayout = props => {
+  // Anything you want inserted into the Page/Canvas should be done here
+  return <div {...props} />
 }
 
-const PageLayout = props => {
-  return (
-    <div>
-      <div style={{ height: '20px', backgroundColor: 'red' }} />
-      {props.children}
-      <div style={{ height: '20px', backgroundColor: 'blue' }} />
-    </div>
-  )
+const BlockLayout = props => {
+  // Anything you want inserted into the Block preview should be done here
+  return <div {...props} />
 }
 
 export default () => (
