@@ -1,10 +1,10 @@
 import React from 'react'
 import Editor from 'blocks-ui/src'
-import * as Blocks from '@blocks/blocks/src'
+import * as Blocks from '@blocks/react/src'
 
 const JSX = `
 import React from 'react'
-import { HeaderBasic } from '@blocks/blocks'
+import { HeaderBasic } from '@blocks/react'
 
 export default () => (
   <Blocks.Root>

@@ -15,7 +15,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'blocks',
-        path: 'packages/blocks/src'
+        path: 'packages/react/src'
       }
     },
     {

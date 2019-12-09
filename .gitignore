@@ -4,3 +4,4 @@ dist
 public
 gatsby
 *.swp
+yarn-error.log
