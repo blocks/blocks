@@ -16,8 +16,11 @@ export default (_api, { blocks = [] }) => {
           return
         }
 
+        const importNames = blocks.map(block => block.name)
+        const allImports = uniq(['Blocks', ...importNames])
+
         if (blocks.length) {
-          const imports = uniq(blocks.map(block => block.name)).join(', ')
+          const imports = uniq(allImports).join(', ')
           const importAst = template.ast(
             `import {${imports}} from '${BLOCKS_IMPORT_SOURCE}'`
           )
