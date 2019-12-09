@@ -46,62 +46,29 @@ export default ({
       >
         <Tab
           sx={{
-            flex: 1,
-            appearance: 'none',
-            border: 0,
-            py: 2,
-            fontSize: 0,
-            fontWeight: 500,
-            borderBottom: activeTab === 0 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 0 ? null : '#fafafa',
-            '&:focus': {
-              zIndex: 99,
-              outline: 'none',
-              fontWeight: 500,
-              textDecoration: 'underline'
-            }
+            ...baseTabStyles,
+            borderBottomColor: activeTab === 0 ? 'transparent' : '#e1e6eb',
+            backgroundColor: activeTab === 0 ? null : '#fafafa'
           }}
         >
           Editor
         </Tab>
         <Tab
           sx={{
-            flex: 1,
-            appearance: 'none',
-            border: 0,
-            py: 2,
-            fontSize: 0,
-            fontWeight: 500,
+            ...baseTabStyles,
             borderLeft: 'thin solid #e1e6eb',
             borderRight: 'thin solid #e1e6eb',
-            borderBottom: activeTab === 1 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 1 ? null : '#fafafa',
-            '&:focus': {
-              zIndex: 99,
-              outline: 'none',
-              fontWeight: 500,
-              textDecoration: 'underline'
-            }
+            borderBottomColor: activeTab === 1 ? 'transparent' : '#e1e6eb',
+            backgroundColor: activeTab === 1 ? null : '#fafafa'
           }}
         >
           Components
         </Tab>
         <Tab
           sx={{
-            flex: 1,
-            appearance: 'none',
-            border: 0,
-            py: 2,
-            fontSize: 0,
-            fontWeight: 500,
-            borderBottom: activeTab === 2 ? 0 : 'thin solid #e1e6eb',
-            backgroundColor: activeTab === 2 ? null : '#fafafa',
-            '&:focus': {
-              zIndex: 99,
-              outline: 'none',
-              fontWeight: 500,
-              textDecoration: 'underline'
-            }
+            ...baseTabStyles,
+            borderBottomColor: activeTab === 2 ? 'transparent' : '#e1e6eb',
+            backgroundColor: activeTab === 2 ? null : '#fafafa'
           }}
         >
           Theme
@@ -154,3 +121,21 @@ export default ({
     </Tabs>
   </section>
 )
+
+// Base sytles for tabs
+const baseTabStyles = {
+  flex: 1,
+  appearance: 'none',
+  border: 0,
+  py: 2,
+  fontSize: 0,
+  fontWeight: 500,
+  borderBottomStyle: 'solid',
+  borderBottomWidth: 'thin',
+  '&:focus': {
+    zIndex: 99,
+    outline: 'none',
+    fontWeight: 500,
+    textDecoration: 'underline'
+  }
+}
