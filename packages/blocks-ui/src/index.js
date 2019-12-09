@@ -84,7 +84,12 @@ const defaultTheme = {
   breakpoints: [360, 600, 1024]
 }
 
-export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
+export default function Editor({
+  src: initialCode,
+  blocks: providedBlocks,
+  onChange,
+  layouts
+}) {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -277,6 +282,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             transformedCode={transformedCode}
             scope={scope}
             theme={theme}
+            layouts={layouts}
           />
           <SidePanel
             activeTab={activeTab}
@@ -295,6 +301,7 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
             handleClone={handleClone}
             handleTextUpdate={handleTextUpdate}
             setElementId={setElementId}
+            layouts={layouts}
           />
         </div>
       </DragDropContext>

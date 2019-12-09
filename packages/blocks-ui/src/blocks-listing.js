@@ -10,7 +10,7 @@ import InlineBlockRender from './inline-block-render'
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
 
-export default ({ components, theme }) => {
+export default ({ components, theme, layouts: { Block: BlockLayout } }) => {
   const { mode } = useEditor()
   const list = useMemo(() => {
     return Object.keys(components).map((key, i) => {
@@ -47,6 +47,7 @@ export default ({ components, theme }) => {
                       [key]: Component
                     }}
                     name={key}
+                    layout={BlockLayout}
                   />
                 </div>
               </div>

@@ -41,7 +41,13 @@ const Copy = ({ toCopy }) => {
   )
 }
 
-export default ({ code, transformedCode, scope, theme }) => {
+export default ({
+  code,
+  transformedCode,
+  scope,
+  theme,
+  layouts: { Page: PageLayout }
+}) => {
   const { mode } = useEditor()
   const formattedCode = prettier.format(code, {
     parser: 'babel',
@@ -71,7 +77,13 @@ export default ({ code, transformedCode, scope, theme }) => {
       <PreviewArea>
         {theme.breakpoints.map(breakpoint => (
           <Device key={breakpoint} width={breakpoint} height={500}>
-            <InlineRender scope={scope} code={transformedCode} theme={theme} />
+            <PageLayout>
+              <InlineRender
+                scope={scope}
+                code={transformedCode}
+                theme={theme}
+              />
+            </PageLayout>
           </Device>
         ))}
       </PreviewArea>
@@ -80,12 +92,14 @@ export default ({ code, transformedCode, scope, theme }) => {
 
   return (
     <Wrap>
-      <InlineRender
-        fullHeight
-        scope={scope}
-        code={transformedCode}
-        theme={theme}
-      />
+      <PageLayout>
+        <InlineRender
+          fullHeight
+          scope={scope}
+          code={transformedCode}
+          theme={theme}
+        />
+      </PageLayout>
     </Wrap>
   )
 }

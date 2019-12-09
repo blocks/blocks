@@ -20,4 +20,25 @@ export default () => (
 )
 `
 
-export default () => <Editor src={JSX} blocks={Blocks} onChange={console.log} />
+const BlockLayout = props => {
+  return <div style={{ border: '5px solid black ' }}>{props.children}</div>
+}
+
+const PageLayout = props => {
+  return (
+    <div>
+      <div style={{ height: '20px', backgroundColor: 'red' }} />
+      {props.children}
+      <div style={{ height: '20px', backgroundColor: 'blue' }} />
+    </div>
+  )
+}
+
+export default () => (
+  <Editor
+    src={JSX}
+    blocks={Blocks}
+    onChange={console.log}
+    layouts={{ Page: PageLayout, Block: BlockLayout }}
+  />
+)

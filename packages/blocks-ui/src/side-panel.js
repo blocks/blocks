@@ -23,7 +23,8 @@ export default ({
   handleInsertElement,
   handleClone,
   handleTextUpdate,
-  setElementId
+  setElementId,
+  layouts
 }) => (
   <section
     id="side-panel"
@@ -144,7 +145,11 @@ export default ({
         </TabPanel>
         <TabPanel>
           {activeTab === 1 ? (
-            <BlocksListing components={blocks} theme={theme} />
+            <BlocksListing
+              components={blocks}
+              theme={theme}
+              layouts={layouts}
+            />
           ) : null}
         </TabPanel>
         <TabPanel>

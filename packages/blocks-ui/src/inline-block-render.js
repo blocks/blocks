@@ -4,7 +4,13 @@ import BlockError from './block-error'
 
 import { toTransformedBlockJSX } from './transforms'
 
-export default ({ code, scope: providedScope, name, ...props }) => {
+export default ({
+  code,
+  scope: providedScope,
+  name,
+  layout: BlockLayout,
+  ...props
+}) => {
   try {
     const transformed = toTransformedBlockJSX(code)
     const scope = { jsx, ...providedScope }
@@ -20,7 +26,11 @@ export default ({ code, scope: providedScope, name, ...props }) => {
 
     const element = fn(React, ...Object.values(scope))
 
-    return <div {...props}>{element}</div>
+    return (
+      <div {...props}>
+        <BlockLayout>{element}</BlockLayout>
+      </div>
+    )
   } catch (e) {
     return <BlockError name={name} message={e.message} />
   }
