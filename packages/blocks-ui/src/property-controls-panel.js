@@ -31,6 +31,7 @@ const FieldGroup = props => (
       },
       'input[type="checkbox"]': {
         height: 'auto',
+        mr: 2,
         width: 'auto'
       },
       '.fieldset': {
