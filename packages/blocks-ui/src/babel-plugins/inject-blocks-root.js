@@ -2,7 +2,7 @@ import template from '@babel/template'
 
 const root = template.ast(
   `
-  const BLOCKS_Root = ({ children }) => {
+  const BLOCKS_Root = ({ children, layout: Layout = 'div' }) => {
     return (
       <BLOCKS_Droppable droppableId="root">
         {(provided, snapshot) => {
@@ -17,7 +17,7 @@ const root = template.ast(
           )
 
           return React.createElement(
-            'div',
+            Layout,
             allProps,
             children,
             provided.placeholder

@@ -88,7 +88,12 @@ const defaultTheme = {
   breakpoints: [360, 600, 1024]
 }
 
-export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
+export default ({
+  src: initialCode,
+  blocks: providedBlocks,
+  onChange,
+  layout
+}) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -113,7 +118,8 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
     ...themeComponents,
-    ...blocks
+    ...blocks,
+    layout
   }
 
   useEffect(() => {
