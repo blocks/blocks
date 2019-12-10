@@ -28,7 +28,8 @@ export default ({
   <section
     id="side-panel"
     sx={{
-      borderLeft: 'thin solid #e1e6eb',
+      borderLeft: '1px solid',
+      borderColor: 'border',
       width: '40%',
       height: '100%',
       overflow: 'auto',
@@ -47,7 +48,7 @@ export default ({
         <Tab
           sx={{
             ...baseTabStyles,
-            borderBottomColor: activeTab === 0 ? 'transparent' : '#e1e6eb',
+            borderColor: activeTab === 0 ? 'transparent' : 'border',
             backgroundColor: activeTab === 0 ? null : '#fafafa'
           }}
         >
@@ -56,9 +57,9 @@ export default ({
         <Tab
           sx={{
             ...baseTabStyles,
-            borderLeft: 'thin solid #e1e6eb',
-            borderRight: 'thin solid #e1e6eb',
-            borderBottomColor: activeTab === 1 ? 'transparent' : '#e1e6eb',
+            borderLeft: '1px solid',
+            borderRight: '1px solid',
+            borderColor: activeTab === 1 ? 'transparent' : 'border',
             backgroundColor: activeTab === 1 ? null : '#fafafa'
           }}
         >
@@ -67,7 +68,7 @@ export default ({
         <Tab
           sx={{
             ...baseTabStyles,
-            borderBottomColor: activeTab === 2 ? 'transparent' : '#e1e6eb',
+            borderColor: activeTab === 2 ? 'transparent' : 'border',
             backgroundColor: activeTab === 2 ? null : '#fafafa'
           }}
         >
@@ -100,7 +101,8 @@ export default ({
                   lineHeight: 1,
                   px: 3,
                   py: 2,
-                  borderBottom: 'thin solid #e1e6eb'
+                  borderBottom: '1px solid',
+                  borderColor: 'border'
                 }}
               >
                 Canvas

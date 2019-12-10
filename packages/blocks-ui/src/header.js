@@ -43,8 +43,9 @@ const Modes = () => {
         gridGap: '1px',
         borderRadius: 4,
         overflow: 'hidden',
-        bg: '#e1e6eb',
-        border: '1px solid #e1e6eb'
+        bg: 'border',
+        border: '1px solid',
+        borderColor: 'border'
       }}
     >
       {modes.map(({ key, Icon }) => (
@@ -66,7 +67,7 @@ const ToolbarButton = ({ label, onClick, isActive, Icon }) => (
     aria-label={label}
     onClick={onClick}
     sx={{
-      bg: isActive ? '#e1e6eb' : 'white',
+      bg: isActive ? 'border' : 'white',
       fill: isActive ? 'primary' : null,
       '&:hover, &:focus': {
         bg: isActive ? null : '#f2f3f5',
@@ -93,7 +94,8 @@ const Header = () => (
       width: '100%',
       py: 2,
       px: 3,
-      borderBottom: 'thin solid #e1e6eb'
+      borderBottom: '1px solid',
+      borderColor: 'border'
     }}
   >
     <a href="/">

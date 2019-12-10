@@ -3,6 +3,10 @@ import prism from '@theme-ui/prism/presets/theme-ui'
 
 const theme = {
   ...system,
+  colors: {
+    ...system.colors,
+    border: '#e1e6eb'
+  },
   fontWeights: {
     body: 400,
     heading: 600,
