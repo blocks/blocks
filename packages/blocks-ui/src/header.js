@@ -2,6 +2,8 @@
 import { jsx } from 'theme-ui'
 import { Code, Layers, Monitor, Grid } from 'react-feather'
 
+import { version } from '../../../lerna.json'
+
 import { useEditor } from './editor-context'
 import { IconButton } from './ui'
 
@@ -96,15 +98,35 @@ const Header = () => (
       borderBottom: 'thin solid #e1e6eb'
     }}
   >
-    <a href="/">
+    <a
+      href="https://blocks-ui.com/"
+      sx={{
+        textDecoration: 'none',
+        color: 'inherit',
+        display: 'flex',
+        alignItems: 'center'
+      }}
+    >
       <img
-        alt="Blocks logo"
         src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+        alt="blocks logo"
+        width="32"
         sx={{
-          height: 20,
-          verticalAlign: 'middle'
+          verticalAlign: 'middle',
+          ml: '-4px',
+          mr: 2
         }}
       />
+      Blocks
+      <span
+        sx={{
+          fontSize: 0,
+          mt: '2px',
+          ml: 2
+        }}
+      >
+        v{version}
+      </span>
     </a>
     <div
       sx={{
