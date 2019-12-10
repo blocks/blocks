@@ -20,11 +20,15 @@ export default () => (
 )
 `
 
+const Layout = props => {
+  return (
+    <div>
+      <span>HELLO??</span>
+      {props.children}
+    </div>
+  )
+}
+
 export default () => (
-  <Editor
-    src={JSX}
-    blocks={Blocks}
-    onChange={console.log}
-    layout={props => <div>Hello{props.children}</div>}
-  />
+  <Editor src={JSX} blocks={Blocks} onChange={console.log} layout={Layout} />
 )
