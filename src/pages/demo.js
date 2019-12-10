@@ -20,4 +20,11 @@ export default () => (
 )
 `
 
-export default () => <Editor src={JSX} blocks={Blocks} onChange={console.log} />
+export default () => (
+  <Editor
+    src={JSX}
+    blocks={Blocks}
+    onChange={console.log}
+    layout={props => <div>Hello{props.children}</div>}
+  />
+)

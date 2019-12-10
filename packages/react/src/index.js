@@ -15,4 +15,8 @@ export { default as TaglineBold } from './taglines/bold'
 // FOOTERS
 export { default as FooterBasic } from './footers/basic'
 
-export const Blocks = { Root: React.Fragment }
+export const Blocks = {
+  Root: ({ layout: Layout = React.Fragment, ...props }) => {
+    return <Layout {...props} />
+  }
+}
