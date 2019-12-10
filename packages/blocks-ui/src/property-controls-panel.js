@@ -10,8 +10,11 @@ const FieldGroup = props => (
     sx={{
       p: 3,
       label: {
+        display: 'block',
         fontSize: 0,
-        fontWeight: 'normal'
+        fontWeight: 'normal',
+        mb: 1,
+        mt: 3
       },
       '.fieldset label': {
         width: '30%'
@@ -25,6 +28,10 @@ const FieldGroup = props => (
         '&:hover': {
           border: 'thin solid #83898f'
         }
+      },
+      'input[type="checkbox"]': {
+        height: 'auto',
+        width: 'auto'
       },
       '.fieldset': {
         display: 'flex',
@@ -42,8 +49,10 @@ const FieldGroup = props => (
       h4: {
         fontSize: 0,
         fontWeight: 500,
+        letterSpacing: 3,
         mt: 0,
-        mb: 2
+        mb: 2,
+        textTransform: 'uppercase'
       },
       borderBottom: 'thin solid #e1e6eb'
     }}
