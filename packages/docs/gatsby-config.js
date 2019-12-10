@@ -15,7 +15,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'blocks',
-        path: 'packages/react/src'
+        path: '../react/src'
       }
     },
     {
@@ -40,7 +40,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#33e',
         display: 'standalone',
-        icon: 'src/assets/images/favicon.png'
+        icon: './src/assets/images/favicon.png'
       }
     }
   ]
