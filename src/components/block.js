@@ -75,7 +75,8 @@ export default ({ block }) => {
           alignItems: 'center',
           py: 2,
           px: 3,
-          borderBottom: 'thin solid #e1e6eb'
+          borderBottom: '1px solid',
+          borderColor: 'border'
         }}
       >
         <Link to="/blocks">
@@ -118,7 +119,8 @@ export default ({ block }) => {
           sx={{
             mb: [3, 4, 5],
             p: [3, 4, 5],
-            borderBottom: 'thin solid #e1e6eb',
+            borderBottom: '1px solid',
+            borderColor: 'border',
             backgroundColor: '#fafafa'
           }}
         >

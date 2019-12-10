@@ -41,7 +41,8 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
         as="header"
         sx={{
           gridArea: 'header',
-          borderBottom: 'thin solid #e1e6eb',
+          borderBottom: '1px solid',
+          borderColor: 'border',
           py: 2,
           px: 3,
           display: 'flex',

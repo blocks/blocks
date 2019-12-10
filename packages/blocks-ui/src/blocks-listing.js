@@ -34,7 +34,8 @@ export default ({ components, theme }) => {
               >
                 <div
                   sx={{
-                    border: 'thin solid #e1e6eb',
+                    border: '1px solid',
+                    borderColor: 'border',
                     bg: 'background',
                     color: 'text',
                     mb: 3

@@ -9,7 +9,8 @@ export default ({ children, onSelect }) => {
   return (
     <div
       sx={{
-        borderBottom: 'thin solid #e1e6eb',
+        borderBottom: '1px solid',
+        borderColor: 'border',
         backgroundColor: '#fafafa',
         p: 3,
         button: {
@@ -37,7 +38,8 @@ export default ({ children, onSelect }) => {
             appearance: 'none',
             backgroundColor: 'white',
             borderRadius: 4,
-            border: 'thin solid #e1e6eb',
+            border: '1px solid',
+            borderColor: 'border',
             display: 'block',
             textAlign: 'left',
             width: '100%',
