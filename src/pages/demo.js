@@ -21,12 +21,7 @@ export default () => (
 `
 
 const Layout = props => {
-  return (
-    <div>
-      <span>HELLO??</span>
-      {props.children}
-    </div>
-  )
+  return <div className="layout">{props.children}</div>
 }
 
 export default () => (

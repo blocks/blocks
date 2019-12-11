@@ -92,7 +92,7 @@ export default ({
   src: initialCode,
   blocks: providedBlocks,
   onChange,
-  layout
+  layout = 'div'
 }) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
@@ -119,7 +119,7 @@ export default ({
     BLOCKS_Text: props => <span {...props} />,
     ...themeComponents,
     ...blocks,
-    layout
+    BLOCKS_Layout: layout
   }
 
   useEffect(() => {
