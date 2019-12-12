@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 import { Code, Layers, Monitor, Grid } from 'react-feather'
 
-import { version } from '../../../lerna.json'
+import { version } from '../package.json'
 
 import { useEditor } from './editor-context'
 import { IconButton } from './ui'
