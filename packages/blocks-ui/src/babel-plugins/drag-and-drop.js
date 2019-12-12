@@ -56,7 +56,7 @@ export default api => {
             )
 
             if (!tuid) {
-              return
+              return null
             }
 
             const id = tuid.value.value

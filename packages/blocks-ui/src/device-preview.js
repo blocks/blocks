@@ -34,7 +34,7 @@ const Frame = ({ children, setFrame, ...restProps }) => {
     setNodes([contentDocument.head, contentDocument.body])
   }, [])
   return (
-    <iframe ref={frameRef} {...restProps}>
+    <iframe ref={frameRef} title="Device Preview" {...restProps}>
       {body
         ? createPortal(
             <CacheProvider value={createCacheWithContainer(head)}>
