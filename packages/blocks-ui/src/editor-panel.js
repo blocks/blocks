@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import React from 'react'
 import { jsx } from 'theme-ui'
-import { Label, Input, Flex } from '@theme-ui/components'
+import { Flex } from '@theme-ui/components'
 import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
 import { IconButton } from './ui'

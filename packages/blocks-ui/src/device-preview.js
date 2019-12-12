@@ -9,7 +9,6 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
-import mergeRefs from 'react-merge-refs'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 import weakMemoize from '@emotion/weak-memoize'

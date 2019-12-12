@@ -1,4 +1,5 @@
 import template from '@babel/template'
+
 import { uuidName } from '../constants'
 
 export default (_, { elementId } = {}) => {

@@ -7,6 +7,7 @@ import { Global } from '@emotion/core'
 import * as blocks from '@blocks/react/src'
 import InlineRender from 'blocks-ui/dist/inline-render'
 import * as controls from 'property-controls'
+
 import SEO from './seo'
 
 const { Container } = components

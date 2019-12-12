@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { useState } from 'react'
 import { jsx } from '@emotion/core'
-import { Styled, css } from 'theme-ui'
-import { Flex, Box } from 'theme-ui'
+import { Styled, css, Flex, Box } from 'theme-ui'
+
 import { Card, Label, Input, Button } from '../../components/ui'
 
 const Form = ({ node, editor }) => {

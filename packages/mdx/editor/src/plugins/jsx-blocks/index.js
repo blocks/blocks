@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Data } from 'slate'
+
 import { Context } from '../../components/context'
+
 import Form from './Form'
 import Overlay from './Overlay'
 

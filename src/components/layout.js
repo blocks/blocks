@@ -6,8 +6,10 @@ import { Link } from 'gatsby'
 import { Twitter, GitHub } from 'react-feather'
 
 import Nav from '../nav.mdx'
-import SEO from './seo'
+
 import { version } from '../../lerna.json'
+
+import SEO from './seo'
 
 export default ({ children, _frontmatter: { title, noNav } = {} }) => (
   <Styled.root>

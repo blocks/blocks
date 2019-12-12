@@ -2,6 +2,9 @@
 import ListsPlugin from '@convertkit/slate-lists'
 import DeepTable from 'slate-deep-table'
 import SoftBreak from 'slate-soft-break'
+
+import ThemeEditorPlugin from '../plugins/theme-editor'
+
 import MarkdownPlugin from './markdown'
 import CodePlugin from './code'
 import LiveJSXPlugin from './live-jsx'
@@ -10,7 +13,6 @@ import TablePlugin from './table'
 import ImagePlugin from './image'
 import LinkPlugin from './link'
 import MarkdownShortcutsPlugin from './markdown-shortcuts'
-import ThemeEditorPlugin from '../plugins/theme-editor'
 
 export default [
   ThemeEditorPlugin(),

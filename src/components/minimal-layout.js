@@ -2,6 +2,7 @@
 import { jsx, Styled } from 'theme-ui'
 import { Container } from '@theme-ui/components'
 import { Link } from 'gatsby'
+
 import SEO from './seo'
 
 export default ({ children, _frontmatter: { title } = {} }) => (

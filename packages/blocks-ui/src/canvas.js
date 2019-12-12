@@ -3,11 +3,12 @@ import { jsx, Styled } from 'theme-ui'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
 
+import { Clipboard, Check } from 'react-feather'
+
 import { useEditor } from './editor-context'
 import InlineRender from './inline-render'
 import { PreviewArea, Device } from './device-preview'
 
-import { Clipboard, Check } from 'react-feather'
 import { IconButton } from './ui'
 import useCopyToClipboard from './use-copy-to-clipboard'
 

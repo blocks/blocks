@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { Styled } from 'theme-ui'
+
 import Form from './Form'
 
 const Image = ({ attributes, node, editor, isSelected }) => {

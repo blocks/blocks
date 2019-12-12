@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+
 import Form from './Form'
 
 export default (props, editor, next) => {

@@ -75,9 +75,8 @@ class BabelPluginGetCurrentElement {
               element.children = children
                 .map(c => {
                   if (t.isJSXText(c)) {
-                    return
+                    return false
                   }
-
                   return {
                     id: getUuid(c.openingElement),
                     name: getElementName(c.openingElement)

@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { Editor, getEventRange, getEventTransfer } from 'slate-react'
 import { ThemeProvider } from 'theme-ui'
 
-import schema from '../lib/schema'
 import { parseMDX, serializer } from '@blocks/serializer'
+
+import schema from '../lib/schema'
 import { isUrl, isImageUrl } from '../lib/util'
+
+import defaultPlugins from '../plugins'
 
 import { Context } from './context'
 import defaultTheme from './theme'
-import defaultPlugins from '../plugins'
 import defaultBlocks from './blocks'
 import Toolbar from './Toolbar'
 
