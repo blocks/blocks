@@ -3,7 +3,8 @@
   "version": "0.0.51",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
-  "main": "dist/index.js",
+  "main": "dist/react.cjs.js",
+  "module": "dist/react.esm.js",
   "license": "MIT",
   "scripts": {
     "prepare": "babel src -d dist"

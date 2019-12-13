@@ -3,7 +3,8 @@
   "version": "0.0.51",
   "description": "Expose dials and knobs for your components in design tools",
   "repository": "blocks/blocks",
-  "main": "dist/index.js",
+  "main": "dist/property-controls.cjs.js",
+  "module": "dist/property-controls.esm.js",
   "license": "MIT",
   "scripts": {
     "prepare": "babel src -d dist"
