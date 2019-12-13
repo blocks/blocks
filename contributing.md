@@ -49,7 +49,7 @@ Reporting bugs that have not been issued yet also helps!
 
 ## Version management
 
-Keystone uses @noviny's [@changesets/cli](https://github.com/noviny/changesets) to track package versions and publish packages.
+Blocks uses @noviny's [@changesets/cli](https://github.com/noviny/changesets) to track package versions and publish packages.
 This tool allows each PR to indicate which packages need a version bump along with a changelog snippet.
 This information is then collated when performing a release to update package versions and `CHANGELOG.md` files.
 
