@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "blocks/blocks",
   "scripts": {
-    "prepare": "babel src -d dist && cp src/recipes.txt dist/recipes.txt",
+    "prepare": "cp src/recipes.txt dist/recipes.txt",
     "watch": "babel src -d dist --watch"
   },
   "dependencies": {

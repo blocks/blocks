@@ -6,9 +6,7 @@
   "main": "dist/property-controls.cjs.js",
   "module": "dist/property-controls.esm.js",
   "license": "MIT",
-  "scripts": {
-    "prepare": "babel src -d dist"
-  },
+  "scripts": {},
   "devDependencies": {
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
