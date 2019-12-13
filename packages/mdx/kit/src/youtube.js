@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 import { jsx } from '@emotion/core'
 
 import Player from 'react-youtube'

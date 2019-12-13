@@ -30,7 +30,6 @@ const B = props => (
 const H1 = () => <B>H1</B>
 const H2 = () => <B>H2</B>
 const JSX = () => <B>JSX</B>
-const Gist = () => <B>GIST</B>
 
 const Context = React.createContext(null)
 
@@ -159,7 +158,7 @@ const getBlockComponentNames = components => {
   )
 }
 
-export const Toolbar = props => {
+const Toolbar = props => {
   const { editor, children, components } = props
 
   const blocks = getBlockComponentNames(components)

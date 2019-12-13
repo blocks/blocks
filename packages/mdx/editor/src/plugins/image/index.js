@@ -1,4 +1,3 @@
-import React from 'react'
 import { keyboardEvent } from '@slate-editor/utils'
 
 import renderNode from './renderNode'

@@ -9,8 +9,8 @@ export default {
           const paragraph = Block.create('paragraph')
           return change.insertNodeByKey(node.key, node.nodes.size, paragraph)
         }
-        default: {
-        }
+        default:
+          return null
       }
     }
   },

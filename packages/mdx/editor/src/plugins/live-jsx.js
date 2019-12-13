@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { LiveProvider, LivePreview, LiveContext } from 'react-live'
 import ErrorIcon from '@material-ui/icons/ErrorOutline'
 import { Context as ThemeContext, css, Flex } from 'theme-ui'

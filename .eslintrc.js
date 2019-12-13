@@ -9,6 +9,7 @@ module.exports = {
   },
   plugins: ['jest'],
   rules: {
+    'import/no-unresolved': 'off',
     'no-console': 'off',
     'no-case-declarations': 'off',
     'no-prototype-builtins': 'off',
@@ -35,6 +36,7 @@ module.exports = {
     react: {
       version: 'detect'
     },
+
     'import/extensions': ['.js', '.jsx'],
     'import/resolver': {
       node: {

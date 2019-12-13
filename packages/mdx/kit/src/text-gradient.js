@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 import { jsx } from '@emotion/core'
 import adaptiveGradient from 'adaptive-gradient'
 import randomHex from 'random-hex-color'
