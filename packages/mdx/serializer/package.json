@@ -18,7 +18,11 @@
   "repository": "blocks/blocks",
   "license": "MIT",
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/cli": "7.7.4",
+=======
+    "@babel/cli": "7.8.3",
+>>>>>>> d771946... Use textarea and rebase
     "jest": "24.9.0"
   },
   "dependencies": {
@@ -29,7 +33,7 @@
     "remark-parse": "^7.0.2",
     "remark-squeeze-paragraphs": "^3.0.4",
     "remark-stringify": "^7.0.4",
-    "slate": "^0.50.0",
+    "slate": "^0.57.0",
     "slate-mdast-serializer": "^3.0.0",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.1"

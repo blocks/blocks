@@ -1,5 +1,6 @@
 {
   "name": "blocks-ui",
+<<<<<<< HEAD
   "version": "0.0.54",
   "main": "dist/index.js",
   "license": "MIT",
@@ -8,17 +9,30 @@
     "prepare": "babel src -d dist && cp src/recipes.txt dist/recipes.txt",
     "watch": "babel src -d dist --watch"
   },
+=======
+  "main": "dist/blocks-ui.cjs.js",
+  "module": "dist/blocks-ui.esm.js",
+  "version": "0.0.62",
+  "license": "MIT",
+  "repository": "blocks/blocks",
+>>>>>>> d771946... Use textarea and rebase
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.7.4",
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/standalone": "^7.7.4",
     "@babel/template": "^7.7.4",
+<<<<<<< HEAD
     "@blocks/react": "^0.0.54",
+=======
+    "@babel/types": "^7.7.4",
+    "@blocks/react": "^0.0.58",
+    "@blocks/react-beautiful-dnd": "^12.1.2",
+>>>>>>> d771946... Use textarea and rebase
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
     "@emotion/weak-memoize": "^0.2.4",
     "@mdx-js/react": "^1.5.1",
-    "@reach/tabs": "^0.6.2",
+    "@reach/tabs": "^0.7.0",
     "@theme-ui/components": "^0.2.50",
     "@theme-ui/editor": "^0.2.51",
     "@theme-ui/presets": "^0.2.44",
@@ -26,17 +40,35 @@
     "interpolate-range": "^2.1.0",
     "lodash.merge": "^4.6.2",
     "prettier": "^1.19.1",
+<<<<<<< HEAD
     "property-controls": "^0.0.54",
     "react-beautiful-dnd": "^12.1.1",
+=======
+    "property-controls": "^0.0.58",
+>>>>>>> d771946... Use textarea and rebase
     "react-feather": "^2.0.3",
     "react-merge-refs": "^1.0.0",
     "theme-ui": "^0.2.49"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4",
     "jest": "24.9.0"
+=======
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "jest": "^24.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+>>>>>>> d771946... Use textarea and rebase
   }
 }

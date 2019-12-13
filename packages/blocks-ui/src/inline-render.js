@@ -20,7 +20,8 @@ export default ({ fullHeight, code, scope, theme, ...props }) => {
     /* eslint-enable */
 
     return fn(React, ...Object.values(scope))
-  }, [code]) // TODO: Figure out why adding scope here breaks.
+  }, [code])
+  // TODO: Figure out why adding scope here breaks.
   //       I think it has to do with the inline render
   //       definition of scope.
 
@@ -32,7 +33,10 @@ export default ({ fullHeight, code, scope, theme, ...props }) => {
           height: fullHeight ? '100%' : undefined,
           color: 'text',
           bg: 'background',
-          ...styles()
+          ...styles(),
+          '& > div': {
+            height: '100%'
+          }
         }}
       >
         {element}

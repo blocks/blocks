@@ -4,7 +4,7 @@ import { Code, Layers, Monitor, Grid } from 'react-feather'
 
 import { version } from '../package.json'
 
-import { useEditor } from './editor-context'
+import { useEditor } from './providers/editor'
 import { IconButton } from './ui'
 
 const modes = [

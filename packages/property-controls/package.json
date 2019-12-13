@@ -1,6 +1,10 @@
 {
   "name": "property-controls",
+<<<<<<< HEAD
   "version": "0.0.54",
+=======
+  "version": "0.0.58",
+>>>>>>> d771946... Use textarea and rebase
   "description": "Expose dials and knobs for your components in design tools",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
@@ -9,9 +13,16 @@
     "prepare": "babel src -d dist"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4"
+=======
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4"
+>>>>>>> d771946... Use textarea and rebase
   }
 }

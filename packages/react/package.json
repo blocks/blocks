@@ -1,10 +1,15 @@
 {
   "name": "@blocks/react",
+<<<<<<< HEAD
   "version": "0.0.54",
+=======
+  "version": "0.0.58",
+>>>>>>> d771946... Use textarea and rebase
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/index.js",
   "license": "MIT",
+<<<<<<< HEAD
   "scripts": {
     "prepare": "babel src -d dist"
   },
@@ -16,5 +21,22 @@
   },
   "dependencies": {
     "property-controls": "^0.0.54"
+=======
+  "devDependencies": {
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@theme-ui/components": "^0.2.50",
+    "property-controls": "^0.0.58",
+    "theme-ui": "^0.2.49"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+>>>>>>> d771946... Use textarea and rebase
   }
 }

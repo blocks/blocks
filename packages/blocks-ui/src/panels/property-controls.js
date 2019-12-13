@@ -63,9 +63,9 @@ const FieldGroup = props => (
 )
 
 export default ({
-  propertyControls,
+  propertyControls = {},
   elementData,
-  onChange,
+  onStyleChange,
   onPropChange,
   onTextChange
 }) => {
@@ -100,7 +100,7 @@ export default ({
                   <Input
                     sx={{ backgroundColor: 'white' }}
                     value={fieldValue}
-                    onChange={onPropChange(key)}
+                    onChange={e => onPropChange(key, e)}
                   />
                 </div>
               )
@@ -112,7 +112,7 @@ export default ({
                     sx={{ backgroundColor: 'white' }}
                     type="number"
                     value={fieldValue}
-                    onChange={onPropChange(key)}
+                    onChange={e => onPropChange(key, e)}
                   />
                 </div>
               )
@@ -120,7 +120,10 @@ export default ({
               return (
                 <div className="fieldset" key={key}>
                   <Label>{title}</Label>
-                  <Select value={fieldValue} onChange={onPropChange(key)}>
+                  <Select
+                    value={fieldValue}
+                    onChange={e => onPropChange(key, e)}
+                  >
                     {value.options.map(option => (
                       <option key={option}>{option}</option>
                     ))}
@@ -145,19 +148,22 @@ export default ({
             }}
           >
             <h4>Colors</h4>
-            <SxColors value={elementData.props.sx} onChange={onChange} />
+            <SxColors value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
           <FieldGroup>
             <h4>Typography</h4>
-            <SxTypography value={elementData.props.sx} onChange={onChange} />
+            <SxTypography
+              value={elementData.props.sx}
+              onChange={onStyleChange}
+            />
           </FieldGroup>
           <FieldGroup>
             <h4>Padding</h4>
-            <SxPadding value={elementData.props.sx} onChange={onChange} />
+            <SxPadding value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
           <FieldGroup>
             <h4>Margin</h4>
-            <SxMargin value={elementData.props.sx} onChange={onChange} />
+            <SxMargin value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
         </React.Fragment>
       ) : null}

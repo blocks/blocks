@@ -43,7 +43,10 @@ the path to contributing a little bit clearer.
 
 For now, good places to look at are the
 [issues](https://github.com/blocks/blocks/issues) and the 
-[roadmap](https://github.com/orgs/blocks/projects/1). 
+[roadmap](https://github.com/orgs/blocks/projects/1).
+
+If you're keen on the design side of things there's a
+[Figma project](https://www.figma.com/file/7CeIPXhJJudZvq5ofmfx5p/Blocks-UI).
 
 Reporting bugs that have not been issued yet also helps!
 

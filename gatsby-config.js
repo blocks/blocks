@@ -11,6 +11,7 @@ module.exports = {
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-mdx',
     'gatsby-plugin-catch-links',
+    'gatsby-plugin-blocks',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

@@ -1,6 +1,6 @@
 import chroma from 'chroma-js'
 
-import { useEditor } from './editor-context'
+import { useEditor } from './providers/editor'
 
 export const gradient = (angle = 0, size, color) =>
   `linear-gradient(${angle}deg, transparent, transparent ${size - 1}px, ${alpha(

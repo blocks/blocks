@@ -9,10 +9,17 @@
     "prepare": "babel src -d dist"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4"
+=======
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "7.8.3",
+    "@babel/preset-react": "7.8.3"
+>>>>>>> d771946... Use textarea and rebase
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",

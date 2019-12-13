@@ -16,32 +16,28 @@ import {
 } from '@theme-ui/editor'
 import merge from 'lodash.merge'
 
-import useCopyToClipboard from './use-copy-to-clipboard'
+import useCopyToClipboard from '../use-copy-to-clipboard'
+import { useThemeEditor } from '../providers/theme-editor'
 
 const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
 
-export default ({ theme, setTheme }) => {
-  const [customiseTheme, setCustomiseTheme] = useState(false)
+export default () => {
+  const { update, ...theme } = useThemeEditor()
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
     <Box p={3}>
       <Heading mb={3}>Theme</Heading>
-      <ThemePresetForm theme={theme} setTheme={setTheme} />
-      {customiseTheme && <ThemeEditor theme={theme} setTheme={setTheme} />}
+      <ThemePresetForm theme={theme} setTheme={update} />
+      <ThemeEditor theme={theme} setTheme={update} />
       <Box mt={3}>
-        <Button sx={{ mr: 2 }} onClick={() => setCustomiseTheme(c => !c)}>
-          {customiseTheme ? 'Close' : 'Customise Theme'}
+        <Button
+          variant="secondary"
+          onClick={() => copyToClipboard(JSON.stringify(theme))}
+        >
+          {hasCopied ? 'Copied' : 'Copy'} Theme
         </Button>
-        {customiseTheme && (
-          <Button
-            variant="secondary"
-            onClick={() => copyToClipboard(JSON.stringify(theme))}
-          >
-            {hasCopied ? 'Copied' : 'Copy'} Theme
-          </Button>
-        )}
       </Box>
     </Box>
   )

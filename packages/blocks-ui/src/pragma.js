@@ -1,19 +1,21 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-import { useElement } from './element-context'
+import { useCode } from './providers/code'
+import { useEditor } from './providers/editor'
 import { uuidName } from './constants'
 
 const IGNORED_TYPES = ['path']
 
-export default elementSelectionHandler => (type, props, ...children) => {
-  const element = useElement() || {}
+export default (type, props, ...children) => {
+  const { currentElementId, setCurrentElementId } = useCode()
+  const { updateActiveTabByName } = useEditor()
 
   props = props || {}
   const { [uuidName]: id, sx = {} } = props
   delete props[uuidName]
 
-  const isCurrentElement = id && id === element.id
+  const isCurrentElement = id && id === currentElementId
 
   if (IGNORED_TYPES.includes(type)) {
     return jsx(type, props, ...children)
@@ -26,13 +28,14 @@ export default elementSelectionHandler => (type, props, ...children) => {
       sx: {
         ...sx,
         boxShadow: isCurrentElement
-          ? 'inset 0px 0px 0px 2px #0079FF'
+          ? theme => `inset 0px 0px 0px 2px ${theme.colors.primary}`
           : sx.boxShadow
       },
       onClick: e => {
         e.stopPropagation()
         if (id) {
-          elementSelectionHandler(id)
+          setCurrentElementId(id)
+          updateActiveTabByName('editor')
         }
       }
     },

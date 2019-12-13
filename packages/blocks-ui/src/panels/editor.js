@@ -3,24 +3,24 @@ import { jsx } from 'theme-ui'
 import { Flex } from '@theme-ui/components'
 import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
-import { IconButton } from './ui'
+import { IconButton } from '../ui'
+import { useCode } from '../providers/code'
+import { useBlocks } from '../providers/blocks'
 
-import TreeView from './tree-view'
-import PropertyControlsPanel from './property-controls-panel'
+import PropertyControlsPanel from './property-controls'
 
-// TODO: Fix this prop drilling dance for common editor
-// interactions.
-export default ({
-  elementData,
-  handleChange,
-  handlePropChange,
-  handleRemoveElement,
-  handleParentSelect,
-  handleClone,
-  handleTextUpdate,
-  setElementId,
-  blocks
-}) => {
+export default () => {
+  const blocks = useBlocks()
+  const {
+    removeCurrentElement,
+    cloneCurrentElement,
+    updateProp,
+    updateSxProp,
+    insertText,
+    selectParentOfCurrentElement,
+    currentElementData: elementData
+  } = useCode()
+
   const keys = elementData.name.split('.')
 
   let block = blocks
@@ -67,32 +67,35 @@ export default ({
             aignItems: 'center'
           }}
         >
-          <IconButton onClick={handleClone} aria-label="Copy element">
+          <IconButton onClick={cloneCurrentElement} aria-label="Copy element">
             <Copy size={17} />
           </IconButton>
-          <IconButton onClick={handleRemoveElement} aria-label="Remove">
+          <IconButton onClick={removeCurrentElement} aria-label="Remove">
             <Trash size={18} />
           </IconButton>
           {elementData.parentId ? (
-            <IconButton onClick={handleParentSelect} aria-label="Go to parent">
+            <IconButton
+              onClick={selectParentOfCurrentElement}
+              aria-label="Go to parent"
+            >
               <CornerRightUp size={18} />
             </IconButton>
           ) : (
-            <IconButton onClick={handleParentSelect} aria-label="Go to parent">
+            <IconButton
+              onClick={selectParentOfCurrentElement}
+              aria-label="Go to parent"
+            >
               <List size={18} />
             </IconButton>
           )}
         </nav>
       </Flex>
-      {block && (
-        <TreeView children={elementData.children} onSelect={setElementId} />
-      )}
       <PropertyControlsPanel
         elementData={elementData}
         propertyControls={propertyControls}
-        onChange={handleChange}
-        onPropChange={handlePropChange}
-        onTextChange={handleTextUpdate}
+        onPropChange={updateProp}
+        onStyleChange={updateSxProp}
+        onTextChange={insertText}
       />
     </div>
   )
