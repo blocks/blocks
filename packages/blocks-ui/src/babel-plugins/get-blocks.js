@@ -28,7 +28,7 @@ class BabelPluginGetBlocks {
 
               const children = path.node.children.filter(c => !t.isJSXText(c))
 
-              children.forEeach(child => {
+              children.forEach(child => {
                 const id = getUuid(child.openingElement)
                 const name = getElementName(child.openingElement)
                 this.state.blocks.push({ id, name })
