@@ -13,9 +13,13 @@
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
     "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "7.7.4"
+    "@babel/preset-react": "^7.7.4"
   },
   "dependencies": {
-    "property-controls": "^0.0.54"
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@theme-ui/components": "^0.2.50",
+    "property-controls": "^0.0.54",
+    "react": "^16.12.0",
+    "theme-ui": "^0.2.49"
   }
 }

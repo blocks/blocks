@@ -1,5 +1,5 @@
 {
-  "name": "property-controls",
+  "name": "@blocks/property-controls",
   "version": "0.0.54",
   "description": "Expose dials and knobs for your components in design tools",
   "repository": "blocks/blocks",
@@ -13,6 +13,6 @@
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
     "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "7.7.4"
+    "@babel/preset-react": "^7.7.4"
   }
 }
