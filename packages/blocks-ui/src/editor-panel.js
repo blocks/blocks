@@ -46,7 +46,8 @@ export default ({
         sx={{
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: 'thin solid #e1e6eb',
+          borderBottom: '1px solid',
+          borderColor: 'border',
           px: 3,
           py: 1
         }}

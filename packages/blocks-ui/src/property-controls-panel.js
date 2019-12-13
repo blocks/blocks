@@ -55,7 +55,8 @@ const FieldGroup = props => (
         mb: 2,
         textTransform: 'uppercase'
       },
-      borderBottom: 'thin solid #e1e6eb'
+      borderBottom: '1px solid',
+      borderColor: 'border'
     }}
     {...props}
   />

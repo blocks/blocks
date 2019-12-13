@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
-import * as presets from '@theme-ui/presets'
+import { system as systemTheme } from '@theme-ui/presets'
 
 import * as DEFAULT_BLOCKS from '@blocks/react'
 
@@ -21,9 +21,13 @@ import SidePanel from './side-panel'
 
 // blocks app theme
 const appTheme = {
-  ...presets.system,
+  ...systemTheme,
+  colors: {
+    ...systemTheme.colors,
+    border: '#e1e6eb'
+  },
   styles: {
-    ...presets.system.styles,
+    ...systemTheme.styles,
     navlink: {
       color: 'inherit',
       textDecoration: 'none',
@@ -80,11 +84,16 @@ const BLOCKS_Draggable = ({ active, children, ...props }) => {
 }
 
 const defaultTheme = {
-  ...presets.system,
+  ...systemTheme,
   breakpoints: [360, 600, 1024]
 }
 
-export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
+export default ({
+  src: initialCode,
+  blocks: providedBlocks,
+  onChange,
+  layout = 'div'
+}) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
   const [transformedCode, setTransformedCode] = useState(null)
@@ -109,7 +118,8 @@ export default ({ src: initialCode, blocks: providedBlocks, onChange }) => {
     BLOCKS_DroppableInner: props => <div {...props} />,
     BLOCKS_Text: props => <span {...props} />,
     ...themeComponents,
-    ...blocks
+    ...blocks,
+    BLOCKS_Layout: layout
   }
 
   useEffect(() => {

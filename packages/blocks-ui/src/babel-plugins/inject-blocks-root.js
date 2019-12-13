@@ -4,26 +4,28 @@ const root = template.ast(
   `
   const BLOCKS_Root = ({ children }) => {
     return (
-      <BLOCKS_Droppable droppableId="root">
-        {(provided, snapshot) => {
-          const allProps = Object.assign(
-            provided.droppableProps,
-            {
-              ref: provided.innerRef,
-              style: {
-                minHeight: '100%'
-              },
-            }
-          )
+      <BLOCKS_Layout>
+        <BLOCKS_Droppable droppableId="root">
+          {(provided, snapshot) => {
+            const allProps = Object.assign(
+              provided.droppableProps,
+              {
+                ref: provided.innerRef,
+                style: {
+                  minHeight: '100%'
+                },
+              }
+            )
 
-          return React.createElement(
-            'div',
-            allProps,
-            children,
-            provided.placeholder
-          )
-        }}
-      </BLOCKS_Droppable>
+            return React.createElement(
+              'div',
+              allProps,
+              children,
+              provided.placeholder
+            )
+          }}
+        </BLOCKS_Droppable>
+      </BLOCKS_Layout>
     )
   }
 `,

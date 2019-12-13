@@ -8,11 +8,12 @@
     "docs": "gatsby develop",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
     "postinstall": "manypkg check && preconstruct dev",
-    "prepare": "lerna run prepare",
     "publish": "lerna publish --force-publish=\"*\""
   },
   "workspaces": [
-    "packages/*"
+    "packages/blocks-ui",
+    "packages/react",
+    "packages/property-controls"
   ],
   "husky": {
     "hooks": {
@@ -45,7 +46,6 @@
     "gatsby-plugin-theme-ui": "0.2.43",
     "gatsby-source-filesystem": "2.1.40",
     "husky": "3.1.0",
-    "lerna": "3.19.0",
     "lint-staged": "9.5.0",
     "prettier": "^1.19.1",
     "react": "16.12.0",
