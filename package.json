@@ -26,11 +26,12 @@
     ]
   },
   "dependencies": {
+    "@babel/preset-env": "^7.7.6",
     "@emotion/core": "^10.0.22",
     "@manypkg/cli": "^0.9.0",
     "@mdx-js/mdx": "1.5.1",
     "@mdx-js/react": "^1.5.1",
-    "@preconstruct/cli": "^1.1.3",
+    "@preconstruct/cli": "^1.1.4",
     "@theme-ui/components": "^0.2.50",
     "@theme-ui/presets": "^0.2.44",
     "@theme-ui/prism": "0.2.50",
@@ -46,7 +47,6 @@
     "husky": "3.1.0",
     "lerna": "3.19.0",
     "lint-staged": "9.5.0",
-    "npm-normalize-package-bin": "^1.0.1",
     "prettier": "^1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",

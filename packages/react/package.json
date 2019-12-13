@@ -12,7 +12,7 @@
   "devDependencies": {
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
-    "@babel/preset-env": "7.7.4",
+    "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "7.7.4"
   },
   "dependencies": {

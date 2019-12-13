@@ -14,7 +14,7 @@
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/standalone": "^7.7.4",
     "@babel/template": "^7.7.4",
-    "@blocks/react": "^0.0.51",
+    "@blocks/react": "^0.0.54",
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
     "@emotion/weak-memoize": "^0.2.4",
@@ -36,8 +36,12 @@
   "devDependencies": {
     "@babel/cli": "7.7.4",
     "@babel/core": "7.7.4",
-    "@babel/preset-env": "7.7.4",
+    "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "7.7.4",
+    "@blocks/react": "^0.0.54",
     "jest": "24.9.0"
+  },
+  "peerDependencies": {
+    "@blocks/react": "^0.0.54"
   }
 }
