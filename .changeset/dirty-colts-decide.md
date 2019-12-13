@@ -4,4 +4,4 @@
 '@blocks/react': patch
 ---
 
-Initial versioned release.
+Initial changeset versioned release.
