@@ -6,8 +6,7 @@
   "license": "MIT",
   "repository": "blocks/blocks",
   "scripts": {
-    "prepare": "cp src/recipes.txt dist/recipes.txt",
-    "watch": "babel src -d dist --watch"
+    "prepare": "cp src/recipes.txt dist/recipes.txt"
   },
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.0.0",
