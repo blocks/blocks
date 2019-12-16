@@ -1,4 +1,4 @@
-const { transforms, queries } = require('@blocks/blocks-ui')
+const { transforms, queries } = require('blocks-ui')
 
 console.log({ queries })
 const BlockTemplate = require.resolve('./src/templates/block')

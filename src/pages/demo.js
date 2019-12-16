@@ -1,5 +1,5 @@
 import React from 'react'
-import Editor from '@blocks/blocks-ui'
+import Editor from 'blocks-ui'
 import * as Blocks from '@blocks/react'
 
 const JSX = `

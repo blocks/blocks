@@ -6,8 +6,8 @@ import * as components from '@theme-ui/components'
 import { Global } from '@emotion/core'
 
 import * as blocks from '@blocks/react'
-import InlineRender from '@blocks/blocks-ui'
-import * as controls from '@blocks/property-controls'
+import InlineRender from 'blocks-ui'
+import * as controls from 'property-controls'
 import SEO from './seo'
 
 const { Container } = components

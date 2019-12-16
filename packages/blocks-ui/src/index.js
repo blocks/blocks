@@ -1,7 +1,8 @@
 import main from './main'
 
-export { Controls } from './controls'
-export { InlineRenderer } from './inline-render'
+export * as Controls from './controls'
+export { default as InlineRender } from './inline-render'
+
 export * from './transforms'
 export * from './queries'
 
