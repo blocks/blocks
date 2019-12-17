@@ -3,18 +3,24 @@
   "version": "0.0.54",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
-  "main": "dist/index.js",
+  "main": "dist/react.cjs.js",
+  "module": "dist/react.esm.js",
   "license": "MIT",
-  "scripts": {
-    "prepare": "babel src -d dist"
-  },
+  "scripts": {},
   "devDependencies": {
     "@babel/cli": "7.7.5",
     "@babel/core": "7.7.5",
-    "@babel/preset-env": "7.7.6",
-    "@babel/preset-react": "7.7.4"
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "react": "^16.12.0"
   },
   "dependencies": {
-    "property-controls": "^0.0.54"
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@theme-ui/components": "^0.2.50",
+    "property-controls": "^0.0.54",
+    "theme-ui": "^0.2.49"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
   }
 }
