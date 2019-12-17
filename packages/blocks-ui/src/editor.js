@@ -156,7 +156,9 @@ export default ({
       if (newRawCode) {
         onChange(newRawCode)
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
   }, [code])
 
   if (!code || !transformedCode) {
