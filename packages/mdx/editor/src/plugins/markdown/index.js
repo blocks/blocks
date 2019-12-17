@@ -1,5 +1,3 @@
-import React from 'react'
-
 import queries from './queries'
 import commands from './commands'
 import renderMark from './renderMark'

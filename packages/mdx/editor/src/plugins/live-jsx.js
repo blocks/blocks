@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { LiveProvider, LivePreview, LiveContext } from 'react-live'
 import ErrorIcon from '@material-ui/icons/ErrorOutline'
-import { Context as ThemeContext, css } from 'theme-ui'
-import { Flex } from 'theme-ui'
+import { Context as ThemeContext, css, Flex } from 'theme-ui'
+
 import omit from 'lodash.omit'
+
 import { Pre } from '../components/ui'
 
 const omitComponents = ['delete']
@@ -16,7 +17,7 @@ const ErrorMessage = props => {
     <div {...props} title={context.error}>
       <ErrorIcon
         style={{
-          color: !!context.error ? 'red' : 'gray'
+          color: context.error ? 'red' : 'gray'
         }}
       />
     </div>

@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react'
 import { jsx, Global } from '@emotion/core'
 import { css } from 'theme-ui'
 import { Menu, MenuButton, MenuList, MenuItem } from '@reach/menu-button'

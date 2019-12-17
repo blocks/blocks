@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import { css } from 'theme-ui'
-import { Box } from 'theme-ui'
+import { css, Box } from 'theme-ui'
 
 export default props => (
   <Box

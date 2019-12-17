@@ -3,7 +3,7 @@ export const isCloseTag = (str = '') =>
 export const isOpenTag = (str = '') => !isCloseTag(str) && str.endsWith('>')
 
 export const getComponentName = (str = '') => {
-  const match = str.match(/^\<?([\w\.\_]+)/)
+  const match = str.match(/^<?([\w._]+)/)
   return match && match[1]
 }
 

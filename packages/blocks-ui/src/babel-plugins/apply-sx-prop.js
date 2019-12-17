@@ -1,4 +1,5 @@
 import template from '@babel/template'
+
 import { toLiteral } from '../util'
 import { uuidName } from '../constants'
 

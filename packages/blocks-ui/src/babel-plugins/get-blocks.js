@@ -1,4 +1,5 @@
 import { declare } from '@babel/helper-plugin-utils'
+
 import { getElementName, getUuid } from '../util'
 
 class BabelPluginGetBlocks {
@@ -27,10 +28,9 @@ class BabelPluginGetBlocks {
 
               const children = path.node.children.filter(c => !t.isJSXText(c))
 
-              children.map(child => {
+              children.forEach(child => {
                 const id = getUuid(child.openingElement)
                 const name = getElementName(child.openingElement)
-
                 this.state.blocks.push({ id, name })
               })
             }

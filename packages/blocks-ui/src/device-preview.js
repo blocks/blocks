@@ -9,7 +9,6 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
-import mergeRefs from 'react-merge-refs'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 import weakMemoize from '@emotion/weak-memoize'
@@ -35,7 +34,7 @@ const Frame = ({ children, setFrame, ...restProps }) => {
     setNodes([contentDocument.head, contentDocument.body])
   }, [])
   return (
-    <iframe ref={frameRef} {...restProps}>
+    <iframe ref={frameRef} title="Device Preview" {...restProps}>
       {body
         ? createPortal(
             <CacheProvider value={createCacheWithContainer(head)}>

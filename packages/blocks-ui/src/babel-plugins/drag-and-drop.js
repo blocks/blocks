@@ -1,23 +1,7 @@
 import template from '@babel/template'
+
 import { isBlocksRootElement } from '../util'
 import { uuidName } from '../constants'
-
-const navRoot = id =>
-  template.ast(
-    `
-  <BLOCKS_Droppable droppableId="element-${id}">
-    {(provided, snapshot) => (
-      <span
-        {...provided.droppableProps}
-        ref={provided.innerRef}
-      >
-        {provided.placeholder}
-      </span>
-    )}
-  </BLOCKS_Droppable>
-`,
-    { plugins: ['jsx'] }
-  )
 
 const buildDraggable = (id, index) =>
   template.ast(
@@ -72,7 +56,7 @@ export default api => {
             )
 
             if (!tuid) {
-              return
+              return null
             }
 
             const id = tuid.value.value

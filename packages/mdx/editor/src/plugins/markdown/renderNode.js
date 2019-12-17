@@ -27,8 +27,6 @@ export default (props, editor, next) => {
       return <Styled.h5 {...attributes}>{children}</Styled.h5>
     case 'heading-six':
       return <Styled.h6 {...attributes}>{children}</Styled.h6>
-    case 'list-item':
-      return <Styled.li {...attributes}>{children}</Styled.li>
     case 'paragraph':
       return <Styled.p {...attributes}>{children}</Styled.p>
     case 'hr':

@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { TwitterTweetEmbed } from 'react-twitter-embed'
 import isURL from 'is-url'

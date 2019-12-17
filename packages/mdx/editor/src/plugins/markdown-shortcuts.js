@@ -1,4 +1,5 @@
 import { Mark, Point, Range } from 'slate'
+
 import { getTypeFromMarkdown, isAllChar } from '../lib/util'
 
 const handleSpace = (event, editor) => {

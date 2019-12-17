@@ -15,6 +15,7 @@ import {
   Space
 } from '@theme-ui/editor'
 import merge from 'lodash.merge'
+
 import useCopyToClipboard from './use-copy-to-clipboard'
 
 const themes = Object.keys(presets)

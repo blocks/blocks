@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Pre } from '../components/ui'
 
 export default (opts = {}) => ({
