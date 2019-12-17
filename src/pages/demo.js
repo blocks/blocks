@@ -1,6 +1,6 @@
 import React from 'react'
-import Editor from 'blocks-ui/src'
-import * as Blocks from '@blocks/react/src'
+import Editor from 'blocks-ui'
+import * as Blocks from '@blocks/react'
 
 const JSX = `
 import React from 'react'

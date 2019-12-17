@@ -4,7 +4,9 @@ import { Link } from 'gatsby'
 import { jsx, Styled } from 'theme-ui'
 import * as components from '@theme-ui/components'
 import { Global } from '@emotion/core'
-import InlineRender from 'blocks-ui/dist/inline-render'
+
+import * as blocks from '@blocks/react'
+import { InlineRender } from 'blocks-ui'
 import * as controls from 'property-controls'
 
 /*eslint import/namespace: [2, { allowComputed: true }]*/

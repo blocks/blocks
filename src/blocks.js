@@ -1901,6 +1901,7 @@ export const HeroE = () => (
       }}
     >
       <img
+        alt="Lachlan Gowen building"
         src="https://assets.blocks-ui.com/lachlan-gowen-building.jpg"
         sx={{
           width: '100%'
@@ -1945,6 +1946,7 @@ export const HeroEA = () => (
       }}
     >
       <img
+        alt="Minh Pham interior"
         src="https://assets.blocks-ui.com/minh-pham-interior.jpg"
         sx={{
           width: '100%'
@@ -1970,6 +1972,7 @@ export const HeroEB = () => (
       }}
     >
       <img
+        alt="Minh Pham interior"
         src="https://assets.blocks-ui.com/minh-pham-interior.jpg"
         sx={{
           width: '100%'
@@ -2015,6 +2018,7 @@ export const HeroF = () => (
       <Button sx={{ backgroundColor: '#173383' }}>Give it a go</Button>
     </Box>
     <img
+      alt="house interior"
       src="https://assets.blocks-ui.com/house-interior.jpg"
       sx={{
         width: '100%'
@@ -2075,6 +2079,7 @@ export const HeroFA = () => (
       }}
     >
       <img
+        alt="Kara Eads interior"
         src="https://assets.blocks-ui.com/kara-eads-interior.jpg"
         sx={{
           mt: -7,
@@ -2115,6 +2120,7 @@ export const HeroG = () => (
       }}
     >
       <img
+        alt="Jude Beck plant"
         src="https://assets.blocks-ui.com/jude-beck-plant.jpg"
         sx={{
           width: '100%'

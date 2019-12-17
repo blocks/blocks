@@ -20,7 +20,7 @@ const theme = {
     ...system.styles,
     h1: {
       ...system.styles.h1,
-      '&:first-child': {
+      '&:first-of-type': {
         mt: 0
       }
     },

@@ -5,11 +5,12 @@ import { Container, Box } from '@theme-ui/components'
 import { Link } from 'gatsby'
 import { Twitter, GitHub } from 'react-feather'
 
-import Nav from '../nav.mdx'
-
-import { version } from '../../lerna.json'
+import pkg from 'blocks-ui/package.json'
 
 import SEO from './seo'
+import Nav from '../nav.mdx'
+
+const { version } = pkg
 
 export default ({ children, _frontmatter: { title, noNav } = {} }) => (
   <Styled.root>
