@@ -9,9 +9,6 @@ import * as blocks from '@blocks/react'
 import { InlineRender } from 'blocks-ui'
 import * as controls from 'property-controls'
 
-/*eslint import/namespace: [2, { allowComputed: true }]*/
-import * as blocks from '@blocks/react/src'
-
 import SEO from './seo'
 
 const { Container } = components

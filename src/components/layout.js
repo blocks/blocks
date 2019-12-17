@@ -7,8 +7,9 @@ import { Twitter, GitHub } from 'react-feather'
 
 import pkg from 'blocks-ui/package.json'
 
-import SEO from './seo'
 import Nav from '../nav.mdx'
+
+import SEO from './seo'
 
 const { version } = pkg
 

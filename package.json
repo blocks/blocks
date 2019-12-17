@@ -9,9 +9,10 @@
     "clean": "gatsby clean",
     "docs": "gatsby develop",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
+    "lint:eslint": "eslint .",
     "postinstall": "manypkg check && preconstruct dev",
     "release": "yarn build:packages && changeset publish",
-    "lint:eslint": "eslint ."
+    "test": "yarn lint:eslint"
   },
   "workspaces": [
     "packages/*"
