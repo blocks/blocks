@@ -1,5 +1,13 @@
 # @blocks/react
 
+## 0.0.57
+
+### Patch Changes
+
+- ea28d49: Add eslint and changes based on linting
+- Updated dependencies [ea28d49]
+  - property-controls@0.0.57
+
 ## 0.0.56
 
 ### Patch Changes

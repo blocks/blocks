@@ -1,5 +1,11 @@
 # property-controls
 
+## 0.0.57
+
+### Patch Changes
+
+- ea28d49: Add eslint and changes based on linting
+
 ## 0.0.56
 
 ### Patch Changes
