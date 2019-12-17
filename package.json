@@ -2,7 +2,7 @@
   "private": true,
   "name": "blocks",
   "scripts": {
-    "start": "yarn docs",
+    "start": "preconstruct dev && yarn docs",
     "build": "gatsby build",
     "build:packages": "preconstruct build",
     "changeset": "changeset",
