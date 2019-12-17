@@ -4,4 +4,4 @@
 '@blocks/react': patch
 ---
 
-setting up preconstruct, few breaking changes of early package lifecycle
+Set up preconstruct, few breaking changes of early package lifecycle
