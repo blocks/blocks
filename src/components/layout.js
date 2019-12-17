@@ -5,7 +5,7 @@ import { Container, Box } from '@theme-ui/components'
 import { Link } from 'gatsby'
 import { Twitter, GitHub } from 'react-feather'
 
-import pkg from '../../packages/blocks-ui/package.json'
+import pkg from 'blocks-ui/package.json'
 
 import Nav from '../nav.mdx'
 import SEO from './seo'
