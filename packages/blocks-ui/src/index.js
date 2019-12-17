@@ -1,4 +1,4 @@
-export { default } from './Editor'
+export { default } from './editor'
 
 export * as Controls from './controls'
 export { default as InlineRender } from './inline-render'
