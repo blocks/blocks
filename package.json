@@ -4,17 +4,16 @@
   "scripts": {
     "start": "yarn docs",
     "build": "gatsby build",
-    "build:packages": "yarn preconstruct build",
+    "build:packages": "preconstruct build",
+    "changeset": "changeset",
     "clean": "gatsby clean",
     "docs": "gatsby develop",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
     "postinstall": "manypkg check && preconstruct dev",
-    "publish": "lerna publish --force-publish=\"*\""
+    "release": "yarn build:packages && changeset publish"
   },
   "workspaces": [
-    "packages/blocks-ui",
-    "packages/react",
-    "packages/property-controls"
+    "packages/*"
   ],
   "husky": {
     "hooks": {

@@ -1,6 +1,5 @@
 const { transforms, queries } = require('blocks-ui')
 
-console.log({ queries })
 const BlockTemplate = require.resolve('./src/templates/block')
 
 const toComponentName = name => name.charAt(0).toUpperCase() + name.slice(1)
