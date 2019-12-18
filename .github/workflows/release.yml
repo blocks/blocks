@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install Dependencies
+      - name: Install
         run: yarn
 
-      - name: Create Release Pull Request
+      - name: Create release pull request
         uses: changesets/action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
