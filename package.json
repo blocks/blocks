@@ -9,14 +9,21 @@
     "clean": "gatsby clean",
     "docs": "gatsby develop",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
-    "lint:eslint": "eslint .",
+    "lint": "eslint .",
     "postinstall": "manypkg check && preconstruct dev",
     "release": "yarn build:packages && changeset publish",
-    "test": "yarn lint:eslint"
+    "test": "yarn build && yarn build:packages"
   },
   "workspaces": [
     "packages/*"
   ],
+  "preconstruct": {
+    "packages": [
+      "packages/blocks-ui",
+      "packages/react",
+      "packages/property-controls"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -64,12 +71,5 @@
     "react-dom": "^16.12.0",
     "react-helmet": "5.2.1",
     "theme-ui": "^0.2.49"
-  },
-  "preconstruct": {
-    "packages": [
-      "packages/blocks-ui",
-      "packages/react",
-      "packages/property-controls"
-    ]
   }
 }
