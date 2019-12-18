@@ -103,7 +103,7 @@ const Header = () => (
     }}
   >
     <a
-      href="https://blocks-ui.com/"
+      href="/"
       sx={{
         textDecoration: 'none',
         color: 'inherit',
