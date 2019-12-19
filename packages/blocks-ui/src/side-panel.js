@@ -124,12 +124,14 @@ export default ({
   </section>
 )
 
-// Base sytles for tabs
+// Base styles for tabs
 const baseTabStyles = {
   flex: 1,
+  background: 'none',
   appearance: 'none',
   border: 0,
   py: 2,
+  m: 0,
   fontSize: 0,
   fontWeight: 500,
   borderBottomStyle: 'solid',
