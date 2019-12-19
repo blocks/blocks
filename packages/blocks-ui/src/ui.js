@@ -9,6 +9,7 @@ export const IconButton = props => (
       border: 0,
       px: 2,
       py: 1,
+      m: 0,
       '&:focus': {
         outline: 'none',
         boxShadow: 'inset 0px 0px 0px 1px #4d9ef7'
