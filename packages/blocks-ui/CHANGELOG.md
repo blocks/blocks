@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.58
+
+### Patch Changes
+
+- 9c967f0: Updated tabs to fix inconsistencies in Safari
+
 ## 0.0.57
 
 ### Patch Changes
