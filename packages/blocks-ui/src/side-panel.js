@@ -23,7 +23,10 @@ export default ({
   handleInsertElement,
   handleClone,
   handleTextUpdate,
-  setElementId
+  setElementId,
+  layouts,
+  layout,
+  setLayout
 }) => (
   <section
     id="side-panel"
@@ -117,7 +120,13 @@ export default ({
           ) : null}
         </TabPanel>
         <TabPanel>
-          <ThemePanel theme={theme} setTheme={setTheme} />
+          <ThemePanel
+            theme={theme}
+            setTheme={setTheme}
+            layouts={layouts}
+            layout={layout}
+            setLayout={setLayout}
+          />
         </TabPanel>
       </TabPanels>
     </Tabs>

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, Layout } from 'theme-ui'
 import { useState } from 'react'
 import * as presets from '@theme-ui/presets'
 import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
@@ -21,13 +21,13 @@ import useCopyToClipboard from './use-copy-to-clipboard'
 const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
 
-export default ({ theme, setTheme }) => {
+const ThemePanel = ({ theme, setTheme, layout, setLayout, layouts }) => {
   const [customiseTheme, setCustomiseTheme] = useState(false)
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
     <Box p={3}>
-      <Heading mb={3}>Theme</Heading>
+      <LayoutForm layout={layout} setLayout={setLayout} layouts={layouts} />
       <ThemePresetForm theme={theme} setTheme={setTheme} />
       {customiseTheme && <ThemeEditor theme={theme} setTheme={setTheme} />}
       <Box mt={3}>
@@ -46,6 +46,8 @@ export default ({ theme, setTheme }) => {
     </Box>
   )
 }
+
+export default ThemePanel
 
 const defaultBreakpoints = [360, 600, 1024]
 
@@ -109,6 +111,25 @@ const ThemeEditor = ({ theme, setTheme }) => {
           <Space />
         </Row>
       </Editor>
+    </Box>
+  )
+}
+
+const LayoutForm = ({ layout, setLayout, layouts }) => {
+  const onSubmit = e => e.preventDefault()
+
+  return (
+    <Box as="form" mb={3} onSubmit={onSubmit}>
+      <Label htmlFor="layout">Layout</Label>
+      <Select
+        id="layout"
+        name="layout"
+        value={layout}
+        onChange={e => setLayout(e.target.value)}
+        children={Object.keys(layouts).map(name => (
+          <option key={name} children={name} />
+        ))}
+      />
     </Box>
   )
 }

@@ -92,7 +92,7 @@ export default ({
   src: initialCode,
   blocks: providedBlocks,
   onChange,
-  layout = 'div'
+  layouts = {}
 }) => {
   const [code, setCode] = useState(null)
   const [rawCode, setRawCode] = useState(null)
@@ -102,6 +102,7 @@ export default ({
   const [activeTab, setActiveTab] = useState(0)
   const [srcBlocks, setSrcBlocks] = useState([])
   const [theme, setTheme] = useState(defaultTheme)
+  const [layout, setLayout] = useState(Object.keys(layouts)[0])
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
 
@@ -119,7 +120,7 @@ export default ({
     BLOCKS_Text: props => <span {...props} />,
     ...themeComponents,
     ...blocks,
-    BLOCKS_Layout: layout
+    BLOCKS_Layout: layouts[layout]
   }
 
   useEffect(() => {
@@ -160,6 +161,10 @@ export default ({
       console.error(e)
     }
   }, [code])
+
+  useEffect(() => {
+    console.log(code)
+  }, [layout])
 
   if (!code || !transformedCode) {
     return null
@@ -307,6 +312,9 @@ export default ({
             handleClone={handleClone}
             handleTextUpdate={handleTextUpdate}
             setElementId={setElementId}
+            layouts={layouts}
+            layout={layout}
+            setLayout={setLayout}
           />
         </div>
       </DragDropContext>
