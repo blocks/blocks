@@ -2,7 +2,7 @@ import { declare } from '@babel/helper-plugin-utils'
 
 import { getElementName, getUuid } from '../util'
 
-// This plugin generates a simplified tree stucture from an AST.
+// This plugin generates a tree of JSX elements from an AST.
 // The generated `Tree` is an object with the following structure:
 // { id: string, name: string, children: [Tree] }
 
@@ -22,7 +22,7 @@ class BabelPluginGetTree {
       return {
         visitor: {
           Program: {
-            // We're using `Program` as an arbitrary entrypoint to create the
+            // We use `Program` as an arbitrary entrypoint to create the
             // root of our tree because:
             // - Babel enters `Program` before visiting any JSX elements.
             // - Babel exits `Program` after visiting all JSX elements.
