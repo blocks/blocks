@@ -13,7 +13,7 @@ class BabelPluginGetTree {
     // When we enter a JSX element, we create a tree node and push it onto the
     // stack. When Babel finishes traversing the element's children, we pop
     // the node from the stack and add it to the `children` array of the node
-    // that is now at the top of the stack.
+    // that is now on the top of the stack.
     const stack = []
 
     this.plugin = declare(api => {
@@ -36,7 +36,7 @@ class BabelPluginGetTree {
             //   const OtherComponent = () => <Bar />
             //   export default App
             //
-            // The generated tree will look like this:
+            // ...the generated tree will look like this:
             //   root
             //   ├── Foo
             //   └── Bar
