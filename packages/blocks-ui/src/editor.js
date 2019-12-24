@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
 import { system as systemTheme } from '@theme-ui/presets'
@@ -102,6 +102,8 @@ export default ({
   const [activeTab, setActiveTab] = useState(0)
   const [srcBlocks, setSrcBlocks] = useState([])
   const [theme, setTheme] = useState(defaultTheme)
+  const tree = useMemo(() => queries.getTree(code), [code])
+  console.log('tree:', tree)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
 
