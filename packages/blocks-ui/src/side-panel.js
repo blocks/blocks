@@ -114,9 +114,7 @@ export default ({
         <TabPanel>
           {activeTab === 1 ? (
             <BlocksListing components={blocks} theme={theme} />
-          ) : (
-            '#fff'
-          )}
+          ) : null}
         </TabPanel>
         <TabPanel>
           <ThemePanel theme={theme} setTheme={setTheme} />
