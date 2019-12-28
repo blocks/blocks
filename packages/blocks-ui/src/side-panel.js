@@ -49,7 +49,7 @@ export default ({
           sx={{
             ...baseTabStyles,
             borderColor: activeTab === 0 ? 'transparent' : 'border',
-            backgroundColor: activeTab === 0 ? null : '#fafafa'
+            backgroundColor: activeTab === 0 ? '#fff' : '#fafafa'
           }}
         >
           Editor
@@ -60,7 +60,7 @@ export default ({
             borderLeft: '1px solid',
             borderRight: '1px solid',
             borderColor: activeTab === 1 ? 'transparent' : 'border',
-            backgroundColor: activeTab === 1 ? null : '#fafafa'
+            backgroundColor: activeTab === 1 ? '#fff' : '#fafafa'
           }}
         >
           Components
@@ -69,7 +69,7 @@ export default ({
           sx={{
             ...baseTabStyles,
             borderColor: activeTab === 2 ? 'transparent' : 'border',
-            backgroundColor: activeTab === 2 ? null : '#fafafa'
+            backgroundColor: activeTab === 2 ? '#fff' : '#fafafa'
           }}
         >
           Theme
@@ -114,7 +114,9 @@ export default ({
         <TabPanel>
           {activeTab === 1 ? (
             <BlocksListing components={blocks} theme={theme} />
-          ) : null}
+          ) : (
+            '#fff'
+          )}
         </TabPanel>
         <TabPanel>
           <ThemePanel theme={theme} setTheme={setTheme} />
