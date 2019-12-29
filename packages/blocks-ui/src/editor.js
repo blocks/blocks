@@ -18,6 +18,7 @@ import Header from './header'
 import Canvas from './canvas'
 import Layout from './layout'
 import SidePanel from './side-panel'
+import Tree from './tree'
 
 // blocks app theme
 const appTheme = {
@@ -282,10 +283,22 @@ export default ({
       >
         <div
           sx={{
-            display: 'flex',
+            display: 'grid',
+            gridTemplateColumns: '260px 1fr 400px',
             height: 'calc(100vh - 43px)'
           }}
         >
+          <div sx={{ borderRight: '1px solid', borderColor: 'border' }}>
+            {elementTree.children.map(child => (
+              <Tree
+                key={child.id}
+                tree={child}
+                depth={0}
+                selectedId={elementData ? elementData.id : ''}
+                onSelect={id => setElementId(id)}
+              />
+            ))}
+          </div>
           <Canvas
             code={rawCode}
             transformedCode={transformedCode}
