@@ -5,7 +5,6 @@ import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
 import { IconButton } from './ui'
 
-import TreeView from './tree-view'
 import PropertyControlsPanel from './property-controls-panel'
 
 // TODO: Fix this prop drilling dance for common editor
@@ -84,9 +83,6 @@ export default ({
           )}
         </nav>
       </Flex>
-      {block && (
-        <TreeView children={elementData.children} onSelect={setElementId} />
-      )}
       <PropertyControlsPanel
         elementData={elementData}
         propertyControls={propertyControls}
