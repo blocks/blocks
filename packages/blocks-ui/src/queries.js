@@ -5,7 +5,7 @@ import BabelPluginGetBlocks from './babel-plugins/get-blocks'
 import BabelPluginGetBlocksUsage from './babel-plugins/get-blocks-usage'
 import BabelPluginGetCurrentElement from './babel-plugins/get-current-element'
 import BabelPluginGetExportedElements from './babel-plugins/get-exported-elements'
-import BabelPluginGetTree from './babel-plugins/get-tree'
+import BabelPluginGetElementTree from './babel-plugins/get-element-tree'
 
 export const getExportedElements = code => {
   const plugin = new BabelPluginGetExportedElements()
@@ -51,8 +51,8 @@ export const getCurrentElement = (code, elementId) => {
   return plugin.state.element
 }
 
-export const getTree = code => {
-  const plugin = new BabelPluginGetTree()
+export const getElementTree = code => {
+  const plugin = new BabelPluginGetElementTree()
 
   transform(code, {
     plugins: [babelPluginSyntaxJsx, plugin.plugin]

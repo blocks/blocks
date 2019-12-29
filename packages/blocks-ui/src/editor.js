@@ -102,8 +102,8 @@ export default ({
   const [activeTab, setActiveTab] = useState(0)
   const [srcBlocks, setSrcBlocks] = useState([])
   const [theme, setTheme] = useState(defaultTheme)
-  const tree = useMemo(() => queries.getTree(code), [code])
-  console.log('tree:', tree)
+  const elementTree = useMemo(() => queries.getElementTree(code), [code])
+  console.log('element tree:', elementTree)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
 
