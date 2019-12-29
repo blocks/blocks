@@ -5,7 +5,7 @@ export default function Tree({ tree, depth, selectedId, onSelect }) {
   return (
     <div
       sx={{
-        backgroundColor: tree.id === selectedId ? 'papayawhip' : 'transparent'
+        backgroundColor: tree.id === selectedId ? 'highlight' : 'transparent'
       }}
     >
       <button
@@ -13,18 +13,35 @@ export default function Tree({ tree, depth, selectedId, onSelect }) {
         sx={{
           appearance: 'none',
           width: '100%',
+          p: 0,
           pl: depth * 16, // Indent based on depth
           textAlign: 'left',
-          backgroundColor: tree.id === selectedId ? 'pink' : 'transparent',
+          color: tree.id === selectedId ? 'background' : 'text',
+          backgroundColor: tree.id === selectedId ? 'primary' : 'transparent',
           border: 0,
           cursor: 'pointer',
+          outline: 0,
           '&:hover': {
             // Don't apply hover effect to selected item
-            backgroundColor: tree.id === selectedId ? null : 'lightgray'
+            backgroundColor: tree.id === selectedId ? null : 'border'
+          },
+          '&:focus': {
+            boxShadow: theme => `inset 0 0 0 2px ${theme.colors.primary}`
           }
         }}
       >
-        <div sx={{ px: 3, py: 2, fontSize: 1 }}>{tree.name}</div>
+        <div
+          sx={{
+            px: 3,
+            py: 2,
+            fontSize: 1,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {tree.name}
+        </div>
       </button>
       {tree.children.map(child => (
         <Tree

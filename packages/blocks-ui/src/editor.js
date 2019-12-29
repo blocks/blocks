@@ -288,7 +288,15 @@ export default ({
             height: 'calc(100vh - 43px)'
           }}
         >
-          <div sx={{ borderRight: '1px solid', borderColor: 'border' }}>
+          <div
+            sx={{
+              height: '100%',
+              py: 2,
+              overflow: 'auto',
+              borderRight: '1px solid',
+              borderColor: 'border'
+            }}
+          >
             {elementTree.children.map(child => (
               <Tree
                 key={child.id}
