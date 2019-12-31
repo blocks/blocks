@@ -1,5 +1,11 @@
 # property-controls
 
+## 0.0.58
+
+### Patch Changes
+
+- 746a4f9: Add a layers panel
+
 ## 0.0.57
 
 ### Patch Changes
