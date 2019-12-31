@@ -5,7 +5,6 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 import EditorPanel from './editor-panel'
 import ThemePanel from './theme-panel'
 import BlocksListing from './blocks-listing'
-import TreeView from './tree-view'
 
 export default ({
   activeTab,
@@ -30,7 +29,7 @@ export default ({
     sx={{
       borderLeft: '1px solid',
       borderColor: 'border',
-      width: '40%',
+      width: '100%',
       height: '100%',
       overflow: 'auto',
       pb: 3
@@ -92,22 +91,8 @@ export default ({
               setElementId={setElementId}
             />
           ) : (
-            <div>
-              <h3
-                sx={{
-                  fontSize: 1,
-                  fontWeight: 500,
-                  m: 0,
-                  lineHeight: 1,
-                  px: 3,
-                  py: 2,
-                  borderBottom: '1px solid',
-                  borderColor: 'border'
-                }}
-              >
-                Canvas
-              </h3>
-              <TreeView children={srcBlocks} onSelect={setElementId} />
+            <div sx={{ py: 64, textAlign: 'center' }}>
+              Select an element to edit.
             </div>
           )}
         </TabPanel>

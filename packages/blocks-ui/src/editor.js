@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Styled, jsx } from 'theme-ui'
 import { system as systemTheme } from '@theme-ui/presets'
@@ -18,6 +18,7 @@ import Header from './header'
 import Canvas from './canvas'
 import Layout from './layout'
 import SidePanel from './side-panel'
+import Tree from './tree'
 
 // blocks app theme
 const appTheme = {
@@ -102,6 +103,8 @@ export default ({
   const [activeTab, setActiveTab] = useState(0)
   const [srcBlocks, setSrcBlocks] = useState([])
   const [theme, setTheme] = useState(defaultTheme)
+  const elementTree = useMemo(() => queries.getElementTree(code), [code])
+  console.log('element tree:', elementTree)
 
   const blocks = providedBlocks ? providedBlocks : DEFAULT_BLOCKS
 
@@ -280,10 +283,30 @@ export default ({
       >
         <div
           sx={{
-            display: 'flex',
+            display: 'grid',
+            gridTemplateColumns: '260px 1fr 400px',
             height: 'calc(100vh - 43px)'
           }}
         >
+          <div
+            sx={{
+              height: '100%',
+              py: 2,
+              overflow: 'auto',
+              borderRight: '1px solid',
+              borderColor: 'border'
+            }}
+          >
+            {elementTree.children.map(child => (
+              <Tree
+                key={child.id}
+                tree={child}
+                depth={0}
+                selectedId={elementData ? elementData.id : ''}
+                onSelect={id => setElementId(id)}
+              />
+            ))}
+          </div>
           <Canvas
             code={rawCode}
             transformedCode={transformedCode}

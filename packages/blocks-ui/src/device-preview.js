@@ -110,7 +110,7 @@ export function PreviewArea({ children }) {
       css={{
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
-        width: '60%',
+        width: '100%',
         height: '100%',
         overflow: 'auto'
       }}
