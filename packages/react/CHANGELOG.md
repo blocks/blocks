@@ -1,5 +1,13 @@
 # @blocks/react
 
+## 0.0.58
+
+### Patch Changes
+
+- bfaceeb: Add a layers panel
+- Updated dependencies [bfaceeb]
+  - property-controls@0.0.58
+
 ## 0.0.57
 
 ### Patch Changes
