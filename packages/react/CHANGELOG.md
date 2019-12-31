@@ -1,5 +1,13 @@
 # @blocks/react
 
+## 0.0.58
+
+### Patch Changes
+
+- 746a4f9: Add a layers panel
+- Updated dependencies [746a4f9]
+  - property-controls@0.0.58
+
 ## 0.0.57
 
 ### Patch Changes
