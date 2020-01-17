@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { Code, Layers, Monitor, Grid } from 'react-feather'
+import { Code, Layers, /* Monitor, */ Grid } from 'react-feather'
 
 import pkg from '../package.json'
 
@@ -14,10 +14,10 @@ const modes = [
     key: 'canvas',
     Icon: Layers
   },
-  {
-    key: 'viewports',
-    Icon: Monitor
-  },
+  // {
+  //   key: 'viewports',
+  //   Icon: Monitor
+  // },
   {
     key: 'code',
     Icon: Code
