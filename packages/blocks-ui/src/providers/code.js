@@ -57,7 +57,7 @@ export const CodeProvider = ({ children, initialCode }) => {
     })
   }
 
-  const selectParentofCurrentElement = () => {
+  const selectParentOfCurrentElement = () => {
     if (codeState.currentElementData.parentId) {
       setCurrentElementId(codeState.currentElementData.parentId)
     } else {
@@ -198,7 +198,7 @@ export const CodeProvider = ({ children, initialCode }) => {
         setCurrentElementId,
         removeCurrentElement,
         cloneCurrentElement,
-        selectParentofCurrentElement,
+        selectParentOfCurrentElement,
         updateSxProp,
         onDragEnd,
         onBeforeDragStart
