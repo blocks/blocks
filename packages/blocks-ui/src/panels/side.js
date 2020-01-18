@@ -19,7 +19,6 @@ export default () => {
       sx={{
         borderLeft: '1px solid',
         borderColor: 'border',
-        height: '100%',
         overflow: 'auto',
         pb: 3
       }}
