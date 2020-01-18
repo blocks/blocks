@@ -66,7 +66,6 @@ export default () => {
   return (
     <div
       sx={{
-        height: '100%',
         py: 2,
         overflow: 'auto',
         borderRight: '1px solid',
