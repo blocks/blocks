@@ -16,6 +16,7 @@
     "@babel/template": "^7.7.4",
     "@babel/types": "^7.7.4",
     "@blocks/react": "^0.0.58",
+    "@blocks/react-beautiful-dnd": "^12.1.2",
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
     "@emotion/weak-memoize": "^0.2.4",
@@ -29,7 +30,6 @@
     "lodash.merge": "^4.6.2",
     "prettier": "^1.19.1",
     "property-controls": "^0.0.58",
-    "react-beautiful-dnd": "^12.1.1",
     "react-feather": "^2.0.3",
     "react-merge-refs": "^1.0.0",
     "theme-ui": "^0.2.49"
@@ -39,7 +39,7 @@
     "@babel/core": "7.7.5",
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
-    "jest": "24.9.0",
+    "jest": "^24.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

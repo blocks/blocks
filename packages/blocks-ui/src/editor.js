@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext } from '@blocks/react-beautiful-dnd'
 
 import appTheme from './theme'
 import Canvas from './canvas'
@@ -48,19 +48,20 @@ export default ({
   props = {},
   scope = {},
   layout = 'div',
-  onChange
+  onChange = () => {}
 }) => (
   <Providers
     initialCode={src}
     blocks={blocks}
     theme={theme}
     appTheme={appTheme}
+    onChange={onChange}
     scope={{
       ...scope,
       props,
       layout
     }}
   >
-    <Editor onChange={onChange} />
+    <Editor />
   </Providers>
 )

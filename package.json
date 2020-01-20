@@ -3,7 +3,7 @@
   "name": "blocks",
   "scripts": {
     "start": "preconstruct dev && yarn docs",
-    "build": "gatsby build",
+    "build": "yarn gatsby build",
     "build:packages": "preconstruct build",
     "changeset": "changeset",
     "clean": "gatsby clean",

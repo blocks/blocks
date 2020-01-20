@@ -24,23 +24,24 @@ const Layout = props => {
   return <div className="layout">{props.children}</div>
 }
 
-export default () => (
-  <Editor
-    src={JSX}
-    blocks={Blocks}
-    layout={Layout}
-    onChange={code => {
-      // return null
-      // fetch('/___blocks', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     code,
-      //     page: 'foo.js'
-      //   })
-      // })
-    }}
-  />
-)
+export default () => {
+  return (
+    <Editor
+      src={JSX}
+      blocks={Blocks}
+      layout={Layout}
+      onChange={code => {
+        fetch('/___blocks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            code,
+            page: 'foo.js'
+          })
+        })
+      }}
+    />
+  )
+}

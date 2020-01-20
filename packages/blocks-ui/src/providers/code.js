@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import * as queries from '../queries'
 import * as transforms from '../transforms'
@@ -13,7 +13,7 @@ export const useCode = () => {
   return value
 }
 
-export const CodeProvider = ({ children, initialCode }) => {
+export const CodeProvider = ({ children, initialCode, onChange }) => {
   const providedBlocks = useBlocks()
 
   const codeWithUuids = transforms.addTuid(initialCode)
@@ -26,6 +26,10 @@ export const CodeProvider = ({ children, initialCode }) => {
     tree: queries.getElementTree(codeWithUuids),
     blocks: queries.getBlocks(codeWithUuids)
   })
+
+  useEffect(() => {
+    onChange(transforms.toRawJSX(codeState.code))
+  }, [codeState])
 
   const updateCode = newCode => {
     return {

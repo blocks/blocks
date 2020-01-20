@@ -52,6 +52,8 @@ export default () => {
     plugins: [parserJS]
   })
 
+  console.log('rerendering canvas')
+
   if (mode === 'code') {
     return (
       <Wrap>

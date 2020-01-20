@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
 import { Blocks } from '@blocks/react'
 import * as themeComponents from '@theme-ui/components'
 import { Styled } from 'theme-ui'

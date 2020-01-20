@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useMemo } from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
 
@@ -16,6 +16,8 @@ export default () => {
   const blocks = useBlocks()
   const { theme } = useScope()
   const { mode } = useEditor()
+
+  console.log('rerendering block listing')
 
   const list = useMemo(() => {
     return Object.keys(blocks).map((key, i) => {
