@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [10, 12]
+        node-version: [12]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
