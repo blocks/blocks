@@ -19,7 +19,7 @@ import { useScrollSync } from './hooks'
 const MIN_ZOOM_LEVEL = 25
 
 const createCacheWithContainer = weakMemoize(container =>
-  createCache({ container })
+  createCache({ key: 'device-container', container })
 )
 
 const Frame = ({ children, setFrame, ...restProps }) => {
@@ -111,7 +111,6 @@ export function PreviewArea({ children }) {
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
         width: '100%',
-        height: '100%',
         overflow: 'auto'
       }}
     >
