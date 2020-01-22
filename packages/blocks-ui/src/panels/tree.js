@@ -59,7 +59,7 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
   )
 }
 
-export default () => {
+const TreePanel = () => {
   const { tree, currentElementId, setCurrentElementId } = useCode()
   const { updateActiveTabByName } = useEditor()
 
@@ -87,3 +87,5 @@ export default () => {
     </div>
   )
 }
+
+export default TreePanel

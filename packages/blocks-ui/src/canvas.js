@@ -42,7 +42,7 @@ const Copy = ({ toCopy }) => {
   )
 }
 
-export default () => {
+const Canvas = () => {
   const { theme, ...scope } = useScope()
   const { code, transformedCode } = useCode()
   const { mode } = useEditor()
@@ -95,3 +95,5 @@ export default () => {
     </Wrap>
   )
 }
+
+export default Canvas

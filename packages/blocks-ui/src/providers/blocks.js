@@ -8,7 +8,7 @@ export const useBlocks = () => {
   return value
 }
 
-export const BlocksProvider = ({ children, blocks = DEFAULT_BLOCKS }) => (
+const BlocksProvider = ({ children, blocks = DEFAULT_BLOCKS }) => (
   <BlocksContext.Provider value={blocks}>{children}</BlocksContext.Provider>
 )
 

@@ -41,7 +41,7 @@ const Editor = () => {
   )
 }
 
-export default ({
+const EditorWithProviders = ({
   src,
   blocks,
   theme,
@@ -65,3 +65,5 @@ export default ({
     <Editor />
   </Providers>
 )
+
+export default EditorWithProviders
