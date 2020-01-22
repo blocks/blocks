@@ -5,9 +5,6 @@
   "version": "0.0.60",
   "license": "MIT",
   "repository": "blocks/blocks",
-  "scripts": {
-    "prepare": "cp src/recipes.txt dist/recipes.txt"
-  },
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.7.4",

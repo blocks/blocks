@@ -6,7 +6,6 @@
   "main": "dist/react.cjs.js",
   "module": "dist/react.esm.js",
   "license": "MIT",
-  "scripts": {},
   "devDependencies": {
     "@babel/cli": "7.7.5",
     "@babel/core": "7.7.5",
