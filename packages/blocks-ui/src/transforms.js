@@ -21,6 +21,8 @@ import babelPluginClone from './babel-plugins/clone'
 import babelPluginInsertBlock from './babel-plugins/insert-block'
 import babelPluginReplaceText from './babel-plugins/replace-text'
 
+import * as queries from './queries'
+
 const transformPlugins = [
   babelPluginSetDefaultExportToContainer,
   babelPluginDnd,
@@ -62,7 +64,9 @@ export const toTransformedBlockJSX = code => {
   }).code
 }
 
-export const toRawJSX = (code, { blocks } = {}) => {
+export const toRawJSX = code => {
+  const blocks = queries.getBlocks(code)
+
   try {
     return transform(code, {
       plugins: [

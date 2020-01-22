@@ -1,11 +1,5 @@
 import React from 'react'
-import Editor from 'blocks-ui'
-import * as Blocks from '@blocks/react'
-
-const JSX = `
-import React from 'react'
 import { Blocks, HeaderBasic } from '@blocks/react'
-
 export default () => (
   <Blocks.Root>
     <HeaderBasic>
@@ -18,14 +12,3 @@ export default () => (
     </HeaderBasic>
   </Blocks.Root>
 )
-`
-
-const Layout = props => {
-  return <div className="layout">{props.children}</div>
-}
-
-const Demo = () => {
-  return <Editor src={JSX} blocks={Blocks} layout={Layout} />
-}
-
-export default Demo

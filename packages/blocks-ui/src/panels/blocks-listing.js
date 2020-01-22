@@ -1,20 +1,27 @@
 /** @jsx jsx */
 import { useMemo } from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
 
-import { useEditor } from './editor-context'
-import InlineBlockRender from './inline-block-render'
+import InlineBlockRender from '../inline-block-render'
+import { useEditor } from '../providers/editor'
+import { useBlocks } from '../providers/blocks'
+import { useScope } from '../providers/scope'
 
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
 
-export default ({ components, theme }) => {
+export default () => {
+  const blocks = useBlocks()
+  const { theme } = useScope()
   const { mode } = useEditor()
+
+  console.log('rerendering block listing')
+
   const list = useMemo(() => {
-    return Object.keys(components).map((key, i) => {
-      const Component = components[key]
+    return Object.keys(blocks).map((key, i) => {
+      const Component = blocks[key]
 
       // Ignore Blocks.Root since it's a special component
       if (isBlocksRoot(Component)) {
@@ -23,8 +30,8 @@ export default ({ components, theme }) => {
 
       return (
         <Draggable key={key} draggableId={key} index={i + 1}>
-          {(provided, snapshot) => {
-            const Component = components[key]
+          {(provided, _snapshot) => {
+            const Component = blocks[key]
 
             return (
               <div
@@ -56,7 +63,7 @@ export default ({ components, theme }) => {
         </Draggable>
       )
     })
-  }, [components])
+  }, [blocks])
 
   if (mode === 'viewports') {
     return (
@@ -71,7 +78,7 @@ export default ({ components, theme }) => {
     <Box p={3}>
       <ThemeProvider theme={theme}>
         <Droppable droppableId="components">
-          {(provided, snapshot) => (
+          {(provided, _snapshot) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {list}
               {provided.placeholder}
