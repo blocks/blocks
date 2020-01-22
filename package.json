@@ -64,7 +64,7 @@
     "gatsby-plugin-react-helmet": "3.1.16",
     "gatsby-plugin-theme-ui": "0.2.43",
     "gatsby-source-filesystem": "2.1.40",
-    "husky": "3.1.0",
+    "husky": "4.2.0",
     "lint-staged": "10.0.2",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
