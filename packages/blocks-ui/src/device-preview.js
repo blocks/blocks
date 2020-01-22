@@ -111,7 +111,6 @@ export function PreviewArea({ children }) {
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
         width: '100%',
-        height: '100%',
         overflow: 'auto'
       }}
     >
