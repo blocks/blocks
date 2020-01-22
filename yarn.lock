@@ -6264,10 +6264,10 @@ gatsby-plugin-catch-links@2.1.19:
     "@babel/runtime" "^7.7.4"
     escape-string-regexp "^1.0.5"
 
-gatsby-plugin-fathom@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-fathom/-/gatsby-plugin-fathom-1.1.0.tgz#d9f0b079b86e80d8c373f0d5ef7a27733f240d14"
-  integrity sha512-a6XvWKJ/aV3kaPU30gIvz8S+poiwH/jmJJ+3YIZPfV962jy3tTzPpTwKAqdeeW5lS9P3tJIwKxH9pEETf5HnuQ==
+gatsby-plugin-fathom@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-fathom/-/gatsby-plugin-fathom-1.2.0.tgz#31838fb71e3505ab919c97bb4a6849d458f522e3"
+  integrity sha512-z2HjpoXkOPOVZuXI8bfGDzgH0brAof2xVz9bIM8poBdW9HcdQXpFW468zlcv2/d5m8VeK8X+NfAiesNvZ8/tpw==
   dependencies:
     "@babel/runtime" "7.1.2"
     react "16.5.2"
