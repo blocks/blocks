@@ -1,6 +1,14 @@
 # gatsby-plugin-blocks
 
+## 0.0.61
+
+### Patch Changes
+
+- Updated dependencies [dcc372b]
+  - blocks-ui@0.0.61
+
 ## 0.0.60
+
 ### Patch Changes
 
 - 09b0ea5: Rewrite editor internals, begin building gatsby-plugin-blocks

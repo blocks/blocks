@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.61
+
+### Patch Changes
+
+- dcc372b: Make the entire canvas droppable
+
 ## 0.0.60
 
 ### Patch Changes
