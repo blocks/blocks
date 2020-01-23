@@ -32,18 +32,15 @@ export default () => {
             top: 0
           }}
         >
-          <Tab sx={getTabStyles(activeTab === 'editor')}>Editor</Tab>
-          <Tab
-            sx={{
-              ...getTabStyles(activeTab === 'components'),
-              borderLeft: '1px solid',
-              borderRight: '1px solid',
-              borderColor: 'border'
-            }}
-          >
+          <Tab sx={getTabStyles({ isActive: activeTab === 'editor' })}>
+            Editor
+          </Tab>
+          <Tab sx={getTabStyles({ isActive: activeTab === 'components' })}>
             Components
           </Tab>
-          <Tab sx={getTabStyles(activeTab === 'theme')}>Theme</Tab>
+          <Tab sx={getTabStyles({ isActive: activeTab === 'theme' })}>
+            Theme
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -83,11 +80,20 @@ export default () => {
 const baseTabStyles = {
   flex: 1,
   appearance: 'none',
+  margin: 0,
   py: 2,
   fontSize: 0,
   fontWeight: 500,
-  border: 0,
-  margin: 0,
+  borderTop: 'none',
+  borderLeft: 'none',
+  borderRight: '1px solid',
+  borderBottom: '1px solid',
+  borderColor: 'border',
+
+  '&:last-of-type': {
+    borderRight: 'none'
+  },
+
   '&:focus': {
     zIndex: 99,
     outline: 'none',
@@ -97,6 +103,7 @@ const baseTabStyles = {
 }
 
 const activeTabStyles = {
+  borderBottomColor: 'white',
   bg: 'white'
 }
 
@@ -104,7 +111,7 @@ const inactiveTabStyles = {
   bg: '#fafafa'
 }
 
-const getTabStyles = isActiveTab => ({
+const getTabStyles = ({ isActive }) => ({
   ...baseTabStyles,
-  ...(isActiveTab ? activeTabStyles : inactiveTabStyles)
+  ...(isActive ? activeTabStyles : inactiveTabStyles)
 })
