@@ -32,36 +32,18 @@ export default () => {
             top: 0
           }}
         >
+          <Tab sx={getTabStyles(activeTab === 'editor')}>Editor</Tab>
           <Tab
             sx={{
-              ...baseTabStyles,
-              borderColor: activeTab === 'editor' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'editor' ? null : '#fafafa'
-            }}
-          >
-            Editor
-          </Tab>
-          <Tab
-            sx={{
-              ...baseTabStyles,
+              ...getTabStyles(activeTab === 'components'),
               borderLeft: '1px solid',
               borderRight: '1px solid',
-              borderColor:
-                activeTab === 'components' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'components' ? null : '#fafafa'
+              borderColor: 'border'
             }}
           >
             Components
           </Tab>
-          <Tab
-            sx={{
-              ...baseTabStyles,
-              borderColor: activeTab === 'theme' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'theme' ? null : '#fafafa'
-            }}
-          >
-            Theme
-          </Tab>
+          <Tab sx={getTabStyles(activeTab === 'theme')}>Theme</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -98,16 +80,14 @@ export default () => {
   )
 }
 
-// Base sytles for tabs
 const baseTabStyles = {
   flex: 1,
   appearance: 'none',
-  border: 0,
   py: 2,
   fontSize: 0,
   fontWeight: 500,
-  borderBottomStyle: 'solid',
-  borderBottomWidth: 'thin',
+  border: 0,
+  margin: 0,
   '&:focus': {
     zIndex: 99,
     outline: 'none',
@@ -115,3 +95,16 @@ const baseTabStyles = {
     textDecoration: 'underline'
   }
 }
+
+const activeTabStyles = {
+  bg: 'white'
+}
+
+const inactiveTabStyles = {
+  bg: '#fafafa'
+}
+
+const getTabStyles = isActiveTab => ({
+  ...baseTabStyles,
+  ...(isActiveTab ? activeTabStyles : inactiveTabStyles)
+})
