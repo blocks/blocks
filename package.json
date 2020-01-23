@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "postinstall": "manypkg check && preconstruct dev",
     "release": "yarn build:packages && changeset publish",
-    "test": "yarn build && yarn build:packages"
+    "test": "jest"
   },
   "workspaces": [
     "packages/*"
@@ -33,6 +33,13 @@
     "*.js": [
       "prettier --write"
     ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/.cache/",
+      "/packages\/mdx/"
+    ],
+    "testEnvironment": "node"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.7.4",
@@ -64,6 +71,7 @@
     "gatsby-plugin-theme-ui": "0.3.0",
     "gatsby-source-filesystem": "2.1.46",
     "husky": "4.2.0",
+    "jest": "^25.1.0",
     "lint-staged": "10.0.2",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
