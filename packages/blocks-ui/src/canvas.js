@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx } from 'theme-ui'
+import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
 
@@ -58,16 +59,14 @@ const Canvas = () => {
     return (
       <Wrap>
         <Copy toCopy={formattedCode} />
-        <Styled.pre
-          language="js"
+        <Textarea
           sx={{
-            mt: 0,
-            backgroundColor: 'white',
-            color: 'black'
+            height: '100%',
+            border: 'none',
+            borderRadius: 0
           }}
-        >
-          {formattedCode}
-        </Styled.pre>
+          value={formattedCode}
+        />
       </Wrap>
     )
   }
