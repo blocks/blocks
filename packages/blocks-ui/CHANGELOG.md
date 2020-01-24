@@ -1,5 +1,13 @@
 # blocks-ui
 
+## 0.0.64
+
+### Patch Changes
+
+- 05b2c67: Add a hoverstate to elements that's synced with the layers panel
+- Updated dependencies [05b2c67]
+  - @blocks/react@0.0.59
+
 ## 0.0.63
 
 ### Patch Changes
