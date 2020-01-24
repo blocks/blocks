@@ -74,10 +74,16 @@ export const getElementName = node => {
   }
 }
 
-export const getUuid = node => {
-  const id = node.attributes.find(
-    node => node && node.name && node.name.name === uuidName
-  )
+export const getUuidAttr = node =>
+  node.attributes.find(node => node && node.name && node.name.name === uuidName)
 
+export const addUuidAttr = node => {
+  node.attributes.push(
+    t.jSXAttribute(t.jSXIdentifier(uuidName), t.stringLiteral(uuid()))
+  )
+}
+
+export const getUuid = node => {
+  const id = getUuidAttr(node)
   return id && id.value.value
 }
