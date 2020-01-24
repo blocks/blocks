@@ -12,7 +12,8 @@ export default (type, props, ...children) => {
     currentElementId,
     setCurrentElementId,
     currentHoveredElementId,
-    setCurrentHoveredElementId
+    hoverElementId,
+    removeHoveredElementId
   } = useCode()
   const { updateActiveTabByName } = useEditor()
 
@@ -46,8 +47,8 @@ export default (type, props, ...children) => {
           updateActiveTabByName('editor')
         }
       },
-      onMouseEnter: () => setCurrentHoveredElementId(id),
-      onMouseLeave: () => setCurrentHoveredElementId()
+      onMouseEnter: () => hoverElementId(id),
+      onMouseLeave: () => removeHoveredElementId(id)
     },
     ...children
   )

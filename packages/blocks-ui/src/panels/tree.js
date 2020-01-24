@@ -83,7 +83,8 @@ const TreePanel = () => {
     currentElementId,
     currentHoveredElementId,
     setCurrentElementId,
-    setCurrentHoveredElementId
+    hoverElementId,
+    removeHoveredElementId
   } = useCode()
   const { updateActiveTabByName } = useEditor()
 
@@ -107,8 +108,8 @@ const TreePanel = () => {
             setCurrentElementId(elementId)
             updateActiveTabByName('editor')
           }}
-          onMouseEnter={elementId => setCurrentHoveredElementId(elementId)}
-          onMouseLeave={elementId => setCurrentHoveredElementId()}
+          onMouseEnter={elementId => hoverElementId(elementId)}
+          onMouseLeave={elementId => removeHoveredElementId(elementId)}
         />
       ))}
     </div>

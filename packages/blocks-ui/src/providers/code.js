@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 
 import * as queries from '../queries'
 import * as transforms from '../transforms'
@@ -13,14 +13,29 @@ export const useCode = () => {
   return value
 }
 
+const useRefState = initialValue => {
+  const [state, setState] = useState(initialValue)
+  const stateRef = useRef(state)
+
+  return [
+    state,
+    newState => {
+      setState(newState)
+      stateRef.current = newState
+    },
+    stateRef
+  ]
+}
+
 export const CodeProvider = ({ children, initialCode, onChange }) => {
   const providedBlocks = useBlocks()
 
   const codeWithUuids = transforms.addTuid(initialCode)
-  const [codeState, setCodeState] = useState({
-    currentHoveredElementId: null,
+  const [codeState, setCodeState, codeStateRef] = useRefState({
     currentElementId: null,
     currentElementData: null,
+    currentHoveredElementId: null,
+    currentHoveredElements: [],
     rawCode: initialCode,
     code: codeWithUuids,
     transformedCode: transforms.toTransformedJSX(codeWithUuids),
@@ -62,10 +77,37 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const setCurrentHoveredElementId = elementId => {
+  const hoverElementId = elementId => {
+    if (!elementId) {
+      return
+    }
+
     setCodeState({
-      ...codeState,
-      currentHoveredElementId: !elementId ? null : elementId
+      ...codeStateRef.current,
+      currentHoveredElementId: !elementId ? null : elementId,
+      currentHoveredElements: [
+        ...codeStateRef.current.currentHoveredElements,
+        elementId
+      ]
+    })
+  }
+
+  const removeHoveredElementId = elementId => {
+    if (!elementId) {
+      return
+    }
+
+    const newHoveredElements = codeStateRef.current.currentHoveredElements.filter(
+      id => id !== elementId
+    )
+
+    setCodeState({
+      ...codeStateRef.current,
+      currentHoveredElementId:
+        newHoveredElements.length > 0
+          ? newHoveredElements[newHoveredElements.length - 1]
+          : null,
+      currentHoveredElements: newHoveredElements
     })
   }
 
@@ -209,7 +251,8 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
         updateProp,
         setCurrentElementId,
         removeCurrentElement,
-        setCurrentHoveredElementId,
+        hoverElementId,
+        removeHoveredElementId,
         cloneCurrentElement,
         selectParentOfCurrentElement,
         updateSxProp,
