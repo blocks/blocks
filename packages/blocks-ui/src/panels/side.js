@@ -32,34 +32,13 @@ export default () => {
             top: 0
           }}
         >
-          <Tab
-            sx={{
-              ...baseTabStyles,
-              borderColor: activeTab === 'editor' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'editor' ? null : '#fafafa'
-            }}
-          >
+          <Tab sx={getTabStyles({ isActive: activeTab === 'editor' })}>
             Editor
           </Tab>
-          <Tab
-            sx={{
-              ...baseTabStyles,
-              borderLeft: '1px solid',
-              borderRight: '1px solid',
-              borderColor:
-                activeTab === 'components' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'components' ? null : '#fafafa'
-            }}
-          >
+          <Tab sx={getTabStyles({ isActive: activeTab === 'components' })}>
             Components
           </Tab>
-          <Tab
-            sx={{
-              ...baseTabStyles,
-              borderColor: activeTab === 'theme' ? 'transparent' : 'border',
-              backgroundColor: activeTab === 'theme' ? null : '#fafafa'
-            }}
-          >
+          <Tab sx={getTabStyles({ isActive: activeTab === 'theme' })}>
             Theme
           </Tab>
         </TabList>
@@ -98,16 +77,23 @@ export default () => {
   )
 }
 
-// Base sytles for tabs
 const baseTabStyles = {
   flex: 1,
   appearance: 'none',
-  border: 0,
+  margin: 0,
   py: 2,
   fontSize: 0,
   fontWeight: 500,
-  borderBottomStyle: 'solid',
-  borderBottomWidth: 'thin',
+  borderTop: 'none',
+  borderLeft: 'none',
+  borderRight: '1px solid',
+  borderBottom: '1px solid',
+  borderColor: 'border',
+
+  '&:last-of-type': {
+    borderRight: 'none'
+  },
+
   '&:focus': {
     zIndex: 99,
     outline: 'none',
@@ -115,3 +101,17 @@ const baseTabStyles = {
     textDecoration: 'underline'
   }
 }
+
+const activeTabStyles = {
+  borderBottomColor: 'white',
+  bg: 'white'
+}
+
+const inactiveTabStyles = {
+  bg: '#fafafa'
+}
+
+const getTabStyles = ({ isActive }) => ({
+  ...baseTabStyles,
+  ...(isActive ? activeTabStyles : inactiveTabStyles)
+})
