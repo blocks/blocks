@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.63
+
+### Patch Changes
+
+- edfc06c: Fix clone element bug with child nodes
+
 ## 0.0.62
 
 ### Patch Changes
