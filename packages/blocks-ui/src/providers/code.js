@@ -18,6 +18,7 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
 
   const codeWithUuids = transforms.addTuid(initialCode)
   const [codeState, setCodeState] = useState({
+    currentHoveredElementId: null,
     currentElementId: null,
     currentElementData: null,
     rawCode: initialCode,
@@ -58,6 +59,13 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
       ...codeState,
       currentElementId: elementId,
       currentElementData
+    })
+  }
+
+  const setCurrentHoveredElementId = elementId => {
+    setCodeState({
+      ...codeState,
+      currentHoveredElementId: !elementId ? null : elementId
     })
   }
 
@@ -201,6 +209,7 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
         updateProp,
         setCurrentElementId,
         removeCurrentElement,
+        setCurrentHoveredElementId,
         cloneCurrentElement,
         selectParentOfCurrentElement,
         updateSxProp,

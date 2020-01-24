@@ -4,7 +4,14 @@ import { jsx } from 'theme-ui'
 import { useCode } from '../providers/code'
 import { useEditor } from '../providers/editor'
 
-const Tree = ({ tree, depth, selectedId, onSelect }) => {
+const Tree = ({
+  tree,
+  depth,
+  selectedId,
+  onSelect,
+  onMouseEnter,
+  onMouseLeave
+}) => {
   return (
     <div
       sx={{
@@ -12,6 +19,8 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
       }}
     >
       <button
+        onMouseEnter={() => onMouseEnter(tree.id)}
+        onMouseLeave={() => onMouseLeave(tree.id)}
         onClick={() => onSelect(tree.id)}
         sx={{
           appearance: 'none',
@@ -53,6 +62,8 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
           depth={depth + 1}
           selectedId={selectedId}
           onSelect={onSelect}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       ))}
     </div>
@@ -60,7 +71,12 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
 }
 
 const TreePanel = () => {
-  const { tree, currentElementId, setCurrentElementId } = useCode()
+  const {
+    tree,
+    currentElementId,
+    setCurrentElementId,
+    setCurrentHoveredElementId
+  } = useCode()
   const { updateActiveTabByName } = useEditor()
 
   return (
@@ -82,6 +98,8 @@ const TreePanel = () => {
             setCurrentElementId(elementId)
             updateActiveTabByName('editor')
           }}
+          onMouseEnter={elementId => setCurrentHoveredElementId(elementId)}
+          onMouseLeave={elementId => setCurrentHoveredElementId()}
         />
       ))}
     </div>
