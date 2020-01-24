@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.62
+
+### Patch Changes
+
+- b9427db: Fix tab styles for Safari
+
 ## 0.0.61
 
 ### Patch Changes
