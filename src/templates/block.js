@@ -14,4 +14,7 @@ export const pageQuery = graphql`
   }
 `
 
-export default ({ data: { block } }) => <Block block={block} />
+export default ({ data: { block } }) => {
+  console.log('FIRED WITH DATA', block)
+  return <Block block={block} />
+} 
