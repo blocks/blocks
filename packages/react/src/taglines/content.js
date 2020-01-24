@@ -23,7 +23,7 @@ TaglineContent.Container = props => (
   />
 )
 
-TaglineContent.Heading = ({ children, ...props }) => (
+TaglineContent.Heading = props => (
   <h3
     sx={{
       m: 0,
@@ -31,7 +31,6 @@ TaglineContent.Heading = ({ children, ...props }) => (
       lineHeight: 'heading',
       fontWeight: 'heading'
     }}
-    children={props.children}
     {...props}
   />
 )
