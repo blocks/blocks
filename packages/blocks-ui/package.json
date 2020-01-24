@@ -11,6 +11,7 @@
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/standalone": "^7.7.4",
     "@babel/template": "^7.7.4",
+    "@babel/traverse": "^7.8.3",
     "@babel/types": "^7.7.4",
     "@blocks/react": "^0.0.58",
     "@blocks/react-beautiful-dnd": "^12.1.2",
