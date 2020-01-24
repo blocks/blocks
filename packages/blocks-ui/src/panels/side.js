@@ -29,7 +29,8 @@ export default () => {
             display: 'flex',
             width: '100%',
             position: 'sticky',
-            top: 0
+            top: 0,
+            zIndex: 2
           }}
         >
           <Tab sx={getTabStyles({ isActive: activeTab === 'editor' })}>
