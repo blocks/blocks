@@ -8,6 +8,7 @@ const Tree = ({
   tree,
   depth,
   selectedId,
+  hoveredId,
   onSelect,
   onMouseEnter,
   onMouseLeave
@@ -29,7 +30,12 @@ const Tree = ({
           pl: depth * 16, // Indent based on depth
           textAlign: 'left',
           color: tree.id === selectedId ? 'background' : 'text',
-          backgroundColor: tree.id === selectedId ? 'primary' : 'transparent',
+          backgroundColor:
+            tree.id === selectedId
+              ? 'primary'
+              : tree.id === hoveredId
+              ? 'border'
+              : 'transparent',
           border: 0,
           cursor: 'pointer',
           outline: 0,
@@ -61,6 +67,7 @@ const Tree = ({
           tree={child}
           depth={depth + 1}
           selectedId={selectedId}
+          hoveredId={hoveredId}
           onSelect={onSelect}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
@@ -74,6 +81,7 @@ const TreePanel = () => {
   const {
     tree,
     currentElementId,
+    currentHoveredElementId,
     setCurrentElementId,
     setCurrentHoveredElementId
   } = useCode()
@@ -94,6 +102,7 @@ const TreePanel = () => {
           tree={child}
           depth={0}
           selectedId={currentElementId}
+          hoveredId={currentHoveredElementId}
           onSelect={elementId => {
             setCurrentElementId(elementId)
             updateActiveTabByName('editor')
