@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import * as queries from '../queries'
 import * as transforms from '../transforms'
@@ -13,25 +13,11 @@ export const useCode = () => {
   return value
 }
 
-const useRefState = initialValue => {
-  const [state, setState] = useState(initialValue)
-  const stateRef = useRef(state)
-
-  return [
-    state,
-    newState => {
-      setState(newState)
-      stateRef.current = newState
-    },
-    stateRef
-  ]
-}
-
 export const CodeProvider = ({ children, initialCode, onChange }) => {
   const providedBlocks = useBlocks()
 
   const codeWithUuids = transforms.addTuid(initialCode)
-  const [codeState, setCodeState, codeStateRef] = useRefState({
+  const [codeState, setCodeState] = useState({
     currentElementId: null,
     currentElementData: null,
     currentHoveredElementId: null,
@@ -82,14 +68,14 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
       return
     }
 
-    setCodeState({
-      ...codeStateRef.current,
+    setCodeState(oldCodeState => ({
+      ...oldCodeState,
       currentHoveredElementId: !elementId ? null : elementId,
       currentHoveredElements: [
-        ...codeStateRef.current.currentHoveredElements,
+        ...oldCodeState.currentHoveredElements,
         elementId
       ]
-    })
+    }))
   }
 
   const removeHoveredElementId = elementId => {
@@ -97,17 +83,19 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
       return
     }
 
-    const newHoveredElements = codeStateRef.current.currentHoveredElements.filter(
-      id => id !== elementId
-    )
+    setCodeState(oldCodeState => {
+      const newHoveredElements = oldCodeState.currentHoveredElements.filter(
+        id => id !== elementId
+      )
 
-    setCodeState({
-      ...codeStateRef.current,
-      currentHoveredElementId:
-        newHoveredElements.length > 0
-          ? newHoveredElements[newHoveredElements.length - 1]
-          : null,
-      currentHoveredElements: newHoveredElements
+      return {
+        ...oldCodeState,
+        currentHoveredElementId:
+          newHoveredElements.length > 0
+            ? newHoveredElements[newHoveredElements.length - 1]
+            : null,
+        currentHoveredElements: newHoveredElements
+      }
     })
   }
 
