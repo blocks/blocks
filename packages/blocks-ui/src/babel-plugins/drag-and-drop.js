@@ -22,7 +22,7 @@ const buildDraggable = (id, index) =>
 const buildInlineDraggable = (id, index) =>
   template.ast(
     `
-  <BLOCKS_Draggable key='${id}' draggableId='${id}' index={${index}}>
+  <BLOCKS_Draggable sx={{width: '100%'}} key='${id}' draggableId='${id}' index={${index}}>
     {(provided, snapshot) => (
       <span
         ref={provided.innerRef}
