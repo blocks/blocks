@@ -9,6 +9,8 @@ import { IconButton } from './ui'
 
 const { version } = pkg
 
+export const headerHeight = 50
+
 const modes = [
   {
     key: 'canvas',
@@ -93,6 +95,7 @@ const ToolbarButton = ({ label, onClick, isActive, Icon }) => (
 const Header = () => (
   <header
     sx={{
+      height: headerHeight,
       display: 'flex',
       justifyContent: 'space-between',
       width: '100%',
