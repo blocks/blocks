@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { jsx } from 'theme-ui'
 import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
