@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import React, { useState } from 'react'
 import { jsx } from 'theme-ui'
 import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
@@ -44,6 +45,7 @@ const Copy = ({ toCopy }) => {
 }
 
 const Canvas = () => {
+  const { error, setError } = useState(null)
   const { theme, ...scope } = useScope()
   const { code, transformedCode, editCode } = useCode()
   const { mode } = useEditor()
@@ -57,6 +59,15 @@ const Canvas = () => {
     return (
       <Wrap>
         <Copy toCopy={formattedCode} />
+        <pre
+          sx={{
+            mb: 0,
+            backgroundColor: 'rgba(206, 17, 38, 0.05)',
+            fontSize: '8pt'
+          }}
+        >
+          {error}
+        </pre>
         <Textarea
           sx={{
             height: '100%',
@@ -65,7 +76,14 @@ const Canvas = () => {
             fontFamily: 'Menlo, monospace',
             fontSize: '14px'
           }}
-          onChange={e => editCode(e.target.value)}
+          onChange={e => {
+            try {
+              editCode(e.target.value)
+            } catch (err) {
+              console.log(err)
+              // setError(err)
+            }
+          }}
         >
           {formattedCode}
         </Textarea>
