@@ -17,8 +17,6 @@ export default () => {
   const { theme } = useScope()
   const { mode } = useEditor()
 
-  console.log('rerendering block listing')
-
   const list = useMemo(() => {
     return Object.keys(blocks).map((key, i) => {
       const Component = blocks[key]
@@ -45,7 +43,8 @@ export default () => {
                     borderColor: 'border',
                     bg: 'background',
                     color: 'text',
-                    mb: 3
+                    mb: 3,
+                    pointerEvents: 'none'
                   }}
                 >
                   <InlineBlockRender
