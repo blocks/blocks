@@ -9,10 +9,6 @@ import { useEditor } from '../providers/editor'
 import { useBlocks } from '../providers/blocks'
 import { useScope } from '../providers/scope'
 
-const CustomPlaceholder = () => (
-  <div sx={{ background: 'blue', width: '100%', height: '230px' }} />
-)
-
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
 
@@ -60,7 +56,7 @@ export default () => {
                       currentlyHoveringOver === 'root'
                         ? `${canvasWidth}px`
                         : '100%',
-                    transition: 'width .5'
+                    transition: 'width .25s'
                   }}
                 >
                   <InlineBlockRender
