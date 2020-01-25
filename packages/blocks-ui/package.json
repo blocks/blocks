@@ -2,7 +2,7 @@
   "name": "blocks-ui",
   "main": "dist/blocks-ui.cjs.js",
   "module": "dist/blocks-ui.esm.js",
-  "version": "0.0.62",
+  "version": "0.0.65",
   "license": "MIT",
   "repository": "blocks/blocks",
   "dependencies": {
@@ -11,8 +11,9 @@
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/standalone": "^7.7.4",
     "@babel/template": "^7.7.4",
+    "@babel/traverse": "^7.8.3",
     "@babel/types": "^7.7.4",
-    "@blocks/react": "^0.0.58",
+    "@blocks/react": "^0.0.59",
     "@blocks/react-beautiful-dnd": "^12.1.2",
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
@@ -36,7 +37,7 @@
     "@babel/core": "7.8.3",
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

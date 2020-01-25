@@ -4,7 +4,15 @@ import { jsx } from 'theme-ui'
 import { useCode } from '../providers/code'
 import { useEditor } from '../providers/editor'
 
-const Tree = ({ tree, depth, selectedId, onSelect }) => {
+const Tree = ({
+  tree,
+  depth,
+  selectedId,
+  hoveredId,
+  onSelect,
+  onMouseEnter,
+  onMouseLeave
+}) => {
   return (
     <div
       sx={{
@@ -12,6 +20,8 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
       }}
     >
       <button
+        onMouseEnter={() => onMouseEnter(tree.id)}
+        onMouseLeave={() => onMouseLeave(tree.id)}
         onClick={() => onSelect(tree.id)}
         sx={{
           appearance: 'none',
@@ -20,7 +30,12 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
           pl: depth * 16, // Indent based on depth
           textAlign: 'left',
           color: tree.id === selectedId ? 'background' : 'text',
-          backgroundColor: tree.id === selectedId ? 'primary' : 'transparent',
+          backgroundColor:
+            tree.id === selectedId
+              ? 'primary'
+              : tree.id === hoveredId
+              ? 'border'
+              : 'transparent',
           border: 0,
           cursor: 'pointer',
           outline: 0,
@@ -52,7 +67,10 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
           tree={child}
           depth={depth + 1}
           selectedId={selectedId}
+          hoveredId={hoveredId}
           onSelect={onSelect}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       ))}
     </div>
@@ -60,7 +78,14 @@ const Tree = ({ tree, depth, selectedId, onSelect }) => {
 }
 
 const TreePanel = () => {
-  const { tree, currentElementId, setCurrentElementId } = useCode()
+  const {
+    tree,
+    currentElementId,
+    currentHoveredElementId,
+    setCurrentElementId,
+    hoverElementId,
+    removeHoveredElementId
+  } = useCode()
   const { updateActiveTabByName } = useEditor()
 
   return (
@@ -78,10 +103,13 @@ const TreePanel = () => {
           tree={child}
           depth={0}
           selectedId={currentElementId}
+          hoveredId={currentHoveredElementId}
           onSelect={elementId => {
             setCurrentElementId(elementId)
             updateActiveTabByName('editor')
           }}
+          onMouseEnter={elementId => hoverElementId(elementId)}
+          onMouseLeave={elementId => removeHoveredElementId(elementId)}
         />
       ))}
     </div>

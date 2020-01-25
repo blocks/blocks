@@ -20,6 +20,8 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
   const [codeState, setCodeState] = useState({
     currentElementId: null,
     currentElementData: null,
+    currentHoveredElementId: null,
+    currentHoveredElements: [],
     rawCode: initialCode,
     code: codeWithUuids,
     transformedCode: transforms.toTransformedJSX(codeWithUuids),
@@ -67,6 +69,42 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
       ...codeState,
       currentElementId: elementId,
       currentElementData
+    })
+  }
+
+  const hoverElementId = elementId => {
+    if (!elementId) {
+      return
+    }
+
+    setCodeState(oldCodeState => ({
+      ...oldCodeState,
+      currentHoveredElementId: !elementId ? null : elementId,
+      currentHoveredElements: [
+        ...oldCodeState.currentHoveredElements,
+        elementId
+      ]
+    }))
+  }
+
+  const removeHoveredElementId = elementId => {
+    if (!elementId) {
+      return
+    }
+
+    setCodeState(oldCodeState => {
+      const newHoveredElements = oldCodeState.currentHoveredElements.filter(
+        id => id !== elementId
+      )
+
+      return {
+        ...oldCodeState,
+        currentHoveredElementId:
+          newHoveredElements.length > 0
+            ? newHoveredElements[newHoveredElements.length - 1]
+            : null,
+        currentHoveredElements: newHoveredElements
+      }
     })
   }
 
@@ -210,6 +248,8 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
         updateProp,
         setCurrentElementId,
         removeCurrentElement,
+        hoverElementId,
+        removeHoveredElementId,
         cloneCurrentElement,
         selectParentOfCurrentElement,
         updateSxProp,

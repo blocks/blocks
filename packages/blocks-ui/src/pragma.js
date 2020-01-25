@@ -8,7 +8,13 @@ import { uuidName } from './constants'
 const IGNORED_TYPES = ['path']
 
 export default (type, props, ...children) => {
-  const { currentElementId, setCurrentElementId } = useCode()
+  const {
+    currentElementId,
+    setCurrentElementId,
+    currentHoveredElementId,
+    hoverElementId,
+    removeHoveredElementId
+  } = useCode()
   const { updateActiveTabByName } = useEditor()
 
   props = props || {}
@@ -16,6 +22,7 @@ export default (type, props, ...children) => {
   delete props[uuidName]
 
   const isCurrentElement = id && id === currentElementId
+  const isHoveredElement = id && id === currentHoveredElementId
 
   if (IGNORED_TYPES.includes(type)) {
     return jsx(type, props, ...children)
@@ -29,6 +36,8 @@ export default (type, props, ...children) => {
         ...sx,
         boxShadow: isCurrentElement
           ? theme => `inset 0px 0px 0px 2px ${theme.colors.primary}`
+          : isHoveredElement
+          ? 'inset 0px 0px 0px 2px #bbbbbb'
           : sx.boxShadow
       },
       onClick: e => {
@@ -37,7 +46,9 @@ export default (type, props, ...children) => {
           setCurrentElementId(id)
           updateActiveTabByName('editor')
         }
-      }
+      },
+      onMouseEnter: () => hoverElementId(id),
+      onMouseLeave: () => removeHoveredElementId(id)
     },
     ...children
   )

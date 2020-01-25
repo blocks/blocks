@@ -1,5 +1,11 @@
 # @blocks/react
 
+## 0.0.59
+
+### Patch Changes
+
+- 05b2c67: Clean up destructuring
+
 ## 0.0.58
 
 ### Patch Changes
