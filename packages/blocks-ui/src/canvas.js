@@ -61,6 +61,7 @@ const Canvas = () => {
         <pre
           sx={{
             mt: 0,
+            mb: 0,
             backgroundColor: 'rgba(206, 17, 38, 0.05)',
             fontSize: '8pt'
           }}
