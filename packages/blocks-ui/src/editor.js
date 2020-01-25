@@ -13,10 +13,10 @@ import { useCode } from './providers/code'
 const EditorGrid = props => (
   <div
     sx={{
+      height: '100%',
       width: '100%',
       display: 'grid',
-      gridTemplateColumns: '260px 1fr 400px',
-      height: 'calc(100vh - 43px)'
+      gridTemplateColumns: '260px 1fr 400px'
     }}
     {...props}
   />

@@ -7,24 +7,26 @@ import Header from './header'
 export default ({ children }) => {
   return (
     <Styled.root>
-      <Header />
       <Global
         styles={{
           '*': {
             boxSizing: 'border-box'
           },
-          body: {
-            margin: 0
+          'html, body': {
+            margin: 0,
+            padding: 0
           }
         }}
       />
       <div
-        sx={{
-          display: 'flex',
-          height: 'calc(100vh - 43px)'
+        css={{
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr',
+          minHeight: '100vh'
         }}
       >
-        {children}
+        <Header />
+        <main>{children}</main>
       </div>
     </Styled.root>
   )
