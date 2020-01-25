@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.66
+
+### Patch Changes
+
+- 2f42c5e: Implement code editing
+
 ## 0.0.65
 
 ### Patch Changes
