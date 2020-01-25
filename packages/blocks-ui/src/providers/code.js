@@ -40,6 +40,15 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
     }
   }
 
+  const editCode = rawCode => {
+    const code = transforms.addTuid(rawCode)
+
+    setCodeState({
+      ...codeState,
+      ...updateCode(code)
+    })
+  }
+
   const setCurrentElementId = elementId => {
     if (!elementId) {
       return setCodeState({
@@ -205,7 +214,8 @@ export const CodeProvider = ({ children, initialCode, onChange }) => {
         selectParentOfCurrentElement,
         updateSxProp,
         onDragEnd,
-        onBeforeDragStart
+        onBeforeDragStart,
+        editCode
       }}
     >
       {children}

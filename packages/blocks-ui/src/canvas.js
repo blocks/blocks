@@ -45,15 +45,13 @@ const Copy = ({ toCopy }) => {
 
 const Canvas = () => {
   const { theme, ...scope } = useScope()
-  const { code, transformedCode } = useCode()
+  const { code, transformedCode, editCode } = useCode()
   const { mode } = useEditor()
   const rawCode = transforms.toRawJSX(code)
   const formattedCode = prettier.format(rawCode, {
     parser: 'babel',
     plugins: [parserJS]
   })
-
-  console.log('rerendering canvas')
 
   if (mode === 'code') {
     return (
@@ -65,8 +63,10 @@ const Canvas = () => {
             border: 'none',
             borderRadius: 0
           }}
-          value={formattedCode}
-        />
+          onChange={e => editCode(e.target.value)}
+        >
+          {formattedCode}
+        </Textarea>
       </Wrap>
     )
   }
