@@ -17,8 +17,6 @@ export default () => {
   const { theme } = useScope()
   const { mode } = useEditor()
 
-  console.log('rerendering block listing')
-
   const list = useMemo(() => {
     return Object.keys(blocks).map((key, i) => {
       const Component = blocks[key]
@@ -56,7 +54,8 @@ export default () => {
                       currentlyHoveringOver === 'root'
                         ? `${canvasWidth}px`
                         : '100%',
-                    transition: 'width .25s'
+                    transition: 'width .25s',
+                    pointerEvents: 'none'
                   }}
                 >
                   <InlineBlockRender
