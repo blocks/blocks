@@ -61,7 +61,9 @@ const Canvas = () => {
           sx={{
             height: '100%',
             border: 'none',
-            borderRadius: 0
+            borderRadius: 0,
+            fontFamily: 'Menlo, monospace',
+            fontSize: '14px'
           }}
           onChange={e => editCode(e.target.value)}
         >
