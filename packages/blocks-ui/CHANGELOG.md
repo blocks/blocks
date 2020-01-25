@@ -1,5 +1,14 @@
 # blocks-ui
 
+## 0.0.65
+
+### Patch Changes
+
+- 782d176: Resize blocks when dragging over the canvas
+- 782d176: Update editor layout grid
+- 782d176: Add title to demo page
+- 782d176: Remove pointer events from block listing preview
+
 ## 0.0.64
 
 ### Patch Changes
