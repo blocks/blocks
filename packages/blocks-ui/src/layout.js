@@ -2,7 +2,7 @@
 import { Styled, jsx } from 'theme-ui'
 import { Global } from '@emotion/core'
 
-import Header from './header'
+import Header, { headerHeight } from './header'
 
 export default ({ children }) => {
   return (
@@ -21,7 +21,7 @@ export default ({ children }) => {
       <div
         css={{
           display: 'grid',
-          gridTemplateRows: 'auto 1fr',
+          gridTemplateRows: `${headerHeight}px 1fr`,
           minHeight: '100vh'
         }}
       >
