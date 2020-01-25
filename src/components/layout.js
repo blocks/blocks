@@ -3,17 +3,21 @@ import { jsx, Styled } from 'theme-ui'
 import { Global } from '@emotion/core'
 import { Container, Box } from '@theme-ui/components'
 import { Link } from 'gatsby'
-import { Twitter, GitHub } from 'react-feather'
+import { Twitter, GitHub, Mail } from 'react-feather'
 
 import pkg from 'blocks-ui/package.json'
 
 import Nav from '../nav.mdx'
 
+import Subscribe from './subscribe'
 import SEO from './seo'
 
 const { version } = pkg
 
-export default ({ children, _frontmatter: { title, noNav } = {} }) => (
+export default ({
+  children,
+  _frontmatter: { title, noNav, showNewsletter } = {}
+}) => (
   <Styled.root>
     <SEO title={title} />
     <Global
@@ -116,6 +120,18 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
           >
             <Twitter size={18} />
           </a>
+          <a
+            href="/newsletter"
+            aria-label="Newsletter"
+            sx={{
+              mt: '5px',
+              color: 'inherit',
+              ml: 3,
+              pl: '1px'
+            }}
+          >
+            <Mail size={18} />
+          </a>
         </div>
       </Box>
       <Box
@@ -124,7 +140,10 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
           gridArea: 'main'
         }}
       >
-        <Container sx={{ px: 3, py: [3, 4, 4] }}>{children}</Container>
+        <Container sx={{ px: 3, py: [3, 4, 4] }}>
+          {children}
+          {showNewsletter ? <Subscribe /> : null}
+        </Container>
       </Box>
       <Box
         as="aside"
@@ -223,6 +242,18 @@ export default ({ children, _frontmatter: { title, noNav } = {} }) => (
             }}
           >
             <Twitter size={18} />
+          </a>
+          <a
+            href="/newsletter"
+            aria-label="Newsletter"
+            sx={{
+              mt: '5px',
+              color: 'inherit',
+              ml: 3,
+              pl: '1px'
+            }}
+          >
+            <Mail size={18} />
           </a>
         </Container>
       </Box>
