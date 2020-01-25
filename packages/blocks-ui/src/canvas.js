@@ -1,5 +1,7 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { useState } from 'react'
+import { jsx } from 'theme-ui'
+import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
 
@@ -43,8 +45,9 @@ const Copy = ({ toCopy }) => {
 }
 
 const Canvas = () => {
+  const [ error, setError ] = useState(null)
   const { theme, ...scope } = useScope()
-  const { code, transformedCode } = useCode()
+  const { code, transformedCode, editCode } = useCode()
   const { mode } = useEditor()
   const rawCode = transforms.toRawJSX(code)
   const formattedCode = prettier.format(rawCode, {
@@ -52,22 +55,39 @@ const Canvas = () => {
     plugins: [parserJS]
   })
 
-  console.log('rerendering canvas')
-
   if (mode === 'code') {
     return (
       <Wrap>
-        <Copy toCopy={formattedCode} />
-        <Styled.pre
-          language="js"
+        <pre
           sx={{
             mt: 0,
-            backgroundColor: 'white',
-            color: 'black'
+            mb: 0,
+            backgroundColor: 'rgba(206, 17, 38, 0.05)',
+            fontSize: '8pt'
+          }}
+        >
+          {error}
+        </pre>
+        <Copy toCopy={formattedCode} />
+        <Textarea
+          sx={{
+            height: '100%',
+            border: 'none',
+            borderRadius: 0,
+            fontFamily: 'Menlo, monospace',
+            fontSize: '14px'
+          }}
+          onChange={e => {
+            try {
+              editCode(e.target.value)
+              setError(null)
+            } catch (err) {
+              setError(err.toString())
+            }
           }}
         >
           {formattedCode}
-        </Styled.pre>
+        </Textarea>
       </Wrap>
     )
   }
