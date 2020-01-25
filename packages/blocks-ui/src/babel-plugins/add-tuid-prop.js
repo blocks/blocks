@@ -1,8 +1,8 @@
-import { uuid, isBlocksRootElement } from '../util'
-import { uuidName } from '../constants'
+import { uuid, isBlocksRootElement, addUuidAttr, getUuidAttr } from '../util'
 
-export default api => {
+export default (api, options = {}) => {
   const { types: t } = api
+  const { forceUuid } = options
 
   return {
     visitor: {
@@ -18,17 +18,17 @@ export default api => {
           return
         }
 
-        const tuid = path.node.attributes.find(
-          node => node.name && node.name.name === uuidName
-        )
+        const tuid = getUuidAttr(path.node)
 
-        if (tuid) {
+        if (tuid && !forceUuid) {
           return
         }
 
-        path.node.attributes.push(
-          t.jSXAttribute(t.jSXIdentifier(uuidName), t.stringLiteral(uuid()))
-        )
+        if (tuid) {
+          tuid.value = t.stringLiteral(uuid())
+        } else {
+          addUuidAttr(path.node)
+        }
       }
     }
   }
