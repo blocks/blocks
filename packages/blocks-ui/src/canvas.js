@@ -45,7 +45,7 @@ const Copy = ({ toCopy }) => {
 }
 
 const Canvas = () => {
-  const { error, setError } = useState(null)
+  const [ error, setError ] = useState(null)
   const { theme, ...scope } = useScope()
   const { code, transformedCode, editCode } = useCode()
   const { mode } = useEditor()
@@ -58,16 +58,16 @@ const Canvas = () => {
   if (mode === 'code') {
     return (
       <Wrap>
-        <Copy toCopy={formattedCode} />
         <pre
           sx={{
-            mb: 0,
+            mt: 0,
             backgroundColor: 'rgba(206, 17, 38, 0.05)',
             fontSize: '8pt'
           }}
         >
           {error}
         </pre>
+        <Copy toCopy={formattedCode} />
         <Textarea
           sx={{
             height: '100%',
@@ -79,9 +79,9 @@ const Canvas = () => {
           onChange={e => {
             try {
               editCode(e.target.value)
+              setError(null)
             } catch (err) {
-              console.log(err)
-              // setError(err)
+              setError(err.toString())
             }
           }}
         >
