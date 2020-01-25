@@ -30,6 +30,12 @@ export default () => {
         <Draggable key={key} draggableId={key} index={i + 1}>
           {(provided, _snapshot) => {
             const Component = blocks[key]
+            // gets element the block is currently hovering over on drag
+            const currentlyHoveringOver = _snapshot.draggingOver
+
+            // TODO: get the width of the layout component in a better way
+            const el = document.getElementsByClassName('layout')
+            const canvasWidth = el[0].clientWidth
 
             return (
               <div
@@ -44,6 +50,11 @@ export default () => {
                     bg: 'background',
                     color: 'text',
                     mb: 3,
+                    width:
+                      currentlyHoveringOver === 'root'
+                        ? `${canvasWidth}px`
+                        : '100%',
+                    transition: 'width .25s',
                     pointerEvents: 'none'
                   }}
                 >
