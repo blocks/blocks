@@ -1,20 +1,21 @@
 /** @jsx jsx */
 import { jsx, useThemeUI, ThemeProvider } from 'theme-ui'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import * as presets from '@theme-ui/presets'
-import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
+import { Box, Label, Select, Button } from '@theme-ui/components'
 import { Theme, EditorProvider } from '@theme-ui/editor'
 import merge from 'lodash.merge'
 
 import useCopyToClipboard from '../use-copy-to-clipboard'
 import { useThemeEditor } from '../providers/theme-editor'
+import { PanelGroup } from '../panel-group'
 
 const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
 
 export default () => {
   const appTheme = useThemeUI()
-  const { update, ...theme } = useThemeEditor()
+  const { value: theme, update } = useThemeEditor()
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   const updateTheme = newTheme => {
@@ -27,19 +28,20 @@ export default () => {
   console.log({ ...theme })
 
   return (
-    <Box p={3}>
-      <Heading mb={3}>Theme</Heading>
-      <ThemePresetForm theme={theme} setTheme={update} />
+    <Fragment>
+      <PanelGroup title="Preset Theme">
+        <ThemePresetForm theme={theme} setTheme={update} />
+      </PanelGroup>
       <ThemeEditor theme={theme} setTheme={updateTheme} />
-      <Box mt={3}>
+      <PanelGroup title="Copy Theme">
         <Button
           variant="secondary"
           onClick={() => copyToClipboard(JSON.stringify(theme))}
         >
-          {hasCopied ? 'Copied' : 'Copy'} Theme
+          {hasCopied ? 'Copied' : 'Copy to clipboard'}
         </Button>
-      </Box>
-    </Box>
+      </PanelGroup>
+    </Fragment>
   )
 }
 
@@ -63,11 +65,11 @@ const ThemePresetForm = ({ setTheme }) => {
   const onSubmit = e => e.preventDefault()
 
   return (
-    <Box as="form" mb={3} onSubmit={onSubmit}>
-      <Label htmlFor="preset">Theme UI Preset</Label>
+    <Box as="form" onSubmit={onSubmit}>
+      <Label htmlFor="preset-theme">Theme</Label>
       <Select
-        id="preset"
-        name="preset"
+        id="preset-theme"
+        name="preset-theme"
         value={themeName}
         onChange={onPresetChange}
         children={options}
@@ -76,28 +78,24 @@ const ThemePresetForm = ({ setTheme }) => {
   )
 }
 
-const ThemeEditor = ({ theme, setTheme }) => {
-  const context = {
-    theme,
-    setTheme(nextTheme) {
-      setTheme(currentTheme => merge({}, currentTheme, nextTheme))
-    }
-  }
+const ThemeEditor = () => {
+  const { value: theme } = useThemeEditor()
   return (
-    <Box>
-      <Heading as="h3" mb={2}>
-        Theme Editor
-      </Heading>
-      <ThemeProvider theme={context.theme}>
-        <EditorProvider>
-          <Theme.Colors />
+    <div>
+      <EditorProvider theme={theme}>
+        <PanelGroup title="Colors">
+          <Theme.Colors onChange={value => console.log(value)} />
+        </PanelGroup>
+        <PanelGroup title="Fonts">
           <Theme.Fonts />
-          <b>Font Weights</b>
+        </PanelGroup>
+        <PanelGroup title="Font Weights">
           <Theme.FontWeights />
-          <b>Line Heights</b>
+        </PanelGroup>
+        <PanelGroup title="Line Heights">
           <Theme.LineHeights />
-        </EditorProvider>
-      </ThemeProvider>
-    </Box>
+        </PanelGroup>
+      </EditorProvider>
+    </div>
   )
 }

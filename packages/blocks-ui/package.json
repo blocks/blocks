@@ -29,7 +29,7 @@
     "property-controls": "^0.0.58",
     "react-feather": "^2.0.3",
     "react-merge-refs": "^1.0.0",
-    "theme-ui": "^0.2.49"
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "@babel/cli": "7.8.3",

@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useReducer, useContext } from 'react'
+import merge from 'lodash.merge'
 import { system as systemTheme } from '@theme-ui/presets'
 
 import appTheme from '../theme.js'
@@ -11,17 +12,15 @@ const DEFAULT_THEME = {
 
 const ThemeEditorContext = React.createContext({})
 
-export const useThemeEditor = () => {
-  const value = useContext(ThemeEditorContext)
+export const useThemeEditor = () => useContext(ThemeEditorContext)
 
-  return value
-}
+const reducer = (state, next) => merge({}, state, next)
 
 export const ThemeEditorProvider = ({ theme = DEFAULT_THEME, children }) => {
-  const [value, update] = useState(theme)
+  const [value, update] = useReducer(reducer, { ...theme })
 
   return (
-    <ThemeEditorContext.Provider value={{ ...value, update }}>
+    <ThemeEditorContext.Provider value={{ value, update }}>
       {children}
     </ThemeEditorContext.Provider>
   )

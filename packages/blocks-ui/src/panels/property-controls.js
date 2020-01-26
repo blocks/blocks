@@ -1,33 +1,11 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Label, Input, Select, Grid } from '@theme-ui/components'
-import { Theme, Sx } from '@theme-ui/editor'
+import { Label, Input, Select } from '@theme-ui/components'
+import { Sx } from '@theme-ui/editor'
 import { ControlType } from 'property-controls'
 
-const FieldGroup = ({ children, title, ...props }) => (
-  <div
-    {...props}
-    sx={{ p: 3, borderBottom: '1px solid', borderColor: 'border' }}
-  >
-    <h3
-      sx={{
-        fontSize: 0,
-        fontWeight: 500,
-        lineHeight: 1,
-        letterSpacing: 3,
-        mt: 0,
-        mb: 3,
-        textTransform: 'uppercase'
-      }}
-    >
-      {title}
-    </h3>
-    <Grid gap={2} columns={1}>
-      {children}
-    </Grid>
-  </div>
-)
+import { PanelGroup } from '../panel-group'
 
 export default ({
   propertyControls = {},
@@ -42,7 +20,7 @@ export default ({
   return (
     <form onSubmit={e => e.preventDefault()}>
       {hasPropertyControls ? (
-        <FieldGroup title="Props">
+        <PanelGroup title="Props">
           {Object.entries(propertyControls).map(([key, value]) => {
             const title = value.title || key
             const fieldValue =
@@ -94,25 +72,25 @@ export default ({
               return null
             }
           })}
-        </FieldGroup>
+        </PanelGroup>
       ) : null}
       {hasStyles ? (
         <React.Fragment>
-          <FieldGroup title="Colors">
+          <PanelGroup title="Colors">
             <Sx.Colors value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup>
-          <FieldGroup title="Typography">
+          </PanelGroup>
+          <PanelGroup title="Typography">
             <Sx.Typography
               value={elementData.props.sx}
               onChange={onStyleChange}
             />
-          </FieldGroup>
-          <FieldGroup title="Padding">
+          </PanelGroup>
+          <PanelGroup title="Padding">
             <Sx.Padding value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup>
-          <FieldGroup title="Margin">
+          </PanelGroup>
+          <PanelGroup title="Margin">
             <Sx.Margin value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup>
+          </PanelGroup>
         </React.Fragment>
       ) : null}
     </form>
