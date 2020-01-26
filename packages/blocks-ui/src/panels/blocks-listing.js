@@ -8,6 +8,7 @@ import InlineBlockRender from '../inline-block-render'
 import { useEditor } from '../providers/editor'
 import { useBlocks } from '../providers/blocks'
 import { useScope } from '../providers/scope'
+import { useCanvas } from '../providers/canvas'
 
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
@@ -16,6 +17,7 @@ export default () => {
   const blocks = useBlocks()
   const { theme } = useScope()
   const { mode } = useEditor()
+  const { canvasSize } = useCanvas()
 
   const list = useMemo(() => {
     return Object.keys(blocks).map((key, i) => {
@@ -33,10 +35,6 @@ export default () => {
             // gets element the block is currently hovering over on drag
             const currentlyHoveringOver = _snapshot.draggingOver
 
-            // TODO: get the width of the layout component in a better way
-            const el = document.getElementsByClassName('layout')
-            const canvasWidth = el[0].clientWidth
-
             return (
               <div
                 ref={provided.innerRef}
@@ -52,7 +50,7 @@ export default () => {
                     mb: 3,
                     width:
                       currentlyHoveringOver === 'root'
-                        ? `${canvasWidth}px`
+                        ? `${canvasSize.width}px`
                         : '100%',
                     transition: 'width .25s',
                     pointerEvents: 'none'
@@ -73,7 +71,7 @@ export default () => {
         </Draggable>
       )
     })
-  }, [blocks])
+  }, [blocks, canvasSize])
 
   if (mode === 'viewports') {
     return (
