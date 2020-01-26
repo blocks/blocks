@@ -2,50 +2,22 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { Label, Input, Select, Grid } from '@theme-ui/components'
-import { Theme } from '@theme-ui/editor'
+import { Theme, Sx } from '@theme-ui/editor'
 import { ControlType } from 'property-controls'
 
 const FieldGroup = ({ children, title, ...props }) => (
   <div
     {...props}
-    sx={{
-      p: 3,
-      borderBottom: '1px solid',
-      borderColor: 'border'
-      // label: {
-      // },
-      // '.fieldset label': {
-      //   width: '30%'
-      // },
-      // [['input', 'select']]: {
-      // },
-      // 'input[type="checkbox"]': {
-      //   height: 'auto',
-      //   mr: 2,
-      //   width: 'auto'
-      // },
-      // '.fieldset': {
-      //   display: 'flex',
-      //   alignItems: 'center',
-      //   border: 0,
-      //   p: 0
-      // },
-      // '.fieldset + .fieldset': {
-      //   mt: 3
-      // },
-      // // TODO: Fix this on Select in @theme-ui/components
-      // '.fieldset > div': {
-      //   width: '100%'
-      // },
-    }}
+    sx={{ p: 3, borderBottom: '1px solid', borderColor: 'border' }}
   >
     <h3
       sx={{
         fontSize: 0,
         fontWeight: 500,
+        lineHeight: 1,
         letterSpacing: 3,
         mt: 0,
-        mb: 2,
+        mb: 3,
         textTransform: 'uppercase'
       }}
     >
@@ -126,34 +98,37 @@ export default ({
       ) : null}
       {hasStyles ? (
         <React.Fragment>
-          <FieldGroup
-            title="Colors"
-            sx={{
-              // TODO: Fix this in @theme-ui/editor
-              'div div div': {
-                fontSize: 0,
-                fontWeight: 400
-              }
-            }}
-          >
-            {/* <Colors value={elementData.props.sx} onChange={onStyleChange} />
+          <FieldGroup title="Colors">
+            <Sx.Colors />
           </FieldGroup>
           <FieldGroup title="Typography">
-            <Typography value={elementData.props.sx} onChange={onStyleChange} />
+            <Sx.Typography />
           </FieldGroup>
+          <FieldGroup title="Padding">
+            <Sx.Padding />
+          </FieldGroup>
+          <FieldGroup title="Margin">
+            <Sx.Margin />
+          </FieldGroup>
+
+          {/* <Typography value={elementData.props.sx} onChange={onStyleChange} /> */}
+          {/* <Colors value={elementData.props.sx} onChange={onStyleChange} />
+          </FieldGroup>
+          <FieldGroup title="Typography">
           <FieldGroup title="Padding">
             <Padding value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
           <FieldGroup title="Margin">
             <Margin value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup> */}
-            <Theme.Fonts />
+          {/* <Theme.Fonts />
             <Theme.FontSizes />
             <Theme.FontWeights />
             <Theme.LineHeights />
             <Theme.Colors />
-            <Theme.Space />
-          </FieldGroup>
+            <Theme.Space /> */}
+
+          {/* <Sx.Colors /> */}
         </React.Fragment>
       ) : null}
     </form>

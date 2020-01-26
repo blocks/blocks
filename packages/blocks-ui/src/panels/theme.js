@@ -90,12 +90,12 @@ const ThemeEditor = ({ theme, setTheme }) => {
       </Heading>
       <ThemeProvider theme={context.theme}>
         <EditorProvider>
-          <Theme.Fonts />
-          <Theme.FontSizes />
-          <Theme.FontWeights />
-          <Theme.LineHeights />
           <Theme.Colors />
-          <Theme.Space />
+          <Theme.Fonts />
+          <b>Font Weights</b>
+          <Theme.FontWeights />
+          <b>Line Heights</b>
+          <Theme.LineHeights />
         </EditorProvider>
       </ThemeProvider>
     </Box>
