@@ -9,6 +9,22 @@ import { useEditor } from '../providers/editor'
 import { useBlocks } from '../providers/blocks'
 import { useScope } from '../providers/scope'
 
+const BlockSorting = ({ title, children }) => (
+  <div
+    sx={{
+      boxSizing: 'border-box',
+      width: '100%',
+      border: '1px solid highlight',
+      background: '#F6F6F6', // replace this with 'muted' once it's added to the theme
+      padding: '3',
+      marginBottom: '3'
+    }}
+  >
+    <h5 sx={{ margin: 0, marginBottom: 3 }}>{title}</h5>
+    {children}
+  </div>
+)
+
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
 
@@ -85,13 +101,22 @@ export default () => {
     )
   }
 
+  const trimmedList = list.slice(1) // trims first key in arr as it's always null
+  const groupTypes = ['Header', 'Quote', 'Tagline', 'Footer'] // poor mans enum
+  const getGroup = title => trimmedList.filter(block => block.key.match(title))
+  const organizedList = groupTypes.map(type => getGroup(type))
+
   return (
     <Box p={3}>
       <ThemeProvider theme={theme}>
         <Droppable droppableId="components">
           {(provided, _snapshot) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {list}
+              {organizedList.map((blockGroup, i) => (
+                <BlockSorting key={i} title={`${groupTypes[i]}s`}>
+                  {blockGroup.map(block => block)}
+                </BlockSorting>
+              ))}
               {provided.placeholder}
             </div>
           )}
