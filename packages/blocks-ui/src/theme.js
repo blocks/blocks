@@ -28,5 +28,44 @@ export default {
       borderColor: 'text',
       border: 'thin solid'
     }
+  },
+  forms: {
+    label: {
+      bg: 'white',
+      display: 'block',
+      fontSize: 5,
+      fontWeight: 'normal',
+      mb: 1,
+      mt: 3
+    },
+    input: {
+      bg: 'white',
+      display: 'block',
+      fontSize: 4,
+      fontWeight: 'normal',
+      mb: 1,
+      mt: 3,
+      height: 60,
+      border: 'thin solid #b6bcc2',
+      width: '100%',
+      borderRadius: 0,
+      '&:hover, &:focus': {
+        border: 'thin solid #83898f'
+      }
+    },
+    select: {
+      display: 'block',
+      fontSize: 0,
+      fontWeight: 'normal',
+      mb: 1,
+      mt: 3,
+      height: 40,
+      border: 'thin solid #b6bcc2',
+      width: '100%',
+      borderRadius: 0,
+      '&:hover, &:focus': {
+        border: 'thin solid #83898f'
+      }
+    }
   }
 }
