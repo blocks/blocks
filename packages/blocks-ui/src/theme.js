@@ -31,21 +31,15 @@ export default {
   },
   forms: {
     label: {
-      bg: 'white',
-      display: 'block',
-      fontSize: 5,
+      fontSize: 0,
       fontWeight: 'normal',
-      mb: 1,
-      mt: 3
+      mb: 1
     },
     input: {
-      bg: 'white',
       display: 'block',
-      fontSize: 4,
+      fontSize: 0,
       fontWeight: 'normal',
-      mb: 1,
-      mt: 3,
-      height: 60,
+      height: 40,
       border: 'thin solid #b6bcc2',
       width: '100%',
       borderRadius: 0,
@@ -57,8 +51,6 @@ export default {
       display: 'block',
       fontSize: 0,
       fontWeight: 'normal',
-      mb: 1,
-      mt: 3,
       height: 40,
       border: 'thin solid #b6bcc2',
       width: '100%',

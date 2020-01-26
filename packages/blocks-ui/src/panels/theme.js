@@ -1,19 +1,9 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, useThemeUI, ThemeProvider } from 'theme-ui'
 import { useState } from 'react'
 import * as presets from '@theme-ui/presets'
 import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
-import {
-  Editor,
-  Row,
-  Fonts,
-  FontSizes,
-  FontWeights,
-  LineHeights,
-  ColorMode,
-  ColorPalette,
-  Space
-} from '@theme-ui/editor'
+import { Theme, EditorProvider } from '@theme-ui/editor'
 import merge from 'lodash.merge'
 
 import useCopyToClipboard from '../use-copy-to-clipboard'
@@ -23,14 +13,24 @@ const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
 
 export default () => {
+  const appTheme = useThemeUI()
   const { update, ...theme } = useThemeEditor()
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
+
+  const updateTheme = newTheme => {
+    update({
+      ...newTheme,
+      forms: appTheme.forms
+    })
+  }
+
+  console.log({ ...theme })
 
   return (
     <Box p={3}>
       <Heading mb={3}>Theme</Heading>
       <ThemePresetForm theme={theme} setTheme={update} />
-      <ThemeEditor theme={theme} setTheme={update} />
+      <ThemeEditor theme={theme} setTheme={updateTheme} />
       <Box mt={3}>
         <Button
           variant="secondary"
@@ -88,23 +88,16 @@ const ThemeEditor = ({ theme, setTheme }) => {
       <Heading as="h3" mb={2}>
         Theme Editor
       </Heading>
-      <Editor context={context}>
-        <Fonts />
-        <Row>
-          <FontSizes />
-        </Row>
-        <Row>
-          <FontWeights />
-        </Row>
-        <Row>
-          <LineHeights />
-        </Row>
-        <ColorMode />
-        <ColorPalette />
-        <Row>
-          <Space />
-        </Row>
-      </Editor>
+      <ThemeProvider theme={context.theme}>
+        <EditorProvider>
+          <Theme.Fonts />
+          <Theme.FontSizes />
+          <Theme.FontWeights />
+          <Theme.LineHeights />
+          <Theme.Colors />
+          <Theme.Space />
+        </EditorProvider>
+      </ThemeProvider>
     </Box>
   )
 }
