@@ -6,6 +6,7 @@ import EditorProvider from './editor'
 import ThemeEditorProvider from './theme-editor'
 import ScopeProvider from './scope'
 import BlocksProvider from './blocks'
+import CanvasProvider from './canvas'
 
 export default ({
   appTheme,
@@ -22,7 +23,7 @@ export default ({
         <ThemeEditorProvider theme={theme}>
           <ScopeProvider scope={scope}>
             <CodeProvider initialCode={initialCode} onChange={onChange}>
-              {children}
+              <CanvasProvider>{children}</CanvasProvider>
             </CodeProvider>
           </ScopeProvider>
         </ThemeEditorProvider>
