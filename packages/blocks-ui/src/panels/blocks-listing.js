@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
-import { jsx, ThemeProvider } from 'theme-ui'
+import { jsx, ThemeProvider, Flex } from 'theme-ui'
 import { Box } from '@theme-ui/components'
 
 import InlineBlockRender from '../inline-block-render'
@@ -10,22 +10,66 @@ import { useBlocks } from '../providers/blocks'
 import { useScope } from '../providers/scope'
 
 // used as a wrapper around like block types
-const BlockSorting = ({ title, children }) => (
-  <div
-    sx={{
-      boxSizing: 'border-box',
-      width: '100%',
-      border: '1px solid highlight',
-      background: '#F6F6F6', // replace this with 'muted' once it's added to the theme
-      color: 'primary',
-      padding: '3',
-      marginBottom: '3'
-    }}
-  >
-    <h5 sx={{ margin: 0, marginBottom: 3 }}>{title}</h5>
-    {children}
-  </div>
-)
+const BlockSorting = ({ title, children }) => {
+  const [toggle, setToggle] = useState(true)
+  const [height, setHeight] = useState()
+  const ref = useRef(null)
+  useEffect(() => {
+    setHeight(ref.current.offsetHeight)
+  }, [ref])
+  return (
+    <div
+      ref={ref}
+      sx={{
+        boxSizing: 'border-box',
+        width: '100%',
+        border: '1px solid highlight',
+        background: '#F6F6F6', // replace this with 'muted' once it's added to the theme
+        padding: '3',
+        marginBottom: '3',
+        overflow: 'hidden',
+        height: '100%',
+        maxHeight: toggle ? `${height + 52}px` : '52px',
+        transition: 'max-height .5s'
+      }}
+    >
+      <div
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <h5 sx={{ margin: 0, marginBottom: 3, color: 'primary' }}>{title}</h5>
+        <div sx={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
+          <span sx={{ padding: 0, marginRight: 3 }}>({children.length})</span>
+          <button
+            sx={{
+              background: 'none',
+              border: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '8px'
+            }}
+            onClick={() => setToggle(!toggle)}
+          >
+            <span
+              sx={{
+                width: 0,
+                height: 0,
+                borderLeft: '5px solid transparent',
+                borderRight: '5px solid transparent',
+                borderBottom: '5px solid black'
+              }}
+            />
+          </button>
+        </div>
+      </div>
+      {children}
+    </div>
+  )
+}
 
 const isBlocksRoot = component =>
   component.Root && Object.keys(component).length === 1
