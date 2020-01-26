@@ -104,11 +104,10 @@ export default () => {
 
   // trims first key in arr as it's always null
   const trimmedList = list.slice(1)
-
   // we should be able to get these types dynamically. might need to change the naming structure to facilitate this.
   // example: HeaderBasic -> Header_Basic | HeaderLogo -> Header_Logo
-  // this is later used as the name for the group
   const groupTypes = ['Header', 'Quote', 'Tagline', 'Footer']
+  // this is later used as the name for the group
   const getGroup = title => trimmedList.filter(block => block.key.match(title))
   // wouldn't mind getting this into a single pass with out filtering multiple times.
   const organizedList = groupTypes.map(type => getGroup(type))
