@@ -99,36 +99,20 @@ export default ({
       {hasStyles ? (
         <React.Fragment>
           <FieldGroup title="Colors">
-            <Sx.Colors />
+            <Sx.Colors value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
           <FieldGroup title="Typography">
-            <Sx.Typography />
+            <Sx.Typography
+              value={elementData.props.sx}
+              onChange={onStyleChange}
+            />
           </FieldGroup>
           <FieldGroup title="Padding">
-            <Sx.Padding />
+            <Sx.Padding value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
           <FieldGroup title="Margin">
-            <Sx.Margin />
+            <Sx.Margin value={elementData.props.sx} onChange={onStyleChange} />
           </FieldGroup>
-
-          {/* <Typography value={elementData.props.sx} onChange={onStyleChange} /> */}
-          {/* <Colors value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup>
-          <FieldGroup title="Typography">
-          <FieldGroup title="Padding">
-            <Padding value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup>
-          <FieldGroup title="Margin">
-            <Margin value={elementData.props.sx} onChange={onStyleChange} />
-          </FieldGroup> */}
-          {/* <Theme.Fonts />
-            <Theme.FontSizes />
-            <Theme.FontWeights />
-            <Theme.LineHeights />
-            <Theme.Colors />
-            <Theme.Space /> */}
-
-          {/* <Sx.Colors /> */}
         </React.Fragment>
       ) : null}
     </form>
