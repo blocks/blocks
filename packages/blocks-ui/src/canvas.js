@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { jsx } from 'theme-ui'
 import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
@@ -15,17 +15,30 @@ import { PreviewArea, Device } from './device-preview'
 import { IconButton } from './ui'
 import useCopyToClipboard from './use-copy-to-clipboard'
 import { useScope } from './providers/scope'
+import { useCanvas } from './providers/canvas'
+import { useElementSize } from './use-element-size'
 
-const Wrap = props => (
-  <div
-    sx={{
-      position: 'relative',
-      backgroundColor: 'white',
-      overflow: 'auto'
-    }}
-    {...props}
-  />
-)
+const CanvasWrap = props => {
+  const canvasRef = useRef()
+  const elementSize = useElementSize(canvasRef)
+  const { setCanvasSize } = useCanvas()
+
+  useEffect(() => {
+    setCanvasSize(elementSize)
+  }, [elementSize])
+
+  return (
+    <div
+      ref={canvasRef}
+      sx={{
+        position: 'relative',
+        backgroundColor: 'white',
+        overflow: 'auto'
+      }}
+      {...props}
+    />
+  )
+}
 
 const Copy = ({ toCopy }) => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
@@ -45,7 +58,7 @@ const Copy = ({ toCopy }) => {
 }
 
 const Canvas = () => {
-  const [ error, setError ] = useState(null)
+  const [error, setError] = useState(null)
   const { theme, ...scope } = useScope()
   const { code, transformedCode, editCode } = useCode()
   const { mode } = useEditor()
@@ -57,7 +70,7 @@ const Canvas = () => {
 
   if (mode === 'code') {
     return (
-      <Wrap>
+      <CanvasWrap>
         <pre
           sx={{
             mt: 0,
@@ -88,7 +101,7 @@ const Canvas = () => {
         >
           {formattedCode}
         </Textarea>
-      </Wrap>
+      </CanvasWrap>
     )
   }
 
@@ -105,14 +118,14 @@ const Canvas = () => {
   }
 
   return (
-    <Wrap>
+    <CanvasWrap>
       <InlineRender
         fullHeight
         scope={scope}
         code={transformedCode}
         theme={theme}
       />
-    </Wrap>
+    </CanvasWrap>
   )
 }
 
