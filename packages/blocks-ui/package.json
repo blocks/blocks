@@ -2,7 +2,7 @@
   "name": "blocks-ui",
   "main": "dist/blocks-ui.cjs.js",
   "module": "dist/blocks-ui.esm.js",
-  "version": "0.0.66",
+  "version": "0.0.67",
   "license": "MIT",
   "repository": "blocks/blocks",
   "dependencies": {
