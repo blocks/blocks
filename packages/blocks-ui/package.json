@@ -17,7 +17,6 @@
     "@blocks/react-beautiful-dnd": "^12.1.2",
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
-    "@emotion/weak-memoize": "^0.2.4",
     "@mdx-js/react": "^1.5.1",
     "@reach/tabs": "^0.7.0",
     "@theme-ui/components": "^0.2.50",

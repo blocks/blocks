@@ -5,45 +5,49 @@ import {
   cloneElement,
   useLayoutEffect,
   useRef,
-  useState
+  useState,
+  useMemo
 } from 'react'
 import { createPortal } from 'react-dom'
 import { ZoomIn, ZoomOut } from 'react-feather'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
-import weakMemoize from '@emotion/weak-memoize'
 
 import { IconButton } from './ui'
 import { useScrollSync } from './hooks'
 
 const MIN_ZOOM_LEVEL = 25
 
-const createCacheWithContainer = weakMemoize(container =>
-  createCache({ key: 'device-container', container })
-)
-
 const Frame = ({ children, setFrame, ...restProps }) => {
   const frameRef = useRef()
-  const [[head, body], setNodes] = useState([])
+  const [{ head, body }, setNodes] = useState({ head: null, body: null })
+
   useLayoutEffect(() => {
+    const {
+      contentDocument: { head, body }
+    } = frameRef.current
     setFrame(frameRef.current)
-  })
-  useLayoutEffect(() => {
-    const { contentDocument } = frameRef.current
-    setFrame(frameRef.current)
-    setNodes([contentDocument.head, contentDocument.body])
+    setNodes({ head, body })
   }, [])
+
+  const emotionCache = useMemo(() => {
+    if (!head || !body) return null
+    return createCache({
+      key: 'device-container',
+      container: head
+    })
+  }, [head])
+
   return (
     <iframe ref={frameRef} title="Device Preview" {...restProps}>
-      {body
-        ? createPortal(
-            <CacheProvider value={createCacheWithContainer(head)}>
-              <Global styles={{ body: { margin: 0 } }} />
-              {children}
-            </CacheProvider>,
-            body
-          )
-        : null}
+      {emotionCache &&
+        createPortal(
+          <CacheProvider value={emotionCache}>
+            <Global styles={{ body: { margin: 0 } }} />
+            {children}
+          </CacheProvider>,
+          body
+        )}
     </iframe>
   )
 }
@@ -98,13 +102,15 @@ export const Device = ({ children, width, height, setFrame, zoomLevel }) => {
   )
 }
 
-export function PreviewArea({ children }) {
+export const PreviewArea = ({ children }) => {
   const [wrap, setWrap] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(1)
   const shiftKeyDown = useRef()
   const frames = useRef([])
   const setFrame = index => ref => (frames.current[index] = ref)
+
   useScrollSync(frames)
+
   return (
     <div
       css={{
