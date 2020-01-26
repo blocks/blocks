@@ -9,6 +9,7 @@ import { useEditor } from '../providers/editor'
 import { useBlocks } from '../providers/blocks'
 import { useScope } from '../providers/scope'
 
+// used as a wrapper around like block types
 const BlockSorting = ({ title, children }) => (
   <div
     sx={{
