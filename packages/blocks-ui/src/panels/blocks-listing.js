@@ -17,7 +17,9 @@ export default () => {
   const blocks = useBlocks()
   const { theme } = useScope()
   const { mode } = useEditor()
-  const { canvasSize } = useCanvas()
+  const {
+    canvasSize: { width }
+  } = useCanvas()
 
   const list = useMemo(() => {
     return Object.keys(blocks).map((key, i) => {
@@ -49,9 +51,7 @@ export default () => {
                     color: 'text',
                     mb: 3,
                     width:
-                      currentlyHoveringOver === 'root'
-                        ? `${canvasSize.width}px`
-                        : '100%',
+                      currentlyHoveringOver === 'root' ? `${width}px` : '100%',
                     transition: 'width .25s',
                     pointerEvents: 'none'
                   }}
@@ -71,7 +71,7 @@ export default () => {
         </Draggable>
       )
     })
-  }, [blocks, canvasSize])
+  }, [blocks, width])
 
   if (mode === 'viewports') {
     return (
