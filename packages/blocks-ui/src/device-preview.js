@@ -32,7 +32,10 @@ const Frame = ({ children, setFrame, ...restProps }) => {
 
   const emotionCache = useMemo(() => {
     if (!head || !body) return null
-    return createCache({ container: head })
+    return createCache({
+      key: 'device-container',
+      container: head
+    })
   }, [head])
 
   return (
