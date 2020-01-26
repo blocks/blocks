@@ -1,5 +1,5 @@
 ---
-'blocks-ui': minor
+'blocks-ui': patch
 ---
 
 Replace @emotion/weak-memoize with useMemo
