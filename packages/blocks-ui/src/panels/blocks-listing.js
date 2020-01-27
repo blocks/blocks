@@ -23,6 +23,7 @@ const BlockSorting = ({ title, children }) => {
       ref={ref}
       sx={{
         boxSizing: 'border-box',
+        borderRadius: 4,
         width: '100%',
         border: '1px solid highlight',
         background: '#F6F6F6', // replace this with 'muted' once it's added to the theme
@@ -41,9 +42,10 @@ const BlockSorting = ({ title, children }) => {
           alignItems: 'center'
         }}
       >
-        <h5 sx={{ margin: 0, marginBottom: 3, color: 'primary' }}>{title}</h5>
+        <h4 sx={{ margin: 0, marginBottom: 3 }}>
+          <u>{title}</u> • {children.length}
+        </h4>
         <div sx={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
-          <span sx={{ padding: 0, marginRight: 3 }}>({children.length})</span>
           <button
             sx={{
               background: 'none',
