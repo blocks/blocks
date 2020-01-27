@@ -19,7 +19,7 @@
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
     "@reach/tabs": "^0.7.0",
-    "@theme-ui/components": "^0.2.50",
+    "@theme-ui/components": "^0.3.0",
     "@theme-ui/editor": "^0.2.51",
     "@theme-ui/presets": "^0.2.44",
     "chroma-js": "^2.1.0",
