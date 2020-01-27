@@ -1,11 +1,11 @@
 {
   "name": "gatsby-plugin-blocks",
-  "version": "0.0.64",
+  "version": "0.0.67",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": "blocks/blocks",
   "dependencies": {
     "@blocks/react": "^0.0.59",
-    "blocks-ui": "^0.0.64"
+    "blocks-ui": "^0.0.67"
   }
 }

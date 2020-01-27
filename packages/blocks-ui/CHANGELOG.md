@@ -1,5 +1,27 @@
 # blocks-ui
 
+## 0.0.67
+
+### Patch Changes
+
+- e5fb954: Added a new `canvas` context which will provide setters/getters for setting the canvas size. This fixes a bug when switching from viewport mode to canvas mode.
+- e5fb954: Replace @emotion/weak-memoize with useMemo
+
+## 0.0.66
+
+### Patch Changes
+
+- 2f42c5e: Implement code editing
+
+## 0.0.65
+
+### Patch Changes
+
+- 782d176: Resize blocks when dragging over the canvas
+- 782d176: Update editor layout grid
+- 782d176: Add title to demo page
+- 782d176: Remove pointer events from block listing preview
+
 ## 0.0.64
 
 ### Patch Changes
