@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState, useMemo, useRef, useEffect } from 'react'
 import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
-import { jsx, ThemeProvider, Flex } from 'theme-ui'
+import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
 
 import InlineBlockRender from '../inline-block-render'
@@ -56,11 +56,13 @@ const BlockSorting = ({ title, children }) => {
           >
             <span
               sx={{
+                transform: toggle ? 'rotate(-0.5turn)' : 'rotate(0turn)',
                 width: 0,
                 height: 0,
                 borderLeft: '5px solid transparent',
                 borderRight: '5px solid transparent',
-                borderBottom: '5px solid black'
+                borderBottom: '5px solid black',
+                transition: 'transform 0.5s'
               }}
             />
           </button>
