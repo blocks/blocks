@@ -18,6 +18,7 @@
     "@emotion/cache": "^10.0.19",
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
+    "@monaco-editor/react": "^3.0.1",
     "@reach/tabs": "^0.7.0",
     "@theme-ui/components": "^0.2.50",
     "@theme-ui/editor": "^0.2.51",

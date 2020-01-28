@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { useState, useRef, useEffect } from 'react'
 import { jsx } from 'theme-ui'
-import { Textarea } from '@theme-ui/components'
 import prettier from 'prettier/standalone'
 import parserJS from 'prettier/parser-babylon'
 
 import { Clipboard, Check } from 'react-feather'
+
+import CodeEditor from './code-editor'
 
 import * as transforms from './transforms'
 import { useEditor } from './providers/editor'
@@ -68,39 +69,20 @@ const Canvas = () => {
     plugins: [parserJS]
   })
 
+  const onCodeChange = code => {
+    try {
+      editCode(code)
+      setError(null)
+    } catch (e) {
+      setError(e.toString())
+    }
+  }
+
   if (mode === 'code') {
     return (
       <CanvasWrap>
-        <pre
-          sx={{
-            mt: 0,
-            mb: 0,
-            backgroundColor: 'rgba(206, 17, 38, 0.05)',
-            fontSize: '8pt'
-          }}
-        >
-          {error}
-        </pre>
         <Copy toCopy={formattedCode} />
-        <Textarea
-          sx={{
-            height: '100%',
-            border: 'none',
-            borderRadius: 0,
-            fontFamily: 'Menlo, monospace',
-            fontSize: '14px'
-          }}
-          onChange={e => {
-            try {
-              editCode(e.target.value)
-              setError(null)
-            } catch (err) {
-              setError(err.toString())
-            }
-          }}
-        >
-          {formattedCode}
-        </Textarea>
+        <CodeEditor code={formattedCode} onChange={onCodeChange} />
       </CanvasWrap>
     )
   }
