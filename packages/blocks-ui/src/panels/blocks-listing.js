@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { useState, useMemo, useRef, useEffect } from 'react'
+import { useElementSize } from '../use-element-size'
 import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
@@ -12,12 +13,12 @@ import { useCanvas } from '../providers/canvas'
 
 // used as a wrapper around like block types
 const BlockSorting = ({ title, children }) => {
-  const [toggle, setToggle] = useState(true)
-  const [height, setHeight] = useState()
   const ref = useRef(null)
+  const [toggle, setToggle] = useState(true)
+  const [height, setHeight] = useState(useElementSize(ref))
   useEffect(() => {
-    setHeight(ref.current.offsetHeight)
-  }, [ref])
+    setHeight(height)
+  }, [height])
   return (
     <div
       ref={ref}
@@ -30,10 +31,13 @@ const BlockSorting = ({ title, children }) => {
         padding: '3',
         marginBottom: '3',
         overflow: 'hidden',
-        height: '100%',
-        maxHeight: toggle ? `${height + 52}px` : '52px',
-        transition: 'max-height .5s'
+        height: toggle ? height : 58,
+        transition: 'height 0.5s',
+        ':hover': {
+          cursor: 'pointer'
+        }
       }}
+      onClick={() => setToggle(!toggle)}
     >
       <div
         sx={{
@@ -46,29 +50,17 @@ const BlockSorting = ({ title, children }) => {
           <u>{title}</u> • {children.length}
         </h4>
         <div sx={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
-          <button
+          <span
             sx={{
-              background: 'none',
-              border: 'none',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '8px'
+              transform: toggle ? 'rotate(-0.5turn)' : 'rotate(0turn)',
+              width: 0,
+              height: 0,
+              borderLeft: '5px solid transparent',
+              borderRight: '5px solid transparent',
+              borderBottom: '5px solid black',
+              transition: 'transform 0.5s'
             }}
-            onClick={() => setToggle(!toggle)}
-          >
-            <span
-              sx={{
-                transform: toggle ? 'rotate(-0.5turn)' : 'rotate(0turn)',
-                width: 0,
-                height: 0,
-                borderLeft: '5px solid transparent',
-                borderRight: '5px solid transparent',
-                borderBottom: '5px solid black',
-                transition: 'transform 0.5s'
-              }}
-            />
-          </button>
+          />
         </div>
       </div>
       {children}
