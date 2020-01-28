@@ -3,18 +3,7 @@ import { jsx } from 'theme-ui'
 import { useState } from 'react'
 import * as presets from '@theme-ui/presets'
 import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
-import {
-  Editor,
-  Row,
-  Fonts,
-  FontSizes,
-  FontWeights,
-  LineHeights,
-  ColorMode,
-  ColorPalette,
-  Space
-} from '@theme-ui/editor'
-import merge from 'lodash.merge'
+import { Theme as BlocksThemeEditor, EditorProvider } from 'blocks-editor'
 
 import useCopyToClipboard from '../use-copy-to-clipboard'
 import { useThemeEditor } from '../providers/theme-editor'
@@ -43,20 +32,19 @@ export default () => {
   )
 }
 
-const defaultBreakpoints = [360, 600, 1024]
-
 const ThemePresetForm = ({ setTheme }) => {
   const [themeName, setThemeName] = useState('system')
 
   const onPresetChange = e => {
     const presetKey = e.target.value
-    setTheme(currentTheme =>
-      merge(
-        {},
-        { ...currentTheme, breakpoints: defaultBreakpoints },
-        presets[presetKey]
-      )
-    )
+    setTheme(currentTheme => {
+      return {
+        ...presets[presetKey],
+        breakpoints: currentTheme.breakpoints,
+        forms: currentTheme.forms
+      }
+    })
+
     setThemeName(presetKey)
   }
 
@@ -77,34 +65,19 @@ const ThemePresetForm = ({ setTheme }) => {
 }
 
 const ThemeEditor = ({ theme, setTheme }) => {
-  const context = {
-    theme,
-    setTheme(nextTheme) {
-      setTheme(currentTheme => merge({}, currentTheme, nextTheme))
-    }
-  }
   return (
     <Box>
       <Heading as="h3" mb={2}>
         Theme Editor
       </Heading>
-      <Editor context={context}>
-        <Fonts />
-        <Row>
-          <FontSizes />
-        </Row>
-        <Row>
-          <FontWeights />
-        </Row>
-        <Row>
-          <LineHeights />
-        </Row>
-        <ColorMode />
-        <ColorPalette />
-        <Row>
-          <Space />
-        </Row>
-      </Editor>
+      <EditorProvider theme={theme} onChange={setTheme}>
+        <BlocksThemeEditor.Fonts />
+        <BlocksThemeEditor.FontSizes />
+        <BlocksThemeEditor.FontWeights />
+        <BlocksThemeEditor.LineHeights />
+        <BlocksThemeEditor.Colors />
+        <BlocksThemeEditor.Space />
+      </EditorProvider>
     </Box>
   )
 }

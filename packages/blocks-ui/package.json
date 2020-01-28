@@ -19,9 +19,10 @@
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
     "@reach/tabs": "^0.7.0",
-    "@theme-ui/components": "^0.2.50",
+    "@theme-ui/components": "^0.3.1",
     "@theme-ui/editor": "^0.2.51",
     "@theme-ui/presets": "^0.2.44",
+    "blocks-editor": "0.0.1",
     "chroma-js": "^2.1.0",
     "interpolate-range": "^2.1.0",
     "lodash.merge": "^4.6.2",
@@ -29,7 +30,7 @@
     "property-controls": "^0.0.58",
     "react-feather": "^2.0.3",
     "react-merge-refs": "^1.0.0",
-    "theme-ui": "^0.2.49"
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "@babel/cli": "7.8.3",
