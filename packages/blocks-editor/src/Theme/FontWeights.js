@@ -16,7 +16,6 @@ export default props => {
       }
     })
   }
-  const keys = Object.keys(fontWeights)
 
   return Object.keys(fontWeights).map(key => (
     <div key={key}>

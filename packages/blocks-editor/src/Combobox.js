@@ -42,8 +42,6 @@ export default ({
   const root = useRef(null)
   const input = useRef(null)
 
-  const { theme } = useThemeUI()
-
   useEffect(() => {
     const handleOutsideClick = e => {
       if (root.current && root.current.contains(e.target)) return
