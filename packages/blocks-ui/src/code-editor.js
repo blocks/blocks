@@ -1,8 +1,35 @@
 /** @jsx jsx */
 import { useRef } from 'react'
 import { jsx } from 'theme-ui'
-import { Textarea } from '@theme-ui/components'
+
+import { Clipboard, Check } from 'react-feather'
+
 import Monaco from '@monaco-editor/react'
+
+import useCopyToClipboard from './use-copy-to-clipboard'
+import { IconButton } from './ui'
+
+const Copy = ({ toCopy }) => {
+  const { hasCopied, copyToClipboard } = useCopyToClipboard()
+
+  return (
+    <IconButton
+      onClick={() => copyToClipboard(toCopy)}
+      sx={{
+        position: 'absolute',
+        right: '10px',
+        zIndex: 1,
+        cursor: 'pointer'
+      }}
+    >
+      {hasCopied ? (
+        <Check sx={{ color: 'green' }} aria-label="Copied" />
+      ) : (
+        <Clipboard size={16} aria-label="Copy" />
+      )}
+    </IconButton>
+  )
+}
 
 const CodeEditor = ({ code, onChange }) => {
   const editorRef = useRef(null)
@@ -16,35 +43,26 @@ const CodeEditor = ({ code, onChange }) => {
   }
 
   return (
-    <Monaco
-      height="100%"
-      value={code}
-      language="javascript"
-      editorDidMount={handleEditorDidMount}
-      options={{
-        minimap: {
-          enabled: false
-        }
-      }}
-    />
+    <div sx={{ height: '100%' }}>
+      <Copy toCopy={code} />
+
+      <Monaco
+        height="100%"
+        value={code}
+        language="javascript"
+        editorDidMount={handleEditorDidMount}
+        theme="light"
+        options={{
+          minimap: {
+            enabled: false
+          },
+          scrollbar: {
+            vertical: 'hidden'
+          }
+        }}
+      />
+    </div>
   )
 }
 
 export default CodeEditor
-
-/*
-    <Textarea
-      sx={{
-        height: '100%',
-        border: 'none',
-        borderRadius: 0,
-        fontFamily: 'Menlo, monospace',
-        fontSize: '14px'
-      }}
-      onChange={e => {
-        onChange(e.target.value)
-      }}
-    >
-      {code}
-    </Textarea>
-*/
