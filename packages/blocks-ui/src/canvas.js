@@ -61,8 +61,14 @@ export const CanvasWrap = props => {
 
 export const Canvas = () => {
   const { mode } = useEditor()
-  if (mode === 'code') return <CodeMode />
-  if (mode === 'viewports') return <ViewportsMode />
-  if (mode === 'canvas') return <CanvasMode />
-  return null
+  switch (mode) {
+    case 'code':
+      return <CodeMode />
+    case 'viewports':
+      return <ViewportsMode />
+    case 'canvas':
+      return <CanvasMode />
+    default:
+      return null
+  }
 }
