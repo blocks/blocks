@@ -22,7 +22,6 @@
     "@theme-ui/components": "^0.3.1",
     "@theme-ui/editor": "^0.2.51",
     "@theme-ui/presets": "^0.2.44",
-    "blocks-editor": "0.0.1",
     "chroma-js": "^2.1.0",
     "interpolate-range": "^2.1.0",
     "lodash.merge": "^4.6.2",

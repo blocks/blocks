@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import * as presets from '@theme-ui/presets'
-import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
-import { Theme as BlocksThemeEditor, EditorProvider } from 'blocks-editor'
+import { Label, Select, Button } from '@theme-ui/components'
 
+import { Theme as BlocksThemeEditor, EditorProvider } from '../theme-editor'
 import useCopyToClipboard from '../use-copy-to-clipboard'
 import { useThemeEditor } from '../providers/theme-editor'
+import { FieldGroup } from '../field-group'
 
 const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
@@ -16,19 +17,18 @@ export default () => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
-    <Box p={3}>
-      <Heading mb={3}>Theme</Heading>
+    <Fragment>
       <ThemePresetForm theme={theme} setTheme={update} />
       <ThemeEditor theme={theme} setTheme={update} />
-      <Box mt={3}>
+      <FieldGroup>
         <Button
           variant="secondary"
           onClick={() => copyToClipboard(JSON.stringify(theme))}
         >
           {hasCopied ? 'Copied' : 'Copy'} Theme
         </Button>
-      </Box>
-    </Box>
+      </FieldGroup>
+    </Fragment>
   )
 }
 
@@ -48,36 +48,45 @@ const ThemePresetForm = ({ setTheme }) => {
     setThemeName(presetKey)
   }
 
-  const onSubmit = e => e.preventDefault()
-
   return (
-    <Box as="form" mb={3} onSubmit={onSubmit}>
-      <Label htmlFor="preset">Theme UI Preset</Label>
-      <Select
-        id="preset"
-        name="preset"
-        value={themeName}
-        onChange={onPresetChange}
-        children={options}
-      />
-    </Box>
+    <FieldGroup title="Preset">
+      <div>
+        <Label htmlFor="preset">Select Theme UI Preset</Label>
+        <Select
+          id="preset"
+          name="preset"
+          value={themeName}
+          onChange={onPresetChange}
+          children={options}
+        />
+      </div>
+    </FieldGroup>
   )
 }
 
 const ThemeEditor = ({ theme, setTheme }) => {
   return (
-    <Box>
-      <Heading as="h3" mb={2}>
-        Theme Editor
-      </Heading>
+    <Fragment>
       <EditorProvider theme={theme} onChange={setTheme}>
-        <BlocksThemeEditor.Fonts />
-        <BlocksThemeEditor.FontSizes />
-        <BlocksThemeEditor.FontWeights />
-        <BlocksThemeEditor.LineHeights />
-        <BlocksThemeEditor.Colors />
-        <BlocksThemeEditor.Space />
+        <FieldGroup title="Fonts">
+          <BlocksThemeEditor.Fonts />
+        </FieldGroup>
+        <FieldGroup title="Font Sizes">
+          <BlocksThemeEditor.FontSizes />
+        </FieldGroup>
+        <FieldGroup title="Font Weights">
+          <BlocksThemeEditor.FontWeights />
+        </FieldGroup>
+        <FieldGroup title="Line Heights">
+          <BlocksThemeEditor.LineHeights />
+        </FieldGroup>
+        <FieldGroup title="Colors">
+          <BlocksThemeEditor.Colors />
+        </FieldGroup>
+        <FieldGroup title="Space">
+          <BlocksThemeEditor.Space />
+        </FieldGroup>
       </EditorProvider>
-    </Box>
+    </Fragment>
   )
 }

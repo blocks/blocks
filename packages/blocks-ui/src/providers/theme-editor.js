@@ -9,8 +9,6 @@ const DEFAULT_THEME = {
   forms: appTheme.forms
 }
 
-console.log(DEFAULT_THEME)
-
 const ThemeEditorContext = React.createContext({})
 
 export const useThemeEditor = () => {

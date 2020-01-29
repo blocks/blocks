@@ -2,10 +2,13 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { Label, Input, Select, Field } from '@theme-ui/components'
-import { FieldGroup, Sx } from 'blocks-editor'
 import { ControlType } from 'property-controls'
 
+import { FieldGroup } from '../field-group'
+import { Sx } from '../theme-editor'
 import { useThemeEditor } from '../providers/theme-editor'
+
+console.log(Sx)
 
 export default ({
   propertyControls = {},

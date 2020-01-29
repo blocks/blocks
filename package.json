@@ -21,8 +21,7 @@
     "packages": [
       "packages/blocks-ui",
       "packages/react",
-      "packages/property-controls",
-      "packages/blocks-editor"
+      "packages/property-controls"
     ]
   },
   "husky": {

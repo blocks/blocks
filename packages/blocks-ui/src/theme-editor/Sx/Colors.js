@@ -26,7 +26,7 @@ export const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
             onChange({ color })
           }}
         />
-        <div sx={{ fontWeight: 'bold', ml: 2 }}>Color</div>
+        <div sx={{ fontSize: 0, ml: 2 }}>Color</div>
       </div>
       <div
         sx={{
@@ -41,7 +41,7 @@ export const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
             onChange({ bg })
           }}
         />
-        <div sx={{ fontWeight: 'bold', ml: 2 }}>Background Color</div>
+        <div sx={{ fontSize: 0, ml: 2 }}>Background Color</div>
       </div>
     </div>
   )
