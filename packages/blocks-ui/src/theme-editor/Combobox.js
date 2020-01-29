@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useThemeUI } from 'theme-ui'
+import { jsx } from 'theme-ui'
 import { useState, useRef, useEffect } from 'react'
 import { Label, Input } from '@theme-ui/components'
 

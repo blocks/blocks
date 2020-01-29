@@ -2,25 +2,21 @@
 import { jsx } from 'theme-ui'
 import { Fragment } from 'react'
 import { Field } from '@theme-ui/components'
+
 import Combobox from '../Combobox'
 
 export const SxTypography = ({
   tag,
-  value: {
-    fontFamily,
-    fontSize,
-    fontWeight,
-    lineHeight,
-  } = {},
+  value: { fontFamily, fontSize, fontWeight, lineHeight } = {},
   theme: {
     fonts = {},
     fontSizes = [],
     fontWeights = {},
-    lineHeights = {},
+    lineHeights = {}
   } = {},
-  onChange,
+  onChange
 }) => {
-  const prefixName = name => tag ? `styles.${tag}.${name}` : name
+  const prefixName = name => (tag ? `styles.${tag}.${name}` : name)
 
   return (
     <Fragment>
@@ -37,8 +33,9 @@ export const SxTypography = ({
         sx={{
           display: 'grid',
           gridGap: 2,
-          gridTemplateColumns: 'repeat(3, 1fr)',
-        }}>
+          gridTemplateColumns: 'repeat(3, 1fr)'
+        }}
+      >
         <Field
           name={prefixName('fontSize')}
           label="Font Size"
