@@ -8,8 +8,6 @@ import { FieldGroup } from '../field-group'
 import { Sx } from '../theme-editor'
 import { useThemeEditor } from '../providers/theme-editor'
 
-console.log(Sx)
-
 export default ({
   propertyControls = {},
   elementData,
@@ -64,7 +62,6 @@ export default ({
                 </div>
               )
             } else if (value.type === ControlType.Enum) {
-              console.log('hello', title)
               return (
                 <Field
                   key={key}
