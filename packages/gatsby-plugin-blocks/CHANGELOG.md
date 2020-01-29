@@ -1,5 +1,12 @@
 # gatsby-plugin-blocks
 
+## 0.0.68
+
+### Patch Changes
+
+- Updated dependencies [6042b54]
+  - blocks-ui@0.0.68
+
 ## 0.0.67
 
 ### Patch Changes

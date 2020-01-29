@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.68
+
+### Patch Changes
+
+- 6042b54: Use Monaco for the canvas code editor.
+
 ## 0.0.67
 
 ### Patch Changes
