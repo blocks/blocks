@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import { Suspense } from 'react'
 import { DragDropContext } from '@blocks/react-beautiful-dnd'
+import { Loader } from 'react-feather'
 
 import appTheme from './theme'
-import Canvas from './canvas'
+import { Canvas } from './canvas'
 import Layout from './layout'
 import { headerHeight } from './header'
 import SidePanel from './panels/side'
@@ -23,6 +25,20 @@ const EditorGrid = props => (
   />
 )
 
+const FallbackLoader = () => (
+  <div
+    sx={{
+      height: '100%',
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <Loader />
+  </div>
+)
+
 const Editor = () => {
   const { onDragEnd, onBeforeDragStart } = useCode()
 
@@ -34,7 +50,9 @@ const Editor = () => {
       >
         <EditorGrid>
           <TreePanel />
-          <Canvas />
+          <Suspense fallback={FallbackLoader}>
+            <Canvas />
+          </Suspense>
           <SidePanel />
         </EditorGrid>
       </DragDropContext>
