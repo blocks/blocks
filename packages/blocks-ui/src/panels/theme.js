@@ -51,7 +51,7 @@ const ThemePresetForm = ({ setTheme }) => {
   return (
     <FieldGroup title="Preset">
       <div>
-        <Label htmlFor="preset">Select Theme UI Preset</Label>
+        <Label htmlFor="preset">Theme UI Preset</Label>
         <Select
           id="preset"
           name="preset"
