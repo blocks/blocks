@@ -60,7 +60,7 @@ const Canvas = () => {
     try {
       editCode(code)
     } catch (e) {
-      // do nothing as they are displayed in the editor
+      // do nothing as the errors are displayed in the editor
     }
   }
 
