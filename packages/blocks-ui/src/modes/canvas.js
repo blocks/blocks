@@ -7,7 +7,7 @@ import { useScope } from '../providers/scope'
 
 import { CanvasWrap } from '../canvas'
 
-export const Canvas = () => {
+const CanvasMode = () => {
   const { theme, ...scope } = useScope()
   const { transformedCode } = useCode()
 
@@ -23,4 +23,4 @@ export const Canvas = () => {
   )
 }
 
-export default Canvas
+export default CanvasMode

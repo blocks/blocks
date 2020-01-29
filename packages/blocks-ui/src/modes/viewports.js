@@ -7,7 +7,7 @@ import { useScope } from '../providers/scope'
 import InlineRender from '../inline-render'
 import { PreviewArea, Device } from '../device-preview'
 
-export const Viewports = () => {
+const ViewportsMode = () => {
   const { theme, ...scope } = useScope()
   const { transformedCode } = useCode()
 
@@ -22,4 +22,4 @@ export const Viewports = () => {
   )
 }
 
-export default Viewports
+export default ViewportsMode

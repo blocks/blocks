@@ -13,7 +13,7 @@ import * as transforms from '../transforms'
 
 import { CanvasWrap } from '../canvas'
 
-export const Copy = ({ toCopy }) => {
+const Copy = ({ toCopy }) => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
@@ -30,7 +30,7 @@ export const Copy = ({ toCopy }) => {
   )
 }
 
-export const Code = () => {
+const CodeMode = () => {
   const [error, setError] = useState(null)
   const { code, editCode } = useCode()
   const rawCode = transforms.toRawJSX(code)
@@ -75,4 +75,4 @@ export const Code = () => {
   )
 }
 
-export default Code
+export default CodeMode
