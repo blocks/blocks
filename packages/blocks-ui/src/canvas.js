@@ -1,14 +1,41 @@
 /** @jsx jsx */
-import { lazy, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { jsx } from 'theme-ui'
+import Loadable from 'react-loadable'
+import { Loader } from 'react-feather'
 
 import { useEditor } from './providers/editor'
 import { useCanvas } from './providers/canvas'
 import { useElementSize } from './use-element-size'
 
-const CodeMode = lazy(() => import('./modes/code'))
-const ViewportsMode = lazy(() => import('./modes/viewports'))
-const CanvasMode = lazy(() => import('./modes/canvas'))
+const FallbackLoader = () => (
+  <div
+    sx={{
+      height: '100%',
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <Loader />
+  </div>
+)
+
+const CodeMode = Loadable({
+  loader: () => import('./modes/code'),
+  loading: FallbackLoader
+})
+
+const ViewportsMode = Loadable({
+  loader: () => import('./modes/viewports'),
+  loading: FallbackLoader
+})
+
+const CanvasMode = Loadable({
+  loader: () => import('./modes/canvas'),
+  loading: FallbackLoader
+})
 
 export const CanvasWrap = props => {
   const canvasRef = useRef()
