@@ -2,6 +2,8 @@
 import { jsx } from 'theme-ui'
 import { Grid } from '@theme-ui/components'
 
+import appTheme from './theme'
+
 export const FieldGroup = ({ title, children, ...props }) => (
   <div
     sx={{
@@ -9,7 +11,7 @@ export const FieldGroup = ({ title, children, ...props }) => (
       pb: 4,
       '&:not(:last-child)': {
         borderBottom: '1px solid',
-        borderColor: '#ccc'
+        borderColor: appTheme.colors.border
       }
     }}
     {...props}

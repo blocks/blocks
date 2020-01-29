@@ -20,16 +20,19 @@
     "@mdx-js/react": "^1.5.1",
     "@reach/tabs": "^0.7.0",
     "@theme-ui/components": "^0.3.1",
-    "@theme-ui/editor": "^0.2.51",
     "@theme-ui/presets": "^0.2.44",
+    "@theme-ui/style-guide": "^0.3.0",
     "chroma-js": "^2.1.0",
     "interpolate-range": "^2.1.0",
     "lodash.merge": "^4.6.2",
     "prettier": "^1.19.1",
     "property-controls": "^0.0.58",
+    "react-color": "^2.18.0",
     "react-feather": "^2.0.3",
     "react-merge-refs": "^1.0.0",
-    "theme-ui": "^0.3.1"
+    "reakit": "^1.0.0-beta.14",
+    "theme-ui": "^0.3.1",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@babel/cli": "7.8.3",

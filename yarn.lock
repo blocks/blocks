@@ -1782,17 +1782,6 @@
   resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.3.1.tgz#b85c7e8fae948dc0de65aa30b853368993e25cb3"
   integrity sha512-QB2/fZBpo4inaLHL3OrB8NOBgNfwnj8GtHzXWHb9iQSRjmtNX8zPXBe32jLT7qQP0+y8JxPT4YChZIkm5ZyIdg==
 
-"@theme-ui/editor@^0.2.51":
-  version "0.2.53"
-  resolved "https://registry.yarnpkg.com/@theme-ui/editor/-/editor-0.2.53.tgz#92ace6c5e4a30546c5c9afb122e538b1d65ded42"
-  integrity sha512-B8+bjbSVq6W7g3+A3RyQAu9LmII/1pBoBA9O2k2nJmDbgQ7sgf5/2o5SY0pwdQeigA89VqWggSCyc5lQCznmFg==
-  dependencies:
-    "@theme-ui/style-guide" "^0.2.53"
-    color "^3.1.2"
-    react-color "^2.17.3"
-    reakit "^1.0.0-beta.6"
-    tinycolor2 "^1.4.1"
-
 "@theme-ui/mdx@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.3.0.tgz#8bb1342204acfaa69914d6b6567c5c49d9a8c1e6"
@@ -1988,15 +1977,6 @@
   integrity sha512-FD9UtROhol8limL2XtQPfnTUfUJETUC37wYW6dSIfVCDR4l0CSbqYS+niQAqVGcuD0wtL1pbkvb/qDtUg94Ebw==
   dependencies:
     prism-react-renderer "^1.0.2"
-
-"@theme-ui/style-guide@^0.2.53":
-  version "0.2.53"
-  resolved "https://registry.yarnpkg.com/@theme-ui/style-guide/-/style-guide-0.2.53.tgz#b70d47856030b1b744705ac951cfa55b499b2a87"
-  integrity sha512-teA0UnAeOnu7iZrKiI/MadBFCrw00rIKoOYABsZR9Nw+ZHLdLk8xshcsHvDmXKqvC/Vz4PiND0Qu4AjaL8RdUA==
-  dependencies:
-    "@theme-ui/presets" "^0.2.44"
-    color "^3.1.2"
-    lodash.get "^4.4.2"
 
 "@theme-ui/style-guide@^0.3.0":
   version "0.3.0"
@@ -10916,9 +10896,9 @@ pnp-webpack-plugin@^1.5.0:
     ts-pnp "^1.1.2"
 
 popper.js@^1.16.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
-  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.25:
   version "1.0.25"
@@ -11606,7 +11586,7 @@ rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-color@^2.17.3, react-color@^2.18.0:
+react-color@^2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.18.0.tgz#34956f0bac394f6c3bc01692fd695644cc775ffd"
   integrity sha512-FyVeU1kQiSokWc8NPz22azl1ezLpJdUyTbWL0LPUpcuuYDrZ/Y1veOk9rRK5B3pMlyDGvTk4f4KJhlkIQNRjEA==
@@ -11870,7 +11850,7 @@ reakit-utils@^0.7.3:
   resolved "https://registry.yarnpkg.com/reakit-utils/-/reakit-utils-0.7.3.tgz#91acb6360b30a802e5dae9bb6c9f7a9e9535ea6a"
   integrity sha512-sQsgKYcn+OthBkvKz+TeHlYZq2SF5ZP9RutHg7O67GI+sdYqf0BVy6VeTe28TG4Vui6hoMheiMnZqhidOtN7EA==
 
-reakit@^1.0.0-beta.14, reakit@^1.0.0-beta.6:
+reakit@^1.0.0-beta.14:
   version "1.0.0-beta.14"
   resolved "https://registry.yarnpkg.com/reakit/-/reakit-1.0.0-beta.14.tgz#cea09f361e0062d2eb1515b5d1ba8ab0beeebeef"
   integrity sha512-/KRlHT7tACx3PVvnX1DOuJxlWnfdfbdoEOJKdVPR8X4a9hkLPOZnLRaCNWKwHTVR7tAuVxo0K+ySsMuxWiGGYw==
