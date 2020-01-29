@@ -2,4 +2,4 @@
 'blocks-ui': minor
 ---
 
-use monaco editor for canvas code editor
+Use Monaco for the canvas code editor.
