@@ -75,6 +75,7 @@ export const Loader = () => (
         />
         <g
           sx={{
+            transform: 'translate(0, -49px)',
             animation: `${animationKeyframes} 3s ease infinite`
           }}
         >
