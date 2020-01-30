@@ -1,10 +1,8 @@
 /** @jsx jsx */
 import { useRef } from 'react'
 import { jsx } from 'theme-ui'
-
-import { Clipboard, Check } from 'react-feather'
-
 import Monaco from '@monaco-editor/react'
+import { Clipboard, Check } from 'react-feather'
 
 import useCopyToClipboard from './use-copy-to-clipboard'
 import { IconButton } from './ui'
@@ -31,7 +29,7 @@ const Copy = ({ toCopy }) => {
   )
 }
 
-const CodeEditor = ({ code, onChange }) => {
+export const CodeEditor = ({ code, onChange }) => {
   const editorRef = useRef(null)
 
   const handleEditorDidMount = (_, editor) => {
@@ -45,7 +43,6 @@ const CodeEditor = ({ code, onChange }) => {
   return (
     <div sx={{ height: '100%' }}>
       <Copy toCopy={code} />
-
       <Monaco
         height="100%"
         value={code}
@@ -64,5 +61,3 @@ const CodeEditor = ({ code, onChange }) => {
     </div>
   )
 }
-
-export default CodeEditor

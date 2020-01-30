@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui'
 import { DragDropContext } from '@blocks/react-beautiful-dnd'
 
 import appTheme from './theme'
-import Canvas from './canvas'
+import { Canvas } from './canvas'
 import Layout from './layout'
 import { headerHeight } from './header'
 import SidePanel from './panels/side'
