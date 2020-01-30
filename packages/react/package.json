@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.0.0",
-    "@theme-ui/components": "^0.2.50",
+    "@theme-ui/components": "^0.3.1",
     "property-controls": "^0.0.58",
-    "theme-ui": "^0.2.49"
+    "theme-ui": "^0.3.1"
   },
   "peerDependencies": {
     "react": "^16.12.0"

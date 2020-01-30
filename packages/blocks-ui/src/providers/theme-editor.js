@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { system as systemTheme } from '@theme-ui/presets'
 
+import appTheme from '../theme'
+
 const DEFAULT_THEME = {
   ...systemTheme,
-  breakpoints: [360, 600, 1024]
+  breakpoints: appTheme.breakpoints,
+  forms: appTheme.forms
 }
 
 const ThemeEditorContext = React.createContext({})

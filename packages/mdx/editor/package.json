@@ -38,6 +38,6 @@
     "slate-deep-table": "^0.9.7",
     "slate-react": "^0.57.0",
     "slate-soft-break": "^0.9.0",
-    "theme-ui": "^0.2.49"
+    "theme-ui": "^0.3.1"
   }
 }

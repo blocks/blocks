@@ -1,23 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import * as presets from '@theme-ui/presets'
-import { Box, Heading, Label, Select, Button } from '@theme-ui/components'
-import {
-  Editor,
-  Row,
-  Fonts,
-  FontSizes,
-  FontWeights,
-  LineHeights,
-  ColorMode,
-  ColorPalette,
-  Space
-} from '@theme-ui/editor'
-import merge from 'lodash.merge'
+import { Label, Select, Button } from '@theme-ui/components'
 
+import { Theme as BlocksThemeEditor, EditorProvider } from '../theme-editor'
 import useCopyToClipboard from '../use-copy-to-clipboard'
 import { useThemeEditor } from '../providers/theme-editor'
+import { FieldGroup } from '../field-group'
 
 const themes = Object.keys(presets)
 const options = themes.map(name => <option key={name} children={name} />)
@@ -27,84 +17,76 @@ export default () => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
-    <Box p={3}>
-      <Heading mb={3}>Theme</Heading>
+    <Fragment>
       <ThemePresetForm theme={theme} setTheme={update} />
       <ThemeEditor theme={theme} setTheme={update} />
-      <Box mt={3}>
+      <FieldGroup>
         <Button
           variant="secondary"
           onClick={() => copyToClipboard(JSON.stringify(theme))}
         >
           {hasCopied ? 'Copied' : 'Copy'} Theme
         </Button>
-      </Box>
-    </Box>
+      </FieldGroup>
+    </Fragment>
   )
 }
-
-const defaultBreakpoints = [360, 600, 1024]
 
 const ThemePresetForm = ({ setTheme }) => {
   const [themeName, setThemeName] = useState('system')
 
   const onPresetChange = e => {
     const presetKey = e.target.value
-    setTheme(currentTheme =>
-      merge(
-        {},
-        { ...currentTheme, breakpoints: defaultBreakpoints },
-        presets[presetKey]
-      )
-    )
+    setTheme(currentTheme => {
+      return {
+        ...presets[presetKey],
+        breakpoints: currentTheme.breakpoints,
+        forms: currentTheme.forms
+      }
+    })
+
     setThemeName(presetKey)
   }
 
-  const onSubmit = e => e.preventDefault()
-
   return (
-    <Box as="form" mb={3} onSubmit={onSubmit}>
-      <Label htmlFor="preset">Theme UI Preset</Label>
-      <Select
-        id="preset"
-        name="preset"
-        value={themeName}
-        onChange={onPresetChange}
-        children={options}
-      />
-    </Box>
+    <FieldGroup title="Preset">
+      <div>
+        <Label htmlFor="preset">Theme UI Preset</Label>
+        <Select
+          id="preset"
+          name="preset"
+          value={themeName}
+          onChange={onPresetChange}
+          children={options}
+        />
+      </div>
+    </FieldGroup>
   )
 }
 
 const ThemeEditor = ({ theme, setTheme }) => {
-  const context = {
-    theme,
-    setTheme(nextTheme) {
-      setTheme(currentTheme => merge({}, currentTheme, nextTheme))
-    }
-  }
   return (
-    <Box>
-      <Heading as="h3" mb={2}>
-        Theme Editor
-      </Heading>
-      <Editor context={context}>
-        <Fonts />
-        <Row>
-          <FontSizes />
-        </Row>
-        <Row>
-          <FontWeights />
-        </Row>
-        <Row>
-          <LineHeights />
-        </Row>
-        <ColorMode />
-        <ColorPalette />
-        <Row>
-          <Space />
-        </Row>
-      </Editor>
-    </Box>
+    <Fragment>
+      <EditorProvider theme={theme} onChange={setTheme}>
+        <FieldGroup title="Fonts">
+          <BlocksThemeEditor.Fonts />
+        </FieldGroup>
+        <FieldGroup title="Font Sizes">
+          <BlocksThemeEditor.FontSizes />
+        </FieldGroup>
+        <FieldGroup title="Font Weights">
+          <BlocksThemeEditor.FontWeights />
+        </FieldGroup>
+        <FieldGroup title="Line Heights">
+          <BlocksThemeEditor.LineHeights />
+        </FieldGroup>
+        <FieldGroup title="Colors">
+          <BlocksThemeEditor.Colors />
+        </FieldGroup>
+        <FieldGroup title="Space">
+          <BlocksThemeEditor.Space />
+        </FieldGroup>
+      </EditorProvider>
+    </Fragment>
   )
 }
