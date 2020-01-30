@@ -1,5 +1,15 @@
 # gatsby-plugin-blocks
 
+## 0.0.69
+
+### Patch Changes
+
+- Updated dependencies [6c869e3]
+- Updated dependencies [6c869e3]
+- Updated dependencies [6c869e3]
+  - blocks-ui@0.0.69
+  - @blocks/react@0.0.60
+
 ## 0.0.68
 
 ### Patch Changes
