@@ -1,5 +1,14 @@
 # blocks-ui
 
+## 0.0.69
+
+### Patch Changes
+
+- 6c869e3: Lazy loaded mode components
+- 6c869e3: Forked @theme-ui/components into blocks-ui
+- Updated dependencies [6c869e3]
+  - @blocks/react@0.0.60
+
 ## 0.0.68
 
 ### Patch Changes

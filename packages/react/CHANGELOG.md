@@ -1,5 +1,11 @@
 # @blocks/react
 
+## 0.0.60
+
+### Patch Changes
+
+- 6c869e3: Upgraded theme-ui
+
 ## 0.0.59
 
 ### Patch Changes
