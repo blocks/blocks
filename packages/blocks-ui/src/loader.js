@@ -45,9 +45,11 @@ export const Loader = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="87"
-      height="101"
-      viewbox="0 0 174 202"
+      width="174"
+      height="202"
+      sx={{
+        transform: 'scale(0.5)'
+      }}
     >
       <defs>
         <path id="a" d="M1.25 0l85.51 50.5-.51 100.2L.76 100.68z" />
