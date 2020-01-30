@@ -75,7 +75,7 @@ export const Loader = () => (
         />
         <g
           sx={{
-            animation: `${animationKeyframes} 3s linear infinite`
+            animation: `${animationKeyframes} 3s ease infinite`
           }}
         >
           <path
