@@ -1476,6 +1476,11 @@
   resolved "https://registry.yarnpkg.com/@mikaelkristiansson/domready/-/domready-1.0.10.tgz#f6d69866c0857664e70690d7a0bfedb72143adb5"
   integrity sha512-6cDuZeKSCSJ1KvfEQ25Y8OXUjqDJZ+HgUs6dhASWbAX8fxVraTfPsSeRe2bN+4QJDsgUaXaMWBYfRomCr04GGg==
 
+"@monaco-editor/react@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-3.0.1.tgz#98fcfb1a5ccf7cc1f376132ffcec66df2a4588cc"
+  integrity sha512-RRe4OkO7jTgPTtgJMFWUNxI+hFci/6Et6mpN9Tu2i+Ev8A1uPNoQVHix9mQPn9TWUkv+cgGacuKZyVt6wG6SZA==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
