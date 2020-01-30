@@ -6,6 +6,7 @@ import { Clipboard, Check } from 'react-feather'
 
 import useCopyToClipboard from './use-copy-to-clipboard'
 import { IconButton } from './ui'
+import { Loader } from './loader'
 
 const Copy = ({ toCopy }) => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
@@ -49,6 +50,7 @@ export const CodeEditor = ({ code, onChange }) => {
         language="javascript"
         editorDidMount={handleEditorDidMount}
         theme="light"
+        loading={<Loader />}
         options={{
           minimap: {
             enabled: false
