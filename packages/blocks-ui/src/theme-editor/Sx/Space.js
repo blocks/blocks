@@ -3,92 +3,75 @@ import { jsx } from 'theme-ui'
 import { Fragment, useState, useEffect } from 'react'
 import { Field, Slider, Grid } from '@theme-ui/components'
 
-const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
-  const onSliderChange = (e, key) => {
-    const themeValue = space[e.target.value]
-    onChange({ ...value, [key.replace('%p', propertyKey)]: themeValue })
-  }
-
-  const onSingleSliderChange = e => {
-    const themeValue = space[e.target.value]
-    onChange(themeValue)
-  }
-
-  const min = 0
-  const max = space.length - 1
-  const hasKeysToEdit = Boolean(keys && keys.length > 0)
-
-  return (
-    <Fragment>
-      {!hasKeysToEdit && (
-        <Field
-          label="All"
-          value={space.findIndex(i => i === value)}
-          onChange={onSingleSliderChange}
-          min={min}
-          max={max}
-          step={1}
-          as={Slider}
-        />
-      )}
-      {hasKeysToEdit && (
-        <Grid cols={1}>
-          {keys.map(({ key, label }) => (
-            <Field
-              key={key}
-              label={label}
-              value={space.findIndex(i => i === value[key])}
-              onChange={e => onSliderChange(e, key)}
-              min={min}
-              max={max}
-              step={1}
-              as={Slider}
-            />
-          ))}
-        </Grid>
-      )}
-    </Fragment>
-  )
-}
-
 const MODES = [
   {
     name: 'single',
     icon: null,
-    keys: null
+    keys: [{ label: 'All', key: '%s' }]
   },
   {
     name: 'axis',
     icon: null,
     keys: [
-      { label: 'Horizontal', key: '%px' },
-      { label: 'Vertical', key: '%py' }
+      { label: 'Horizontal', key: '%sx' },
+      { label: 'Vertical', key: '%sy' }
     ]
   },
   {
-    name: 'custom',
+    name: 'all',
     icon: null,
     keys: [
-      { label: 'Top', key: '%pt' },
-      { label: 'Right', key: '%pr' },
-      { label: 'Bottom', key: '%pb' },
-      { label: 'Left', key: '%pl' }
+      { label: 'Top', key: '%st' },
+      { label: 'Right', key: '%sr' },
+      { label: 'Bottom', key: '%sb' },
+      { label: 'Left', key: '%sl' }
     ]
   }
 ]
 
-export const Space = ({ property, theme, onChange }) => {
-  const [mode, setMode] = useState(MODES[0])
-  const [value, setValue] = useState({})
+const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
+  const onSliderChange = (e, key) => {
+    onChange({
+      ...value,
+      [key.replace('%s', propertyKey)]: parseInt(e.target.value)
+    })
+  }
 
+  const min = 0
+  const max = space.length - 1
+
+  return (
+    <Fragment>
+      <Grid cols={1}>
+        {keys.map(({ key, label }) => (
+          <Field
+            key={key}
+            label={label}
+            value={value[key.replace('%s', propertyKey)]}
+            onChange={e => onSliderChange(e, key)}
+            min={min}
+            max={max}
+            step={1}
+            as={Slider}
+          />
+        ))}
+      </Grid>
+    </Fragment>
+  )
+}
+
+export const Space = ({ property, theme, onChange, value: valueProp }) => {
   const propertyKey = property === 'margin' ? 'm' : 'p'
+
+  const [mode, setMode] = useState(MODES[0])
+  const [value, setValue] = useState({ [propertyKey]: valueProp[propertyKey] })
 
   useEffect(() => {
     onChange(value)
   }, [propertyKey, value])
 
   useEffect(() => {
-    // convert values between mode
+    // TODO Convert values between mode
   }, [mode])
 
   return (
