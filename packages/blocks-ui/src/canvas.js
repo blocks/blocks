@@ -2,39 +2,26 @@
 import { useRef, useEffect } from 'react'
 import { jsx } from 'theme-ui'
 import Loadable from 'react-loadable'
-import { Loader } from 'react-feather'
+
+import { Loader } from './loader'
 
 import { useEditor } from './providers/editor'
 import { useCanvas } from './providers/canvas'
 import { useElementSize } from './use-element-size'
 
-const FallbackLoader = () => (
-  <div
-    sx={{
-      height: '100%',
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}
-  >
-    <Loader />
-  </div>
-)
-
 const CodeMode = Loadable({
   loader: () => import('./modes/code'),
-  loading: FallbackLoader
+  loading: Loader
 })
 
 const ViewportsMode = Loadable({
   loader: () => import('./modes/viewports'),
-  loading: FallbackLoader
+  loading: Loader
 })
 
 const CanvasMode = Loadable({
   loader: () => import('./modes/canvas'),
-  loading: FallbackLoader
+  loading: Loader
 })
 
 export const CanvasWrap = props => {
