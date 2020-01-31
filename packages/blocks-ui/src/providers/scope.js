@@ -66,9 +66,7 @@ export const useScope = () => {
   return scope
 }
 
-export const ScopeProvider = ScopeContext.Provider
-
-export default ({ scope, children }) => {
+const ScopeProvider = ({ scope, children }) => {
   const blocks = useBlocks()
   const { update, ...theme } = useThemeEditor()
 
@@ -84,3 +82,5 @@ export default ({ scope, children }) => {
     <ScopeContext.Provider value={fullScope}>{children}</ScopeContext.Provider>
   )
 }
+
+export default ScopeProvider
