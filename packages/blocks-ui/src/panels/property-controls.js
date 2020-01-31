@@ -83,6 +83,13 @@ export default ({
       ) : null}
       {hasStyles ? (
         <React.Fragment>
+          <FieldGroup title="Padding">
+            <Sx.Padding
+              value={elementData.props.sx}
+              onChange={onStyleChange}
+              theme={theme}
+            />
+          </FieldGroup>
           <FieldGroup title="Colors">
             <Sx.Colors
               value={elementData.props.sx}
@@ -97,13 +104,7 @@ export default ({
               theme={theme}
             />
           </FieldGroup>
-          <FieldGroup title="Padding">
-            <Sx.Padding
-              value={elementData.props.sx}
-              onChange={onStyleChange}
-              theme={theme}
-            />
-          </FieldGroup>
+
           <FieldGroup title="Margin">
             <Sx.Margin
               value={elementData.props.sx}
