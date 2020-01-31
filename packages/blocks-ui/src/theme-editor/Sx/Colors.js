@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui'
 
 import { ThemeColorPicker } from './ThemeColorPicker'
 
-export const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
+const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
   return (
     <div
       sx={{

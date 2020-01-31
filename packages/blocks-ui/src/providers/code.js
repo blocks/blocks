@@ -13,7 +13,7 @@ export const useCode = () => {
   return value
 }
 
-export const CodeProvider = ({ children, initialCode, onChange }) => {
+const CodeProvider = ({ children, initialCode, onChange }) => {
   const providedBlocks = useBlocks()
 
   const codeWithUuids = transforms.addTuid(initialCode)

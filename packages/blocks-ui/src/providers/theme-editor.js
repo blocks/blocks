@@ -17,7 +17,7 @@ export const useThemeEditor = () => {
   return value
 }
 
-export const ThemeEditorProvider = ({ theme = DEFAULT_THEME, children }) => {
+const ThemeEditorProvider = ({ theme = DEFAULT_THEME, children }) => {
   const [value, update] = useState(theme)
 
   return (

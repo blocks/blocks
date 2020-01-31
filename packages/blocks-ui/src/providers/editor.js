@@ -24,7 +24,7 @@ export const useEditor = () => {
   return value
 }
 
-export const EditorProvider = ({ children }) => {
+const EditorProvider = ({ children }) => {
   const [value, update] = useState({
     activeTabIndex: EDITOR_TAB_INDEX,
     activeTab: 'editor',

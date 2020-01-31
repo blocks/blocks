@@ -86,6 +86,8 @@ export default ({
         setOpen(false)
         resetIndex()
         break
+      default:
+        break
     }
   }
 
