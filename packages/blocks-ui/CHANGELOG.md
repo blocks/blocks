@@ -1,5 +1,15 @@
 # blocks-ui
 
+## 0.0.70
+
+### Patch Changes
+
+- 475bb3f: Add a fancy loader
+- 1ee0279: Fix lint warnings
+- e601127: Better handle falsey values in sx prop plugin
+- Updated dependencies [1ee0279]
+  - @blocks/react@0.0.61
+
 ## 0.0.69
 
 ### Patch Changes

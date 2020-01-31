@@ -1,6 +1,6 @@
 {
   "name": "@blocks/react",
-  "version": "0.0.60",
+  "version": "0.0.61",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/react.cjs.js",
