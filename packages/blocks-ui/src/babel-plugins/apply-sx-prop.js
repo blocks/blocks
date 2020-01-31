@@ -1,5 +1,3 @@
-import template from '@babel/template'
-
 import { toLiteral } from '../util'
 import { uuidName } from '../constants'
 
@@ -26,9 +24,11 @@ export default (api, { elementId, sx }) => {
             path.node.attributes.push(
               t.jSXAttribute(
                 t.jSXIdentifier('sx'),
-                template.ast(`<>{{${key}: '${value}'}}</>`, {
-                  plugins: ['jsx']
-                }).expression.children[0]
+                t.jsxExpressionContainer(
+                  t.objectExpression([
+                    t.objectProperty(t.identifier(key), toLiteral(value))
+                  ])
+                )
               )
             )
           } else {

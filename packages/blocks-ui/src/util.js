@@ -34,7 +34,7 @@ export const uuid = (
 }
 
 export const toLiteral = val => {
-  if (!val) {
+  if (!val && typeof val !== 'number' && typeof val !== 'string') {
     return t.nullLiteral()
   }
 
