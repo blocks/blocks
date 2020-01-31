@@ -1,5 +1,11 @@
 # @blocks/react
 
+## 0.0.61
+
+### Patch Changes
+
+- 1ee0279: Fix lint warnings
+
 ## 0.0.60
 
 ### Patch Changes
