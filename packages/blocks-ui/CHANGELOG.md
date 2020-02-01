@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.71
+
+### Patch Changes
+
+- db0398e: Improve prop apply plugin
+
 ## 0.0.70
 
 ### Patch Changes
