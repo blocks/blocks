@@ -83,6 +83,7 @@ export default ({
       ) : null}
       {hasStyles ? (
         <React.Fragment>
+          {console.log(elementData.props.sx)}
           <FieldGroup title="Padding">
             <Sx.Padding
               value={elementData.props.sx}
@@ -104,7 +105,6 @@ export default ({
               theme={theme}
             />
           </FieldGroup>
-
           <FieldGroup title="Margin">
             <Sx.Margin
               value={elementData.props.sx}

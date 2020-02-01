@@ -7,34 +7,35 @@ const MODES = [
   {
     name: 'single',
     icon: null,
-    keys: [{ label: 'All', key: '%s' }]
+    keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
   },
   {
     name: 'axis',
     icon: null,
     keys: [
-      { label: 'Horizontal', key: '%sx' },
-      { label: 'Vertical', key: '%sy' }
+      { label: 'Horizontal', keys: ['l', 'r'] },
+      { label: 'Vertical', keys: ['t', 'b'] }
     ]
   },
   {
     name: 'all',
     icon: null,
     keys: [
-      { label: 'Top', key: '%st' },
-      { label: 'Right', key: '%sr' },
-      { label: 'Bottom', key: '%sb' },
-      { label: 'Left', key: '%sl' }
+      { label: 'Top', keys: ['t'] },
+      { label: 'Right', keys: ['r'] },
+      { label: 'Bottom', keys: ['b'] },
+      { label: 'Left', keys: ['l'] }
     ]
   }
 ]
 
 const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
-  const onSliderChange = (e, key) => {
-    onChange({
-      ...value,
-      [key.replace('%s', propertyKey)]: parseInt(e.target.value)
-    })
+  const onSliderChange = (e, keys) => {
+    const nextValue = keys.reduce((accum, key) => {
+      accum[propertyKey + key] = parseInt(e.target.value)
+      return accum
+    }, {})
+    onChange(currentValue => ({ ...currentValue, ...nextValue }))
   }
 
   const min = 0
@@ -43,23 +44,26 @@ const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
   return (
     <Fragment>
       <Grid cols={1}>
-        {keys.map(({ key, label }) => (
-          <div key={key}>
-            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
-              <Label>{label}</Label>
-              <Label as="span" sx={{ width: 'auto' }}>
-                {space[value[key.replace('%s', propertyKey)]]}
-              </Label>
+        {keys.map(({ keys, label }, index) => {
+          const sliderValue = value[propertyKey + keys[0]] || 0
+          return (
+            <div key={index}>
+              <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
+                <Label>{label}</Label>
+                <Label as="span" sx={{ width: 'auto' }}>
+                  {space[sliderValue]}
+                </Label>
+              </div>
+              <Slider
+                value={sliderValue}
+                onChange={e => onSliderChange(e, keys)}
+                min={min}
+                max={max}
+                step={1}
+              />
             </div>
-            <Slider
-              value={value[key.replace('%s', propertyKey)]}
-              onChange={e => onSliderChange(e, key)}
-              min={min}
-              max={max}
-              step={1}
-            />
-          </div>
-        ))}
+          )
+        })}
       </Grid>
     </Fragment>
   )
@@ -74,10 +78,6 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
   useEffect(() => {
     onChange(value)
   }, [propertyKey, value])
-
-  useEffect(() => {
-    // TODO Convert values between mode
-  }, [mode])
 
   return (
     <div>
