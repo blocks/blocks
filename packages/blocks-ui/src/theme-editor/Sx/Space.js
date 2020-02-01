@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Fragment, useState, useEffect } from 'react'
-import { Field, Slider, Grid } from '@theme-ui/components'
+import { Label, Slider, Grid } from '@theme-ui/components'
 
 const MODES = [
   {
@@ -44,16 +44,21 @@ const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
     <Fragment>
       <Grid cols={1}>
         {keys.map(({ key, label }) => (
-          <Field
-            key={key}
-            label={label}
-            value={value[key.replace('%s', propertyKey)]}
-            onChange={e => onSliderChange(e, key)}
-            min={min}
-            max={max}
-            step={1}
-            as={Slider}
-          />
+          <div key={key}>
+            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
+              <Label>{label}</Label>
+              <Label as="span" sx={{ width: 'auto' }}>
+                {space[value[key.replace('%s', propertyKey)]]}
+              </Label>
+            </div>
+            <Slider
+              value={value[key.replace('%s', propertyKey)]}
+              onChange={e => onSliderChange(e, key)}
+              min={min}
+              max={max}
+              step={1}
+            />
+          </div>
         ))}
       </Grid>
     </Fragment>
@@ -76,7 +81,7 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
 
   return (
     <div>
-      <div sx={{ display: 'flex', mt: 3, mb: 3 }}>
+      <div sx={{ display: 'flex', mt: 3, mb: 3, ml: 'auto' }}>
         {MODES.map(mode => (
           <button key={mode.name} onClick={() => setMode(mode)}>
             {mode.name}
