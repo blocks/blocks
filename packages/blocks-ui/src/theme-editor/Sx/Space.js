@@ -5,8 +5,10 @@ import { Label, Slider, Grid } from '@theme-ui/components'
 
 import { IconButton } from '../../ui'
 
-// Custom Icons
-// TODO these should be replaced with proper icons from feather or a real designer
+// Fallback space options if no space is present in theme
+const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
+
+// Custom Icons used in the segmented control
 
 const CustomIconSvg = props => (
   <svg
@@ -40,22 +42,26 @@ const AllIcon = () => (
   </CustomIconSvg>
 )
 
+// The different modes spacing can be edited with
+// Icon is the SVG used in segmented control
+// keys are an Array of Strings which will get effected when using the slider
+// i.e. ['l', 'r'] will effect `pl` and `pr` or `ml` and `mr`
+// It's important to use all 4 sides (`t`/`r`/`b`/`l`) and not just `p`, `px` or `py` etc so that previous values don't conflict
+
 const MODES = [
   {
-    icon: SingleIcon,
+    Icon: () => SingleIcon,
     keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
   },
   {
-    name: 'axis',
-    icon: AxisIcon,
+    Icon: () => AxisIcon,
     keys: [
       { label: 'Horizontal', keys: ['l', 'r'] },
       { label: 'Vertical', keys: ['t', 'b'] }
     ]
   },
   {
-    name: 'all',
-    icon: AllIcon,
+    Icon: () => AllIcon,
     keys: [
       { label: 'Top', keys: ['t'] },
       { label: 'Right', keys: ['r'] },
@@ -65,21 +71,34 @@ const MODES = [
   }
 ]
 
-const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
+const Mode = ({
+  propertyKey,
+  keys,
+  theme: { space = DEFAULT_SPACE },
+  value,
+  onChange
+}) => {
   const onSliderChange = (e, keys) => {
+    // Take all of the keys for this slider (i.e. `l` and `r`) and set the correct value
+    // i.e. { pl: 3, pr: 3 }
     const nextValue = keys.reduce((accum, key) => {
       accum[propertyKey + key] = parseInt(e.target.value)
       return accum
     }, {})
+
+    // Make sure to spread the current value so we don't delete other slider values
     onChange(currentValue => ({ ...currentValue, ...nextValue }))
   }
 
+  // Always set the min and max to the slider length so we get nice even steps
   const min = 0
   const max = space.length - 1
+  const step = 1
 
   return (
     <Grid>
       {keys.map(({ keys, label }, index) => {
+        // Since sliders can have multiple keys, just grab the first one
         const sliderValue = value[propertyKey + keys[0]] || 0
         return (
           <div key={index}>
@@ -94,7 +113,7 @@ const Mode = ({ propertyKey, keys, theme: { space }, value, onChange }) => {
               onChange={e => onSliderChange(e, keys)}
               min={min}
               max={max}
-              step={1}
+              step={step}
             />
           </div>
         )
@@ -148,7 +167,7 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
                 }
               }}
             >
-              {mode.icon()}
+              {mode.Icon}
             </IconButton>
           )
         })}
