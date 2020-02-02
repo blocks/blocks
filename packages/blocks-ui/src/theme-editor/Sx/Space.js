@@ -50,18 +50,18 @@ const AllIcon = () => (
 
 const MODES = [
   {
-    Icon: () => SingleIcon,
+    Icon: SingleIcon,
     keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
   },
   {
-    Icon: () => AxisIcon,
+    Icon: AxisIcon,
     keys: [
       { label: 'Horizontal', keys: ['l', 'r'] },
       { label: 'Vertical', keys: ['t', 'b'] }
     ]
   },
   {
-    Icon: () => AllIcon,
+    Icon: AllIcon,
     keys: [
       { label: 'Top', keys: ['t'] },
       { label: 'Right', keys: ['r'] },
@@ -167,7 +167,7 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
                 }
               }}
             >
-              {mode.Icon}
+              <mode.Icon />
             </IconButton>
           )
         })}
