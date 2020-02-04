@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import { useState, useMemo, useRef, useEffect } from 'react'
-import { useElementSize } from '../use-element-size'
+
 import { Droppable, Draggable } from '@blocks/react-beautiful-dnd'
 import { jsx, ThemeProvider } from 'theme-ui'
 import { Box } from '@theme-ui/components'
+
+import { useElementSize } from '../use-element-size'
 
 import InlineBlockRender from '../inline-block-render'
 import { useEditor } from '../providers/editor'
