@@ -15,10 +15,11 @@ import { useCanvas } from '../providers/canvas'
 const BlockSorting = ({ title, children }) => {
   const ref = useRef(null)
   const [toggle, setToggle] = useState(true)
-  const [height, setHeight] = useState(useElementSize(ref))
+  const { height } = useElementSize(ref)
+  const [groupHeight, setGroupHeight] = useState('100%')
   useEffect(() => {
-    setHeight(height)
-  }, [height])
+    setGroupHeight(height)
+  }, [groupHeight])
   return (
     <div
       ref={ref}
@@ -28,40 +29,43 @@ const BlockSorting = ({ title, children }) => {
         width: '100%',
         border: '1px solid highlight',
         background: '#F6F6F6', // replace this with 'muted' once it's added to the theme
-        padding: '3',
-        marginBottom: '3',
+        padding: 3,
+        marginBottom: 3,
         overflow: 'hidden',
-        height: toggle ? height : 58,
-        transition: 'height 0.5s',
-        ':hover': {
-          cursor: 'pointer'
-        }
+        height: toggle ? groupHeight : 58,
+        transition: 'height 0.5s ease-in-out'
       }}
-      onClick={() => setToggle(!toggle)}
     >
       <div
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          marginBottom: 3,
+          alignItems: 'center',
+          ':hover': {
+            cursor: 'pointer'
+          }
         }}
+        onClick={() => setToggle(!toggle)}
       >
-        <h4 sx={{ margin: 0, marginBottom: 3 }}>
+        <h4
+          sx={{
+            margin: 0
+          }}
+        >
           <u>{title}</u> • {children.length}
         </h4>
-        <div sx={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
-          <span
-            sx={{
-              transform: toggle ? 'rotate(-0.5turn)' : 'rotate(0turn)',
-              width: 0,
-              height: 0,
-              borderLeft: '5px solid transparent',
-              borderRight: '5px solid transparent',
-              borderBottom: '5px solid black',
-              transition: 'transform 0.5s'
-            }}
-          />
-        </div>
+        <span
+          sx={{
+            transform: toggle ? 'rotate(-0.5turn)' : 'rotate(0turn)',
+            width: 0,
+            height: 0,
+            borderLeft: '5px solid transparent',
+            borderRight: '5px solid transparent',
+            borderBottom: '5px solid black',
+            transition: 'transform 0.5s'
+          }}
+        />
       </div>
       {children}
     </div>
