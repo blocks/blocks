@@ -121,7 +121,6 @@ export default ({
         position: open ? 'relative' : 'static'
       }}
       sx={{
-        zIndex: 2,
         color: 'black'
       }}
     >
