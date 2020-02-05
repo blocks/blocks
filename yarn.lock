@@ -1741,10 +1741,10 @@
     pirates "^4.0.1"
     source-map-support "^0.5.13"
 
-"@reach/auto-id@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.7.3.tgz#4456640b223452c2e5cc527c4c74cb98d4dc45ca"
-  integrity sha512-5TUE7x7/WYgUaQZ3rrAfpo9L2PeuF45SEXfezQztUZZ0Pao/MuyLlPxUG8NgnibobjsE9l/JpB1Tp06narz3ug==
+"@reach/auto-id@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.8.0.tgz#13a73facfa42e78eea7f97aba675e15f386ec801"
+  integrity sha512-7Aazft/dB2/4NSGl2ixx2n4BKsQLFEiVtEiw3/GdFb6U7+bJ1qJLzWAsSkFc7ACeNtbkhM34RuBZTd44bOtzbQ==
 
 "@reach/router@^1.2.1":
   version "1.2.1"
@@ -1757,20 +1757,20 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@reach/tabs@^0.7.0":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@reach/tabs/-/tabs-0.7.3.tgz#b2edb5f215c9434dcd87fce420f91c44ba5962b2"
-  integrity sha512-5GyW7SnjASM9wS4KvfElt1v4WxqLttGM+jEt4LPWz+eg/4kolpF3x0g3UNo+lvC1TXtC/ein2ZZ24p/e7sPo0w==
+"@reach/tabs@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/tabs/-/tabs-0.8.0.tgz#4808f7a6b74d75645e68780055d8f709ab650534"
+  integrity sha512-QW8wiN11/BjZvlVeIeFauFndzH8uBzjjlirA0ghUHfs0JsSgW6tcrQy9yDISfrNaxFfhEs8ADiSMd1ia9j4Chg==
   dependencies:
-    "@reach/auto-id" "^0.7.3"
-    "@reach/utils" "^0.7.3"
+    "@reach/auto-id" "^0.8.0"
+    "@reach/utils" "^0.8.0"
     prop-types "^15.7.2"
     warning "^4.0.3"
 
-"@reach/utils@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.7.3.tgz#b387aeeb7d3e10da361fd1c07f0392935730c25d"
-  integrity sha512-7TZ2PQYeDHc/D9iT8wN6OL9AGlhfk3SvFmyF6H6EiuDeOZ+oJ5xivk5KQcS1h/HVNs226bcIGqpXltcdTiUMtw==
+"@reach/utils@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.8.0.tgz#8610590a42bf713d5686e357271609c713bb5c24"
+  integrity sha512-NjOjrFdf7VS6zyTAyXzYgRwLfluECrWe7XLb5Nh9HQA81+9lkvzkR5U9TP07lDDBCup/rFIF56S1XNB/StRrfA==
 
 "@rollup/plugin-alias@^2.2.0":
   version "2.2.0"
