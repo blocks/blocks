@@ -1,5 +1,12 @@
 # blocks-ui
 
+## 0.0.72
+
+### Patch Changes
+
+- c5bd0d2: Added a slider for editing margin/padding with theme values
+- b136932: Fix z-index for typograph dropdown
+
 ## 0.0.71
 
 ### Patch Changes
