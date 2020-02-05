@@ -1,126 +1,183 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { useState, useEffect } from 'react'
-import { Field, Label, Checkbox } from '@theme-ui/components'
+import { Label, Slider, Grid } from '@theme-ui/components'
 
-export const Space = ({ tag, property = 'margin', value = {}, onChange }) => {
-  const [lock, setLock] = useState({ x: false, y: false })
-  const key = property === 'margin' ? 'm' : 'p'
-  const x = value[key + 'x'] || value[property + 'X'] || ''
-  const y = value[key + 'y'] || value[property + 'Y'] || ''
-  const t = lock.y ? y : value[key + 't'] || value[property + 'Top'] || ''
-  const b = lock.y ? y : value[key + 'b'] || value[property + 'Bottom'] || ''
-  const l = lock.x ? x : value[key + 'l'] || value[property + 'Left'] || ''
-  const r = lock.x ? x : value[key + 'r'] || value[property + 'Right'] || ''
+import { IconButton } from '../../ui'
 
-  useEffect(() => {
-    if (typeof x === 'number') setLock(lock => ({ ...lock, x: true }))
-    if (typeof y === 'number') setLock(lock => ({ ...lock, y: true }))
-  }, [])
+// Fallback space options if no space is present in theme
+const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
-  const handleChange = direction => e => {
-    const n = e.target.value
-    const val = n === '' ? undefined : parseInt(n)
-    switch (direction) {
-      case 't':
-        if (lock.y) onChange({ [key + 'y']: val })
-        else onChange({ [key + 't']: val })
-        break
-      case 'b':
-        if (lock.y) onChange({ [key + 'y']: val })
-        else onChange({ [key + 'b']: val })
-        break
-      case 'l':
-        if (lock.x) onChange({ [key + 'x']: val })
-        else onChange({ [key + 'l']: val })
-        break
-      case 'r':
-        if (lock.x) onChange({ [key + 'x']: val })
-        else onChange({ [key + 'r']: val })
-        break
-      default:
-        break
-    }
+// Custom Icons used in the segmented control
+
+const CustomIconSvg = props => (
+  <svg
+    sx={{ width: 14, height: 14 }}
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  />
+)
+
+const SingleIcon = () => (
+  <CustomIconSvg>
+    <path d="M1.5 14V2C1.5 1.72386 1.72386 1.5 2 1.5H14C14.2761 1.5 14.5 1.72386 14.5 2V14C14.5 14.2761 14.2761 14.5 14 14.5H2C1.72386 14.5 1.5 14.2761 1.5 14Z" />
+  </CustomIconSvg>
+)
+
+const AxisIcon = () => (
+  <CustomIconSvg>
+    <path d="M1.5 4.5V8M1.5 11.5V8M4.5 1.5H8M11.5 1.5H8M14.5 4.5V8M14.5 11.5V8M11.5 14.5H8M4.5 14.5H8M8 1.5V14.5M1.5 8H14.5" />
+  </CustomIconSvg>
+)
+
+const AllIcon = () => (
+  <CustomIconSvg>
+    <path d="M1.5 4.5V11.5M4.5 1.5H11.5M14.5 4.5V11.5M11.5 14.5H4.5" />
+  </CustomIconSvg>
+)
+
+// The different modes spacing can be edited with
+// Icon is the SVG used in segmented control
+// keys are an Array of Strings which will get effected when using the slider
+// i.e. ['l', 'r'] will effect `pl` and `pr` or `ml` and `mr`
+// It's important to use all 4 sides (`t`/`r`/`b`/`l`) and not just `p`, `px` or `py` etc so that previous values don't conflict
+
+const MODES = [
+  {
+    Icon: SingleIcon,
+    keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
+  },
+  {
+    Icon: AxisIcon,
+    keys: [
+      { label: 'Horizontal', keys: ['l', 'r'] },
+      { label: 'Vertical', keys: ['t', 'b'] }
+    ]
+  },
+  {
+    Icon: AllIcon,
+    keys: [
+      { label: 'Top', keys: ['t'] },
+      { label: 'Right', keys: ['r'] },
+      { label: 'Bottom', keys: ['b'] },
+      { label: 'Left', keys: ['l'] }
+    ]
+  }
+]
+
+const Mode = ({
+  propertyKey,
+  keys,
+  theme: { space = DEFAULT_SPACE },
+  value,
+  onChange
+}) => {
+  const onSliderChange = (e, keys) => {
+    // Take all of the keys for this slider (i.e. `l` and `r`) and set the correct value
+    // i.e. { pl: 3, pr: 3 }
+    const nextValue = keys.reduce((accum, key) => {
+      accum[propertyKey + key] = parseInt(e.target.value)
+      return accum
+    }, {})
+
+    // Make sure to spread the current value so we don't delete other slider values
+    onChange(currentValue => ({ ...currentValue, ...nextValue }))
   }
 
-  const onChangeLock = dir => e => {
-    const isX = dir === 'x'
-    if (!lock[dir]) {
-      setLock(lock => ({ ...lock, [dir]: true }))
-      const val = isX ? l || r : t || b
-      onChange({
-        [key + (isX ? 'l' : 't')]: undefined,
-        [key + (isX ? 'r' : 'b')]: undefined,
-        [key + dir]: val
-      })
-    } else {
-      setLock(lock => ({ ...lock, [dir]: false }))
-      const val = dir === 'x' ? x : y
-      onChange({
-        [key + (isX ? 'l' : 't')]: val,
-        [key + (isX ? 'r' : 'b')]: val,
-        [key + dir]: undefined
-      })
-    }
-  }
-
-  const prefixName = name => (tag ? `styles.${tag}.${key}${name}` : key + name)
-  const label = dir =>
-    property === 'margin' ? 'Margin ' + dir : 'Padding ' + dir
+  // Always set the min and max to the slider length so we get nice even steps
+  const min = 0
+  const max = space.length - 1
+  const step = 1
 
   return (
-    <div
-      sx={{
-        display: 'grid',
-        gridGap: 2,
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        alignItems: 'center'
-      }}
-    >
-      <Field
-        type="number"
-        name={prefixName('l')}
-        label={label('Left')}
-        value={l}
-        onChange={handleChange('l')}
-      />
+    <Grid>
+      {keys.map(({ keys, label }, index) => {
+        // Since sliders can have multiple keys, just grab the first one
+        const sliderValue = value[propertyKey + keys[0]] || 0
+        return (
+          <div key={index}>
+            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
+              <Label>{label}</Label>
+              <Label as="span" sx={{ width: 'auto' }}>
+                {space[sliderValue]}
+              </Label>
+            </div>
+            <Slider
+              value={sliderValue}
+              onChange={e => onSliderChange(e, keys)}
+              min={min}
+              max={max}
+              step={step}
+            />
+          </div>
+        )
+      })}
+    </Grid>
+  )
+}
+
+export const Space = ({ property, theme, onChange, value: valueProp }) => {
+  const propertyKey = property === 'margin' ? 'm' : 'p'
+  const [activeModeIndex, setActiveModeIndex] = useState(0)
+  const [value, setValue] = useState({ [propertyKey]: valueProp[propertyKey] })
+
+  useEffect(() => {
+    onChange(value)
+  }, [propertyKey, value])
+
+  return (
+    <div>
       <div
         sx={{
           display: 'grid',
-          gridGap: 2
+          gridAutoFlow: 'column',
+          gridGap: '1px',
+          borderRadius: 4,
+          overflow: 'hidden',
+          bg: 'border',
+          border: '1px solid',
+          borderColor: 'border',
+          mt: 3,
+          mb: 3
         }}
       >
-        <Field
-          type="number"
-          name={prefixName('t')}
-          label={label('Top')}
-          value={t}
-          onChange={handleChange('t')}
-        />
-        <div>
-          <Label>
-            <Checkbox checked={lock.x} onChange={onChangeLock('x')} />
-            Lock x-axis
-          </Label>
-          <Label>
-            <Checkbox checked={lock.y} onChange={onChangeLock('y')} />
-            Lock y-axis
-          </Label>
-        </div>
-        <Field
-          type="number"
-          name={prefixName('b')}
-          label={label('Bottom')}
-          value={b}
-          onChange={handleChange('b')}
-        />
+        {MODES.map((mode, index) => {
+          const isActive = index === activeModeIndex
+          return (
+            <IconButton
+              key={index}
+              onClick={() => setActiveModeIndex(index)}
+              sx={{
+                height: 32,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 0,
+                bg: isActive ? 'border' : 'white',
+                fill: isActive ? 'primary' : null,
+                '&:hover, &:focus': {
+                  bg: isActive ? null : '#f2f3f5',
+                  stroke: null
+                }
+              }}
+            >
+              <mode.Icon />
+            </IconButton>
+          )
+        })}
       </div>
-      <Field
-        type="number"
-        name={prefixName('r')}
-        label={label('Right')}
-        value={r}
-        onChange={handleChange('r')}
+      <Mode
+        propertyKey={propertyKey}
+        value={value}
+        onChange={setValue}
+        theme={theme}
+        keys={MODES[activeModeIndex].keys}
       />
     </div>
   )

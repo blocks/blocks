@@ -5,6 +5,7 @@ import appTheme from '../theme'
 
 const DEFAULT_THEME = {
   ...systemTheme,
+  space: [0, 4, 8, 16, 32, 64],
   breakpoints: appTheme.breakpoints,
   forms: appTheme.forms
 }
