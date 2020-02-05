@@ -70,7 +70,7 @@
     "gatsby-plugin-react-helmet": "3.1.21",
     "gatsby-plugin-theme-ui": "0.3.0",
     "gatsby-source-filesystem": "2.1.47",
-    "husky": "4.2.0",
+    "husky": "4.2.1",
     "jest": "^25.1.0",
     "lint-staged": "10.0.2",
     "prettier": "^1.19.1",
