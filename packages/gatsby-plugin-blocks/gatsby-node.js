@@ -21,7 +21,7 @@ exports.onCreateDevServer = ({ app, store, reporter }) => {
 
   app.use(bodyParser.json())
 
-  app.post('/___blocks', async (req, res) => {
+  app.post('/__blocks', async (req, res) => {
     const { code, page } = req.body
 
     if (!code || !page) {
@@ -42,7 +42,7 @@ exports.onCreateDevServer = ({ app, store, reporter }) => {
     res.send('success')
   })
 
-  app.post('/___blocks/src', async (req, res) => {
+  app.post('/__blocks/src', async (req, res) => {
     const { page } = req.body
 
     if (!page) {
@@ -60,7 +60,7 @@ exports.createPages = ({ actions }) => {
   const { createPage } = actions
 
   createPage({
-    path: '___blocks',
+    path: '__blocks',
     component: DocTemplate
   })
 }

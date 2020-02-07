@@ -16,7 +16,7 @@ export default ({ relativePath = PAGE }) => {
 
   useEffect(() => {
     const initializeCode = async () => {
-      const res = await fetch('/___blocks/src', {
+      const res = await fetch('/__blocks/src', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export default ({ relativePath = PAGE }) => {
       return
     }
 
-    fetch('/___blocks', {
+    fetch('/__blocks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
