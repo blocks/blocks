@@ -7,7 +7,7 @@ import { Twitter, GitHub, Mail } from 'react-feather'
 
 import pkg from 'blocks-ui/package.json'
 
-import Nav from '../nav.mdx'
+import Nav from '../nav'
 
 import Subscribe from './subscribe'
 import SEO from './seo'
