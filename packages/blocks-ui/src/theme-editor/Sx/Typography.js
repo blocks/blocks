@@ -1,16 +1,20 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Fragment } from 'react'
-import { Field } from '@theme-ui/components'
+import { Label, Slider } from '@theme-ui/components'
 
 import Combobox from '../Combobox'
+
+// Fallback font size options if no fontSizes are present in theme
+// TODO This should come from theme-ui eventually
+const DEFAULT_FONT_SIZES = [12, 14, 16, 20, 24, 32, 48, 64, 72]
 
 export const SxTypography = ({
   tag,
   value: { fontFamily, fontSize, fontWeight, lineHeight } = {},
   theme: {
     fonts = {},
-    fontSizes = [],
+    fontSizes = DEFAULT_FONT_SIZES,
     fontWeights = {},
     lineHeights = {}
   } = {},
@@ -33,21 +37,9 @@ export const SxTypography = ({
         sx={{
           display: 'grid',
           gridGap: 2,
-          gridTemplateColumns: 'repeat(3, 1fr)'
+          gridTemplateColumns: 'repeat(2, 1fr)'
         }}
       >
-        <Field
-          name={prefixName('fontSize')}
-          label="Font Size"
-          value={fontSize || ''}
-          type="number"
-          max={fontSizes.length - 1}
-          min={0}
-          onChange={e => {
-            const fontSize = Number(e.target.value)
-            onChange({ fontSize })
-          }}
-        />
         <Combobox
           name={prefixName('fontWeight')}
           label="Font Weight"
@@ -67,8 +59,38 @@ export const SxTypography = ({
           options={['inherit', ...Object.keys(lineHeights)]}
         />
       </div>
+      <FontSizeEditor
+        fontSizes={fontSizes}
+        value={fontSize || ''}
+        onChange={e => onChange({ fontSize: parseInt(e.target.value) })}
+      />
     </Fragment>
   )
 }
 
 export default SxTypography
+
+const FontSizeEditor = ({ fontSizes, value, onChange }) => {
+  const min = 0
+  const max = fontSizes.length - 1
+  const step = 1
+  const sliderValue = value !== '' ? value : 0
+
+  return (
+    <div>
+      <div sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Label css={{ width: 'auto' }}>Font Size</Label>
+        <Label as="span" sx={{ width: 'auto' }}>
+          {value !== '' ? fontSizes[value] : 'Auto'}
+        </Label>
+      </div>
+      <Slider
+        value={sliderValue}
+        onChange={onChange}
+        min={min}
+        max={max}
+        step={step}
+      />
+    </div>
+  )
+}

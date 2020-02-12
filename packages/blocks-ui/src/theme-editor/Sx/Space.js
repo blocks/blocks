@@ -6,6 +6,7 @@ import { Label, Slider, Grid } from '@theme-ui/components'
 import { IconButton } from '../../ui'
 
 // Fallback space options if no space is present in theme
+// TODO This should come from theme-ui eventually
 const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
 // Custom Icons used in the segmented control
@@ -102,8 +103,8 @@ const Mode = ({
         const sliderValue = value[propertyKey + keys[0]] || 0
         return (
           <div key={index}>
-            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
-              <Label>{label}</Label>
+            <div sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Label css={{ width: 'auto' }}>{label}</Label>
               <Label as="span" sx={{ width: 'auto' }}>
                 {space[sliderValue]}
               </Label>
@@ -160,7 +161,9 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
                 justifyContent: 'center',
                 padding: 0,
                 bg: isActive ? 'border' : 'white',
-                fill: isActive ? 'primary' : null,
+                svg: {
+                  stroke: isActive ? 'primary' : null
+                },
                 '&:hover, &:focus': {
                   bg: isActive ? null : '#f2f3f5',
                   stroke: null
