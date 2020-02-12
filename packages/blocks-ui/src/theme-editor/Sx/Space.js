@@ -102,8 +102,8 @@ const Mode = ({
         const sliderValue = value[propertyKey + keys[0]] || 0
         return (
           <div key={index}>
-            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
-              <Label>{label}</Label>
+            <div sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Label css={{ width: 'auto' }}>{label}</Label>
               <Label as="span" sx={{ width: 'auto' }}>
                 {space[sliderValue]}
               </Label>
