@@ -85,7 +85,7 @@ export default () => {
   return (
     <Box p={3}>
       <ThemeProvider theme={theme}>
-        <Droppable droppableId="components">
+        <Droppable isDropDisabled droppableId="components">
           {(provided, _snapshot) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {list}
