@@ -1,5 +1,5 @@
 ---
-"blocks_ui": patch
+"blocks-ui": patch
 ---
 
 Add min and max value for font size based on theme
