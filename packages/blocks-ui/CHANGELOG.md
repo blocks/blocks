@@ -1,5 +1,13 @@
 # blocks-ui
 
+## 0.0.73
+
+### Patch Changes
+
+- 4e32769: Add min and max value for font size based on theme
+- 0644349: Restrict font sizes to theme-based values. Also fixed some styles in space editor.
+- dc0425f: Disable dropping for components tab
+
 ## 0.0.72
 
 ### Patch Changes
