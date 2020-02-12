@@ -6,6 +6,7 @@ import { Label, Slider, Grid } from '@theme-ui/components'
 import { IconButton } from '../../ui'
 
 // Fallback space options if no space is present in theme
+// TODO This should come from theme-ui eventually
 const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
 // Custom Icons used in the segmented control
