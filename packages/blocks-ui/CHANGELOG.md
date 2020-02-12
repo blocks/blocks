@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.74
+
+### Patch Changes
+
+- 2704bd5: Bump theme ui preset version
+
 ## 0.0.73
 
 ### Patch Changes
