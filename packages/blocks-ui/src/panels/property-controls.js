@@ -3,6 +3,7 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { Label, Input, Select, Field } from '@theme-ui/components'
 import { ControlType } from 'property-controls'
+import contrast from 'get-contrast'
 
 import { FieldGroup } from '../field-group'
 import { Sx } from '../theme-editor'
@@ -18,6 +19,39 @@ export default ({
   const hasPropertyControls = Object.keys(propertyControls).length > 0
   const hasStyles = !!propertyControls.sx
   const { update, ...theme } = useThemeEditor()
+
+  const elementMetadata = {}
+  try {
+    if (typeof window !== 'undefined') {
+      const el = document.querySelector(
+        `[data-blocks-uuid="${elementData.id}"]`
+      )
+      const styles = window.getComputedStyle(el)
+      elementMetadata.backgroundColor = styles['background-color']
+
+      if (elementMetadata.backgroundColor === 'rgba(0, 0, 0, 0)') {
+        let parent = el.parentElement
+        while (parent) {
+          const backgroundColor = window.getComputedStyle(parent)[
+            'background-color'
+          ]
+
+          if (backgroundColor !== 'rgba(0, 0, 0, 0)') {
+            elementMetadata.backgroundColor = backgroundColor
+            break
+          }
+
+          parent = parent.parentElement
+        }
+      }
+      elementMetadata.color = styles['color']
+      elementMetadata.hasInaccessibleContrast = !contrast.isAccessible(
+        elementMetadata.backgroundColor,
+        elementMetadata.color,
+        { ignoreAlpha: true }
+      )
+    }
+  } catch (e) {}
 
   return (
     <form onSubmit={e => e.preventDefault()}>
@@ -90,7 +124,39 @@ export default ({
               theme={theme}
             />
           </FieldGroup>
+          <FieldGroup title="Margin">
+            <Sx.Margin
+              value={elementData.props.sx}
+              onChange={onStyleChange}
+              theme={theme}
+            />
+          </FieldGroup>
           <FieldGroup title="Colors">
+            {elementMetadata.hasInaccessibleContrast ? (
+              <p
+                sx={{
+                  margin: 0,
+                  mt: 2,
+                  py: 2,
+                  px: 3,
+                  color: 'red.0',
+                  backgroundColor: 'red.8',
+                  border: 'thin solid',
+                  borderColor: 'red.6',
+                  borderRadius: 2
+                }}
+              >
+                <span sx={{ fontWeight: 'bold', mr: 2 }}>
+                  {contrast.score(
+                    elementMetadata.backgroundColor,
+                    elementMetadata.color,
+                    { ignoreAlpha: true }
+                  )}
+                  :
+                </span>
+                This element's contrast is not accessible.
+              </p>
+            ) : null}
             <Sx.Colors
               value={elementData.props.sx}
               onChange={onStyleChange}
@@ -99,13 +165,6 @@ export default ({
           </FieldGroup>
           <FieldGroup title="Typography">
             <Sx.Typography
-              value={elementData.props.sx}
-              onChange={onStyleChange}
-              theme={theme}
-            />
-          </FieldGroup>
-          <FieldGroup title="Margin">
-            <Sx.Margin
               value={elementData.props.sx}
               onChange={onStyleChange}
               theme={theme}

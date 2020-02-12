@@ -4,7 +4,19 @@ export default {
   ...systemTheme,
   colors: {
     ...systemTheme.colors,
-    border: '#e1e6eb'
+    border: '#e1e6eb',
+    red: [
+      '#40110b',
+      '#611a11',
+      '#852317',
+      '#aa2d1e',
+      '#d03725',
+      '#e4574c',
+      '#e87f78',
+      '#eda09c',
+      '#f2c0be',
+      '#f8dfdd'
+    ]
   },
   breakpoints: [360, 600, 1024],
   styles: {

@@ -20,6 +20,7 @@ export default (type, props, ...children) => {
   props = props || {}
   const { [uuidName]: id, sx = {} } = props
   delete props[uuidName]
+  props['data-blocks-uuid'] = id
 
   const isCurrentElement = id && id === currentElementId
   const isHoveredElement = id && id === currentHoveredElementId
@@ -42,9 +43,14 @@ export default (type, props, ...children) => {
       },
       onClick: e => {
         e.stopPropagation()
+
         if (id) {
           setCurrentElementId(id)
           updateActiveTabByName('editor')
+        }
+
+        if (props.onClick) {
+          props.onClick(...arguments)
         }
       },
       onMouseEnter: () => hoverElementId(id),
