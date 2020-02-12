@@ -161,7 +161,9 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
                 justifyContent: 'center',
                 padding: 0,
                 bg: isActive ? 'border' : 'white',
-                fill: isActive ? 'primary' : null,
+                svg: {
+                  stroke: isActive ? 'primary' : null
+                },
                 '&:hover, &:focus': {
                   bg: isActive ? null : '#f2f3f5',
                   stroke: null
