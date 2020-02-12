@@ -1,5 +1,13 @@
 # blocks-ui
 
+## 0.0.75
+
+### Patch Changes
+
+- 9cf9ead: Bump and pin deps
+- Updated dependencies [9cf9ead]
+  - @blocks/react@0.0.62
+
 ## 0.0.74
 
 ### Patch Changes

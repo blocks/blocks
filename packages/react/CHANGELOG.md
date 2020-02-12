@@ -1,5 +1,11 @@
 # @blocks/react
 
+## 0.0.62
+
+### Patch Changes
+
+- 9cf9ead: Bump and pin deps
+
 ## 0.0.61
 
 ### Patch Changes
