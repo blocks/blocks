@@ -22,7 +22,7 @@ export default (_api, { blocks = [] }) => {
         if (blocks.length) {
           const imports = uniq(allImports).join(', ')
           const importAst = template.ast(
-            `import {${imports}} from '${BLOCKS_IMPORT_SOURCE}'`
+            `import {${imports}} from "${BLOCKS_IMPORT_SOURCE}"`
           )
 
           path.replaceWith(importAst)
