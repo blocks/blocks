@@ -1,5 +1,12 @@
 # blocks-ui
 
+## 0.0.76
+
+### Patch Changes
+
+- c1eb7b0: Remove null literal from showing up in the editor
+- 13a4e86: Misc UI updates
+
 ## 0.0.75
 
 ### Patch Changes
