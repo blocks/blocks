@@ -10,8 +10,6 @@ const HeaderBasic = ({ justifyContent = 'space-between', ...props }) => {
         variant: 'styles.header',
         display: 'flex',
         alignItems: 'center',
-        padding: 2,
-
         justifyContent
       }}
       {...props}
@@ -83,7 +81,7 @@ applyPropertyControls(HeaderBasic.Logo, linkControls)
 applyPropertyControls(HeaderBasic.Link, linkControls)
 
 HeaderBasic.usage = `
-  <HeaderBasic sx={{ p: 3 }}>
+  <HeaderBasic>
     <HeaderBasic.Logo to="/">Hello</HeaderBasic.Logo>
     <HeaderBasic.Nav>
       <HeaderBasic.Link to="/about">About</HeaderBasic.Link>
