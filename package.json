@@ -50,7 +50,7 @@
     "@manypkg/cli": "0.10.0",
     "@mdx-js/mdx": "1.5.5",
     "@mdx-js/react": "1.5.5",
-    "@preconstruct/cli": "1.1.4",
+    "@preconstruct/cli": "1.1.7",
     "@theme-ui/components": "0.3.1",
     "@theme-ui/presets": "0.3.0",
     "@theme-ui/prism": "0.3.0",
