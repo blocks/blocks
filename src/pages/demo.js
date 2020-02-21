@@ -10,7 +10,7 @@ import { Blocks, HeaderBasic } from '@blocks/react'
 
 export default () => (
   <Blocks.Root>
-    <HeaderBasic>
+    <HeaderBasic sx={{ p: 3 }}>
       <HeaderBasic.Logo to="/">Hello</HeaderBasic.Logo>
       <HeaderBasic.Nav>
         <HeaderBasic.Link to="/about">About</HeaderBasic.Link>

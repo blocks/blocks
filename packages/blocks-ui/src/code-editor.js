@@ -5,28 +5,27 @@ import Monaco from '@monaco-editor/react'
 import { Clipboard, Check } from 'react-feather'
 
 import useCopyToClipboard from './use-copy-to-clipboard'
-import { IconButton } from './ui'
 import { Loader } from './loader'
+import { SegmentedControlButton } from './segmented-control'
 
 const Copy = ({ toCopy }) => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
-    <IconButton
+    <SegmentedControlButton
+      label={hasCopied ? 'Copied' : 'Copy'}
       onClick={() => copyToClipboard(toCopy)}
       sx={{
         position: 'absolute',
         right: '10px',
         zIndex: 1,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        svg: {
+          fill: hasCopied ? 'green' : null
+        }
       }}
-    >
-      {hasCopied ? (
-        <Check sx={{ color: 'green' }} aria-label="Copied" />
-      ) : (
-        <Clipboard size={16} aria-label="Copy" />
-      )}
-    </IconButton>
+      icon={hasCopied ? Check : Clipboard}
+    />
   )
 }
 

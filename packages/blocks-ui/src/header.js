@@ -1,28 +1,32 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import { useState } from 'react'
 import { Code, Layers, Monitor, Grid } from 'react-feather'
 
 import pkg from '../package.json'
 
 import { useEditor } from './providers/editor'
-import { IconButton } from './ui'
+import { SegmentedControl, SegmentedControlButton } from './segmented-control'
 
 const { version } = pkg
 
-export const headerHeight = 50
+export const headerHeight = 60
 
-const modes = [
+const MODES = [
   {
     key: 'canvas',
-    Icon: Layers
+    label: 'Canvas Mode',
+    icon: Layers
   },
   {
     key: 'viewports',
-    Icon: Monitor
+    label: 'Viewports Mode',
+    icon: Monitor
   },
   {
     key: 'code',
-    Icon: Code
+    label: 'Code Mode',
+    icon: Code
   }
 ]
 
@@ -30,76 +34,40 @@ const ToggleXRay = () => {
   const editorState = useEditor()
   const isActive = Boolean(editorState.xray)
   return (
-    <ToolbarButton
+    <SegmentedControlButton
       label="XRay mode"
-      Icon={Grid}
+      icon={Grid}
       isActive={isActive}
       onClick={() => editorState.update({ ...editorState, xray: !isActive })}
+      disabled={editorState.mode === MODES[2].key}
     />
   )
 }
 
 const Modes = () => {
   const editorState = useEditor()
-  return (
-    <div
-      sx={{
-        display: 'grid',
-        gridAutoFlow: 'column',
-        gridGap: '1px',
-        borderRadius: 4,
-        overflow: 'hidden',
-        bg: 'border',
-        border: '1px solid',
-        borderColor: 'border'
-      }}
-    >
-      {modes.map(({ key, Icon }) => (
-        <ToolbarButton
-          key={key}
-          label={`${key} mode`}
-          Icon={Icon}
-          isActive={editorState.mode === key}
-          onClick={() => editorState.update({ ...editorState, mode: key })}
-        />
-      ))}
-    </div>
-  )
-}
+  const [activeModeIndex, setActiveModeIndex] = useState(0)
 
-const ToolbarButton = ({ label, onClick, isActive, Icon }) => (
-  <IconButton
-    title={label}
-    aria-label={label}
-    onClick={onClick}
-    sx={{
-      bg: isActive ? 'border' : 'white',
-      fill: isActive ? 'primary' : null,
-      '&:hover, &:focus': {
-        bg: isActive ? null : '#f2f3f5',
-        stroke: null
-      }
-    }}
-  >
-    <Icon
-      size={14}
-      sx={{
-        stroke: isActive ? 'primary' : undefined,
-        position: 'relative',
-        top: '1px'
+  return (
+    <SegmentedControl
+      options={MODES}
+      activeIndex={activeModeIndex}
+      onChange={(option, index) => {
+        editorState.update({ ...editorState, mode: option.key })
+        setActiveModeIndex(index)
       }}
     />
-  </IconButton>
-)
+  )
+}
 
 const Header = () => (
   <header
     sx={{
       height: headerHeight,
       display: 'flex',
+      alignItems: 'center',
       justifyContent: 'space-between',
       width: '100%',
-      py: 2,
       px: 3,
       borderBottom: '1px solid',
       borderColor: 'border'
@@ -108,32 +76,39 @@ const Header = () => (
     <a
       href="/"
       sx={{
+        display: 'grid',
+        gridAutoFlow: 'column',
+        alignItems: 'center',
+        gridGap: 2,
         textDecoration: 'none',
         color: 'inherit',
-        display: 'flex',
-        alignItems: 'center'
+        ml: '-4px'
       }}
     >
       <img
         src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
         alt="blocks logo"
-        width="32"
-        sx={{
-          verticalAlign: 'middle',
-          ml: '-4px',
-          mr: 2
-        }}
+        width="38"
       />
-      Blocks
-      <span
+      <div
         sx={{
-          fontSize: 0,
-          mt: '2px',
-          ml: 2
+          display: 'grid',
+          gridAutoFlow: 'column',
+          alignItems: 'baseline',
+          gridGap: 2
         }}
       >
-        v{version}
-      </span>
+        Blocks
+        <span
+          sx={{
+            fontSize: 0,
+            mt: '2px',
+            ml: 2
+          }}
+        >
+          v{version}
+        </span>
+      </div>
     </a>
     <div
       sx={{

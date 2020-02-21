@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import { Label, Checkbox, Slider } from '@theme-ui/components'
 import {
   Children,
   cloneElement,
@@ -13,7 +14,7 @@ import { ZoomIn, ZoomOut } from 'react-feather'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 
-import { IconButton } from './ui'
+import { SegmentedControlButton } from './segmented-control'
 import { useScrollSync } from './hooks'
 
 const MIN_ZOOM_LEVEL = 25
@@ -113,7 +114,7 @@ export const PreviewArea = ({ children }) => {
 
   return (
     <div
-      css={{
+      sx={{
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
         width: '100%',
@@ -121,13 +122,13 @@ export const PreviewArea = ({ children }) => {
       }}
     >
       <div
-        css={{
+        sx={{
           display: 'grid',
           gridAutoFlow: 'column',
           gridAutoColumns: 'minmax(min-content, max-content)',
-          gridGap: 8,
+          gridGap: 2,
           alignItems: 'center',
-          padding: 16
+          padding: 2
         }}
       >
         <input
@@ -156,45 +157,35 @@ export const PreviewArea = ({ children }) => {
           }}
         />
         <span>%</span>
-        <IconButton
-          aria-label="Zoom viewport out"
+        <SegmentedControlButton
+          label="Zoom viewport out"
+          icon={ZoomOut}
           onClick={() => {
             const nextZoomLevel = zoomLevel - 0.1
             if (nextZoomLevel > 0.25) {
               setZoomLevel(nextZoomLevel)
             }
           }}
-        >
-          <ZoomOut size={15} sx={{ position: 'relative', top: '1px' }} />
-        </IconButton>
-        <input
-          type="range"
+        />
+        <Slider
           min={MIN_ZOOM_LEVEL}
           max={200}
           value={(zoomLevel * 100).toFixed(0)}
           onChange={event => setZoomLevel(parseFloat(event.target.value) / 100)}
           style={{ width: 80 }}
         />
-        <IconButton
-          aria-label="Zoom viewport in"
+        <SegmentedControlButton
+          label="Zoom viewport in"
           onClick={() => setZoomLevel(zoomLevel + 0.1)}
-        >
-          <ZoomIn size={15} sx={{ position: 'relative', top: '1px' }} />
-        </IconButton>
-        <label
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            userSelect: 'none'
-          }}
-        >
-          <input
-            type="checkbox"
+          icon={ZoomIn}
+        />
+        <Label m={0}>
+          <Checkbox
             checked={wrap}
             onChange={event => setWrap(event.target.checked)}
           />
-          <span style={{ fontSize: 14 }}>wrap</span>
-        </label>
+          Wrap
+        </Label>
       </div>
       <div
         css={{ display: 'flex', overflow: 'auto', backgroundColor: '#f0f0f0' }}
