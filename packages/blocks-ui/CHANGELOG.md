@@ -1,5 +1,27 @@
 # blocks-ui
 
+## 0.0.75
+
+### Patch Changes
+
+- 9cf9ead: Bump and pin deps
+- Updated dependencies [9cf9ead]
+  - @blocks/react@0.0.62
+
+## 0.0.74
+
+### Patch Changes
+
+- 2704bd5: Bump theme ui preset version
+
+## 0.0.73
+
+### Patch Changes
+
+- 4e32769: Add min and max value for font size based on theme
+- 0644349: Restrict font sizes to theme-based values. Also fixed some styles in space editor.
+- dc0425f: Disable dropping for components tab
+
 ## 0.0.72
 
 ### Patch Changes

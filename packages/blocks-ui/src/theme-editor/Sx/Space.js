@@ -7,6 +7,7 @@ import { SegmentedControl } from '../../segmented-control'
 import { buttonIconSize } from '../../ui'
 
 // Fallback space options if no space is present in theme
+// TODO This should come from theme-ui eventually
 const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
 // Custom Icons used in the segmented control
@@ -106,8 +107,8 @@ const Mode = ({
         const sliderValue = value[propertyKey + keys[0]] || 0
         return (
           <div key={index}>
-            <div sx={{ display: 'flex', justifyContent: 'space-btwee' }}>
-              <Label>{label}</Label>
+            <div sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Label css={{ width: 'auto' }}>{label}</Label>
               <Label as="span" sx={{ width: 'auto' }}>
                 {space[sliderValue]}
               </Label>
