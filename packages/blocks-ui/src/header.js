@@ -67,49 +67,12 @@ const Header = () => (
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      width: '100%',
       px: 3,
       borderBottom: '1px solid',
       borderColor: 'border'
     }}
   >
-    <a
-      href="/"
-      sx={{
-        display: 'grid',
-        gridAutoFlow: 'column',
-        alignItems: 'center',
-        gridGap: 2,
-        textDecoration: 'none',
-        color: 'inherit',
-        ml: '-4px'
-      }}
-    >
-      <img
-        src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
-        alt="blocks logo"
-        width="38"
-      />
-      <div
-        sx={{
-          display: 'grid',
-          gridAutoFlow: 'column',
-          alignItems: 'baseline',
-          gridGap: 2
-        }}
-      >
-        Blocks
-        <span
-          sx={{
-            fontSize: 0,
-            mt: '2px',
-            ml: 2
-          }}
-        >
-          v{version}
-        </span>
-      </div>
-    </a>
+    <Logo />
     <div
       sx={{
         display: 'grid',
@@ -124,3 +87,43 @@ const Header = () => (
 )
 
 export default Header
+
+const Logo = () => (
+  <a
+    href="/"
+    sx={{
+      display: 'grid',
+      gridAutoFlow: 'column',
+      alignItems: 'center',
+      gridGap: 2,
+      textDecoration: 'none',
+      color: 'inherit',
+      ml: '-4px'
+    }}
+  >
+    <img
+      src="https://user-images.githubusercontent.com/1424573/61592179-e0fda080-ab8c-11e9-9109-166cc7c86b43.png"
+      alt="blocks logo"
+      width="38"
+    />
+    <div
+      sx={{
+        display: 'grid',
+        gridAutoFlow: 'column',
+        alignItems: 'baseline',
+        gridGap: 2
+      }}
+    >
+      Blocks
+      <span
+        sx={{
+          fontSize: 0,
+          mt: '2px',
+          ml: 2
+        }}
+      >
+        v{version}
+      </span>
+    </div>
+  </a>
+)
