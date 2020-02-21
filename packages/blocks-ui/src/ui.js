@@ -1,20 +1,50 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-export const IconButton = props => (
+const buttonSize = 36
+export const buttonIconSize = 16
+
+export const IconButton = ({
+  label,
+  onClick,
+  isActive,
+  icon: Icon,
+  disabled,
+  ...rest
+}) => (
   <button
     sx={{
-      background: 'none',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      bg: isActive ? 'highlight' : 'white',
       appearance: 'none',
       border: 0,
-      px: 2,
-      py: 1,
+      p: 0,
       m: 0,
+      height: buttonSize,
+      width: buttonSize,
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      opacity: disabled ? 0.5 : 1,
+
       '&:focus': {
-        outline: 'none',
-        boxShadow: 'inset 0px 0px 0px 1px #4d9ef7'
+        outline: 'none'
+      },
+
+      '&:hover, &:focus': {
+        bg: isActive || disabled ? null : '#f2f3f5',
+        stroke: null
+      },
+
+      svg: {
+        stroke: isActive ? 'primary' : null
       }
     }}
-    {...props}
-  />
+    aria-label={label}
+    onClick={onClick}
+    disabled={disabled}
+    {...rest}
+  >
+    <Icon size={buttonIconSize} />
+  </button>
 )

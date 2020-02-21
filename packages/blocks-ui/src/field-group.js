@@ -23,13 +23,13 @@ export const FieldGroup = ({ title, children, ...props }) => (
           fontWeight: 500,
           letterSpacing: 3,
           mt: 0,
-          mb: 2,
+          mb: 3,
           textTransform: 'uppercase'
         }}
       >
         {title}
       </h3>
     )}
-    <Grid cols={1}>{children}</Grid>
+    <Grid>{children}</Grid>
   </div>
 )

@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Label, Slider, Grid } from '@theme-ui/components'
 
-import { IconButton } from '../../ui'
+import { SegmentedControl } from '../../segmented-control'
+import { buttonIconSize } from '../../ui'
 
 // Fallback space options if no space is present in theme
 // TODO This should come from theme-ui eventually
@@ -13,12 +14,12 @@ const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
 const CustomIconSvg = props => (
   <svg
-    sx={{ width: 14, height: 14 }}
+    style={{ width: buttonIconSize, height: buttonIconSize }}
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth={2}
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
@@ -51,18 +52,21 @@ const AllIcon = () => (
 
 const MODES = [
   {
-    Icon: SingleIcon,
+    label: 'Single',
+    icon: SingleIcon,
     keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
   },
   {
-    Icon: AxisIcon,
+    label: 'Axis',
+    icon: AxisIcon,
     keys: [
       { label: 'Horizontal', keys: ['l', 'r'] },
       { label: 'Vertical', keys: ['t', 'b'] }
     ]
   },
   {
-    Icon: AllIcon,
+    label: 'All',
+    icon: AllIcon,
     keys: [
       { label: 'Top', keys: ['t'] },
       { label: 'Right', keys: ['r'] },
@@ -133,48 +137,15 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
   }, [propertyKey, value])
 
   return (
-    <div>
-      <div
+    <Fragment>
+      <SegmentedControl
+        options={MODES}
+        activeIndex={activeModeIndex}
+        onChange={(option, index) => setActiveModeIndex(index)}
         sx={{
-          display: 'grid',
-          gridAutoFlow: 'column',
-          gridGap: '1px',
-          borderRadius: 4,
-          overflow: 'hidden',
-          bg: 'border',
-          border: '1px solid',
-          borderColor: 'border',
-          mt: 3,
-          mb: 3
+          marginRight: 'auto'
         }}
-      >
-        {MODES.map((mode, index) => {
-          const isActive = index === activeModeIndex
-          return (
-            <IconButton
-              key={index}
-              onClick={() => setActiveModeIndex(index)}
-              sx={{
-                height: 32,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 0,
-                bg: isActive ? 'border' : 'white',
-                svg: {
-                  stroke: isActive ? 'primary' : null
-                },
-                '&:hover, &:focus': {
-                  bg: isActive ? null : '#f2f3f5',
-                  stroke: null
-                }
-              }}
-            >
-              <mode.Icon />
-            </IconButton>
-          )
-        })}
-      </div>
+      />
       <Mode
         propertyKey={propertyKey}
         value={value}
@@ -182,7 +153,7 @@ export const Space = ({ property, theme, onChange, value: valueProp }) => {
         theme={theme}
         keys={MODES[activeModeIndex].keys}
       />
-    </div>
+    </Fragment>
   )
 }
 

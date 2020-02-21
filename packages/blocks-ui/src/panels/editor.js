@@ -3,9 +3,9 @@ import { jsx } from 'theme-ui'
 import { Flex } from '@theme-ui/components'
 import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
-import { IconButton } from '../ui'
 import { useCode } from '../providers/code'
 import { useBlocks } from '../providers/blocks'
+import { IconButton } from '../ui'
 
 import PropertyControlsPanel from './property-controls'
 
@@ -64,30 +64,25 @@ export default () => {
         <nav
           sx={{
             lineHeight: 1,
+            display: 'flex',
             aignItems: 'center'
           }}
         >
-          <IconButton onClick={cloneCurrentElement} aria-label="Copy element">
-            <Copy size={17} />
-          </IconButton>
-          <IconButton onClick={removeCurrentElement} aria-label="Remove">
-            <Trash size={18} />
-          </IconButton>
-          {elementData.parentId ? (
-            <IconButton
-              onClick={selectParentOfCurrentElement}
-              aria-label="Go to parent"
-            >
-              <CornerRightUp size={18} />
-            </IconButton>
-          ) : (
-            <IconButton
-              onClick={selectParentOfCurrentElement}
-              aria-label="Go to parent"
-            >
-              <List size={18} />
-            </IconButton>
-          )}
+          <IconButton
+            label="Copy element"
+            onClick={cloneCurrentElement}
+            icon={Copy}
+          />
+          <IconButton
+            label="Remove element"
+            onClick={removeCurrentElement}
+            icon={Trash}
+          />
+          <IconButton
+            label="Go to parent"
+            onClick={selectParentOfCurrentElement}
+            icon={elementData.parentId ? CornerRightUp : List}
+          />
         </nav>
       </Flex>
       <PropertyControlsPanel
