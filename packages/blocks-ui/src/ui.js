@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-export const buttonSize = 36
+const buttonSize = 36
+export const buttonIconSize = 16
 
 export const IconButton = ({
   label,
@@ -44,6 +45,6 @@ export const IconButton = ({
     disabled={disabled}
     {...rest}
   >
-    <Icon size={16} />
+    <Icon size={buttonIconSize} />
   </button>
 )

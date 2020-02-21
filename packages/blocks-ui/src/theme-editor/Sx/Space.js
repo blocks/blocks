@@ -4,6 +4,7 @@ import { Fragment, useState, useEffect } from 'react'
 import { Label, Slider, Grid } from '@theme-ui/components'
 
 import { SegmentedControl } from '../../segmented-control'
+import { buttonIconSize } from '../../ui'
 
 // Fallback space options if no space is present in theme
 const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
@@ -12,12 +13,12 @@ const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
 
 const CustomIconSvg = props => (
   <svg
-    style={{ width: 16, height: 16 }}
+    style={{ width: buttonIconSize, height: buttonIconSize }}
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth={2}
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
