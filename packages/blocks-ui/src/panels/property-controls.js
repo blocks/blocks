@@ -19,8 +19,6 @@ export default ({
   const hasStyles = !!propertyControls.sx
   const { update, ...theme } = useThemeEditor()
 
-  console.log(propertyControls.sx)
-
   return (
     <form onSubmit={e => e.preventDefault()}>
       {hasPropertyControls ? (

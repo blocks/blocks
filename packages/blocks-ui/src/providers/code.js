@@ -240,12 +240,6 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     setCurrentElementId(drag.draggableId)
   }
 
-  useEffect(() => {
-    if (codeState.currentElementId) {
-      console.log('HI!!', codeState.currentElementData.props.sx)
-    }
-  }, [codeState.currentElementId])
-
   return (
     <CodeContext.Provider
       value={{
