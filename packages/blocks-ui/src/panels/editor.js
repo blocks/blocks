@@ -5,9 +5,9 @@ import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
 import { useCode } from '../providers/code'
 import { useBlocks } from '../providers/blocks'
+import { IconButton } from '../ui'
 
 import PropertyControlsPanel from './property-controls'
-import { SegmentedControlButton } from '../segmented-control'
 
 export default () => {
   const blocks = useBlocks()
@@ -68,17 +68,17 @@ export default () => {
             aignItems: 'center'
           }}
         >
-          <SegmentedControlButton
+          <IconButton
             label="Copy element"
             onClick={cloneCurrentElement}
             icon={Copy}
           />
-          <SegmentedControlButton
+          <IconButton
             label="Remove element"
             onClick={removeCurrentElement}
             icon={Trash}
           />
-          <SegmentedControlButton
+          <IconButton
             label="Go to parent"
             onClick={selectParentOfCurrentElement}
             icon={elementData.parentId ? CornerRightUp : List}

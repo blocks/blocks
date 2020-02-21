@@ -6,7 +6,8 @@ import { Code, Layers, Monitor, Grid } from 'react-feather'
 import pkg from '../package.json'
 
 import { useEditor } from './providers/editor'
-import { SegmentedControl, SegmentedControlButton } from './segmented-control'
+import { SegmentedControl } from './segmented-control'
+import { IconButton } from './ui'
 
 const { version } = pkg
 
@@ -34,7 +35,7 @@ const ToggleXRay = () => {
   const editorState = useEditor()
   const isActive = Boolean(editorState.xray)
   return (
-    <SegmentedControlButton
+    <IconButton
       label="XRay mode"
       icon={Grid}
       isActive={isActive}

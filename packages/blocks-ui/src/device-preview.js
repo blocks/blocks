@@ -14,7 +14,7 @@ import { ZoomIn, ZoomOut } from 'react-feather'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 
-import { SegmentedControlButton } from './segmented-control'
+import { IconButton } from './ui'
 import { useScrollSync } from './hooks'
 
 const MIN_ZOOM_LEVEL = 25
@@ -157,7 +157,7 @@ export const PreviewArea = ({ children }) => {
           }}
         />
         <span>%</span>
-        <SegmentedControlButton
+        <IconButton
           label="Zoom viewport out"
           icon={ZoomOut}
           onClick={() => {
@@ -174,7 +174,7 @@ export const PreviewArea = ({ children }) => {
           onChange={event => setZoomLevel(parseFloat(event.target.value) / 100)}
           style={{ width: 80 }}
         />
-        <SegmentedControlButton
+        <IconButton
           label="Zoom viewport in"
           onClick={() => setZoomLevel(zoomLevel + 0.1)}
           icon={ZoomIn}

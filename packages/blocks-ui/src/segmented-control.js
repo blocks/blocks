@@ -24,7 +24,7 @@ export const SegmentedControl = ({
       {...rest}
     >
       {options.map((option, index) => (
-        <SegmentedControlButton
+        <IconButton
           key={index}
           isActive={activeIndex === index}
           label={option.label}
@@ -35,35 +35,3 @@ export const SegmentedControl = ({
     </div>
   )
 }
-
-export const SegmentedControlButton = ({
-  label,
-  onClick,
-  isActive,
-  icon: Icon,
-  disabled,
-  ...rest
-}) => (
-  <IconButton
-    title={label}
-    aria-label={label}
-    onClick={onClick}
-    sx={{
-      bg: isActive ? 'highlight' : 'white',
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      opacity: disabled ? 0.5 : 1,
-      '&:hover, &:focus': {
-        bg: isActive || disabled ? null : '#f2f3f5',
-        stroke: null
-      },
-      svg: {
-        // fill: isActive ? 'primary' : null,
-        stroke: isActive ? 'primary' : null
-      }
-    }}
-    disabled={disabled}
-    {...rest}
-  >
-    <Icon size={16} />
-  </IconButton>
-)

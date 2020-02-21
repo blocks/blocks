@@ -6,20 +6,20 @@ import { Clipboard, Check } from 'react-feather'
 
 import useCopyToClipboard from './use-copy-to-clipboard'
 import { Loader } from './loader'
-import { SegmentedControlButton } from './segmented-control'
+import { IconButton } from './ui'
 
 const Copy = ({ toCopy }) => {
   const { hasCopied, copyToClipboard } = useCopyToClipboard()
 
   return (
-    <SegmentedControlButton
+    <IconButton
       label={hasCopied ? 'Copied' : 'Copy'}
       onClick={() => copyToClipboard(toCopy)}
       sx={{
         position: 'absolute',
-        right: '10px',
+        top: 0,
+        right: 0,
         zIndex: 1,
-        cursor: 'pointer',
         svg: {
           fill: hasCopied ? 'green' : null
         }
