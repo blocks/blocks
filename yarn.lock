@@ -1594,18 +1594,18 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@manypkg/cli@0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.9.0.tgz#152714d12b7bcfb89caa5141bbc2a907b1b8a56b"
-  integrity sha512-Y0V+GTDzeDCSoNSS75nVSSk2V5HgGZyVOID6XUeBhRVzs1ZLqTfUCS3F8+KLVES06GP/6sRQJaUgC7zmmjYelA==
+"@manypkg/cli@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.10.0.tgz#16b4ce157146afa2f75eadf7d6e90b0a3c3d4bfd"
+  integrity sha512-8WU9uSD+myMMQpHoMt7em+PHPEx69cwaRb6RTW7J9qv+OshPycaXLQrUKWXEzluc/jKRApoI+4MTjAemZs/d5w==
   dependencies:
     "@babel/runtime" "^7.5.5"
     chalk "^2.4.2"
     detect-indent "^6.0.0"
     find-up "^4.1.0"
-    find-workspaces-root "^0.1.0"
+    find-workspaces-root "^0.2.0"
     fs-extra "^8.1.0"
-    get-workspaces "^0.5.0"
+    get-workspaces "^0.6.0"
     meow "^5.0.0"
     p-limit "^2.2.1"
     sembear "^0.5.0"
@@ -2164,13 +2164,6 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
-
-"@types/fs-extra@^8.0.0":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.0.1.tgz#a2378d6e7e8afea1564e44aafa2e207dadf77686"
-  integrity sha512-J00cVDALmi/hJOYsunyT52Hva5TnJeKP5yd1r+mH/ZU0mbYZflR0Z5kw5kITtKTRYMhm1JMClOFYdHnQszEvqw==
-  dependencies:
-    "@types/node" "*"
 
 "@types/get-port@^0.0.4":
   version "0.0.4"
@@ -6240,16 +6233,15 @@ find-versions@^3.2.0:
   dependencies:
     semver-regex "^2.0.0"
 
-find-workspaces-root@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/find-workspaces-root/-/find-workspaces-root-0.1.0.tgz#0afc33920eca22ad58f87e1e9a49ac97d176c25f"
-  integrity sha512-NIVJ0SB4+BMwN0MXAPYPj5SWgcyYh2bCP2ZJTVW74uSuQ3oWp6hVPfW1HHBYqPuzWbzKbDbwk6kUKXw6Jr+Qsg==
+find-workspaces-root@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/find-workspaces-root/-/find-workspaces-root-0.2.0.tgz#46e487deed4faa02b3e30007d3ce6d13f8deb69e"
+  integrity sha512-VvMqY2reYnYztgO0CBbxSFw/Cey2W0RrZnx6/4gl4m1okp0efnP0wxNQMtfj6aYMqmo0QQFl5Z+27WV0TVWgow==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@types/fs-extra" "^8.0.0"
     "@types/node" "^12.7.1"
     find-up "^4.1.0"
-    fs-extra "^8.1.0"
+    get-workspaces "^0.6.0"
 
 flat-cache@^2.0.1:
   version "2.0.1"
@@ -6858,15 +6850,6 @@ get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
-
-get-workspaces@^0.5.0:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.5.2.tgz#4fb2031ec1bdd32d3c1f3de2589ce8af5c2e24ee"
-  integrity sha512-99x72taQ9OUHhCmBS0B2WI/zwOtBOBPoyVNGs9+B0ag2GGhCjl/EaU9VQ8Zorx64TyVj1Am7bO+0J1KwDqo7OA==
-  dependencies:
-    "@changesets/types" "^0.4.0"
-    fs-extra "^7.0.1"
-    globby "^9.2.0"
 
 get-workspaces@^0.6.0:
   version "0.6.0"

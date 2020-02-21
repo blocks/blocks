@@ -47,7 +47,7 @@
     "@babel/preset-react": "7.8.3",
     "@changesets/cli": "2.5.1",
     "@emotion/core": "10.0.27",
-    "@manypkg/cli": "0.9.0",
+    "@manypkg/cli": "0.10.0",
     "@mdx-js/mdx": "1.5.5",
     "@mdx-js/react": "1.5.5",
     "@preconstruct/cli": "1.1.4",
