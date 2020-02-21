@@ -20,6 +20,10 @@ export default (api, { elementId, sx }) => {
             node => node && node.name && node.name.name === 'sx'
           )
 
+          if (typeof value === 'undefined') {
+            return
+          }
+
           if (!sxProp) {
             path.node.attributes.push(
               t.jSXAttribute(

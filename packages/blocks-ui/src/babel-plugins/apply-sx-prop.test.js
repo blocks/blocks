@@ -30,3 +30,21 @@ test('applies a falsey prop to the sx object', () => {
 }}>Hello, world!</h1>`
   )
 })
+
+test('should remove sx value when undefined', () => {
+  const result = testPlugin(plugin, '<h1 ___uuid="abc">Hello, world!</h1>', {
+    elementId: 'abc',
+    sx: {
+      pt: 3,
+      pr: undefined,
+      fontSize: 0
+    }
+  })
+
+  expect(result).toEqual(
+    `<h1 ___uuid="abc" sx={{
+  pt: 3,
+  fontSize: 0
+}}>Hello, world!</h1>`
+  )
+})
