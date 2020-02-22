@@ -42,6 +42,8 @@ export const getBlocksUsage = code => {
 }
 
 export const getCurrentElement = (code, elementId) => {
+  console.log('elementId:', elementId)
+  console.log('code:', code)
   const plugin = new BabelPluginGetCurrentElement({ elementId })
 
   transform(code, {
