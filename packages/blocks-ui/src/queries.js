@@ -42,7 +42,7 @@ export const getBlocksUsage = code => {
 }
 
 export const getCurrentElement = (code, elementId) => {
-  const plugin = new BabelPluginGetCurrentElement({ elementId })
+  const plugin = new BabelPluginGetCurrentElement()
 
   transform(code, {
     plugins: [babelPluginSyntaxJsx, [plugin.plugin, { elementId }]]
