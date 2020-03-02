@@ -1665,10 +1665,10 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@preconstruct/cli@1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-1.1.7.tgz#a03985cc74724aead592d2263650f328c11b8f01"
-  integrity sha512-5vuqbS+nm2RFIFR68Ca2Q9Vgg/YSbfAnOjouJMy25zv5mvsIZE9XsUWkv8R9BhqlgU52KcOT0rPbiyqDQQdjDw==
+"@preconstruct/cli@1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-1.1.8.tgz#f74f580e79edab2449f853fdbdf1601f1537ee3b"
+  integrity sha512-Mg8aROwDrVS/NKIM25CFUmalgvT21Et/IskrFrK3A26EIhxOyXArooYzMPZVwIxNryPYh8L9a2tLIUpVZTboMA==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
@@ -1693,6 +1693,7 @@
     meow "^5.0.0"
     micromatch "^4.0.2"
     ms "^2.1.2"
+    normalize-path "^3.0.0"
     npm-packlist "^2.0.2"
     p-limit "^2.2.1"
     parse-glob "^3.0.4"
