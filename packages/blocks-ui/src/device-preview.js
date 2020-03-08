@@ -10,7 +10,6 @@ import {
   useMemo
 } from 'react'
 import { createPortal } from 'react-dom'
-import { ZoomIn, ZoomOut } from 'react-feather'
 import { CacheProvider, Global } from '@emotion/core'
 import createCache from '@emotion/cache'
 
@@ -159,7 +158,7 @@ export const PreviewArea = ({ children }) => {
         <span>%</span>
         <IconButton
           label="Zoom viewport out"
-          icon={ZoomOut}
+          glyph="minus"
           onClick={() => {
             const nextZoomLevel = zoomLevel - 0.1
             if (nextZoomLevel > 0.25) {
@@ -176,8 +175,8 @@ export const PreviewArea = ({ children }) => {
         />
         <IconButton
           label="Zoom viewport in"
+          glyph="plus"
           onClick={() => setZoomLevel(zoomLevel + 0.1)}
-          icon={ZoomIn}
         />
         <Label m={0}>
           <Checkbox

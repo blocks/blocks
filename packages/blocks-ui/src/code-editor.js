@@ -2,7 +2,6 @@
 import { useRef } from 'react'
 import { jsx } from 'theme-ui'
 import Monaco from '@monaco-editor/react'
-import { Clipboard, Check } from 'react-feather'
 
 import useCopyToClipboard from './use-copy-to-clipboard'
 import { Loader } from './loader'
@@ -21,10 +20,10 @@ const Copy = ({ toCopy }) => {
         right: 0,
         zIndex: 1,
         svg: {
-          fill: hasCopied ? 'green' : null
+          stroke: hasCopied ? 'green' : null
         }
       }}
-      icon={hasCopied ? Check : Clipboard}
+      glyph={hasCopied ? 'check' : 'clippy'}
     />
   )
 }

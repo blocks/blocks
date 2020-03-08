@@ -4,45 +4,10 @@ import { Fragment, useState, useEffect } from 'react'
 import { Label, Slider, Grid } from '@theme-ui/components'
 
 import { SegmentedControl } from '../../segmented-control'
-import { buttonIconSize } from '../../ui'
 
 // Fallback space options if no space is present in theme
 // TODO This should come from theme-ui eventually
 const DEFAULT_SPACE = [0, 4, 8, 16, 32, 64]
-
-// Custom Icons used in the segmented control
-
-const CustomIconSvg = props => (
-  <svg
-    style={{ width: buttonIconSize, height: buttonIconSize }}
-    viewBox="0 0 16 16"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  />
-)
-
-const SingleIcon = () => (
-  <CustomIconSvg>
-    <path d="M1.5 14V2C1.5 1.72386 1.72386 1.5 2 1.5H14C14.2761 1.5 14.5 1.72386 14.5 2V14C14.5 14.2761 14.2761 14.5 14 14.5H2C1.72386 14.5 1.5 14.2761 1.5 14Z" />
-  </CustomIconSvg>
-)
-
-const AxisIcon = () => (
-  <CustomIconSvg>
-    <path d="M1.5 4.5V8M1.5 11.5V8M4.5 1.5H8M11.5 1.5H8M14.5 4.5V8M14.5 11.5V8M11.5 14.5H8M4.5 14.5H8M8 1.5V14.5M1.5 8H14.5" />
-  </CustomIconSvg>
-)
-
-const AllIcon = () => (
-  <CustomIconSvg>
-    <path d="M1.5 4.5V11.5M4.5 1.5H11.5M14.5 4.5V11.5M11.5 14.5H4.5" />
-  </CustomIconSvg>
-)
 
 // The different modes spacing can be edited with
 // Icon is the SVG used in segmented control
@@ -53,12 +18,12 @@ const AllIcon = () => (
 const MODES = [
   {
     label: 'Single',
-    icon: SingleIcon,
+    glyph: 'single',
     keys: [{ label: 'All', keys: ['t', 'b', 'r', 'l'] }]
   },
   {
     label: 'Axis',
-    icon: AxisIcon,
+    glyph: 'axis',
     keys: [
       { label: 'Horizontal', keys: ['l', 'r'] },
       { label: 'Vertical', keys: ['t', 'b'] }
@@ -66,7 +31,7 @@ const MODES = [
   },
   {
     label: 'All',
-    icon: AllIcon,
+    glyph: 'all',
     keys: [
       { label: 'Top', keys: ['t'] },
       { label: 'Right', keys: ['r'] },
