@@ -1553,10 +1553,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@manypkg/cli@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.10.0.tgz#16b4ce157146afa2f75eadf7d6e90b0a3c3d4bfd"
-  integrity sha512-8WU9uSD+myMMQpHoMt7em+PHPEx69cwaRb6RTW7J9qv+OshPycaXLQrUKWXEzluc/jKRApoI+4MTjAemZs/d5w==
+"@manypkg/cli@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.11.0.tgz#16d64b804d2f39cb52befd06e2cb33ab1ec846b7"
+  integrity sha512-JIw6i9MZTObX7L9lQsSF5ohL2T0jJuT4wU/NX/s1YwKd38A3XUORirsK6a3y2eIEfkIt0DB3AnaZYS+Vnn4QSA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     chalk "^2.4.2"
@@ -1566,7 +1566,9 @@
     fs-extra "^8.1.0"
     get-workspaces "^0.6.0"
     meow "^5.0.0"
+    normalize-path "^3.0.0"
     p-limit "^2.2.1"
+    parse-github-url "^1.0.2"
     sembear "^0.5.0"
     semver "^6.3.0"
     spawndamnit "^2.0.0"
@@ -10695,6 +10697,11 @@ parse-entities@^1.0.2, parse-entities@^1.1.0:
     is-alphanumerical "^1.0.0"
     is-decimal "^1.0.0"
     is-hexadecimal "^1.0.0"
+
+parse-github-url@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/parse-github-url/-/parse-github-url-1.0.2.tgz#242d3b65cbcdda14bb50439e3242acf6971db395"
+  integrity sha512-kgBf6avCbO3Cn6+RnzRGLkUsv4ZVqv/VfAYkRsyBcgkshNvVBkRn1FEZcW0Jb+npXQWm2vHPnnOqFteZxRRGNw==
 
 parse-glob@^3.0.4:
   version "3.0.4"
