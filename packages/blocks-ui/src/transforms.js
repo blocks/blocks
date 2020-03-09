@@ -132,6 +132,7 @@ export const reorderJSXBlocks = (code, drag) => {
 }
 
 export const insertJSXBlock = (code, { blocks, ...drag }) => {
+  console.log('blocks:', blocks)
   const block = blocks[drag.draggableId]
 
   if (!block) {
