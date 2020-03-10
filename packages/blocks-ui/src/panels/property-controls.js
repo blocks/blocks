@@ -30,34 +30,37 @@ export default ({
             if (value.type === ControlType.String && key === 'children') {
               return (
                 <div key={key}>
-                  <Label>{title}</Label>
+                  <Label htmlFor={title}>{title}</Label>
                   <Input
                     sx={{ backgroundColor: 'white' }}
                     value={elementData.text}
                     onChange={onTextChange}
+                    id={title}
                   />
                 </div>
               )
             } else if (value.type === ControlType.String) {
               return (
                 <div key={key}>
-                  <Label>{title}</Label>
+                  <Label htmlFor={title}>{title}</Label>
                   <Input
                     sx={{ backgroundColor: 'white' }}
                     value={fieldValue}
                     onChange={e => onPropChange(key, e)}
+                    id={title}
                   />
                 </div>
               )
             } else if (value.type === ControlType.Number) {
               return (
                 <div key={key}>
-                  <Label>{title}</Label>
+                  <Label htmlFor={title}>{title}</Label>
                   <Input
                     sx={{ backgroundColor: 'white' }}
                     type="number"
                     value={fieldValue}
                     onChange={e => onPropChange(key, e)}
+                    id={title}
                   />
                 </div>
               )
