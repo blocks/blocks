@@ -45,7 +45,7 @@
     "@babel/plugin-proposal-export-namespace-from": "7.8.3",
     "@babel/preset-env": "7.8.4",
     "@babel/preset-react": "7.8.3",
-    "@changesets/cli": "2.5.1",
+    "@changesets/cli": "2.6.1",
     "@emotion/core": "10.0.27",
     "@manypkg/cli": "0.10.0",
     "@mdx-js/mdx": "1.5.7",
