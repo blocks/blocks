@@ -1,6 +1,6 @@
 {
   "name": "@blocks/react",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/react.cjs.js",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.8.3",
     "@theme-ui/components": "0.3.1",
-    "property-controls": "^0.0.58",
+    "property-controls": "^0.0.59",
     "theme-ui": "0.3.1"
   },
   "peerDependencies": {
