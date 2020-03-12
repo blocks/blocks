@@ -46,7 +46,7 @@ test('should throw when block usage incorrect', () => {
   </div></Blocks.Root>`)
 })
 
-test('should insert block when no destination defined', () => {
+test('should not insert block when no destination defined', () => {
   const result = testPlugin(plugin, `<Blocks.Root></Blocks.Root>`, {
     destination: null,
     block: {
