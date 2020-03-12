@@ -2,12 +2,20 @@
 import { jsx, Styled } from 'theme-ui'
 import { Container } from '@theme-ui/components'
 import { Link } from 'gatsby'
+import { Global } from '@emotion/core'
 
 import SEO from './seo'
 
 export default ({ children, _frontmatter: { title } = {} }) => (
   <Styled.root>
     <SEO title={title} />
+    <Global
+      styles={{
+        img: {
+          maxWidth: '100%'
+        }
+      }}
+    />
     <Container as="main" mb={[3, 4, 5]}>
       <Link to="/">
         <img
