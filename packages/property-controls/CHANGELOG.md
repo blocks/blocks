@@ -1,5 +1,11 @@
 # property-controls
 
+## 0.0.59
+
+### Patch Changes
+
+- 776b7c3: Bump deps, add resolutions for context libs
+
 ## 0.0.58
 
 ### Patch Changes
