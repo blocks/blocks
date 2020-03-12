@@ -1,5 +1,14 @@
 # blocks-ui
 
+## 0.0.77
+
+### Patch Changes
+
+- 776b7c3: Bump deps, add resolutions for context libs
+- Updated dependencies [776b7c3]
+  - property-controls@0.0.59
+  - @blocks/react@0.0.63
+
 ## 0.0.76
 
 ### Patch Changes
