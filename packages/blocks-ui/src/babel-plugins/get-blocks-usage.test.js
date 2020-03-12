@@ -11,8 +11,6 @@ test('should update internal Plugin state with JSX usage', () => {
 export default HeaderLogo`
   )
 
-  console.log(plugin.state)
-
   expect(plugin.state).toEqual({ usage: '<HeaderLogo></HeaderLogo>' })
 })
 
