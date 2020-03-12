@@ -6,20 +6,20 @@
   "license": "MIT",
   "repository": "blocks/blocks",
   "dependencies": {
-    "@babel/helper-plugin-utils": "^7.0.0",
-    "@babel/plugin-syntax-jsx": "^7.7.4",
-    "@babel/plugin-transform-react-jsx": "^7.7.4",
-    "@babel/standalone": "^7.7.4",
-    "@babel/template": "^7.7.4",
-    "@babel/traverse": "^7.8.3",
-    "@babel/types": "^7.7.4",
+    "@babel/helper-plugin-utils": "^7.8.3",
+    "@babel/plugin-syntax-jsx": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/standalone": "^7.8.7",
+    "@babel/template": "^7.8.6",
+    "@babel/traverse": "^7.8.6",
+    "@babel/types": "^7.8.7",
     "@blocks/react": "^0.0.62",
-    "@blocks/react-beautiful-dnd": "^12.1.2",
-    "@emotion/cache": "^10.0.19",
+    "@blocks/react-beautiful-dnd": "^12.2.1",
+    "@emotion/cache": "^10.0.29",
     "@emotion/core": "10.0.28",
     "@mdx-js/react": "1.5.7",
-    "@monaco-editor/react": "^3.0.1",
-    "@reach/tabs": "^0.8.0",
+    "@monaco-editor/react": "^3.1.1",
+    "@reach/tabs": "^0.8.6",
     "@theme-ui/components": "0.3.1",
     "@theme-ui/presets": "0.3.0",
     "@theme-ui/style-guide": "^0.3.0",
@@ -38,15 +38,15 @@
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.4",
-    "@babel/preset-env": "7.8.4",
+    "@babel/core": "7.8.7",
+    "@babel/preset-env": "7.8.7",
     "@babel/preset-react": "7.8.3",
     "jest": "25.1.0",
-    "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }
