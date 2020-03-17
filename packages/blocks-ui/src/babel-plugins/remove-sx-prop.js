@@ -20,7 +20,9 @@ export default (api, { elementId, key }) => {
           return
         }
 
-        sxProp.value.expression.properties.filter(n => n.key.name !== key)
+        sxProp.value.expression.properties = sxProp.value.expression.properties.filter(
+          n => n.key.name !== key
+        )
       }
     }
   }
