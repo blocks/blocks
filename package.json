@@ -62,7 +62,7 @@
     "eslint-plugin-jest": "23.8.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "2.5.0",
+    "eslint-plugin-react-hooks": "2.5.1",
     "gatsby": "2.19.41",
     "gatsby-plugin-catch-links": "2.1.27",
     "gatsby-plugin-fathom": "1.2.0",
@@ -75,16 +75,16 @@
     "jest": "25.1.0",
     "lint-staged": "10.0.8",
     "prettier": "1.19.1",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-helmet": "5.2.1",
     "theme-ui": "0.3.1"
   },
   "resolutions": {
     "@emotion/core": "10.0.28",
     "@mdx-js/react": "1.5.7",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "theme-ui": "0.3.1"
   }
 }
