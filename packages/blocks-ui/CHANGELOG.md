@@ -1,5 +1,11 @@
 # blocks-ui
 
+## 0.0.78
+
+### Patch Changes
+
+- 1411594: Update prettier parser import for v2
+
 ## 0.0.77
 
 ### Patch Changes
