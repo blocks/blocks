@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { jsx } from 'theme-ui'
 import prettier from 'prettier/standalone'
-import parserJS from 'prettier/parser-babylon'
+import parserJS from 'prettier/parser-babel'
 
 import * as transforms from '../transforms'
 import { useCode } from '../providers/code'
@@ -23,7 +23,7 @@ const CodeMode = () => {
     )
   }, [])
 
-  const onCodeChange = code => {
+  const onCodeChange = (code) => {
     try {
       editCode(code)
     } catch (e) {
