@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-blocks",
-  "version": "0.0.77",
+  "version": "0.0.78",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": "blocks/blocks",

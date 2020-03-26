@@ -1,5 +1,11 @@
 # gatsby-plugin-blocks
 
+## 0.0.78
+
+### Patch Changes
+
+- b40d620: Implement page listing and creation
+
 ## 0.0.77
 
 ### Patch Changes
