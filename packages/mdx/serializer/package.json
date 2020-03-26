@@ -27,7 +27,7 @@
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "remark-mdx": "^1.5.1",
     "remark-parse": "^7.0.2",
-    "remark-squeeze-paragraphs": "^3.0.4",
+    "remark-squeeze-paragraphs": "^4.0.0",
     "remark-stringify": "^7.0.4",
     "slate": "^0.57.0",
     "slate-mdast-serializer": "^3.0.0",
