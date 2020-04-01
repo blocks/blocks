@@ -64,6 +64,7 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.1",
     "gatsby": "2.20.7",
+    "gatsby-plugin-blocks": "0.0.76",
     "gatsby-plugin-catch-links": "2.2.1",
     "gatsby-plugin-fathom": "1.2.0",
     "gatsby-plugin-manifest": "2.3.3",
