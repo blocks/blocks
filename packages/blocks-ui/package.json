@@ -26,7 +26,7 @@
     "chroma-js": "^2.1.0",
     "interpolate-range": "^2.1.0",
     "lodash.merge": "^4.6.2",
-    "prettier": "2.0.2",
+    "prettier": "2.0.5",
     "property-controls": "^0.0.59",
     "react-color": "^2.18.0",
     "react-feather": "^2.0.3",
