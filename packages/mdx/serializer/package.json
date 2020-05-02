@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "jest": "25.1.0"
+    "jest": "25.5.4"
   },
   "dependencies": {
     "@babel/core": "^7.7.2",
