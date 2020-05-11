@@ -20,7 +20,7 @@ export default ({
   const { update, ...theme } = useThemeEditor()
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={e => e.preventDefault()}>
       {hasPropertyControls ? (
         <FieldGroup title="props">
           {Object.entries(propertyControls).map(([key, value]) => {
@@ -47,7 +47,7 @@ export default ({
                   <Input
                     sx={{ backgroundColor: 'white' }}
                     value={fieldValue}
-                    onChange={(e) => onPropChange(key, e)}
+                    onChange={e => onPropChange(key, e)}
                   />
                 </div>
               )
@@ -59,7 +59,7 @@ export default ({
                     sx={{ backgroundColor: 'white' }}
                     type="number"
                     value={fieldValue}
-                    onChange={(e) => onPropChange(key, e, ControlType.Number)}
+                    onChange={e => onPropChange(key, e, ControlType.Number)}
                   />
                 </div>
               )
@@ -69,10 +69,10 @@ export default ({
                   key={key}
                   label={title}
                   value={fieldValue}
-                  onChange={(e) => onPropChange(key, e)}
+                  onChange={e => onPropChange(key, e)}
                   as={Select}
                 >
-                  {value.options.map((option) => (
+                  {value.options.map(option => (
                     <option key={option}>{option}</option>
                   ))}
                 </Field>
@@ -93,7 +93,7 @@ export default ({
                         name={key}
                         value={true}
                         defaultChecked={fieldValue === true}
-                        onChange={(e) =>
+                        onChange={e =>
                           onPropChange(key, e, ControlType.Boolean)
                         }
                       />{' '}
@@ -104,7 +104,7 @@ export default ({
                         name={key}
                         value={false}
                         defaultChecked={fieldValue === false}
-                        onChange={(e) =>
+                        onChange={e =>
                           onPropChange(key, e, ControlType.Boolean)
                         }
                       />{' '}
