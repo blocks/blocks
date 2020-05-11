@@ -3,7 +3,7 @@ import { ControlType } from 'property-controls'
 
 import { uuidName } from './constants'
 
-export const uniq = (arr) => {
+export const uniq = arr => {
   return [...new Set(arr)]
 }
 
@@ -34,7 +34,7 @@ export const uuid = (
         )
 }
 
-export const toLiteral = (val) => {
+export const toLiteral = val => {
   if (
     !val &&
     typeof val !== 'number' &&
@@ -87,13 +87,13 @@ export const parseFieldValue = (type, e) => {
 
 // Leave last space on a string since a user could
 // be in the middle of typing into a text input
-export const textTrim = (str) =>
+export const textTrim = str =>
   str
     .replace(/^\s*/, '')
     .replace(/\s{1,}$/, ' ')
     .replace(/\s+/g, ' ')
 
-export const isBlocksRootElement = (node) => {
+export const isBlocksRootElement = node => {
   if (t.isJSXMemberExpression(node.name)) {
     const objectName = node.name.object && node.name.object.name
     const propertyName = node.name.property && node.name.property.name
@@ -104,7 +104,7 @@ export const isBlocksRootElement = (node) => {
   return false
 }
 
-export const getElementName = (node) => {
+export const getElementName = node => {
   const elementName = node.name
 
   if (t.isJSXMemberExpression(elementName)) {
@@ -114,18 +114,16 @@ export const getElementName = (node) => {
   }
 }
 
-export const getUuidAttr = (node) =>
-  node.attributes.find(
-    (node) => node && node.name && node.name.name === uuidName
-  )
+export const getUuidAttr = node =>
+  node.attributes.find(node => node && node.name && node.name.name === uuidName)
 
-export const addUuidAttr = (node) => {
+export const addUuidAttr = node => {
   node.attributes.push(
     t.jSXAttribute(t.jSXIdentifier(uuidName), t.stringLiteral(uuid()))
   )
 }
 
-export const getUuid = (node) => {
+export const getUuid = node => {
   const id = getUuidAttr(node)
   return id && id.value.value
 }
