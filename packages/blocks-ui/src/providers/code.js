@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { ControlType } from 'property-controls'
 
 import * as queries from '../queries'
 import * as transforms from '../transforms'
+import { parseFieldValue } from '../util'
 
 import { useBlocks } from './blocks'
 
@@ -33,7 +35,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     onChange(transforms.toRawJSX(codeState.code))
   }, [codeState])
 
-  const updateCode = newCode => {
+  const updateCode = (newCode) => {
     return {
       code: newCode,
       transformedCode: transforms.toTransformedJSX(newCode),
@@ -42,7 +44,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     }
   }
 
-  const editCode = rawCode => {
+  const editCode = (rawCode) => {
     const code = transforms.addTuid(rawCode)
 
     setCodeState({
@@ -51,7 +53,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const setCurrentElementId = elementId => {
+  const setCurrentElementId = (elementId) => {
     if (!elementId) {
       return setCodeState({
         ...codeState,
@@ -72,12 +74,12 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const hoverElementId = elementId => {
+  const hoverElementId = (elementId) => {
     if (!elementId) {
       return
     }
 
-    setCodeState(oldCodeState => ({
+    setCodeState((oldCodeState) => ({
       ...oldCodeState,
       currentHoveredElementId: !elementId ? null : elementId,
       currentHoveredElements: [
@@ -87,14 +89,14 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     }))
   }
 
-  const removeHoveredElementId = elementId => {
+  const removeHoveredElementId = (elementId) => {
     if (!elementId) {
       return
     }
 
-    setCodeState(oldCodeState => {
+    setCodeState((oldCodeState) => {
       const newHoveredElements = oldCodeState.currentHoveredElements.filter(
-        id => id !== elementId
+        (id) => id !== elementId
       )
 
       return {
@@ -145,7 +147,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const insertText = e => {
+  const insertText = (e) => {
     const text = e.target.value
     const currentElementData = { ...codeState.currentElementData, text }
     const { code } = transforms.replaceText(codeState.code, {
@@ -160,8 +162,8 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const updateProp = (key, e) => {
-    const value = e.target.value
+  const updateProp = (key, e, type = ControlType.String) => {
+    let value = parseFieldValue(type, e)
 
     const currentElementData = {
       ...codeState.currentElementData,
@@ -184,7 +186,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const updateSxProp = newSx => {
+  const updateSxProp = (newSx) => {
     const sx = codeState.currentElementData.props.sx || {}
 
     const currentElementData = {
@@ -204,7 +206,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const onDragEnd = drag => {
+  const onDragEnd = (drag) => {
     if (!drag.destination || drag.destination.droppableId === 'components') {
       return
     }
@@ -236,7 +238,7 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     }
   }
 
-  const onBeforeDragStart = drag => {
+  const onBeforeDragStart = (drag) => {
     setCurrentElementId(drag.draggableId)
   }
 
