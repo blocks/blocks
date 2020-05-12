@@ -29,7 +29,7 @@
     "remark-parse": "^7.0.2",
     "remark-squeeze-paragraphs": "^4.0.0",
     "remark-stringify": "^7.0.4",
-    "slate": "^0.57.0",
+    "slate": "^0.58.0",
     "slate-mdast-serializer": "^3.0.0",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.1"
