@@ -11,7 +11,9 @@ And thanks for contributing to **Blocks**!  👏👌✨
 
 ## Getting started
 
-Clone the repo and install the dependencies.
+Fork the repo to your personal Github account. 
+
+Then clone the repo and install the dependencies.
 
 ```sh
 git clone https://github.com/blocks/blocks
