@@ -31,7 +31,7 @@
     "remark-stringify": "^7.0.4",
     "slate": "^0.58.0",
     "slate-mdast-serializer": "^3.0.0",
-    "unified": "^8.4.2",
+    "unified": "^9.0.0",
     "unist-util-visit": "^2.0.1"
   },
   "gitHead": "376b5da738c62a2be6d1dbcc6d284977529c8865"
