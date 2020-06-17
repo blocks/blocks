@@ -74,7 +74,7 @@
     "gatsby-source-filesystem": "2.2.2",
     "husky": "4.2.3",
     "jest": "25.5.4",
-    "lint-staged": "10.0.8",
+    "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
