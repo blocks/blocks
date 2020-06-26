@@ -1,5 +1,0 @@
-export { default as BackgroundGradient } from './background-gradient'
-export { default as TextGradient } from './text-gradient'
-export { default as Tweet } from './tweet'
-export { default as Gist } from './gist'
-export { default as YouTube } from './youtube'
