@@ -1,6 +1,6 @@
 {
   "name": "@blocks/react",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "description": "The default, Theme UI-based for the Blocks editor",
   "repository": "blocks/blocks",
   "main": "dist/react.cjs.js",
@@ -8,18 +8,18 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.4",
-    "@babel/preset-env": "7.8.4",
-    "@babel/preset-react": "7.8.3",
-    "react": "16.12.0"
+    "@babel/core": "7.9.6",
+    "@babel/preset-env": "7.9.6",
+    "@babel/preset-react": "7.9.4",
+    "react": "16.13.1"
   },
   "dependencies": {
-    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/helper-plugin-utils": "^7.8.3",
     "@theme-ui/components": "0.3.1",
-    "property-controls": "^0.0.58",
+    "property-controls": "^0.0.59",
     "theme-ui": "0.3.1"
   },
   "peerDependencies": {
-    "react": "^16.12.0"
+    "react": "^16.13.0"
   }
 }

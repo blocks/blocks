@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { ControlType } from 'property-controls'
 
 import * as queries from '../queries'
 import * as transforms from '../transforms'
+import { parseFieldValue } from '../util'
 
 import { useBlocks } from './blocks'
 
@@ -160,8 +162,8 @@ const CodeProvider = ({ children, initialCode, onChange }) => {
     })
   }
 
-  const updateProp = (key, e) => {
-    const value = e.target.value
+  const updateProp = (key, e, type = ControlType.String) => {
+    const value = parseFieldValue(type, e)
 
     const currentElementData = {
       ...codeState.currentElementData,

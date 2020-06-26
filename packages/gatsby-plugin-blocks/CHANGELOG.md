@@ -1,5 +1,26 @@
 # gatsby-plugin-blocks
 
+## 0.0.79
+
+### Patch Changes
+
+- Updated dependencies [1411594]
+  - blocks-ui@0.0.78
+
+## 0.0.78
+
+### Patch Changes
+
+- b40d620: Implement page listing and creation
+
+## 0.0.77
+
+### Patch Changes
+
+- Updated dependencies [776b7c3]
+  - blocks-ui@0.0.77
+  - @blocks/react@0.0.63
+
 ## 0.0.76
 
 ### Patch Changes

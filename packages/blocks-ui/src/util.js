@@ -1,4 +1,5 @@
 import * as t from '@babel/types'
+import { ControlType } from 'property-controls'
 
 import { uuidName } from './constants'
 
@@ -34,7 +35,12 @@ export const uuid = (
 }
 
 export const toLiteral = val => {
-  if (!val && typeof val !== 'number' && typeof val !== 'string') {
+  if (
+    !val &&
+    typeof val !== 'number' &&
+    typeof val !== 'boolean' &&
+    typeof val !== 'string'
+  ) {
     return t.nullLiteral()
   }
 
@@ -42,7 +48,41 @@ export const toLiteral = val => {
     return t.numericLiteral(val || 0)
   }
 
+  if (typeof val === 'boolean') {
+    return t.booleanLiteral(val)
+  }
+
   return t.stringLiteral(val.toString())
+}
+
+// Returns a typed JSXAttribute
+export const toJSXAttribute = (api, key, value) => {
+  const { types: t } = api
+
+  switch (typeof value) {
+    case 'number':
+    case 'boolean':
+      return t.JSXAttribute(
+        t.JSXIdentifier(key),
+        t.jsxExpressionContainer(toLiteral(value))
+      )
+    default:
+      return t.JSXAttribute(t.JSXIdentifier(key), toLiteral(value))
+  }
+}
+
+// Returns a typed value from onchange events
+export const parseFieldValue = (type, e) => {
+  const value = e.target.value
+
+  switch (type) {
+    case ControlType.Number:
+      return Number(value)
+    case ControlType.Boolean:
+      return value === 'true'
+    default:
+      return value
+  }
 }
 
 // Leave last space on a string since a user could

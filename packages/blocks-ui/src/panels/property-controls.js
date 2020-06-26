@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Label, Input, Select, Field } from '@theme-ui/components'
+import { Box, Label, Input, Select, Field, Radio } from '@theme-ui/components'
 import { ControlType } from 'property-controls'
 
 import { FieldGroup } from '../field-group'
@@ -25,8 +25,10 @@ export default ({
         <FieldGroup title="props">
           {Object.entries(propertyControls).map(([key, value]) => {
             const title = value.title || key
-            const fieldValue =
-              elementData.props[key] || value.defaultValue || null
+            let fieldValue = elementData.props[key] || value.defaultValue
+            if (fieldValue === undefined) {
+              fieldValue = null
+            }
             if (value.type === ControlType.String && key === 'children') {
               return (
                 <div key={key}>
@@ -59,7 +61,7 @@ export default ({
                     sx={{ backgroundColor: 'white' }}
                     type="number"
                     value={fieldValue}
-                    onChange={e => onPropChange(key, e)}
+                    onChange={e => onPropChange(key, e, ControlType.Number)}
                     id={title}
                   />
                 </div>
@@ -77,6 +79,42 @@ export default ({
                     <option key={option}>{option}</option>
                   ))}
                 </Field>
+              )
+            } else if (value.type === ControlType.Boolean) {
+              return (
+                <div key={key}>
+                  <Label>{title}</Label>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <Label sx={{ alignItems: 'center' }}>
+                      <Radio
+                        name={key}
+                        value={true}
+                        defaultChecked={fieldValue === true}
+                        onChange={e =>
+                          onPropChange(key, e, ControlType.Boolean)
+                        }
+                      />{' '}
+                      {value.enabledTitle || 'True'}
+                    </Label>
+                    <Label sx={{ alignItems: 'center' }}>
+                      <Radio
+                        name={key}
+                        value={false}
+                        defaultChecked={fieldValue === false}
+                        onChange={e =>
+                          onPropChange(key, e, ControlType.Boolean)
+                        }
+                      />{' '}
+                      {value.disabledTitle || 'False'}
+                    </Label>
+                  </Box>
+                </div>
               )
             } else {
               return null

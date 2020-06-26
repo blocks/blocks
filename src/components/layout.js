@@ -27,6 +27,9 @@ export default ({
         },
         body: {
           margin: 0
+        },
+        img: {
+          maxWidth: '100%'
         }
       }}
     />
