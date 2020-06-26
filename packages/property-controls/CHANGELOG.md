@@ -1,5 +1,11 @@
 # property-controls
 
+## 0.0.60
+
+### Patch Changes
+
+- a9ad043: Bump deps
+
 ## 0.0.59
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # blocks-ui
 
+## 0.0.79
+
+### Patch Changes
+
+- c1875b8: Prop label screen reader support
+- a9ad043: Bump deps
+- Updated dependencies [a9ad043]
+  - property-controls@0.0.60
+  - @blocks/react@0.0.64
+
 ## 0.0.78
 
 ### Patch Changes
