@@ -1,5 +1,15 @@
 # gatsby-plugin-blocks
 
+## 0.0.80
+
+### Patch Changes
+
+- a9ad043: Bump deps
+- Updated dependencies [c1875b8]
+- Updated dependencies [a9ad043]
+  - blocks-ui@0.0.79
+  - @blocks/react@0.0.64
+
 ## 0.0.79
 
 ### Patch Changes
