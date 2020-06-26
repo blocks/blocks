@@ -1,8 +1,6 @@
-import { toLiteral, getUuid } from '../util'
+import { toJSXAttribute, getUuid } from '../util'
 
 export default (api, { elementId, key, value } = {}) => {
-  const { types: t } = api
-
   return {
     visitor: {
       JSXOpeningElement(path) {
@@ -12,23 +10,16 @@ export default (api, { elementId, key, value } = {}) => {
           return
         }
 
-        const attr = path.node.attributes.find(
-          node => node && node.name && node.name.name === key
+        const newAttr = toJSXAttribute(api, key, value)
+
+        const existingAttrIndex = path.node.attributes.findIndex(
+          (node) => node && node.name && node.name.name === key
         )
 
-        if (attr) {
-          attr.value = toLiteral(value)
-        } else if (typeof value === 'number') {
-          path.node.attributes.push(
-            t.JSXAttribute(
-              t.JSXIdentifier(key),
-              t.jsxExpressionContainer(toLiteral(value))
-            )
-          )
+        if (existingAttrIndex !== -1) {
+          path.node.attributes[existingAttrIndex] = newAttr
         } else {
-          path.node.attributes.push(
-            t.JSXAttribute(t.JSXIdentifier(key), toLiteral(value))
-          )
+          path.node.attributes.push(newAttr)
         }
       }
     }
