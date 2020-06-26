@@ -10,9 +10,10 @@
     "docs": "gatsby develop",
     "docs-deploy": "now switch blocks-ui && now && now alias $(pbpaste) blocks-ui.com",
     "lint": "eslint .",
-    "postinstall": "manypkg check && preconstruct dev",
+    "postinstall": "preconstruct dev",
     "release": "yarn build:packages && changeset publish",
-    "test": "jest"
+    "test": "jest",
+    "test:deps": "manypkg check"
   },
   "workspaces": [
     "packages/*"
@@ -64,7 +65,7 @@
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
     "gatsby": "2.23.11",
-    "gatsby-plugin-blocks": "0.0.79",
+    "gatsby-plugin-blocks": "0.0.80",
     "gatsby-plugin-catch-links": "2.3.7",
     "gatsby-plugin-fathom": "1.3.0",
     "gatsby-plugin-manifest": "2.4.14",
