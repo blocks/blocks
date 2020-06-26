@@ -5,7 +5,7 @@ import tinycolor from 'tinycolor2'
 import { GithubPicker } from 'react-color'
 import { usePopoverState, Popover, PopoverDisclosure } from 'reakit/Popover'
 
-export const ThemeColorPicker = ({ children, theme, ...props }) => {
+export const ThemeColorPicker = ({ children, theme, label, ...props }) => {
   const popover = usePopoverState()
   const context = useThemeUI()
   // todo: look into supporting v0.2 functionality
@@ -18,7 +18,7 @@ export const ThemeColorPicker = ({ children, theme, ...props }) => {
     ...Object.keys(colors)
       .map(key => colors[key])
       .filter(color => typeof color === 'string')
-      .filter(color => /^#/.test(color)),
+      .filter(color => /^#/.test(color))
   ]
   const onChange = color => {
     const [key] =
@@ -40,14 +40,16 @@ export const ThemeColorPicker = ({ children, theme, ...props }) => {
           <div
             {...disclosure}
             style={{
-              backgroundColor: value,
+              backgroundColor: value
             }}
             sx={{
               width: 32,
               height: 32,
               border: '1px solid',
-              borderColor: 'lightgray',
-            }}>
+              borderColor: 'lightgray'
+            }}
+            aria-label={label}
+          >
             {children}
           </div>
         )}
@@ -56,8 +58,9 @@ export const ThemeColorPicker = ({ children, theme, ...props }) => {
         {...popover}
         aria-label="Choose Color"
         style={{
-          zIndex: popover.visible ? 1 : null,
-        }}>
+          zIndex: popover.visible ? 1 : null
+        }}
+      >
         <GithubPicker
           colors={options}
           triangle="hide"

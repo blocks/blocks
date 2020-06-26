@@ -25,6 +25,7 @@ const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
           onChange={color => {
             onChange({ color })
           }}
+          label="Color"
         />
         <div sx={{ fontSize: 0, ml: 2 }}>Color</div>
       </div>
@@ -40,6 +41,7 @@ const Colors = ({ value: { color, bg } = {}, theme, onChange }) => {
           onChange={bg => {
             onChange({ bg })
           }}
+          label="Background Color"
         />
         <div sx={{ fontSize: 0, ml: 2 }}>Background Color</div>
       </div>
