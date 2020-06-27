@@ -28,7 +28,7 @@ export const SegmentedControl = ({
           key={index}
           isActive={activeIndex === index}
           label={option.label}
-          icon={option.icon}
+          glyph={option.glyph}
           onClick={() => onChange(option, index)}
         />
       ))}

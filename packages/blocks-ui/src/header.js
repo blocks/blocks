@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { useState } from 'react'
-import { Code, Layers, Monitor, Grid } from 'react-feather'
 
 import pkg from '../package.json'
 
@@ -17,17 +16,17 @@ const MODES = [
   {
     key: 'canvas',
     label: 'Canvas Mode',
-    icon: Layers
+    glyph: 'fullscreen'
   },
   {
     key: 'viewports',
     label: 'Viewports Mode',
-    icon: Monitor
+    glyph: 'viewports'
   },
   {
     key: 'code',
     label: 'Code Mode',
-    icon: Code
+    glyph: 'code'
   }
 ]
 
@@ -37,7 +36,7 @@ const ToggleXRay = () => {
   return (
     <IconButton
       label="XRay mode"
-      icon={Grid}
+      glyph="grid"
       isActive={isActive}
       onClick={() => editorState.update({ ...editorState, xray: !isActive })}
       disabled={editorState.mode === MODES[2].key}

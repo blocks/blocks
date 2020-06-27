@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Flex } from '@theme-ui/components'
-import { Trash, CornerRightUp, Copy, List } from 'react-feather'
 
 import { useCode } from '../providers/code'
 import { useBlocks } from '../providers/blocks'
@@ -71,17 +70,17 @@ export default () => {
           <IconButton
             label="Copy element"
             onClick={cloneCurrentElement}
-            icon={Copy}
+            glyph="duplicate"
           />
           <IconButton
             label="Remove element"
             onClick={removeCurrentElement}
-            icon={Trash}
+            glyph="trash"
           />
           <IconButton
             label="Go to parent"
             onClick={selectParentOfCurrentElement}
-            icon={elementData.parentId ? CornerRightUp : List}
+            glyph={elementData.parentId ? 'arrow-left-up' : 'list'}
           />
         </nav>
       </Flex>
