@@ -1109,10 +1109,10 @@
     "@manypkg/get-packages" "^1.0.1"
     semver "^5.4.1"
 
-"@changesets/cli@2.9.1":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.9.1.tgz#d678066cffac63df8fca04798c2b358b6eb5ea35"
-  integrity sha512-xWJP0duGF72Rb/0KB99TQrdBz4VnbCxqj9/B4hPT8VFYGt/2gAeS5Y3NQLpjCv+/hNxfHjDI+svzZy6q796t6A==
+"@changesets/cli@2.9.2":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.9.2.tgz#895343c5e61ca6072d3faa3798be703ea230e518"
+  integrity sha512-1L9391G4YlofC1UbfwmBrsefwC03mJHK5Cn8oSozhQJMbRlCJLBJiOn5PHFruVMFcvACGER3R+2Yv62pGKneDw==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@changesets/apply-release-plan" "^4.0.0"
