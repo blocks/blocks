@@ -17,7 +17,7 @@
     "@blocks/react-beautiful-dnd": "^12.2.1",
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "10.0.28",
-    "@mdx-js/react": "1.6.6",
+    "@mdx-js/react": "1.6.16",
     "@monaco-editor/react": "^3.3.2",
     "@reach/tabs": "^0.10.5",
     "@theme-ui/components": "0.3.1",
