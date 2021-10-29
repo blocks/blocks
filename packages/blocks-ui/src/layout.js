@@ -25,7 +25,6 @@ export default ({ children }) => {
           minHeight: '100vh'
         }}
       >
-        <Header />
         <main>{children}</main>
       </div>
     </Styled.root>

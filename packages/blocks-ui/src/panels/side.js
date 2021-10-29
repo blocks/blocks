@@ -6,7 +6,6 @@ import { useCode } from '../providers/code'
 import { useEditor } from '../providers/editor'
 
 import EditorPanel from './editor'
-import ThemePanel from './theme'
 import BlocksListing from './blocks-listing'
 
 export default () => {
@@ -23,7 +22,7 @@ export default () => {
         pb: 3
       }}
     >
-      <Tabs index={activeTabIndex} onChange={index => updateActiveTab(index)}>
+      <Tabs index={activeTabIndex} onChange={(index) => updateActiveTab(index)}>
         <TabList
           sx={{
             display: 'flex',
@@ -38,9 +37,6 @@ export default () => {
           </Tab>
           <Tab sx={getTabStyles({ isActive: activeTab === 'components' })}>
             Components
-          </Tab>
-          <Tab sx={getTabStyles({ isActive: activeTab === 'theme' })}>
-            Theme
           </Tab>
         </TabList>
         <TabPanels>
@@ -68,9 +64,6 @@ export default () => {
           </TabPanel>
           <TabPanel>
             {activeTab === 'components' ? <BlocksListing /> : null}
-          </TabPanel>
-          <TabPanel>
-            <ThemePanel />
           </TabPanel>
         </TabPanels>
       </Tabs>

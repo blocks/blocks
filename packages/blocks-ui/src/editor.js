@@ -7,17 +7,16 @@ import { Canvas } from './canvas'
 import Layout from './layout'
 import { headerHeight } from './header'
 import SidePanel from './panels/side'
-import TreePanel from './panels/tree'
 import Providers from './providers'
 import { useCode } from './providers/code'
 
-const EditorGrid = props => (
+const EditorGrid = (props) => (
   <div
     sx={{
       height: `calc(100vh - ${headerHeight}px)`,
       width: '100%',
       display: 'grid',
-      gridTemplateColumns: '260px 1fr 400px'
+      gridTemplateColumns: '1fr 3fr'
     }}
     {...props}
   />
@@ -33,7 +32,6 @@ const Editor = () => {
         onBeforeDragStart={onBeforeDragStart}
       >
         <EditorGrid>
-          <TreePanel />
           <Canvas />
           <SidePanel />
         </EditorGrid>
