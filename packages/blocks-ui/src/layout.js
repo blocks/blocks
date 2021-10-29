@@ -2,8 +2,6 @@
 import { Styled, jsx } from 'theme-ui'
 import { Global } from '@emotion/core'
 
-import Header, { headerHeight } from './header'
-
 export default ({ children }) => {
   return (
     <Styled.root>
@@ -18,13 +16,7 @@ export default ({ children }) => {
           }
         }}
       />
-      <div
-        css={{
-          display: 'grid',
-          gridTemplateRows: `${headerHeight}px 1fr`,
-          minHeight: '100vh'
-        }}
-      >
+      <div>
         <main>{children}</main>
       </div>
     </Styled.root>
