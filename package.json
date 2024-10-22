@@ -43,9 +43,9 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@babel/plugin-proposal-export-namespace-from": "7.10.1",
-    "@babel/preset-env": "7.10.3",
-    "@babel/preset-react": "7.10.1",
+    "@babel/plugin-proposal-export-namespace-from": "7.18.9",
+    "@babel/preset-env": "7.25.9",
+    "@babel/preset-react": "7.25.9",
     "@changesets/cli": "2.9.1",
     "@emotion/core": "10.0.28",
     "@manypkg/cli": "0.14.0",
