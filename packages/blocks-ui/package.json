@@ -37,10 +37,10 @@
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.10.3",
-    "@babel/core": "7.10.3",
-    "@babel/preset-env": "7.10.3",
-    "@babel/preset-react": "7.10.1",
+    "@babel/cli": "7.25.9",
+    "@babel/core": "7.25.9",
+    "@babel/preset-env": "7.25.9",
+    "@babel/preset-react": "7.25.9",
     "jest": "26.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1"
