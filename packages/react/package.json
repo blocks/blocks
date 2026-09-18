@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.10.3",
-    "@babel/core": "7.10.3",
+    "@babel/core": "7.29.6",
     "@babel/preset-env": "7.10.3",
     "@babel/preset-react": "7.10.1",
     "react": "16.13.1"
